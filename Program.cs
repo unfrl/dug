@@ -11,30 +11,24 @@ namespace dug
 {
     class Program
     {
-        public class Options
+        [Verb("update", HelpText = "Update DNS server list. Uses remote server list by default.")]
+        public class UpdateOptions
         {
-            [Option('v', "verbose", Required = false, HelpText = "Set output to verbose messages.")]
-            public bool Verbose { get; set; }
+            [Option('f', "file", Required = false, HelpText = "Update DNS server list using the specified file")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
+            public string CustomServerFile { get; set; }
         }
         
         static void Main(string[] args)
         {
+            SetupDatabase();
             // Parsing args
-            // Parser.Default.ParseArguments<Options>(args)
-            //        .WithParsed<Options>(o =>
-            //        {
-            //            if (o.Verbose)
-            //            {
-            //                Console.WriteLine($"Verbose output enabled. Current Arguments: -v {o.Verbose}");
-            //                Console.WriteLine("Quick Start Example! App is in Verbose mode!");
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine($"Current Arguments: -v {o.Verbose}");
-            //                Console.WriteLine("Quick Start Example!");
-            //            }
-            //        });
+            Parser.Default.ParseArguments<UpdateOptions>(args)
+                   .WithParsed<UpdateOptions>(ExecuteUpdateActions);
             
+            // If there are no servers in the db populate it from the built in list. I do this after the update so i dont load them before then just have them updated right away.
+            // Theoretically the update command could be the first one they run :)
+
+
             // Reading embedded resources
             // var assembly = typeof(dug.Program).GetTypeInfo().Assembly;
             // Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
@@ -45,7 +39,16 @@ namespace dug
             // }
 
             // Console.WriteLine("Home: " + Environment.GetEnvironmentVariable("HOME"));
-            SetupDatabase();
+        }
+
+        private static void ExecuteUpdateActions(UpdateOptions options)
+        {
+            if(!string.IsNullOrEmpty(options.CustomServerFile)){
+                throw new NotImplementedException("Havent made this feature yet ;)");
+                //Do stuff, return
+            }
+
+            //Do the update
         }
 
         private static void SetupDatabase(){
@@ -57,9 +60,9 @@ namespace dug
             {
                 db.Database.Migrate();
                 // Create
-                Console.WriteLine("Inserting a new server");
-                db.Add(new DnsServer { IPAddress = IPAddress.Parse("82.146.26.2") });
-                db.SaveChanges();
+                // Console.WriteLine("Inserting a new server");
+                // db.Add(new DnsServer { IPAddress = IPAddress.Parse("82.146.26.2") });
+                // db.SaveChanges();
             }
         }
     }
