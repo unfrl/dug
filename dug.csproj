@@ -16,6 +16,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
     <PackageReference Include="Spectre.Console" Version="0.28.0" />
+    <PackageReference Include="TinyCsvParser" Version="2.6.0" />
   </ItemGroup>
 
   <ItemGroup>

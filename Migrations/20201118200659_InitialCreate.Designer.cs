@@ -9,7 +9,7 @@ using dug.Data;
 namespace dug.Migrations
 {
     [DbContext(typeof(DugContext))]
-    [Migration("20201118180040_InitialCreate")]
+    [Migration("20201118200659_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,9 +41,6 @@ namespace dug.Migrations
                         .HasColumnType("REAL");
 
                     b.HasKey("DnsServerId");
-
-                    b.HasIndex("CountryCode")
-                        .IsUnique();
 
                     b.HasIndex("IPAddress")
                         .IsUnique();

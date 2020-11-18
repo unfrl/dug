@@ -24,12 +24,6 @@ namespace dug.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DnsServers_CountryCode",
-                table: "DnsServers",
-                column: "CountryCode",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DnsServers_IPAddress",
                 table: "DnsServers",
                 column: "IPAddress",

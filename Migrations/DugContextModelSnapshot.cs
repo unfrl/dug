@@ -40,9 +40,6 @@ namespace dug.Migrations
 
                     b.HasKey("DnsServerId");
 
-                    b.HasIndex("CountryCode")
-                        .IsUnique();
-
                     b.HasIndex("IPAddress")
                         .IsUnique();
 
