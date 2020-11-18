@@ -15,6 +15,13 @@ namespace dug
 {
     class Program
     {
+        [Verb("run", isDefault: true)]
+        public class RunOptions
+        {
+            [Value(0)]
+            public string Url {get; set;}
+        }
+
         [Verb("update", HelpText = "Update DNS server list. Uses remote server list by default.")]
         public class UpdateOptions
         {
@@ -26,13 +33,35 @@ namespace dug
         {
             SetupDatabase();
             // Parsing args
-            await Parser.Default.ParseArguments<UpdateOptions>(args)
-                   .WithParsedAsync<UpdateOptions>(ExecuteUpdateActions);
+            await Parser.Default.ParseArguments<RunOptions, UpdateOptions>(args)
+                        .WithParsedAsync(ExecuteArguments);
             
             // If there are no servers in the db populate it from the built in list. I do this after the update so i dont load them before then just have them updated right away.
             // Theoretically the update command could be the first one they run :)
             await EnsureServers();
             return 1;
+        }
+
+        private static async Task ExecuteArguments(object args)
+        {
+            switch(args){
+                case UpdateOptions uo:
+                    ExecuteUpdate(uo);
+                    break;
+                case RunOptions ro:
+                    await EnsureServers();
+                    ExecuteRun(ro);
+                    break;
+                default:
+                    //TODO: Idk when itd get here...
+                    break;
+            }
+        }
+
+        private static int ExecuteRun(RunOptions opts)
+        {
+            Console.WriteLine("URL: "+opts.Url);
+            return 0;
         }
 
         // Loads the default DNS Servers if there are no servers in the database
@@ -48,32 +77,36 @@ namespace dug
                 Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
                 using (var reader = new StreamReader(resource))
                 {
-                    await LoadServers(reader);
+                    LoadServers(reader);
                 }
+                Console.WriteLine("Loaded DNS Servers from built-in source");
             }
         }
 
-        private static async Task LoadServers(StreamReader reader)
+        private static void LoadServers(StreamReader reader)
         {
             //TODO: Ensure the headers are correct
             CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
             CsvParser<DnsServer> csvParser = new CsvParser<DnsServer>(csvParserOptions, new CsvDnsServerMapping());
-            var result = csvParser.ReadFromStream(reader.BaseStream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result).ToList();
+            var parsedServers = csvParser.ReadFromStream(reader.BaseStream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result).ToList();
             using (var db = new DugContext())
             {
-                await db.DnsServers.AddRangeAsync(result);
-                db.SaveChanges();
+                var novelServers = parsedServers.Where(newServer => !db.DnsServers.Any(presentServer => presentServer.IPAddress != newServer.IPAddress));
+                if(novelServers.Any()){
+                    db.DnsServers.AddRange(novelServers);
+                    db.SaveChanges();
+                }
+                Console.WriteLine($"Added {novelServers.Count()} new DNS Servers");
             }
-            Console.WriteLine("Loaded DNS Servers");
         }
 
-        private static async Task ExecuteUpdateActions(UpdateOptions options)
+        private static int ExecuteUpdate(UpdateOptions options)
         {
             if(!string.IsNullOrEmpty(options.CustomServerFile)){
                 //Ensure the file exists
                 var stream = File.OpenText(options.CustomServerFile);
-                await LoadServers(stream);
-                return;
+                LoadServers(stream);
+                return 0;
             }
 
             throw new NotImplementedException("Havent implemented updating from the remote source yet ;)");
@@ -88,10 +121,6 @@ namespace dug
             using (var db = new DugContext())
             {
                 db.Database.Migrate();
-                // Create
-                // Console.WriteLine("Inserting a new server");
-                // db.Add(new DnsServer { IPAddress = IPAddress.Parse("82.146.26.2") });
-                // db.SaveChanges();
             }
         }
     }
