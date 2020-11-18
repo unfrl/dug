@@ -9,7 +9,7 @@ using dug.Data;
 namespace dug.Migrations
 {
     [DbContext(typeof(DugContext))]
-    [Migration("20201117194934_InitialCreate")]
+    [Migration("20201118180040_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,7 @@ namespace dug.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("IPAddress")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Reliability")
@@ -41,7 +42,13 @@ namespace dug.Migrations
 
                     b.HasKey("DnsServerId");
 
-                    b.ToTable("Servers");
+                    b.HasIndex("CountryCode")
+                        .IsUnique();
+
+                    b.HasIndex("IPAddress")
+                        .IsUnique();
+
+                    b.ToTable("DnsServers");
                 });
 #pragma warning restore 612, 618
         }
