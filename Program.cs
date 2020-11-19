@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,23 +33,21 @@ namespace dug
         public static async Task<int> Main(string[] args)
         {
             SetupDatabase();
-            // Parsing args
+            // Parse args and execute
             await Parser.Default.ParseArguments<RunOptions, UpdateOptions>(args)
                         .WithParsedAsync(ExecuteArguments);
-            
-            // If there are no servers in the db populate it from the built in list. I do this after the update so i dont load them before then just have them updated right away.
-            // Theoretically the update command could be the first one they run :)
-            await EnsureServers();
-            return 1;
+            return 0;
         }
 
         private static async Task ExecuteArguments(object args)
         {
             switch(args){
                 case UpdateOptions uo:
-                    ExecuteUpdate(uo);
+                    await ExecuteUpdate(uo);
                     break;
                 case RunOptions ro:
+                    // If there are no servers in the db populate it from the built in list. I do this after the update so i dont load them before then just have them updated right away.
+                    // Theoretically the update command could be the first one they run :)
                     await EnsureServers();
                     ExecuteRun(ro);
                     break;
@@ -77,39 +76,42 @@ namespace dug
                 Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
                 using (var reader = new StreamReader(resource))
                 {
-                    LoadServers(reader);
+                    LoadServersFromStream(reader.BaseStream);
                 }
                 Console.WriteLine("Loaded DNS Servers from built-in source");
             }
         }
 
-        private static void LoadServers(StreamReader reader)
+        private static void LoadServersFromStream(Stream stream)
         {
             //TODO: Ensure the headers are correct
             CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
             CsvParser<DnsServer> csvParser = new CsvParser<DnsServer>(csvParserOptions, new CsvDnsServerMapping());
-            var parsedServers = csvParser.ReadFromStream(reader.BaseStream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result).ToList();
+            var parsedServers = csvParser.ReadFromStream(stream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result).ToList();
             using (var db = new DugContext())
             {
                 var novelServers = parsedServers.Where(newServer => !db.DnsServers.Any(presentServer => presentServer.IPAddress != newServer.IPAddress));
-                if(novelServers.Any()){
+                int novelServerCount = novelServers.Count();
+                if(novelServerCount > 0){
                     db.DnsServers.AddRange(novelServers);
                     db.SaveChanges();
                 }
-                Console.WriteLine($"Added {novelServers.Count()} new DNS Servers");
+                Console.WriteLine($"Added {novelServerCount} new DNS Servers");
             }
         }
 
-        private static int ExecuteUpdate(UpdateOptions options)
+        private static async Task ExecuteUpdate(UpdateOptions options)
         {
             if(!string.IsNullOrEmpty(options.CustomServerFile)){
                 //Ensure the file exists
                 var stream = File.OpenText(options.CustomServerFile);
-                LoadServers(stream);
-                return 0;
+                LoadServersFromStream(stream.BaseStream);
+                return;
             }
 
-            throw new NotImplementedException("Havent implemented updating from the remote source yet ;)");
+            var serverInfoStream = await new HttpClient().GetStreamAsync("https://public-dns.info/nameservers.csv");
+            LoadServersFromStream(serverInfoStream);
+            
             //Do the update from the remote source
         }
 
