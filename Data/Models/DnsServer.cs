@@ -18,5 +18,9 @@ namespace dug.Data.Models
         public bool DNSSEC {get; set;}
         
         public double Reliability {get; set;}
+
+        public string ToCsvString(){
+            return $"{IPAddress.ToString()},{CountryCode},{City},{DNSSEC},{Reliability}";
+        }
     }
 }

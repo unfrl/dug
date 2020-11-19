@@ -25,7 +25,6 @@ namespace dug
 
             var serviceProvider = services.BuildServiceProvider();
 
-            EnsureDatastoreAvailability();
             // calls the Run method in App, which is replacing Main
             return await serviceProvider.GetService<App>().RunAsync();
         }
@@ -44,20 +43,6 @@ namespace dug
             services.AddTransient<App>();
 
             return services;
-        }
-
-        private static void EnsureDatastoreAvailability(){
-            try{
-                if(!File.Exists(Config.ServersFile)){
-                    Directory.CreateDirectory(Config.ConfigDirectory);
-                    File.Create(Config.ServersFile);
-                }
-            }
-            catch(Exception ex){
-                //TODO: Handle failing to setup datastore;
-                throw ex;
-            }
-
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using dug.Data.Models;
 using dug.Parsing;
@@ -27,6 +28,11 @@ namespace dug
         // Loads the default DNS Servers if there are no servers in the database
         public void EnsureServers()
         {
+            if(!File.Exists(Config.ServersFile)){
+                Directory.CreateDirectory(Config.ConfigDirectory);
+                File.Create(Config.ServersFile);
+            }
+            
             LoadServersFromDatastore();
             if (_servers.Any())
             {
@@ -50,15 +56,27 @@ namespace dug
         {
             //TODO: Ensure the headers are correct
             var parsedServers = _serverParser.ParseServersFromStream(stream, format).ToList();
+            var distinctServers = parsedServers.Select(item => item.IPAddress.ToString()).Distinct();
+
             var novelServers = parsedServers.Where(newServer => !_servers.Any(presentServer => presentServer.IPAddress.ToString() == newServer.IPAddress.ToString())).ToList();
             int novelServerCount = novelServers.Count();
             if(novelServerCount > 0){
                 _servers.AddRange(novelServers);
                 if(updateFile){
                     //TODO: Update server.csv atomically
+                    PersistServers();
                 }
             }
             return novelServerCount;
+        }
+
+        private void PersistServers(){
+            StringBuilder builder = new StringBuilder("ip_address,country_code,city,dnssec,reliability\n"); //The first line should be the headers
+            foreach(DnsServer server in _servers){
+                builder.AppendLine(server.ToCsvString());
+            }
+            File.WriteAllText(Config.ServersTempFile, builder.ToString());
+            File.Replace(Config.ServersTempFile, Config.ServersFile, null);
         }
 
         public void UpdateServersFromFile(string customFilePath)
