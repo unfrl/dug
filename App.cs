@@ -64,7 +64,7 @@ namespace dug
         }
 
         private async Task HandleCliErrorsAsync(IEnumerable<Error> errs){
-            throw new NotImplementedException("Not handling cli parse errors yet!");
+            //throw new NotImplementedException("Not handling cli parse errors yet!");
         }
 
     }

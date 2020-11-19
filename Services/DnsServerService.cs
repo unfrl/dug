@@ -32,7 +32,7 @@ namespace dug
                 Directory.CreateDirectory(Config.ConfigDirectory);
                 File.Create(Config.ServersFile);
             }
-            
+
             LoadServersFromDatastore();
             if (_servers.Any())
             {
@@ -45,7 +45,6 @@ namespace dug
             int newServers = 0;
             using (var reader = new StreamReader(resource))
             {
-                var firstline = reader.ReadLine();
                 newServers = LoadServersFromStream(reader.BaseStream, DnsServerCsvFormats.Local, true);
             }
             Console.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
@@ -56,14 +55,12 @@ namespace dug
         {
             //TODO: Ensure the headers are correct
             var parsedServers = _serverParser.ParseServersFromStream(stream, format).ToList();
-            var distinctServers = parsedServers.Select(item => item.IPAddress.ToString()).Distinct();
 
             var novelServers = parsedServers.Where(newServer => !_servers.Any(presentServer => presentServer.IPAddress.ToString() == newServer.IPAddress.ToString())).ToList();
             int novelServerCount = novelServers.Count();
             if(novelServerCount > 0){
                 _servers.AddRange(novelServers);
                 if(updateFile){
-                    //TODO: Update server.csv atomically
                     PersistServers();
                 }
             }
