@@ -5,7 +5,7 @@ namespace dug
 {
     public static class Config {
         public static string ConfigDirectory = Path.Join(getConfigBaseDirectory(), ".dug");
-        public static string SqliteFile = Path.Join(ConfigDirectory, "dug.db");
+        public static string ServersFile = Path.Join(ConfigDirectory, "servers.csv");
 
         // Returns the User's home directory, platform agnostic.
         private static string getConfigBaseDirectory(){
