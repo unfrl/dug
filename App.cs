@@ -22,7 +22,7 @@ namespace dug
 
         public async Task<int> RunAsync()
         {
-            await _cliArgs.WithNotParsedAsync(HandleCliErrorsAsync);
+            // await _cliArgs.WithNotParsedAsync(HandleCliErrorsAsync); //TODO: Handle CLI Parsing errors (maybe)
             await _cliArgs.WithParsedAsync(ExecuteArgumentsAsync);
                 
             return 0;
@@ -30,6 +30,7 @@ namespace dug
 
         private async Task ExecuteArgumentsAsync(object args)
         {
+            HandleGlobalOptions(args as GlobalOptions);
             _dnsServerService.EnsureServers();
             switch(args){
                 case UpdateOptions uo:
@@ -47,25 +48,31 @@ namespace dug
             }
         }
 
-        private static int ExecuteRun(RunOptions opts)
+        private void HandleGlobalOptions(GlobalOptions options){
+            Config.Verbose = options.Verbose;
+            if(Config.Verbose){
+                Console.WriteLine("Verbose Output Enabled");
+            }
+        }
+
+        private void ExecuteRun(RunOptions opts)
         {
-            Console.WriteLine("URL: "+opts.Url);
-            return 0;
+            Console.WriteLine("URL: " + opts.Url);
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)
         {
             if(!string.IsNullOrEmpty(options.CustomServerFile)){
-                _dnsServerService.UpdateServersFromFile(options.CustomServerFile);
+                _dnsServerService.UpdateServersFromFile(options.CustomServerFile, options.Overwite);
                 return;
             }
-            await _dnsServerService.UpdateServersFromRemote();
+            await _dnsServerService.UpdateServersFromRemote(options.Overwite);
             
         }
 
-        private async Task HandleCliErrorsAsync(IEnumerable<Error> errs){
-            //throw new NotImplementedException("Not handling cli parse errors yet!");
-        }
+        // private async Task HandleCliErrorsAsync(IEnumerable<Error> errs){
+        //     //throw new NotImplementedException("Not handling cli parse errors yet!");
+        // }
 
     }
 }

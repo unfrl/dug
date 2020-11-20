@@ -5,11 +5,15 @@ using dug.Data.Models;
 namespace dug
 {
     public interface IDnsServerService{
-        List<DnsServer> GetServers();
+        List<DnsServer> Servers { get; }
 
-        void UpdateServersFromFile(string customFilePath);
+        // Specify the source file to load servers from and update the current server file (Config.ServersFile) with any novel servers found.
+        // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
+        void UpdateServersFromFile(string customFilePath, bool overwrite);
 
-        Task UpdateServersFromRemote();
+        // Update the current server file (Config.ServersFile) with any novel servers found from the remote source (https://public-dns.info/nameservers.csv).
+        // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
+        Task UpdateServersFromRemote(bool overwrite);
 
         void EnsureServers();
     }

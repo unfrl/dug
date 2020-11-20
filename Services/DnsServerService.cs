@@ -17,12 +17,10 @@ namespace dug
 
         private IDnsServerParser _serverParser;
 
+        public List<DnsServer> Servers => _servers;
+
         public DnsServerService(IDnsServerParser serverParser){
             _serverParser = serverParser;
-        }
-
-        public List<DnsServer> GetServers(){
-            return _servers;
         }
 
         // Loads the default DNS Servers if there are no servers in the database
@@ -30,39 +28,40 @@ namespace dug
         {
             if(!File.Exists(Config.ServersFile)){
                 Directory.CreateDirectory(Config.ConfigDirectory);
-                File.Create(Config.ServersFile);
+                var assembly = typeof(dug.Program).GetTypeInfo().Assembly;
+                Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
+                int newServers = 0;
+                using (var reader = new StreamReader(resource))
+                {
+                    newServers = LoadServersFromStream(reader.BaseStream, DnsServerCsvFormats.Local);
+                    PersistServers();
+                }
+                Console.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
             }
-
-            LoadServersFromDatastore();
-            if (_servers.Any())
-            {
-                //TODO: If there is a verbose output maybe make it say something like "servers already present, no need to use internal source"
-                return;
-            }
-
-            var assembly = typeof(dug.Program).GetTypeInfo().Assembly;
-            Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
-            int newServers = 0;
-            using (var reader = new StreamReader(resource))
-            {
-                newServers = LoadServersFromStream(reader.BaseStream, DnsServerCsvFormats.Local, true);
-            }
-            Console.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
+            else {
+                LoadServersFromDatastore();
+            }            
         }
 
-        //Returns the number of servers added
-        private int LoadServersFromStream(Stream stream, DnsServerCsvFormats format, bool updateFile = false)
+        // Returns the number of servers added
+        // If overwrite is set the current server list is overwritten, instead of being updated with novel servers
+        private int LoadServersFromStream(Stream stream, DnsServerCsvFormats format, bool overwrite = false)
         {
             //TODO: Ensure the headers are correct
             var parsedServers = _serverParser.ParseServersFromStream(stream, format).ToList();
+
+            if(overwrite){
+                if(Config.Verbose)
+                    Console.WriteLine($"Overwriting {_servers.Count()} with {parsedServers.Count()} specified servers");
+
+                _servers = parsedServers;
+                return parsedServers.Count();
+            }
 
             var novelServers = parsedServers.Where(newServer => !_servers.Any(presentServer => presentServer.IPAddress.ToString() == newServer.IPAddress.ToString())).ToList();
             int novelServerCount = novelServers.Count();
             if(novelServerCount > 0){
                 _servers.AddRange(novelServers);
-                if(updateFile){
-                    PersistServers();
-                }
             }
             return novelServerCount;
         }
@@ -72,33 +71,47 @@ namespace dug
             foreach(DnsServer server in _servers){
                 builder.AppendLine(server.ToCsvString());
             }
+            if(!File.Exists(Config.ServersFile)){
+                File.WriteAllText(Config.ServersFile, builder.ToString());
+                return;
+            }
+            
             File.WriteAllText(Config.ServersTempFile, builder.ToString());
             File.Replace(Config.ServersTempFile, Config.ServersFile, null);
         }
 
-        public void UpdateServersFromFile(string customFilePath)
+        public void UpdateServersFromFile(string customFilePath, bool overwrite)
         {
             //TODO: Ensure the file exists
             if(!File.Exists(customFilePath))
             {
                 throw new FileNotFoundException($"Unable to find file at: {customFilePath}");
             }
-            var stream = File.OpenText(customFilePath);
-            int serversAdded = LoadServersFromStream(stream.BaseStream, DnsServerCsvFormats.Local, true);
-            Console.WriteLine($"Added {serversAdded} DNS Servers from {customFilePath}");
+            int serversAdded;
+            using(var streamReader = File.OpenText(customFilePath)){
+                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local, overwrite);
+            }
+            Console.WriteLine($"Retrieved {serversAdded} DNS Servers from {customFilePath}");
+            PersistServers();
         }
 
         private void LoadServersFromDatastore(){
-            var stream = File.OpenText(Config.ServersFile);
-            int serversAdded = LoadServersFromStream(stream.BaseStream, DnsServerCsvFormats.Local);
-            Console.WriteLine($"Loaded {serversAdded} DNS Servers from {Config.ServersFile}");
+            int serversAdded;
+            using(var streamReader = File.OpenText(Config.ServersFile)){
+                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local);
+            }
+
+            if(Config.Verbose)
+                Console.WriteLine($"Loaded {serversAdded} DNS Servers from {Config.ServersFile}");
         }
 
-        public async Task UpdateServersFromRemote()
+        public async Task UpdateServersFromRemote(bool overwrite)
         {
-            var serverInfoStream = await new HttpClient().GetStreamAsync("https://public-dns.info/nameservers.csv");
-            int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerCsvFormats.Remote, true);
-            Console.WriteLine($"Added {serversAdded} DNS Servers from remote source");
+            string remoteSourceURL = "https://public-dns.info/nameservers.csv";
+            var serverInfoStream = await new HttpClient().GetStreamAsync(remoteSourceURL);
+            int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerCsvFormats.Remote, overwrite);
+            Console.WriteLine($"Retrieved {serversAdded} DNS Servers from {remoteSourceURL}");
+            PersistServers();
         }
     }
 }

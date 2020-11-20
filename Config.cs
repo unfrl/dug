@@ -8,6 +8,8 @@ namespace dug
         public static string ServersFile = Path.Join(ConfigDirectory, "servers.csv");
         public static string ServersTempFile = Path.Join(ConfigDirectory, "servers.tmp.csv");
 
+        public static bool Verbose { get; set; }
+
         // Returns the User's home directory, platform agnostic.
         private static string getConfigBaseDirectory(){
             return Environment.OSVersion.Platform == PlatformID.Unix ?
