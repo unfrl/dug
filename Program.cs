@@ -38,6 +38,7 @@ namespace dug
             services.AddSingleton(parsedArgs);
             services.AddTransient<IDnsServerParser, DnsServerParser>();
             services.AddTransient<IDnsServerService, DnsServerService>();
+            services.AddTransient<IDnsQueryService, DnsQueryService>();
 
             // required to run the application
             services.AddTransient<App>();

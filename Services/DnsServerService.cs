@@ -19,6 +19,8 @@ namespace dug
 
         public List<DnsServer> Servers => _servers;
 
+        public ILookup<ContinentCodes, DnsServer> ServersByContinent => Servers.ToLookup(server => server.ContinentCode, new ContinentCodeComparer());
+
         public DnsServerService(IDnsServerParser serverParser){
             _serverParser = serverParser;
         }
@@ -48,7 +50,7 @@ namespace dug
         private int LoadServersFromStream(Stream stream, DnsServerCsvFormats format, bool overwrite = false)
         {
             //TODO: Ensure the headers are correct
-            var parsedServers = _serverParser.ParseServersFromStream(stream, format).ToList();
+            var parsedServers = _serverParser.ParseServersFromStream(stream, format).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
 
             if(overwrite){
                 if(Config.Verbose)

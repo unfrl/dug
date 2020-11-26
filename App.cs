@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using CommandLine;
 using dug.Options;
 using dug.Parsing;
@@ -12,12 +12,14 @@ namespace dug
         private ParserResult<object> _cliArgs;
         private IDnsServerParser _parser;
         private IDnsServerService _dnsServerService;
+        private IDnsQueryService _dnsQueryService;
 
-        public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService)
+        public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService, IDnsQueryService dnsQueryService)
         {
             _cliArgs = cliArgs;
             _parser = parser;
             _dnsServerService = dnsServerService;
+            _dnsQueryService = dnsQueryService;
         }
 
         public async Task<int> RunAsync()
@@ -40,7 +42,7 @@ namespace dug
                     // If there are no servers in the db populate it from the built in list. I do this after the update so i dont load them before then just have them updated right away.
                     // Theoretically the update command could be the first one they run :)
                     // await _dnsServerService.EnsureServers();
-                    ExecuteRun(ro);
+                    await ExecuteRun(ro);
                     break;
                 default:
                     //TODO: Idk when itd get here...
@@ -55,9 +57,17 @@ namespace dug
             }
         }
 
-        private void ExecuteRun(RunOptions opts)
+        private async Task ExecuteRun(RunOptions opts)
         {
+            // 1. Determine the servers to be used
+            //    - For now just get the top 1 most reliable servers per continent. Eventually I'll provide cli options to refine this.
+            var topServersByContinent = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(1));
+            Console.WriteLine("Servers: "+topServersByContinent.Count());
+
+            // 2. Run the queries with any options (any records, specific records, etc)
+            // 3. Draw beautiful results in fancy table
             Console.WriteLine("URL: " + opts.Url);
+            await _dnsQueryService.QueryServer(opts.Url, topServersByContinent);
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)
