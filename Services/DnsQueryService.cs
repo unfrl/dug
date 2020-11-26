@@ -12,11 +12,9 @@ namespace dug
 {
     public class DnsQueryService : IDnsQueryService
     {
-
-        public async Task QueryServer(string url, IEnumerable<DnsServer> dnsServers)
+        public async Task<Dictionary<DnsServer, IDnsQueryResponse>> QueryServer(string url, IEnumerable<DnsServer> dnsServers)
         {
             ConcurrentDictionary<DnsServer, IDnsQueryResponse> results = new ConcurrentDictionary<DnsServer, IDnsQueryResponse>();
-            var bag = new ConcurrentBag<IDnsQueryResponse>();
 
             var queryTaskList = dnsServers.Select(async server => {
                 var dnsServer = new IPEndPoint(IPAddress.Parse(server.IPAddress.ToString()), 53);
@@ -32,7 +30,7 @@ namespace dug
                     clock.Start();
                     var queryResult = await client.QueryAsync(url, QueryType.ANY);
                     Console.WriteLine($"FINISH -- {dnsServer.Address} -- {clock.ElapsedMilliseconds}");
-                    bag.Add(queryResult);
+                    results.TryAdd(server, queryResult);
                 }
                 catch (DnsResponseException dnsException){
                     if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
@@ -42,24 +40,17 @@ namespace dug
                     Console.WriteLine($"ERROR -- {dnsServer.Address} -- {clock.ElapsedMilliseconds}");
                     // Console.WriteLine($"Failed to retrieve data from DNS Server @ ({dnsServer.Address})");
                 }
-                catch (Exception ex){
+                catch{
                     Console.WriteLine($"UNHANDLED ERROR -- {dnsServer.Address} -- {clock.ElapsedMilliseconds}");
                     // Console.WriteLine($"Failed to retrieve data from DNS Server @ ({dnsServer.Address})");
                 }
-                
             });
 
             await Task.WhenAll(queryTaskList);
 
-            Console.WriteLine($"Done, got {bag.Where(response => !response.HasError).Count()} good responses out of {dnsServers.Count()} servers");
+            Console.WriteLine($"Done, got {results.Count()} good responses out of {dnsServers.Count()} servers");
 
-            // var dnsServer = new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53);
-            // var client = new LookupClient(dnsServer);
-            // var results = await client.QueryAsync(Url, QueryType.ANY);
-            // Console.WriteLine("Answers:");
-            // foreach(var answer in results.Answers){
-            //     Console.WriteLine(answer);
-            // }
+            return new Dictionary<DnsServer, IDnsQueryResponse>(results);
         }
     }
 }
