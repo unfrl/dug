@@ -7,7 +7,10 @@ namespace dug.Options
     public class RunOptions : GlobalOptions
     {
         [Value(0, Required = true, HelpText = "The URL you would like to see propogation for", MetaName = "URL")]
-        public string Url {get; set;}
+        public string Url { get; set; }
+
+        [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
+        public int Timeout { get; set; }
     }
 
     [Verb("update", HelpText = "Update DNS server list with any new unique servers. Uses remote server to get list by default.")]

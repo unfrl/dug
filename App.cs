@@ -67,7 +67,7 @@ namespace dug
             // 2. Run the queries with any options (any records, specific records, etc)
             // 3. Draw beautiful results in fancy table
             Console.WriteLine("URL: " + opts.Url);
-            var results = await _dnsQueryService.QueryServer(opts.Url, topServersByContinent);
+            var results = await _dnsQueryService.QueryServers(opts.Url, topServersByContinent, TimeSpan.FromMilliseconds(opts.Timeout));
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)
