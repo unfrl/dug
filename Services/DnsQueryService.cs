@@ -12,7 +12,7 @@ namespace dug
 {
     public class DnsQueryService : IDnsQueryService
     {
-        private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, TimeSpan timeout, int retries = 0){
+        private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, TimeSpan timeout, QueryType queryType = QueryType.ANY, int retries = 0){
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {server.IPAddress}) {
                     Timeout = timeout,
                     Retries = retries
@@ -25,7 +25,7 @@ namespace dug
                 return await client.QueryAsync(url, QueryType.ANY);
         }
 
-        public async Task<Dictionary<DnsServer, IDnsQueryResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, int retries = 0)
+        public async Task<Dictionary<DnsServer, IDnsQueryResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, QueryType queryType = QueryType.ANY, int retries = 0)
         {
             ConcurrentDictionary<DnsServer, IDnsQueryResponse> results = new ConcurrentDictionary<DnsServer, IDnsQueryResponse>();
 
@@ -35,7 +35,7 @@ namespace dug
                 try{
                     Console.WriteLine($"START -- {server.IPAddress}");
                     clock.Start();
-                    var queryResult = await QueryDnsServer(server, url, timeout, retries);
+                    var queryResult = await QueryDnsServer(server, url, timeout, queryType, retries);
                     Console.WriteLine($"FINISH -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
                     results.TryAdd(server, queryResult);
                 }

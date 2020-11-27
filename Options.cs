@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using CommandLine;
+using DnsClient;
 
 namespace dug.Options
 {
@@ -11,6 +13,9 @@ namespace dug.Options
 
         [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
         public int Timeout { get; set; }
+
+        [Option('q', "query-type", Required = false, HelpText = "HELP HERE!", Separator = ',')]
+        public IEnumerable<QueryType> QueryTypes { get; set; }
     }
 
     [Verb("update", HelpText = "Update DNS server list with any new unique servers. Uses remote server to get list by default.")]
