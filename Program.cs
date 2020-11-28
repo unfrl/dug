@@ -7,14 +7,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
-using dug.Data;
-using dug.Data.Models;
-using dug.Services.Options;
-using dug.Services.Parsing;
+using dug.Services;
+using dug.Options;
+using dug.Parsing;
 using Microsoft.Extensions.DependencyInjection;
-using TinyCsvParser;
 
-namespace dug.Services
+namespace dug
 {
     class Program
     {
@@ -39,6 +37,7 @@ namespace dug.Services
             services.AddTransient<IDnsServerParser, DnsServerParser>();
             services.AddTransient<IDnsServerService, DnsServerService>();
             services.AddTransient<IDnsQueryService, DnsQueryService>();
+            services.AddTransient<IConsoleService, ConsoleService>();
 
             // required to run the application
             services.AddTransient<App>();

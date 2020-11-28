@@ -17,11 +17,27 @@ namespace dug.Data.Models
 
         public string City {get; set;}
 
-        public bool DNSSEC {get; set;}
+        public bool? DNSSEC {get; set;} //TODO: Will no value in the server info here actually set this to null?
         
         public double Reliability {get; set;}
 
         public ContinentCodes ContinentCode { get { return DataMaps.CountryContinentMap[CountryCode]; } }
+
+        public string CountryName { 
+            get {
+                return DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : "";
+            }
+        }
+
+        public string CountryFlag { get { return DataMaps.CountryFlagMap[CountryCode]; } }
+
+        public string LongName {
+            get {
+                string result = string.IsNullOrWhiteSpace(City) ? "" : $"{City}, ";
+                result += string.IsNullOrEmpty(CountryName) ? "UNKNOWN COUNTRY 🤷" : CountryName;
+                return result;
+            }
+        }
 
         public string ToCsvString(){
             return $"{IPAddress.ToString()},{CountryCode},{City},{DNSSEC},{Reliability}";

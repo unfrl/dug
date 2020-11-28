@@ -1,7 +1,7 @@
 using dug.Data.Models;
 using TinyCsvParser.Mapping;
 
-namespace dug.Services.Parsing
+namespace dug.Parsing
 {
     public class RemoteCsvDnsServerMapping : CsvMapping<DnsServer>
     {

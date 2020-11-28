@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using DnsClient;
 using dug.Data.Models;
-using dug.Services.Utils;
+using dug.Utils;
 
 namespace dug.Services
 {

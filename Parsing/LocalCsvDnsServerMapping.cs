@@ -4,7 +4,7 @@ using dug.Data.Models;
 using TinyCsvParser.Mapping;
 using TinyCsvParser.TypeConverter;
 
-namespace dug.Services.Parsing
+namespace dug.Parsing
 {
     public class LocalCsvDnsServerMapping : CsvMapping<DnsServer>
     {

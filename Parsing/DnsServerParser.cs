@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System;
 
-namespace dug.Services.Parsing
+namespace dug.Parsing
 {
     public enum DnsServerCsvFormats{
         Remote,

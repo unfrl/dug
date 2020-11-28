@@ -2,12 +2,13 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using CommandLine;
-using dug.Services.Options;
-using dug.Services.Parsing;
+using dug.Options;
+using dug.Parsing;
 using DnsClient;
-using dug.Services.Utils;
+using dug.Utils;
+using dug.Services;
 
-namespace dug.Services
+namespace dug
 {
     public class App
     {
@@ -15,13 +16,15 @@ namespace dug.Services
         private IDnsServerParser _parser;
         private IDnsServerService _dnsServerService;
         private IDnsQueryService _dnsQueryService;
+        private IConsoleService _consoleService;
 
-        public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService, IDnsQueryService dnsQueryService)
+        public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService, IDnsQueryService dnsQueryService, IConsoleService consoleService)
         {
             _cliArgs = cliArgs;
             _parser = parser;
             _dnsServerService = dnsServerService;
             _dnsQueryService = dnsQueryService;
+            _consoleService = consoleService;
         }
 
         public async Task<int> RunAsync()
@@ -80,6 +83,7 @@ namespace dug.Services
             var queryResults = await _dnsQueryService.QueryServers(opts.Url, topServersByContinent, TimeSpan.FromMilliseconds(opts.Timeout), queryType);
 
             // 3. Draw beautiful results in fancy table
+            _consoleService.DrawResults(queryResults, opts);
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)

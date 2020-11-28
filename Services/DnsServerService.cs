@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using dug.Data;
 using dug.Data.Models;
-using dug.Services.Parsing;
+using dug.Parsing;
 
 namespace dug.Services
 {
@@ -31,7 +31,7 @@ namespace dug.Services
         {
             if(!File.Exists(Config.ServersFile)){
                 Directory.CreateDirectory(Config.ConfigDirectory);
-                var assembly = typeof(dug.Services.Program).GetTypeInfo().Assembly;
+                var assembly = typeof(dug.Program).GetTypeInfo().Assembly;
                 Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
                 int newServers = 0;
                 using (var reader = new StreamReader(resource))

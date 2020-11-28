@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using TinyCsvParser.TypeConverter;
 
-namespace dug.Services.Parsing
+namespace dug.Parsing
 {
     internal class IpAddressConverter : ITypeConverter<IPAddress>
     {
