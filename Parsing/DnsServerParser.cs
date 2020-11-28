@@ -1,4 +1,4 @@
-using dug.Services.Data.Models;
+using dug.Data.Models;
 using TinyCsvParser;
 using System.Linq;
 using System.Text;

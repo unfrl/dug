@@ -1,4 +1,4 @@
-using dug.Services.Data.Models;
+using dug.Data.Models;
 using TinyCsvParser.Mapping;
 
 namespace dug.Services.Parsing

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace dug.Services
+namespace dug.Data
 {
     public class DataMaps
     {

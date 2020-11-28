@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DnsClient;
-using dug.Services.Data.Models;
+using dug.Data.Models;
 
 namespace dug.Services
 {

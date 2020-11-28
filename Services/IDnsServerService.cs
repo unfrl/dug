@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using dug.Services.Data.Models;
+using dug.Data;
+using dug.Data.Models;
 
 namespace dug.Services
 {

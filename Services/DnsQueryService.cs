@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DnsClient;
-using dug.Services.Data.Models;
+using dug.Data.Models;
 using dug.Services.Utils;
 
 namespace dug.Services

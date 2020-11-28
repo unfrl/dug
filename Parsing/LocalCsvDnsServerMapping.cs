@@ -1,6 +1,6 @@
 using System;
 using System.Net;
-using dug.Services.Data.Models;
+using dug.Data.Models;
 using TinyCsvParser.Mapping;
 using TinyCsvParser.TypeConverter;
 

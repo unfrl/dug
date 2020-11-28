@@ -1,6 +1,6 @@
 using System.IO;
 using System.Linq;
-using dug.Services.Data.Models;
+using dug.Data.Models;
 
 namespace dug.Services.Parsing
 {

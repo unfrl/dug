@@ -6,7 +6,8 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using dug.Services.Data.Models;
+using dug.Data;
+using dug.Data.Models;
 using dug.Services.Parsing;
 
 namespace dug.Services
