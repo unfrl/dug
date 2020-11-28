@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DnsClient;
+using dug.Data;
 using dug.Data.Models;
 using dug.Utils;
 
@@ -26,9 +27,9 @@ namespace dug.Services
                 return await client.QueryAsync(url, QueryType.ANY);
         }
 
-        public async Task<Dictionary<DnsServer, IDnsQueryResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, QueryType queryType = QueryType.ANY, int retries = 0)
+        public async Task<Dictionary<DnsServer, DnsResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, QueryType queryType = QueryType.ANY, int retries = 0)
         {
-            ConcurrentDictionary<DnsServer, IDnsQueryResponse> results = new ConcurrentDictionary<DnsServer, IDnsQueryResponse>();
+            ConcurrentDictionary<DnsServer, DnsResponse> results = new ConcurrentDictionary<DnsServer, DnsResponse>();
 
             var queryTaskList = dnsServers.Select(async server => {
                 Stopwatch clock = new Stopwatch();
@@ -37,15 +38,18 @@ namespace dug.Services
                     DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
                     clock.Start();
                     var queryResult = await QueryDnsServer(server, url, timeout, queryType, retries);
-                    DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
-                    results.TryAdd(server, queryResult);
+                    long responseTime = clock.ElapsedMilliseconds;
+                    DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
+                    results.TryAdd(server, new DnsResponse(queryResult, responseTime));
                 }
                 catch (DnsResponseException dnsException){
+                    long responseTime = clock.ElapsedMilliseconds;
+                    results.TryAdd(server, new DnsResponse(dnsException, responseTime));
                     if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
-                        DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                        DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
                         return;
                     }
-                    DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                    DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
                 }
                 catch{
                     DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
@@ -56,7 +60,7 @@ namespace dug.Services
 
             Console.WriteLine($"Done, got {results.Count()} good responses out of {dnsServers.Count()} servers");
 
-            return new Dictionary<DnsServer, IDnsQueryResponse>(results);
+            return new Dictionary<DnsServer, DnsResponse>(results);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DnsClient;
+using dug.Data;
 using dug.Data.Models;
 using dug.Options;
 using Spectre.Console;
@@ -9,13 +10,13 @@ namespace dug.Services
 {
     public class ConsoleService : IConsoleService
     {
-        public void DrawResults(Dictionary<DnsServer, IDnsQueryResponse> results, RunOptions options)
+        public void DrawResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options)
         {
             DrawUrlHeader(options.Url);
             DrawTable(results);
         }
 
-        private void DrawTable(Dictionary<DnsServer, IDnsQueryResponse> results)
+        private void DrawTable(Dictionary<DnsServer, DnsResponse> results)
         {
             var parentTable = new Table()
                 .Border(TableBorder.Rounded)
@@ -26,18 +27,26 @@ namespace dug.Services
             foreach(var result in results){
                 //Create Server info for left column
                 var server = result.Key;
+                var requestTimedOut = result.Value.HasError && result.Value.Error.Code == DnsResponseCode.ConnectionTimeout;
+
                 var serverInfoGrid = new Grid();
                 serverInfoGrid.AddColumn(new GridColumn().NoWrap());
                 serverInfoGrid.AddRow(server.IPAddress.ToString());
                 // string countryInfo = string.IsNullOrEmpty(server.CountryFlag) ? "" : server.CountryFlag; //I would really like to use these flag emojis but it seems like it has very little terminal support, most render them incorrectly...
                 serverInfoGrid.AddRow(server.LongName);
                 serverInfoGrid.AddRow("DNSSEC: " + (server.DNSSEC == null ? "❓" : ((bool)server.DNSSEC ? "🔒" : "🔓")));
-                serverInfoGrid.AddRow("Response (ms): "+"TIME_HERE"); //TODO: Extend IDnsQueryResponse so I can add data like response time
+                serverInfoGrid.AddRow("Response (ms): "+ result.Value.ResponseTime + (requestTimedOut ? " ⏲️ (Timed out)" : ""));
                 serverInfoGrid.AddEmptyRow();
 
                 //Create result sub-table for right column
                 IRenderable resultsInfo;
-                if(result.Value.Answers.Count < 1){
+                if(requestTimedOut){
+                    resultsInfo = new Panel("[b]No Answers Received Due to Timeout[/]").BorderColor(Color.Red);
+                }
+                else if(result.Value.HasError){
+                    resultsInfo = new Panel($"[b]Error: {result.Value.Error.DnsError}[/]").BorderColor(Color.Red);
+                }
+                else if(result.Value.QueryResponse.Answers.Count < 1){
                     resultsInfo = new Panel("[b]No Answers Received[/]").BorderColor(Color.Red);
                 }
                 else{
@@ -48,7 +57,7 @@ namespace dug.Services
                     .AddColumn(new TableColumn("[u]Result[/]").Centered());
 
                     
-                    foreach(var answer in result.Value.Answers){
+                    foreach(var answer in result.Value.QueryResponse.Answers){
                         //TODO: Only render the requested record types!
                         ((Table)resultsInfo).AddRow(answer.RecordType.ToString(), answer.DomainName.Original);
                     }
