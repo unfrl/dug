@@ -1,8 +1,8 @@
 using System.IO;
 using System.Linq;
-using dug.Data.Models;
+using dug.Services.Data.Models;
 
-namespace dug.Parsing
+namespace dug.Services.Parsing
 {
     public interface IDnsServerParser{
         ParallelQuery<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format);

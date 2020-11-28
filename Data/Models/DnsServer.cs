@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
-namespace dug.Data.Models
+namespace dug.Services.Data.Models
 {
     public class DnsServer
     {

@@ -6,10 +6,10 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using dug.Data.Models;
-using dug.Parsing;
+using dug.Services.Data.Models;
+using dug.Services.Parsing;
 
-namespace dug
+namespace dug.Services
 {
     public class DnsServerService : IDnsServerService
     {
@@ -30,7 +30,7 @@ namespace dug
         {
             if(!File.Exists(Config.ServersFile)){
                 Directory.CreateDirectory(Config.ConfigDirectory);
-                var assembly = typeof(dug.Program).GetTypeInfo().Assembly;
+                var assembly = typeof(dug.Services.Program).GetTypeInfo().Assembly;
                 Stream resource = assembly.GetManifestResourceStream("dug.Resources.default_servers.csv");
                 int newServers = 0;
                 using (var reader = new StreamReader(resource))

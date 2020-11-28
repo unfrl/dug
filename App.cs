@@ -2,12 +2,12 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using CommandLine;
-using dug.Options;
-using dug.Parsing;
+using dug.Services.Options;
+using dug.Services.Parsing;
 using DnsClient;
-using dug.Utils;
+using dug.Services.Utils;
 
-namespace dug
+namespace dug.Services
 {
     public class App
     {

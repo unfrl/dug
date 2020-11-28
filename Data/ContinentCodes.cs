@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace dug
+namespace dug.Services
 {
     public class ContinentCodes
     {

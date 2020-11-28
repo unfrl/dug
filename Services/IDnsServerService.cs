@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using dug.Data.Models;
+using dug.Services.Data.Models;
 
-namespace dug
+namespace dug.Services
 {
     public interface IDnsServerService{
         List<DnsServer> Servers { get; }

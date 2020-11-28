@@ -1,6 +1,6 @@
 using System;
 
-namespace dug.Utils
+namespace dug.Services.Utils
 {
     public static class DugConsole
     {

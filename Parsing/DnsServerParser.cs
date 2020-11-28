@@ -1,11 +1,11 @@
-using dug.Data.Models;
+using dug.Services.Data.Models;
 using TinyCsvParser;
 using System.Linq;
 using System.Text;
 using System.IO;
 using System;
 
-namespace dug.Parsing
+namespace dug.Services.Parsing
 {
     public enum DnsServerCsvFormats{
         Remote,

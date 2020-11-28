@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DnsClient;
-using dug.Data.Models;
-using dug.Utils;
+using dug.Services.Data.Models;
+using dug.Services.Utils;
 
-namespace dug
+namespace dug.Services
 {
     public class DnsQueryService : IDnsQueryService
     {
@@ -54,7 +54,7 @@ namespace dug
 
             await Task.WhenAll(queryTaskList);
 
-            DugConsole.VerboseWriteLine($"Done, got {results.Count()} good responses out of {dnsServers.Count()} servers");
+            Console.WriteLine($"Done, got {results.Count()} good responses out of {dnsServers.Count()} servers");
 
             return new Dictionary<DnsServer, IDnsQueryResponse>(results);
         }

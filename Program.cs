@@ -7,14 +7,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
-using dug.Data;
-using dug.Data.Models;
-using dug.Options;
-using dug.Parsing;
+using dug.Services.Data;
+using dug.Services.Data.Models;
+using dug.Services.Options;
+using dug.Services.Parsing;
 using Microsoft.Extensions.DependencyInjection;
 using TinyCsvParser;
 
-namespace dug
+namespace dug.Services
 {
     class Program
     {

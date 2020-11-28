@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DnsClient;
-using dug.Data.Models;
+using dug.Services.Data.Models;
 
-namespace dug
+namespace dug.Services
 {
     public interface IDnsQueryService
     {

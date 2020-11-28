@@ -1,10 +1,10 @@
 using System;
 using System.Net;
-using dug.Data.Models;
+using dug.Services.Data.Models;
 using TinyCsvParser.Mapping;
 using TinyCsvParser.TypeConverter;
 
-namespace dug.Parsing
+namespace dug.Services.Parsing
 {
     public class LocalCsvDnsServerMapping : CsvMapping<DnsServer>
     {

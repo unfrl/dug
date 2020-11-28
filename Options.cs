@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CommandLine;
 using DnsClient;
 
-namespace dug.Options
+namespace dug.Services.Options
 {
     [Verb("run", isDefault: true, HelpText = "Get DNS propogation info for a URL")]
     public class RunOptions : GlobalOptions
