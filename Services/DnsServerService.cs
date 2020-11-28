@@ -53,8 +53,7 @@ namespace dug
             var parsedServers = _serverParser.ParseServersFromStream(stream, format).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
 
             if(overwrite){
-                if(Config.Verbose)
-                    Console.WriteLine($"Overwriting {_servers.Count()} with {parsedServers.Count()} specified servers");
+                Console.WriteLine($"Overwriting {_servers.Count()} with {parsedServers.Count()} specified servers");
 
                 _servers = parsedServers;
                 return parsedServers.Count();

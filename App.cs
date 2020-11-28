@@ -5,6 +5,7 @@ using CommandLine;
 using dug.Options;
 using dug.Parsing;
 using DnsClient;
+using dug.Utils;
 
 namespace dug
 {
@@ -53,9 +54,7 @@ namespace dug
 
         private void HandleGlobalOptions(GlobalOptions options){
             Config.Verbose = options.Verbose;
-            if(Config.Verbose){
-                Console.WriteLine("Verbose Output Enabled");
-            }
+            DugConsole.VerboseWriteLine("Verbose Output Enabled");
         }
 
         private async Task ExecuteRun(RunOptions opts)
@@ -63,7 +62,7 @@ namespace dug
             // 1. Determine the servers to be used
             //    - For now just get the top 1 most reliable servers per continent. Eventually I'll provide cli options to refine this.
             var topServersByContinent = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(1));
-            Console.WriteLine("Server Count: "+topServersByContinent.Count());
+            DugConsole.VerboseWriteLine("Server Count: "+topServersByContinent.Count());
 
             // 2. Run the queries with any options (any records, specific records, etc)
             QueryType queryType = opts.QueryTypes.First();

@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using DnsClient;
 using dug.Data.Models;
+using dug.Utils;
 
 namespace dug
 {
@@ -33,27 +34,27 @@ namespace dug
                 Stopwatch clock = new Stopwatch();
                 
                 try{
-                    Console.WriteLine($"START -- {server.IPAddress}");
+                    DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
                     clock.Start();
                     var queryResult = await QueryDnsServer(server, url, timeout, queryType, retries);
-                    Console.WriteLine($"FINISH -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                    DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
                     results.TryAdd(server, queryResult);
                 }
                 catch (DnsResponseException dnsException){
                     if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
-                        Console.WriteLine($"TIMEOUT -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                        DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
                         return;
                     }
-                    Console.WriteLine($"ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                    DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
                 }
                 catch{
-                    Console.WriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                    DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
                 }
             });
 
             await Task.WhenAll(queryTaskList);
 
-            Console.WriteLine($"Done, got {results.Count()} good responses out of {dnsServers.Count()} servers");
+            DugConsole.VerboseWriteLine($"Done, got {results.Count()} good responses out of {dnsServers.Count()} servers");
 
             return new Dictionary<DnsServer, IDnsQueryResponse>(results);
         }

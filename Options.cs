@@ -14,7 +14,7 @@ namespace dug.Options
         [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
         public int Timeout { get; set; }
 
-        [Option('q', "query-type", Required = false, HelpText = "HELP HERE!", Separator = ',')]
+        [Option('q', "query-type", Required = false, HelpText = "HELP HERE!", Separator = ',', Default = new [] { QueryType.ANY })]
         public IEnumerable<QueryType> QueryTypes { get; set; }
     }
 
