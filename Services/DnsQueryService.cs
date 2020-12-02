@@ -14,20 +14,19 @@ namespace dug.Services
 {
     public class DnsQueryService : IDnsQueryService
     {
-        private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, TimeSpan timeout, QueryType queryType = QueryType.ANY, int retries = 0){
+        private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, TimeSpan timeout, int retries = 0){
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {server.IPAddress}) {
                     Timeout = timeout,
-                    Retries = retries
+                    Retries = retries,
+                    ContinueOnDnsError = false
                 };
-
-                options.ContinueOnDnsError = false;
                 
                 var client = new LookupClient(options);
-                
-                return await client.QueryAsync(url, QueryType.ANY);
+
+                return await client.QueryAsync(url, QueryType.ANY); //The DnsClient doesnt respect union types of enums, so I get all record types then only render the desired ones via DnsResponse.FilteredAnswers
         }
 
-        public async Task<Dictionary<DnsServer, DnsResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, QueryType queryType = QueryType.ANY, int retries = 0)
+        public async Task<Dictionary<DnsServer, DnsResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int retries = 0)
         {
             ConcurrentDictionary<DnsServer, DnsResponse> results = new ConcurrentDictionary<DnsServer, DnsResponse>();
 
@@ -37,10 +36,10 @@ namespace dug.Services
                 try{
                     DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
                     clock.Start();
-                    var queryResult = await QueryDnsServer(server, url, timeout, queryType, retries);
+                    var queryResult = await QueryDnsServer(server, url, timeout, retries);
                     long responseTime = clock.ElapsedMilliseconds;
                     DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
-                    results.TryAdd(server, new DnsResponse(queryResult, responseTime));
+                    results.TryAdd(server, new DnsResponse(queryResult, responseTime, queryTypes));
                 }
                 catch (DnsResponseException dnsException){
                     long responseTime = clock.ElapsedMilliseconds;

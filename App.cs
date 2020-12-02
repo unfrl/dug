@@ -63,8 +63,8 @@ namespace dug
         private async Task ExecuteRun(RunOptions opts)
         {
             // 1. Determine the servers to be used
-            //    - For now just get the top 1 most reliable servers per continent. Eventually I'll provide cli options to refine this.
-            var topServersByContinent = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(1));
+            //    - For now just get the top 3 most "reliable" servers per continent. Eventually I'll provide cli options to refine this.
+            var topServersByContinent = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(3));
             DugConsole.VerboseWriteLine("Server Count: "+topServersByContinent.Count());
 
             // 2. Run the queries with any options (any records, specific records, etc)
@@ -74,13 +74,9 @@ namespace dug
                     queryType = (queryType & qt);
                 }
             }
-            //Querytype sanity check
-            // Console.WriteLine("HAS NS: "+QueryType.NS.HasFlag(queryType));
-            // Console.WriteLine("HAS MX: "+QueryType.MX.HasFlag(queryType));
-            // Console.WriteLine("HAS CNAME: "+QueryType.CNAME.HasFlag(queryType));
             
             Console.WriteLine("URL: " + opts.Url);
-            var queryResults = await _dnsQueryService.QueryServers(opts.Url, topServersByContinent, TimeSpan.FromMilliseconds(opts.Timeout), queryType);
+            var queryResults = await _dnsQueryService.QueryServers(opts.Url, topServersByContinent, TimeSpan.FromMilliseconds(opts.Timeout), opts.QueryTypes);
 
             // 3. Draw beautiful results in fancy table
             _consoleService.DrawResults(queryResults, opts);

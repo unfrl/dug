@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DnsClient;
 using dug.Data;
 using dug.Data.Models;
@@ -46,7 +47,7 @@ namespace dug.Services
                 else if(result.Value.HasError){
                     resultsInfo = new Panel($"[b]Error: {result.Value.Error.DnsError}[/]").BorderColor(Color.Red);
                 }
-                else if(result.Value.QueryResponse.Answers.Count < 1){
+                else if(result.Value.FilteredAnswers.Count() < 1){
                     resultsInfo = new Panel("[b]No Answers Received[/]").BorderColor(Color.Orange1);
                 }
                 else{
@@ -56,8 +57,7 @@ namespace dug.Services
                     .AddColumn(new TableColumn("[u]Record Type[/]").Centered())
                     .AddColumn(new TableColumn("[u]Result[/]").Centered());
 
-                    foreach(var answer in result.Value.QueryResponse.Answers){
-                        //TODO: Only render the requested record types!
+                    foreach(var answer in result.Value.FilteredAnswers){
                         ((Table)resultsInfo).AddRow(answer.RecordType.ToString(), answer.DomainName.Original);
                     }
                 }
