@@ -16,14 +16,26 @@ namespace dug.Services
     {
         private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, TimeSpan timeout, int retries = 0){
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {server.IPAddress}) {
-                    Timeout = timeout,
-                    Retries = retries,
-                    ContinueOnDnsError = false
-                };
-                
-                var client = new LookupClient(options);
+                Timeout = timeout,
+                Retries = retries,
+                ContinueOnDnsError = false,
+            };
+            
+            var client = new LookupClient(options);
+            return await client.QueryAsync(url, QueryType.ANY); //I get all record types then only render the desired ones via DnsResponse.FilteredAnswers
+        }
 
-                return await client.QueryAsync(url, QueryType.ANY); //The DnsClient doesnt respect union types of enums, so I get all record types then only render the desired ones via DnsResponse.FilteredAnswers
+        //This is unused but is cool and i might want to use it when importing server data that doesnt say whether or not it has DNSSEC?
+        public async Task<bool> ServerHasDNSSEC(IPAddress serverAddress, TimeSpan timeout, int retries = 0){
+            LookupClientOptions options = new LookupClientOptions(new IPAddress[] {serverAddress}) {
+                Timeout = timeout,
+                Retries = retries,
+                ContinueOnDnsError = false,
+                RequestDnsSecRecords = true
+            };
+            var client = new LookupClient(options);
+            var response = await client.QueryAsync("www.dnssec-tools.org", QueryType.ANY);
+            return response.Header.IsAuthenticData;
         }
 
         public async Task<Dictionary<DnsServer, DnsResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int retries = 0)
@@ -32,7 +44,7 @@ namespace dug.Services
 
             var queryTaskList = dnsServers.Select(async server => {
                 Stopwatch clock = new Stopwatch();
-                
+
                 try{
                     DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
                     clock.Start();

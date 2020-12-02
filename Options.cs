@@ -16,6 +16,9 @@ namespace dug.Options
 
         [Option('q', "query-type", Required = false, HelpText = "HELP HERE!", Separator = ',', Default = new [] { QueryType.ANY })]
         public IEnumerable<QueryType> QueryTypes { get; set; }
+
+        [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
+        public string CustomServerFile { get; set; }
     }
 
     [Verb("update", HelpText = "Update DNS server list with any new unique servers. Uses remote server to get list by default.")]

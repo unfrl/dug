@@ -38,6 +38,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "Debug run with specified server file",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["kaijucode.com", "-f", "./test_servers.csv"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "Debug run with QueryType",
             "type": "coreclr",
             "request": "launch",

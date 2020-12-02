@@ -7,6 +7,9 @@ using dug.Parsing;
 using DnsClient;
 using dug.Utils;
 using dug.Services;
+using System.Collections.Generic;
+using dug.Data.Models;
+using System.IO;
 
 namespace dug
 {
@@ -64,15 +67,32 @@ namespace dug
         {
             // 1. Determine the servers to be used
             //    - For now just get the top 3 most "reliable" servers per continent. Eventually I'll provide cli options to refine this.
-            var topServersByContinent = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(3));
-            DugConsole.VerboseWriteLine("Server Count: "+topServersByContinent.Count());
+            IEnumerable<DnsServer> serversToUse;
+            if(!string.IsNullOrEmpty(opts.CustomServerFile)){
+                if(!File.Exists(opts.CustomServerFile)){
+                    Console.WriteLine($"Specified file does not exist: {opts.CustomServerFile}");
+                    System.Environment.Exit(1);
+                }
+                using(var streamReader = File.OpenText(opts.CustomServerFile)){
+                    serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local);
+                }
+            }
+            else {
+                serversToUse = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(10));
+            }
+            DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
             // 2. Run the queries with any options (any records, specific records, etc)            
             Console.WriteLine("URL: " + opts.Url); //Print pretty query info panel here
-            var queryResults = await _dnsQueryService.QueryServers(opts.Url, topServersByContinent, TimeSpan.FromMilliseconds(opts.Timeout), opts.QueryTypes);
+            var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.QueryTypes);
 
             // 3. Draw beautiful results in fancy table
             _consoleService.DrawResults(queryResults, opts);
+
+            // 4. Update server reliability depending on results?
+            if(string.IsNullOrEmpty(opts.CustomServerFile)){
+                _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
+            }
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)
@@ -82,7 +102,6 @@ namespace dug
                 return;
             }
             await _dnsServerService.UpdateServersFromRemote(options.Overwite);
-            
         }
 
         // private async Task HandleCliErrorsAsync(IEnumerable<Error> errs){

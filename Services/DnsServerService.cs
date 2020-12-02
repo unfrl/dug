@@ -51,7 +51,7 @@ namespace dug.Services
         private int LoadServersFromStream(Stream stream, DnsServerCsvFormats format, bool overwrite = false)
         {
             //TODO: Ensure the headers are correct
-            var parsedServers = _serverParser.ParseServersFromStream(stream, format).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
+            var parsedServers = ParseServersFromStream(stream, format).ToList();
 
             if(overwrite){
                 Console.WriteLine($"Overwriting {_servers.Count()} with {parsedServers.Count()} specified servers");
@@ -66,6 +66,11 @@ namespace dug.Services
                 _servers.AddRange(novelServers);
             }
             return novelServerCount;
+        }
+
+        public List<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format){
+            //This is almost always used in a 'using' context, so we dont want to return an IEnumerable where the actual enumeration would likely occur outside of that context
+            return _serverParser.ParseServersFromStream(stream, format).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
         }
 
         private void PersistServers(){
@@ -113,6 +118,29 @@ namespace dug.Services
             var serverInfoStream = await new HttpClient().GetStreamAsync(remoteSourceURL);
             int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerCsvFormats.Remote, overwrite);
             Console.WriteLine($"Retrieved {serversAdded} DNS Servers from {remoteSourceURL}");
+            PersistServers();
+        }
+
+        public void UpdateServerReliabilityFromResults(Dictionary<DnsServer, DnsResponse> results, double penalty = 0.1, double promotion = 0.01)
+        {
+            if(penalty < 0 || penalty > 1){
+                throw new ArgumentOutOfRangeException("penalty must be between 0 and 1");
+            }
+            if(promotion < 0 || promotion > 1){
+                throw new ArgumentOutOfRangeException("promotion must be between 0 and 1");
+            }
+            foreach(var result in results){
+                var server = result.Key;
+                var extantServer = _servers.Find(existingServer => existingServer.IPAddress.ToString() == server.IPAddress.ToString());
+                if(result.Value.HasError){
+                    extantServer.Reliability = extantServer.Reliability - penalty;
+                }
+                else{
+                    extantServer.Reliability = extantServer.Reliability + promotion;
+                }
+                extantServer.Reliability = Math.Clamp(extantServer.Reliability, 0, 1);
+            }
+            
             PersistServers();
         }
     }
