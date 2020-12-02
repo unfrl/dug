@@ -12,6 +12,11 @@ namespace dug.Data
         public string Code { get; set; }
         public string Name { get; set; }
 
+        public override string ToString()
+        {
+            return Code;
+        }
+
         public static ContinentCodes AF   { get { return new ContinentCodes("AF", "Africa"); } }
         public static ContinentCodes SA   { get { return new ContinentCodes("SA", "South America"); } }
         public static ContinentCodes NA   { get { return new ContinentCodes("NA", "North America"); } }

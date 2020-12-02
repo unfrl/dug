@@ -24,8 +24,8 @@ namespace dug.Services
                 .BorderColor(Color.White)
                 .AddColumn(new TableColumn("[u]DNS Server[/]").Centered())
                 .AddColumn(new TableColumn("[u]Answers[/]").Centered());
-
-            foreach(var result in results){
+            ContinentCodes currentContinent = null;
+            foreach(var result in results.OrderBy(pair => pair.Key.ContinentCode.ToString())){
                 //Create Server info for left column
                 var server = result.Key;
                 var requestTimedOut = result.Value.HasError && result.Value.Error.Code == DnsResponseCode.ConnectionTimeout;
@@ -61,7 +61,12 @@ namespace dug.Services
                         ((Table)resultsInfo).AddRow(answer.RecordType.ToString(), answer.DomainName.Original);
                     }
                 }
-
+                
+                if(server.ContinentCode.Code != currentContinent?.Code){
+                    currentContinent = server.ContinentCode;
+                    parentTable.AddRow(new Markup($"[bold underline blue] {currentContinent.Name} [/]"));
+                    parentTable.AddEmptyRow();
+                }
                 parentTable.AddRow(serverInfoGrid, resultsInfo);
             }
 
