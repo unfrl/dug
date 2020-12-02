@@ -67,15 +67,8 @@ namespace dug
             var topServersByContinent = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(3));
             DugConsole.VerboseWriteLine("Server Count: "+topServersByContinent.Count());
 
-            // 2. Run the queries with any options (any records, specific records, etc)
-            QueryType queryType = opts.QueryTypes.First();
-            if(opts.QueryTypes.Count()>1){
-                foreach(QueryType qt in opts.QueryTypes.Skip(1)){
-                    queryType = (queryType & qt);
-                }
-            }
-            
-            Console.WriteLine("URL: " + opts.Url);
+            // 2. Run the queries with any options (any records, specific records, etc)            
+            Console.WriteLine("URL: " + opts.Url); //Print pretty query info panel here
             var queryResults = await _dnsQueryService.QueryServers(opts.Url, topServersByContinent, TimeSpan.FromMilliseconds(opts.Timeout), opts.QueryTypes);
 
             // 3. Draw beautiful results in fancy table
