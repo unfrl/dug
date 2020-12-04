@@ -1,0 +1,10 @@
+kind: pipeline
+type: kubernetes
+name: dug_default
+
+steps:
+- name: greeting
+  image: alpine
+  commands:
+  - echo hello
+  - echo world
