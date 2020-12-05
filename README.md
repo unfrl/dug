@@ -1,5 +1,7 @@
 # dug
 
+[![Build Status](https://drone.kaijucode.com/api/badges/matt/dug/status.svg)](https://drone.kaijucode.com/matt/dug)
+
 A global DNS progagation checker that gives pretty output. Written in dotnet core
 
 The **real** repository is located [here](https://git.kaijucode.com/matt/dug)
