@@ -22,7 +22,6 @@ steps:
       from_secret: gitea_token
     base_url: https://git.kaijucode.com
     files: publish/*
-    title: 0.0.1
   when:
     event: tag
 
