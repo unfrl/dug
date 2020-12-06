@@ -22,6 +22,7 @@ steps:
       from_secret: gitea_token
     base_url: https://git.kaijucode.com
     files: publish/*
+    title: ${DRONE_TAG}
   when:
     event: tag
 
