@@ -6,7 +6,7 @@ A global DNS progagation checker that gives pretty output. Written in dotnet cor
 
 If you are viewing this anywhere but gitea, the **real** repository is located [here](https://git.kaijucode.com/matt/dug)
 
-The initial version is functional and can be found under the Releases tab as a binary.
+The initial version is functional and can be found under the Releases tab as a binary. The latest binary can be downloaded [here](https://git.kaijucode.com/matt/dug/releases/latest)
 
 Notes:
 
