@@ -4,10 +4,10 @@
 
 A global DNS progagation checker that gives pretty output. Written in dotnet core
 
-The **real** repository is located [here](https://git.kaijucode.com/matt/dug)
+If you are viewing this anywhere but gitea, the **real** repository is located [here](https://git.kaijucode.com/matt/dug)
+
+The initial version is functional and can be found under the Releases tab as a binary.
 
 Notes:
-
-Publish command for single binary with resource files: `dotnet publish -r linux-x64 -p:PublishSingleFile=true --self-contained true -o publish`
 
 Dig command to test DNSSEC on a server: `dig @<dns_server_here> www.dnssec-tools.org +dnssec`

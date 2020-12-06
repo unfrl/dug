@@ -10,7 +10,7 @@ steps:
   - dotnet publish -r linux-x64 -p:PublishSingleFile=true --self-contained true -o publish
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
 
-- name: gitea_release
+- name: gitea release
   image: plugins/gitea-release
   settings:
     api_key:
