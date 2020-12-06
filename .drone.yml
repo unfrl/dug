@@ -3,17 +3,12 @@ type: kubernetes
 name: dug_default
 
 steps:
-- name: greeting
-  image: alpine
-  commands:
-  - echo hello
-  - echo world
-
-- name: build
+- name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet build
   - dotnet publish -r linux-x64 -p:PublishSingleFile=true --self-contained true -o publish
+  - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
 
 - name: gitea_release
   image: plugins/gitea-release
@@ -21,7 +16,7 @@ steps:
     api_key:
       from_secret: gitea_token
     base_url: https://git.kaijucode.com
-    files: publish/*
+    files: publish/dug-linux-x64
     title: ${DRONE_TAG}
   when:
     event: tag
