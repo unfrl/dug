@@ -31,10 +31,19 @@ namespace dug.Data.Models
 
         public string CountryFlag { get { return DataMaps.CountryFlagMap[CountryCode]; } }
 
-        public string LongName {
+        public string CityCountryName {
             get {
                 string result = string.IsNullOrWhiteSpace(City) ? "" : $"{City}, ";
                 result += string.IsNullOrEmpty(CountryName) ? "UNKNOWN COUNTRY 🤷" : CountryName;
+                return result;
+            }
+        }
+
+        public string CityCountryContinentName {
+            get {
+                string result = string.IsNullOrWhiteSpace(City) ? "" : $"{City}, ";
+                result += string.IsNullOrEmpty(CountryName) ? "UNKNOWN COUNTRY 🤷" : $"{CountryName}, ";
+                result += ContinentCode == null ? "" : ContinentCode.Name;
                 return result;
             }
         }

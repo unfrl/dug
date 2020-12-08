@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DnsClient;
@@ -11,13 +12,70 @@ namespace dug.Services
 {
     public class ConsoleService : IConsoleService
     {
-        public void DrawResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options)
+        public void DrawConciseResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options)
         {
-            DrawUrlHeader(options.Url);
-            DrawTable(results);
+            DrawUrlHeader(options);
+            DrawConciseTable(results);
         }
 
-        private void DrawTable(Dictionary<DnsServer, DnsResponse> results)
+        public void DrawResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options)
+        {
+            DrawUrlHeader(options);
+            DrawVerboseTable(results);
+        }
+
+        private void DrawConciseTable(Dictionary<DnsServer, DnsResponse> results)
+        {
+            var parentTable = new Table()
+                .Border(TableBorder.Rounded)
+                .BorderColor(Color.White)
+                .AddColumn(new TableColumn("[u]Servers[/]").Centered())
+                .AddColumn(new TableColumn("[u]Record Type[/]").Centered())
+                .AddColumn(new TableColumn("[u]Answer[/]").Centered());
+
+                var successfulServersByResult = new Dictionary<Tuple<QueryType,string>, HashSet<DnsServer>>();
+                
+                foreach (var pair in results.Where(res => !res.Value.HasError)){
+                    foreach(var answer in pair.Value.FilteredAnswers){
+                        var resultKey = Tuple.Create<QueryType, string>((QueryType)answer.RecordType, answer.DomainName.Original);
+                        if(successfulServersByResult.ContainsKey(resultKey)){
+                            successfulServersByResult[resultKey].Add(pair.Key);
+                        }
+                        else{
+                            successfulServersByResult[resultKey] = new HashSet<DnsServer>() {pair.Key};
+                        }
+                    }
+                }
+
+                var failedQueries = results.Where(res => res.Value.HasError);
+                Console.WriteLine("successfulServersByResult: "+successfulServersByResult.Count);
+                Console.WriteLine("failedQueries: " + failedQueries.Count());
+
+                foreach(var successfulPair in successfulServersByResult){
+                    var serversByContinent = successfulPair.Value.OrderByDescending(server => server.ContinentCode.Name).ToList();
+                    ContinentCodes currentContinent = null;
+                    for(int i = 0; i < serversByContinent.Count(); i++){
+                        var server = serversByContinent[i];
+                        if(server.ContinentCode.Code != currentContinent?.Code){
+                            currentContinent = server.ContinentCode;
+                            parentTable.AddEmptyRow();
+                            parentTable.AddRow(new Markup($"[bold underline blue] {currentContinent.Name} [/]"));
+                        }
+                        if(i == 0){
+                            parentTable.AddRow(new Text(server.CityCountryName + $" ({server.IPAddress})"), new Text(successfulPair.Key.Item1.ToString()), new Text(successfulPair.Key.Item2));
+                        }
+                        else{
+                            parentTable.AddRow(new Text(server.CityCountryName + $" ({server.IPAddress})"));
+                        }
+                    }
+
+                    parentTable.AddEmptyRow();
+                }
+
+                AnsiConsole.Render(parentTable);
+        }
+
+        private void DrawVerboseTable(Dictionary<DnsServer, DnsResponse> results)
         {
             var parentTable = new Table()
                 .Border(TableBorder.Rounded)
@@ -34,7 +92,7 @@ namespace dug.Services
                 serverInfoGrid.AddColumn(new GridColumn().NoWrap());
                 serverInfoGrid.AddRow(server.IPAddress.ToString());
                 // string countryInfo = string.IsNullOrEmpty(server.CountryFlag) ? "" : server.CountryFlag; //I would really like to use these flag emojis but it seems like it has very little terminal support, most render them incorrectly...
-                serverInfoGrid.AddRow(server.LongName);
+                serverInfoGrid.AddRow(server.CityCountryName);
                 serverInfoGrid.AddRow("DNSSEC: " + (server.DNSSEC == null ? "❓" : ((bool)server.DNSSEC ? "🔒" : "🔓")));
                 serverInfoGrid.AddRow("Response (ms): "+ result.Value.ResponseTime + (requestTimedOut ? " ⏲️ (Timed out)" : ""));
                 serverInfoGrid.AddEmptyRow();
@@ -73,9 +131,9 @@ namespace dug.Services
             AnsiConsole.Render(parentTable);
         }
 
-        private void DrawUrlHeader(string url)
+        private void DrawUrlHeader(RunOptions options)
         {
-            AnsiConsole.Render(new Rule($"[green]{url}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.QueryTypes)} records for {options.Url}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
         }
     }
 }

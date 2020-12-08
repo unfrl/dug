@@ -16,6 +16,7 @@ namespace dug.Data
         public DnsResponse(DnsResponseException error, long responseTime){
             Error = error;
             ResponseTime = responseTime;
+            DesiredRecordTypes = new List<QueryType>();
         }
 
         public IDnsQueryResponse QueryResponse { get; private set; }
@@ -29,7 +30,7 @@ namespace dug.Data
                 if(DesiredRecordTypes.Contains(QueryType.ANY)){
                     return QueryResponse.Answers;
                 }
-                return QueryResponse.Answers.Where(record => DesiredRecordTypes.Contains((QueryType)record.RecordType));
+                return QueryResponse.Answers?.Where(record => DesiredRecordTypes.Contains((QueryType)record.RecordType)) ?? new List<DnsResourceRecord>();
             }
         }
 

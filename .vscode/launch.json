@@ -32,7 +32,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
-            "args": ["kaijucode.com"],
+            "args": ["git.kaijucode.com"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false
@@ -54,7 +54,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
-            "args": ["kaijucode.com" , "-q", "MX,NS"],
+            "args": ["kaijucode.com" , "-q", "ANY"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

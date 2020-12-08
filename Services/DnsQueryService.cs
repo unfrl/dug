@@ -69,6 +69,7 @@ namespace dug.Services
 
             await Task.WhenAll(queryTaskList);
 
+            //TODO: This looks wrong sometimes since it counts any servers that responded even if they only returned records the user inst interested in.
             Console.WriteLine($"Done, got {results.Where(res => !res.Value.HasError).Count()} good responses out of {dnsServers.Count()} servers");
 
             return new Dictionary<DnsServer, DnsResponse>(results);

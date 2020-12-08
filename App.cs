@@ -78,7 +78,7 @@ namespace dug
                 }
             }
             else {
-                serversToUse = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(10));
+                serversToUse = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(3));
             }
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
