@@ -18,7 +18,6 @@ namespace dug.Services
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {server.IPAddress}) {
                 Timeout = timeout,
                 Retries = retries,
-                ContinueOnDnsError = false,
             };
             
             var client = new LookupClient(options);
@@ -30,7 +29,6 @@ namespace dug.Services
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {serverAddress}) {
                 Timeout = timeout,
                 Retries = retries,
-                ContinueOnDnsError = false,
                 RequestDnsSecRecords = true
             };
             var client = new LookupClient(options);
@@ -55,20 +53,18 @@ namespace dug.Services
                         results.AddOrUpdate(server,
                             (serv) => new List<DnsResponse>{response},
                             (serv, list) => {
-                                var newList = new List<DnsResponse>{response};
-                                newList.AddRange(list);
-                                return newList;
+                                list.Add(response);
+                                return list;
                             });
                     }
-                    catch (DnsResponseException dnsException){
+                    catch (DnsResponseException dnsException){ //TODO: There is an issue where ThrowDnsErrors isnt respected, so i have to catch them and deal with it... https://github.com/MichaCo/DnsClient.NET/issues/99
                         long responseTime = clock.ElapsedMilliseconds;
                         var response = new DnsResponse(dnsException, responseTime, queryType);
                         results.AddOrUpdate(server,
                             (serv) => new List<DnsResponse>{response},
                             (serv, list) => {
-                                var newList = new List<DnsResponse>{response};
-                                newList.AddRange(list);
-                                return newList;
+                                list.Add(response);
+                                return list;
                             });
                         if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
                             DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
