@@ -7,32 +7,23 @@ namespace dug.Data
 {
     public class DnsResponse
     {
-        public DnsResponse(IDnsQueryResponse queryResponse, long responseTime, IEnumerable<QueryType> desiredRecordTypes){
+        public DnsResponse(IDnsQueryResponse queryResponse, long responseTime, QueryType desiredRecordTypes){
             QueryResponse = queryResponse;
             ResponseTime = responseTime;
             DesiredRecordTypes = desiredRecordTypes;
         }
 
-        public DnsResponse(DnsResponseException error, long responseTime){
+        public DnsResponse(DnsResponseException error, long responseTime, QueryType desiredRecordTypes){
             Error = error;
             ResponseTime = responseTime;
-            DesiredRecordTypes = new List<QueryType>();
+            DesiredRecordTypes = desiredRecordTypes;
         }
 
         public IDnsQueryResponse QueryResponse { get; private set; }
 
         public long ResponseTime { get; private set; }
 
-        public IEnumerable<QueryType> DesiredRecordTypes { get; private set; }
-
-        public IEnumerable<DnsResourceRecord> FilteredAnswers { 
-            get {
-                if(DesiredRecordTypes.Contains(QueryType.ANY)){
-                    return QueryResponse.Answers;
-                }
-                return QueryResponse.Answers?.Where(record => DesiredRecordTypes.Contains((QueryType)record.RecordType)) ?? new List<DnsResourceRecord>();
-            }
-        }
+        public QueryType DesiredRecordTypes { get; private set; }
 
         public bool HasError { 
             get
