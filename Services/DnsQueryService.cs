@@ -39,7 +39,7 @@ namespace dug.Services
         public async Task<Dictionary<DnsServer, List<DnsResponse>>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int retries = 0)
         {
             ConcurrentDictionary<DnsServer, List<DnsResponse>> results = new ConcurrentDictionary<DnsServer, List<DnsResponse>>();
-
+            
             var serverTasks = dnsServers.Select(async server => {
                 var queryTasks = queryTypes.Select(async queryType => {
                     Stopwatch clock = new Stopwatch();
@@ -82,7 +82,7 @@ namespace dug.Services
             await Task.WhenAll(serverTasks);
 
             Console.WriteLine($"Finished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {dnsServers.Count() * queryTypes.Count()} requests");
-
+            
             return new Dictionary<DnsServer, List<DnsResponse>>(results);
         }
     }

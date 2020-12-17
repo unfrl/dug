@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using CommandLine;
 using DnsClient;
 
@@ -14,11 +15,32 @@ namespace dug.Options
         [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
         public int Timeout { get; set; }
 
-        [Option('q', "query-type", Required = false, HelpText = "TODO: Put Help Here", Separator = ',', Default = new [] { QueryType.A })]
+        [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (\"A\") or multiple separated by commas (\"A,MX\")", Separator = ',', Default = new [] { QueryType.A })]
         public IEnumerable<QueryType> QueryTypes { get; set; }
+
+        [Option('s', "servers", Separator = ',')]
+        public IEnumerable<ParseableIPAddress> Servers { get; set; }
 
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
+    }
+
+    public class ParseableIPAddress : IPAddress
+    {
+        public ParseableIPAddress(string address) : base(parseIPFromString(address))
+        {
+        }
+
+        
+
+        private static byte[] parseIPFromString(string address){
+            IPAddress result;
+            if(IPAddress.TryParse(address, out result)){
+                return result.GetAddressBytes();
+            }
+            throw new ArgumentException($"Unable to parse provided IPAddress: {address}");
+        }
+
     }
 
     [Verb("update", HelpText = "Update DNS server list with any new unique servers. Uses remote server to get list by default.")]
