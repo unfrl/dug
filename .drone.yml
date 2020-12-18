@@ -7,7 +7,6 @@ steps:
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet build
-  - dotnet deb -c Release -r linux-x64 -o ./publish
   - dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
 
