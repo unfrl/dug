@@ -18,7 +18,7 @@ steps:
   - dotnet deb -c Release -r linux-x64 -o ./publish
   when:
     branch:
-    - master
+    - main
     event:
     - tag
 
@@ -34,7 +34,7 @@ steps:
     title: ${DRONE_TAG}
   when:
     branch:
-    - master
+    - main
     event:
     - tag
 
