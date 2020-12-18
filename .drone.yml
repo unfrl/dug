@@ -15,6 +15,7 @@ steps:
   commands:
   - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish
+  - dotnet rpm -c Release -r linux-x64 -o ./publish
   when:
     branch:
     - main
@@ -30,6 +31,7 @@ steps:
     files:
       - publish/dug-linux-x64
       - publish/*.deb
+      - publish/*.rpm
     title: ${DRONE_TAG}
   when:
     branch:

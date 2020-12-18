@@ -7,6 +7,12 @@
       "commands": [
         "dotnet-deb"
       ]
+    },
+    "dotnet-rpm": {
+      "version": "0.1.189",
+      "commands": [
+        "dotnet-rpm"
+      ]
     }
   }
 }
