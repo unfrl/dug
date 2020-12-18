@@ -32,8 +32,9 @@ namespace dug.Services
                 .BorderColor(Color.White)
                 .AddColumn(new TableColumn("[u]Record Type[/]").Centered())
                 .AddColumn(new TableColumn("[u]Value[/]").Centered())
-                .AddColumn(new TableColumn("[u]Consensus by Continent[/]").Centered());
+                .AddColumn(new TableColumn("[u]Consensus by Continent[/]").LeftAligned());
 
+            
             foreach(var queryType in queryTypes){
                 var resultsWithContinentCounts = new Dictionary<string, Dictionary<ContinentCodes, int>>();
                 foreach(var result in results){
@@ -51,20 +52,38 @@ namespace dug.Services
                         }
                     }
                     else{
-                        resultsWithContinentCounts[answerString] = new Dictionary<ContinentCodes, int>{{server.ContinentCode, 1}};
+                        resultsWithContinentCounts[answerString] = new Dictionary<ContinentCodes, int>(new ContinentCodeComparer()){{server.ContinentCode, 1}};
                     }
                 }
                 
+                var continentTotals = new Dictionary<ContinentCodes, int>(new ContinentCodeComparer());
+                foreach(ContinentCodes continent in ContinentCodes.Continents){
+                    var totalContinentInstances = resultsWithContinentCounts.Sum(res => res.Value.GetValueOrDefault(continent));
+                    continentTotals[continent] = totalContinentInstances;
+                }
+
+
                 foreach(var groupedResult in resultsWithContinentCounts){
                     table.AddRow(
                         new Text(queryType.ToString()),
                         new Text(groupedResult.Key),
-                        new Text("CONSENSUS HERE")
+                        new Text(GetConsensusString(groupedResult.Value, continentTotals))
                         );
                         table.AddEmptyRow();
                 }
             }
+
+
             AnsiConsole.Render(table);
+        }
+
+        private string GetConsensusString(Dictionary<ContinentCodes, int> continentCounts, Dictionary<ContinentCodes, int> continentTotals){
+            StringBuilder sb = new StringBuilder();
+            foreach(ContinentCodes continent in continentCounts.Keys){
+                float continentConsensusPercentage = (float)continentCounts[continent]/(float)continentTotals[continent];
+                sb.AppendLine($"{continent.Name} {continentConsensusPercentage.ToString("P0")}%");
+            }
+            return sb.ToString();
         }
 
         private string GetAnswersString(DnsResponse response){
