@@ -18,7 +18,7 @@ namespace dug.Options
         [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (\"A\") or multiple separated by commas (\"A,MX\").", Separator = ',', Default = new [] { QueryType.A })]
         public IEnumerable<QueryType> QueryTypes { get; set; }
 
-        [Option('s', "servers", Separator = ',')]
+        [Option('s', "servers", Separator = ',', HelpText = "TODO: NOT IMPLEMENTED")]
         public IEnumerable<ParseableIPAddress> Servers { get; set; }
 
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
