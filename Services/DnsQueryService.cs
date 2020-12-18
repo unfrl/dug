@@ -14,15 +14,14 @@ namespace dug.Services
 {
     public class DnsQueryService : IDnsQueryService
     {
-        private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, TimeSpan timeout, int retries = 0){
+        private async Task<IDnsQueryResponse> QueryDnsServer(DnsServer server, string url, QueryType queryType, TimeSpan timeout, int retries = 0){
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {server.IPAddress}) {
                 Timeout = timeout,
                 Retries = retries,
-                ContinueOnDnsError = false,
             };
             
             var client = new LookupClient(options);
-            return await client.QueryAsync(url, QueryType.ANY); //I get all record types then only render the desired ones via DnsResponse.FilteredAnswers
+            return await client.QueryAsync(url, queryType);
         }
 
         //This is unused but is cool and i might want to use it when importing server data that doesnt say whether or not it has DNSSEC?
@@ -30,7 +29,6 @@ namespace dug.Services
             LookupClientOptions options = new LookupClientOptions(new IPAddress[] {serverAddress}) {
                 Timeout = timeout,
                 Retries = retries,
-                ContinueOnDnsError = false,
                 RequestDnsSecRecords = true
             };
             var client = new LookupClient(options);
@@ -38,41 +36,54 @@ namespace dug.Services
             return response.Header.IsAuthenticData;
         }
 
-        public async Task<Dictionary<DnsServer, DnsResponse>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int retries = 0)
+        public async Task<Dictionary<DnsServer, List<DnsResponse>>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int retries = 0)
         {
-            ConcurrentDictionary<DnsServer, DnsResponse> results = new ConcurrentDictionary<DnsServer, DnsResponse>();
-
-            var queryTaskList = dnsServers.Select(async server => {
-                Stopwatch clock = new Stopwatch();
-
-                try{
-                    DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
-                    clock.Start();
-                    var queryResult = await QueryDnsServer(server, url, timeout, retries);
-                    long responseTime = clock.ElapsedMilliseconds;
-                    DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
-                    results.TryAdd(server, new DnsResponse(queryResult, responseTime, queryTypes));
-                }
-                catch (DnsResponseException dnsException){
-                    long responseTime = clock.ElapsedMilliseconds;
-                    results.TryAdd(server, new DnsResponse(dnsException, responseTime));
-                    if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
-                        DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
-                        return;
+            ConcurrentDictionary<DnsServer, List<DnsResponse>> results = new ConcurrentDictionary<DnsServer, List<DnsResponse>>();
+            
+            var serverTasks = dnsServers.Select(async server => {
+                var queryTasks = queryTypes.Select(async queryType => {
+                    Stopwatch clock = new Stopwatch();
+                    try{
+                        DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
+                        clock.Start();
+                        var queryResult = await QueryDnsServer(server, url, queryType, timeout, retries);
+                        long responseTime = clock.ElapsedMilliseconds;
+                        DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
+                        var response = new DnsResponse(queryResult, responseTime, queryType);
+                        results.AddOrUpdate(server,
+                            (serv) => new List<DnsResponse>{response},
+                            (serv, list) => {
+                                list.Add(response);
+                                return list;
+                            });
                     }
-                    DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
-                }
-                catch{
-                    DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
-                }
+                    catch (DnsResponseException dnsException){ //TODO: There is an issue where ThrowDnsErrors isnt respected, so i have to catch them and deal with it... https://github.com/MichaCo/DnsClient.NET/issues/99
+                        long responseTime = clock.ElapsedMilliseconds;
+                        var response = new DnsResponse(dnsException, responseTime, queryType);
+                        results.AddOrUpdate(server,
+                            (serv) => new List<DnsResponse>{response},
+                            (serv, list) => {
+                                list.Add(response);
+                                return list;
+                            });
+                        if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
+                            DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
+                            return;
+                        }
+                        DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
+                    }
+                    catch{
+                        DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                    }
+                });
+                await Task.WhenAll(queryTasks);
             });
 
-            await Task.WhenAll(queryTaskList);
+            await Task.WhenAll(serverTasks);
 
-            //TODO: This looks wrong sometimes since it counts any servers that responded even if they only returned records the user inst interested in.
-            Console.WriteLine($"Done, got {results.Where(res => !res.Value.HasError).Count()} good responses out of {dnsServers.Count()} servers");
-
-            return new Dictionary<DnsServer, DnsResponse>(results);
+            Console.WriteLine($"Finished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {dnsServers.Count() * queryTypes.Count()} requests");
+            
+            return new Dictionary<DnsServer, List<DnsResponse>>(results);
         }
     }
 }

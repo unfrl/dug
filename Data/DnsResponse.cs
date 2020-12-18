@@ -5,34 +5,26 @@ using DnsClient.Protocol;
 
 namespace dug.Data
 {
+    //TODO: I want to remove this class, but there is an issue where ThrowDnsErrors isnt respected, so i have to catch them and deal with it. I use this to wrap the relevant data so I can render it. https://github.com/MichaCo/DnsClient.NET/issues/99
     public class DnsResponse
     {
-        public DnsResponse(IDnsQueryResponse queryResponse, long responseTime, IEnumerable<QueryType> desiredRecordTypes){
+        public DnsResponse(IDnsQueryResponse queryResponse, long responseTime, QueryType recordType){
             QueryResponse = queryResponse;
             ResponseTime = responseTime;
-            DesiredRecordTypes = desiredRecordTypes;
+            RecordType = recordType;
         }
 
-        public DnsResponse(DnsResponseException error, long responseTime){
+        public DnsResponse(DnsResponseException error, long responseTime, QueryType recordType){
             Error = error;
             ResponseTime = responseTime;
-            DesiredRecordTypes = new List<QueryType>();
+            RecordType = recordType;
         }
 
         public IDnsQueryResponse QueryResponse { get; private set; }
 
         public long ResponseTime { get; private set; }
 
-        public IEnumerable<QueryType> DesiredRecordTypes { get; private set; }
-
-        public IEnumerable<DnsResourceRecord> FilteredAnswers { 
-            get {
-                if(DesiredRecordTypes.Contains(QueryType.ANY)){
-                    return QueryResponse.Answers;
-                }
-                return QueryResponse.Answers?.Where(record => DesiredRecordTypes.Contains((QueryType)record.RecordType)) ?? new List<DnsResourceRecord>();
-            }
-        }
+        public QueryType RecordType { get; private set; }
 
         public bool HasError { 
             get

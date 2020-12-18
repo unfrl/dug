@@ -38,6 +38,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "Debug cube.packsize.com",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["cube.packsize.com", "-q", "ANY", "-f", "./test_servers.csv"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "Debug run with specified server file",
             "type": "coreclr",
             "request": "launch",
@@ -54,7 +65,18 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
-            "args": ["kaijucode.com" , "-q", "ANY"],
+            "args": ["kaijucode.com" , "-q", "MX,NS"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug run with Servers",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["kaijucode.com" , "-s", "8.8.8.8,2001:4860:4860::8888"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

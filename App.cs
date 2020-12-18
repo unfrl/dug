@@ -33,6 +33,7 @@ namespace dug
         public async Task<int> RunAsync()
         {
             // await _cliArgs.WithNotParsedAsync(HandleCliErrorsAsync); //TODO: Handle CLI Parsing errors (maybe)
+            
             await _cliArgs.WithParsedAsync(ExecuteArgumentsAsync);
                 
             return 0;
@@ -67,7 +68,7 @@ namespace dug
         {
             // 1. Determine the servers to be used
             //    - For now just get the top 3 most "reliable" servers per continent. Eventually I'll provide cli options to refine this.
-            IEnumerable<DnsServer> serversToUse;
+            List<DnsServer> serversToUse = new List<DnsServer>();
             if(!string.IsNullOrEmpty(opts.CustomServerFile)){
                 if(!File.Exists(opts.CustomServerFile)){
                     Console.WriteLine($"Specified file does not exist: {opts.CustomServerFile}");
@@ -77,8 +78,18 @@ namespace dug
                     serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local);
                 }
             }
-            else {
-                serversToUse = _dnsServerService.ServersByContinent.ToList().SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(3));
+
+            if(opts.Servers.Count() > 0){
+                throw new NotImplementedException("Specifying individual servers in a run is not supported yet");
+                //TODO: Should we 'decorate' these servers (turn them into DnsServers) before using them?
+                        //If yes: We should do things like determine if they have DNSSEC, etc. Maybe this could be a static parse method off of DnsServer or something?
+                // Also when we're rendering the results we shouldnt assume to have anything except the IPAddress... Maybe when you do this the rendering should be way simpler?
+
+                //serversToUse.AddRange(opts.Servers);
+            }
+
+            if(serversToUse.Count == 0) {
+                serversToUse = _dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(3)).ToList();
             }
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
@@ -90,9 +101,9 @@ namespace dug
             _consoleService.DrawResults(queryResults, opts);
 
             // 4. Update server reliability depending on results?
-            if(string.IsNullOrEmpty(opts.CustomServerFile)){
-                _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
-            }
+            // if(string.IsNullOrEmpty(opts.CustomServerFile)){
+            //     _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
+            // }
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)
