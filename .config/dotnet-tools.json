@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "dotnet-deb": {
+      "version": "0.1.189",
+      "commands": [
+        "dotnet-deb"
+      ]
+    }
+  }
+}
