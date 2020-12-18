@@ -8,8 +8,6 @@ namespace dug.Data.Models
 {
     public class DnsServer
     {
-        public Guid DnsServerId {get; set;}
-
         [Required]
         public IPAddress IPAddress {get; set;}
 
@@ -21,15 +19,23 @@ namespace dug.Data.Models
         
         public double Reliability {get; set;}
 
-        public ContinentCodes ContinentCode { get { return DataMaps.CountryContinentMap[CountryCode]; } }
-
-        public string CountryName { 
+        public ContinentCodes ContinentCode {
             get {
-                return DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : "";
+                return DataMaps.CountryContinentMap.ContainsKey(CountryCode) ? DataMaps.CountryContinentMap[CountryCode] : null;
             }
         }
 
-        public string CountryFlag { get { return DataMaps.CountryFlagMap[CountryCode]; } }
+        public string CountryName { 
+            get {
+                return DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : null;
+            }
+        }
+
+        public string CountryFlag {
+            get {
+                return DataMaps.CountryFlagMap.ContainsKey(CountryCode) ? DataMaps.CountryFlagMap[CountryCode] : null;
+            }
+        }
 
         public string CityCountryName {
             get {
@@ -41,9 +47,8 @@ namespace dug.Data.Models
 
         public string CityCountryContinentName {
             get {
-                string result = string.IsNullOrWhiteSpace(City) ? "" : $"{City}, ";
-                result += string.IsNullOrEmpty(CountryName) ? "UNKNOWN COUNTRY 🤷" : $"{CountryName}, ";
-                result += ContinentCode == null ? "" : ContinentCode.Name;
+                string result = $"{CityCountryName}, ";
+                result += ContinentCode == null ? "UNKNOWN CONTINENT" : ContinentCode.Name;
                 return result;
             }
         }

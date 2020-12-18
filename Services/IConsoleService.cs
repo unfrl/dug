@@ -8,8 +8,8 @@ namespace dug.Services
 {
     public interface IConsoleService
     {
-        void DrawResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options);
+        void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options);
 
-        void DrawConciseResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options);
+        // void DrawConciseResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options);
     }
 }

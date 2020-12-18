@@ -98,7 +98,7 @@ namespace dug
             var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.QueryTypes);
 
             // 3. Draw beautiful results in fancy table
-            // _consoleService.DrawResults(queryResults, opts);
+            _consoleService.DrawResults(queryResults, opts);
 
             // 4. Update server reliability depending on results?
             // if(string.IsNullOrEmpty(opts.CustomServerFile)){

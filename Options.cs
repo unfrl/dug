@@ -15,7 +15,7 @@ namespace dug.Options
         [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
         public int Timeout { get; set; }
 
-        [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (\"A\") or multiple separated by commas (\"A,MX\")", Separator = ',', Default = new [] { QueryType.A })]
+        [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (\"A\") or multiple separated by commas (\"A,MX\").", Separator = ',', Default = new [] { QueryType.A })]
         public IEnumerable<QueryType> QueryTypes { get; set; }
 
         [Option('s', "servers", Separator = ',')]
@@ -30,8 +30,6 @@ namespace dug.Options
         public ParseableIPAddress(string address) : base(parseIPFromString(address))
         {
         }
-
-        
 
         private static byte[] parseIPFromString(string address){
             IPAddress result;
