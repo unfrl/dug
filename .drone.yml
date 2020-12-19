@@ -7,12 +7,13 @@ steps:
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet build
-  - dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish
-  - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
 
 - name: package linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
+  - echo "Building tagged version ${DRONE_TAG}"
+  - dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true -p:Version=${DRONE_TAG} --self-contained true -o publish
+  - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
   - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish
   - dotnet rpm -c Release -r linux-x64 -o ./publish
