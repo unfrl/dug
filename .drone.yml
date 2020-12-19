@@ -11,9 +11,9 @@ steps:
 - name: package linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - echo "Building tagged version ${DRONE_TAG}"
-  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj
-  - dotnet publish -r linux-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish
+  - echo "Publishing tagged version ${DRONE_TAG}"
+  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+  - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
   - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish
