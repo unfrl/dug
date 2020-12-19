@@ -19,7 +19,7 @@ steps:
   - dotnet rpm -c Release -r linux-x64 -o ./publish
   when:
     ref:
-    - refs/tags/v*
+    - refs/tags/*.*.*
 
 - name: gitea release
   image: plugins/gitea-release
@@ -34,5 +34,5 @@ steps:
     title: ${DRONE_TAG}
   when:
     ref:
-    - refs/tags/v*
+    - refs/tags/*.*.*
 
