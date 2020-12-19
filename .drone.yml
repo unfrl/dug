@@ -18,10 +18,8 @@ steps:
   - dotnet deb -c Release -r linux-x64 -o ./publish
   - dotnet rpm -c Release -r linux-x64 -o ./publish
   when:
-    branch:
-    - main
-    event:
-    - tag
+    ref:
+    - refs/tags/v*
 
 - name: gitea release
   image: plugins/gitea-release
@@ -35,8 +33,6 @@ steps:
       - publish/*.rpm
     title: ${DRONE_TAG}
   when:
-    branch:
-    - main
-    event:
-    - tag
+    ref:
+    - refs/tags/v*
 
