@@ -45,7 +45,7 @@ steps:
       from_secret: chocolatey_api_key
   commands:
   - choco pack ./win/dug.nuspec
-  - choco push ./win/dug.${DRONE_TAG}.nupkg --api-key ${CHOCO_API_KEY} --source https://push.chocolatey.org/
+  - choco push ./dug.${DRONE_TAG}.nupkg --api-key ${CHOCO_API_KEY} --source https://push.chocolatey.org/
   when:
     ref:
     - refs/tags/*.*.*
