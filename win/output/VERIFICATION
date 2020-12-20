@@ -3,4 +3,4 @@ VERIFICATION
 Verification is intended to assist the Chocolatey moderators and community
 in verifying that this package's contents are trustworthy.
  
-Unfrl LLC is the vendor of 'dug'. The entier application is bundled in a single executble (dug.exe).
+Unfrl LLC is the vendor of 'dug'. The entire application is bundled in a single executble (output\dug.exe). We also include debug symbols (output\dug.pdb).
