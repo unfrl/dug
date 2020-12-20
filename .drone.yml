@@ -15,6 +15,7 @@ steps:
       from_secret: chocolatey_api_key
   commands:
   - export CHOCO_API_KEY=${CHOCO_API_KEY}
+  - echo ${CHOCO_API_KEY} | wc -c
   - choco pack win/dug.nuspec
   - ls
   - choco push dug.0.0.1.nupkg --api-key ${CHOCO_API_KEY}
