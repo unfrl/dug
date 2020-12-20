@@ -11,12 +11,14 @@ steps:
 - name: testing mono-choco (pack/push)
   image: linuturk/mono-choco
   environment:
+    TEST:
+      cats
     CHOCO_API_KEY:
       from_secret: chocolatey_api_key
     GITEA_TOKEN:
       from_secret: gitea_token
   commands:
-  - export CHOCO_API_KEY=${CHOCO_API_KEY}
+  - echo ${TEST} | wc -c
   - echo ${CHOCO_API_KEY} | wc -c
   - echo ${GITEA_TOKEN} | wc -c
   - choco pack win/dug.nuspec
