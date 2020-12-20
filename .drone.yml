@@ -3,14 +3,6 @@ type: kubernetes
 name: dug_default
 
 steps:
-- name: choco-test #Temporary
-  image: linuturk/mono-choco
-  environment:
-    CHOCO_API_KEY:
-      from_secret: chocolatey_api_key
-  commands:
-  - choco pack ./win/dug.nuspec
-
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
