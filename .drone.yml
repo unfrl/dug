@@ -16,7 +16,7 @@ steps:
   commands:
   - choco pack win/dug.nuspec
   - ls
-  - choco push /drone/src/dug.0.0.1.nupkg --api-key ${CHOCO_API_KEY} --source https://push.chocolatey.org/ 
+  - choco push dug.0.0.1.nupkg
 
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
