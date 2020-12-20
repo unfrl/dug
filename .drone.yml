@@ -18,7 +18,7 @@ steps:
     GITEA_TOKEN:
       from_secret: gitea_token
   commands:
-  - echo ${TEST} | wc -c
+  - echo $${TEST} | wc -c
   - echo ${CHOCO_API_KEY} | wc -c
   - echo ${GITEA_TOKEN} | wc -c
   - choco pack win/dug.nuspec
