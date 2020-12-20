@@ -3,28 +3,6 @@ type: kubernetes
 name: dug_default
 
 steps:
-- name: testing mono-choco (build)
-  image: mcr.microsoft.com/dotnet/sdk:5.0
-  commands:
-  - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./win/output
-
-- name: testing mono-choco (pack/push)
-  image: linuturk/mono-choco
-  environment:
-    TEST:
-      cats
-    CHOCO_API_KEY:
-      from_secret: chocolatey_api_key
-    GITEA_TOKEN:
-      from_secret: gitea_token
-  commands:
-  - echo $${TEST} | wc -c
-  - echo $${CHOCO_API_KEY} | wc -c
-  - echo $${GITEA_TOKEN} | wc -c
-  - choco pack win/dug.nuspec
-  - ls
-  - choco push dug.0.0.1.nupkg --api-key $${CHOCO_API_KEY}
-
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -67,7 +45,7 @@ steps:
       from_secret: chocolatey_api_key
   commands:
   - choco pack ./win/dug.nuspec
-  - choco push dug.${DRONE_TAG}.nupkg --api-key ${CHOCO_API_KEY} --source https://push.chocolatey.org/
+  - choco push dug.${DRONE_TAG}.nupkg --api-key $${CHOCO_API_KEY} --source https://push.chocolatey.org/
   when:
     ref:
     - refs/tags/*.*.*
