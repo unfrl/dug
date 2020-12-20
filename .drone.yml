@@ -19,11 +19,11 @@ steps:
       from_secret: gitea_token
   commands:
   - echo $${TEST} | wc -c
-  - echo ${CHOCO_API_KEY} | wc -c
-  - echo ${GITEA_TOKEN} | wc -c
+  - echo $${CHOCO_API_KEY} | wc -c
+  - echo $${GITEA_TOKEN} | wc -c
   - choco pack win/dug.nuspec
   - ls
-  - choco push dug.0.0.1.nupkg --api-key ${CHOCO_API_KEY}
+  - choco push dug.0.0.1.nupkg --api-key $${CHOCO_API_KEY}
 
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
