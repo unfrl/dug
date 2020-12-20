@@ -3,7 +3,12 @@ type: kubernetes
 name: dug_default
 
 steps:
-- name: testing mono-choco
+- name: testing mono-choco (build)
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
+  - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./win/output
+
+- name: testing mono-choco (pack/push)
   image: linuturk/mono-choco
   environment:
     CHOCO_API_KEY:
