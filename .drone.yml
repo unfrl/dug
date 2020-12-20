@@ -9,9 +9,9 @@ steps:
     CHOCO_API_KEY:
       from_secret: chocolatey_api_key
   commands:
-  - choco pack ./win/dug.nuspec
+  - choco pack win/dug.nuspec
   - ls
-  - choco push ./win/dug.0.0.1.nupkg --api-key ${CHOCO_API_KEY} --source https://push.chocolatey.org/
+  - choco push win/dug.0.0.1.nupkg --api-key ${CHOCO_API_KEY} --source https://push.chocolatey.org/
 
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
