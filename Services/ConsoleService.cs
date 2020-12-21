@@ -28,11 +28,11 @@ namespace dug.Services
 
         private void DrawTable(Dictionary<DnsServer, List<DnsResponse>> results, IEnumerable<QueryType> queryTypes){
             var table = new Table()
-                .Border(TableBorder.Rounded)
+                .Border(TableBorder.MinimalHeavyHead)
                 .BorderColor(Color.White)
-                .AddColumn(new TableColumn("[u]Record Type[/]").Centered())
-                .AddColumn(new TableColumn("[u]Value[/]").Centered())
-                .AddColumn(new TableColumn("[u]Consensus by Continent[/]").LeftAligned());
+                .AddColumn(new TableColumn("[green][u]Record Type[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Value[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Consensus by Continent[/][/]").LeftAligned());
 
             
             foreach(var queryType in queryTypes){
@@ -62,28 +62,50 @@ namespace dug.Services
                     continentTotals[continent] = totalContinentInstances;
                 }
 
-
                 foreach(var groupedResult in resultsWithContinentCounts){
                     table.AddRow(
                         new Text(queryType.ToString()),
-                        new Text(groupedResult.Key),
-                        new Text(GetConsensusString(groupedResult.Value, continentTotals))
+                        new Markup(FormatDnsResponseString(groupedResult.Key)),
+                        new Markup(FormatConsensusString(groupedResult.Value, continentTotals))
                         );
                         table.AddEmptyRow();
                 }
+
+                table.AddRow(new Rule().HeavyBorder(), new Rule().HeavyBorder(), new Rule().HeavyBorder());
             }
 
 
             AnsiConsole.Render(table);
         }
 
-        private string GetConsensusString(Dictionary<ContinentCodes, int> continentCounts, Dictionary<ContinentCodes, int> continentTotals){
+        private string FormatDnsResponseString(string dnsResponse){
+            switch(dnsResponse){
+                case "Empty":
+                    return $"[yellow]{dnsResponse}[/]";
+                case "ConnectionTimeout":
+                    return $"[red]{dnsResponse}[/]";
+            }
+            return dnsResponse;
+        }
+
+        private string FormatConsensusString(Dictionary<ContinentCodes, int> continentCounts, Dictionary<ContinentCodes, int> continentTotals){
             StringBuilder sb = new StringBuilder();
             foreach(ContinentCodes continent in continentCounts.Keys){
                 float continentConsensusPercentage = (float)continentCounts[continent]/(float)continentTotals[continent];
-                sb.AppendLine($"{continent.Name} {continentConsensusPercentage.ToString("P0")}%");
+                sb.AppendLine($"{continent.Name} {FormatPercentage(continentConsensusPercentage)}");
             }
             return sb.ToString();
+        }
+
+        private string FormatPercentage(double percentage){
+            switch(percentage){
+                case double p when (p >= 1.0):
+                    return $"[green]{p.ToString("P0")}[/]";
+                case double p when (p >= 0.4):
+                    return $"[yellow]{p.ToString("P0")}[/]";
+                default:
+                    return $"[red]{percentage.ToString("P0")}[/]";
+            }
         }
 
         private string GetAnswersString(DnsResponse response){
