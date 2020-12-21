@@ -6,7 +6,7 @@ steps:
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - dotnet build
+  - dotnet build -c Release
 
 - name: Prepare for publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -32,7 +32,7 @@ steps:
 - name: build win-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - sed -i 's~<version>0.0.1</version>~<version>${DRONE_TAG}</version>~' ./win/dug.nuspec #Set the Version in the nuspec
+  - sed -i 's~<version>0.0.1</version>~<version>${DRONE_TAG}</version>~' ./.ci/win/dug.nuspec #Set the Version in the nuspec
   - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./.ci/win/output
   when:
     ref:
