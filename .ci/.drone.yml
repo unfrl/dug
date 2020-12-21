@@ -3,29 +3,21 @@ type: kubernetes
 name: build_test
 
 steps:
-- name: build linux-x64 #Doesnt currently do any testing...
+- name: build #Doesnt currently do any testing...
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet build -c Release
 
----
-
-kind: pipeline
-type: kubernetes
-name: package_linux
-
-depends_on:
-- build_test
-
-steps:
-- name: Prepare for publishing
+- name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - echo "Publishing tagged version ${DRONE_TAG} for linux-x64"
+  - echo "Publishing tagged version ${DRONE_TAG}"
   - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
   when:
     ref:
     - refs/tags/*.*.*
+  depends_on:
+  - build
 
 - name: package linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -38,40 +30,8 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
-
-- name: gitea release
-  image: plugins/gitea-release
-  settings:
-    api_key:
-      from_secret: gitea_token
-    base_url: https://git.kaijucode.com
-    files:
-      - publish/dug-linux-x64
-      - publish/*.deb
-      - publish/*.rpm
-    title: ${DRONE_TAG}
-  when:
-    ref:
-    - refs/tags/*.*.*
-
----
-
-kind: pipeline
-type: kubernetes
-name: package_windows
-
-depends_on:
-- build_test
-
-steps:
-- name: Prepare for publishing
-  image: mcr.microsoft.com/dotnet/sdk:5.0
-  commands:
-  - echo "Publishing tagged version ${DRONE_TAG} for win-x64"
-  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-  when:
-    ref:
-    - refs/tags/*.*.*
+  depends_on:
+  - prepare_publishing
 
 - name: build win-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -81,7 +41,9 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
-    
+  depends_on:
+  - prepare_publishing
+
 - name: package/publish win-x64
   image: linuturk/mono-choco
   environment:
@@ -94,6 +56,8 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
+  depends_on:
+  - build win-x64
 
 - name: gitea release
   image: plugins/gitea-release
@@ -102,9 +66,15 @@ steps:
       from_secret: gitea_token
     base_url: https://git.kaijucode.com
     files:
+      - publish/dug-linux-x64
+      - publish/*.deb
+      - publish/*.rpm
       - ./.ci/win/output/*.exe
     title: ${DRONE_TAG}
   when:
     ref:
     - refs/tags/*.*.*
+  depends_on:
+  - build win-x64
+  - package linux-x64
 
