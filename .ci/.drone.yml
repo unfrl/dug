@@ -1,6 +1,6 @@
 kind: pipeline
 type: kubernetes
-name: dug_default
+name: build_test
 
 steps:
 - name: build linux-x64
@@ -17,6 +17,16 @@ steps:
     ref:
     - refs/tags/*.*.*
 
+---
+
+kind: pipeline
+type: kubernetes
+name: package_linux
+
+depends_on:
+- build_test
+
+steps:
 - name: package linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -29,6 +39,17 @@ steps:
     ref:
     - refs/tags/*.*.*
 
+
+---
+
+kind: pipeline
+type: kubernetes
+name: package_windows
+
+depends_on:
+- build_test
+
+steps:
 - name: build win-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -50,7 +71,17 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
+---
 
+kind: pipeline
+type: kubernetes
+name: publish_to_gitea
+
+depends_on:
+- package_linux
+- package_windows
+
+steps:
 - name: gitea release
   image: plugins/gitea-release
   settings:
