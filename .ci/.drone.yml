@@ -26,6 +26,10 @@ name: package_linux
 depends_on:
 - build_test
 
+when:
+    ref:
+    - refs/tags/*.*.*
+
 steps:
 - name: package linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -48,6 +52,10 @@ name: package_windows
 
 depends_on:
 - build_test
+
+when:
+    ref:
+    - refs/tags/*.*.*
 
 steps:
 - name: build win-x64
@@ -80,6 +88,10 @@ name: publish_to_gitea
 depends_on:
 - package_linux
 - package_windows
+
+when:
+    ref:
+    - refs/tags/*.*.*
 
 steps:
 - name: gitea release
