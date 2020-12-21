@@ -39,6 +39,21 @@ steps:
     ref:
     - refs/tags/*.*.*
 
+- name: gitea release
+  image: plugins/gitea-release
+  settings:
+    api_key:
+      from_secret: gitea_token
+    base_url: https://git.kaijucode.com
+    files:
+      - publish/dug-linux-x64
+      - publish/*.deb
+      - publish/*.rpm
+    title: ${DRONE_TAG}
+  when:
+    ref:
+    - refs/tags/*.*.*
+
 ---
 
 kind: pipeline
@@ -79,17 +94,7 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
----
 
-kind: pipeline
-type: kubernetes
-name: publish_to_gitea
-
-depends_on:
-- package_linux
-- package_windows
-
-steps:
 - name: gitea release
   image: plugins/gitea-release
   settings:
@@ -97,9 +102,6 @@ steps:
       from_secret: gitea_token
     base_url: https://git.kaijucode.com
     files:
-      - publish/dug-linux-x64
-      - publish/*.deb
-      - publish/*.rpm
       - ./.ci/win/output/*.exe
     title: ${DRONE_TAG}
   when:
