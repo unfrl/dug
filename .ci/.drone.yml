@@ -33,7 +33,7 @@ steps:
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - sed -i 's~<version>0.0.1</version>~<version>${DRONE_TAG}</version>~' ./win/dug.nuspec #Set the Version in the nuspec
-  - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./win/output
+  - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./.ci/win/output
   when:
     ref:
     - refs/tags/*.*.*
@@ -44,8 +44,8 @@ steps:
     CHOCO_API_KEY:
       from_secret: chocolatey_api_key
   commands:
-  - choco pack ./win/dug.nuspec
-  - choco push dug.${DRONE_TAG}.nupkg --api-key $${CHOCO_API_KEY} --source https://push.chocolatey.org/
+  - choco pack ./.ci/win/dug.nuspec --out ./.ci/win
+  - choco push ./.ci/win/dug.${DRONE_TAG}.nupkg --api-key $${CHOCO_API_KEY} --source https://push.chocolatey.org/
   when:
     ref:
     - refs/tags/*.*.*

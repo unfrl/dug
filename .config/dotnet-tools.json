@@ -13,6 +13,12 @@
       "commands": [
         "dotnet-rpm"
       ]
+    },
+    "dotnet-tarball": {
+      "version": "0.1.189",
+      "commands": [
+        "dotnet-tarball"
+      ]
     }
   }
 }
