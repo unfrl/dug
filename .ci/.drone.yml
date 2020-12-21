@@ -43,6 +43,7 @@ steps:
   environment:
     CHOCO_API_KEY:
       from_secret: chocolatey_api_key
+  failure: ignore #Until my first chocolatey package (dug@0.0.1) get approved this will always fail
   commands:
   - choco pack ./.ci/win/dug.nuspec --out ./.ci/win
   - choco push ./.ci/win/dug.${DRONE_TAG}.nupkg --api-key $${CHOCO_API_KEY} --source https://push.chocolatey.org/
