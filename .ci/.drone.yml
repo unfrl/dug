@@ -3,19 +3,10 @@ type: kubernetes
 name: build_test
 
 steps:
-- name: build linux-x64
+- name: build linux-x64 #Doesnt currently do any testing...
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet build -c Release
-
-- name: Prepare for publishing
-  image: mcr.microsoft.com/dotnet/sdk:5.0
-  commands:
-  - echo "Publishing tagged version ${DRONE_TAG}"
-  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-  when:
-    ref:
-    - refs/tags/*.*.*
 
 ---
 
@@ -26,11 +17,16 @@ name: package_linux
 depends_on:
 - build_test
 
-when:
+steps:
+- name: Prepare for publishing
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
+  - echo "Publishing tagged version ${DRONE_TAG} for linux-x64"
+  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+  when:
     ref:
     - refs/tags/*.*.*
 
-steps:
 - name: package linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -43,7 +39,6 @@ steps:
     ref:
     - refs/tags/*.*.*
 
-
 ---
 
 kind: pipeline
@@ -53,11 +48,16 @@ name: package_windows
 depends_on:
 - build_test
 
-when:
+steps:
+- name: Prepare for publishing
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
+  - echo "Publishing tagged version ${DRONE_TAG} for win-x64"
+  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+  when:
     ref:
     - refs/tags/*.*.*
 
-steps:
 - name: build win-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -89,10 +89,6 @@ depends_on:
 - package_linux
 - package_windows
 
-when:
-    ref:
-    - refs/tags/*.*.*
-
 steps:
 - name: gitea release
   image: plugins/gitea-release
@@ -104,6 +100,7 @@ steps:
       - publish/dug-linux-x64
       - publish/*.deb
       - publish/*.rpm
+      - ./.ci/win/output/*.exe
     title: ${DRONE_TAG}
   when:
     ref:
