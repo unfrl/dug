@@ -6,7 +6,7 @@ steps:
 - name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - dotnet build
+  - dotnet build -c Release
 
 - name: Prepare for publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0

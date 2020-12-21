@@ -14,12 +14,6 @@ namespace dug.Services
 {
     public class ConsoleService : IConsoleService
     {
-        public void DrawConciseResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options)
-        {
-            DrawUrlHeader(options);
-            // DrawConciseTable(results);
-        }
-
         public void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options)
         {
             DrawUrlHeader(options);
