@@ -1,4 +1,5 @@
 #!/usr/bin/env node
 
 const getBinary = require('./getBinary');
-getBinary().run();
+getBinary()
+    .then(res => res.run());
