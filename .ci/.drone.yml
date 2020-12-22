@@ -67,7 +67,7 @@ steps:
       from_secret: npm_token
   commands:
   - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN}
-  - sed -i 's~"version": "0.0.1"~"version": "${DRONE_TAG}"~' ./.ci/npm_packaging/package.json #Set the Version in the package.json
+  - sed -i '0,/0.0.1/s//${DRONE_TAG}/' ./.ci/npm_packaging/package.json #Set the Version in the package.json (this sed syntax just updates the first match it finds)
   - npm publish ./.ci/npm_packaging
   when:
     ref:
