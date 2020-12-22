@@ -19,13 +19,14 @@ steps:
   depends_on:
   - build
 
-- name: package linux-x64
+- name: package linux
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
   - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish
+  - dotnet deb -c Release -r linux-arm64 -o ./publish
   - dotnet rpm -c Release -r linux-x64 -o ./publish
   - dotnet tarball -c Release -r linux-x64 -o ./publish
   when:
@@ -78,7 +79,7 @@ steps:
     - refs/tags/*.*.*
   depends_on:
   - build win-x64
-  - package linux-x64
+  - package linux
 
 - name: gitea release
   image: plugins/gitea-release
@@ -98,5 +99,5 @@ steps:
     - refs/tags/*.*.*
   depends_on:
   - build win-x64
-  - package linux-x64
+  - package linux
 
