@@ -60,6 +60,22 @@ steps:
   depends_on:
   - build win-x64
 
+- name: package/publish npm
+  image: node:10
+  environment:
+    NPM_TOKEN:
+      from_secret: npm_token
+  commands:
+  - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN}
+  - sed -i 's~"version": "0.0.1"~"version": "${DRONE_TAG}"~' ./.ci/npm_packaging/package.json #Set the Version in the package.json
+  - npm publish ./.ci/npm_packaging
+  when:
+    ref:
+    - refs/tags/*.*.*
+  depends_on:
+  - build win-x64
+  - package linux-x64
+
 - name: gitea release
   image: plugins/gitea-release
   settings:

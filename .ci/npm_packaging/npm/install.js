@@ -1,2 +1,3 @@
 const getBinary = require('./getBinary');
-getBinary().install();
+getBinary()
+    .then(res => res.install());
