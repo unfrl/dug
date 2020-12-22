@@ -24,6 +24,8 @@ steps:
   commands:
   - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
+  - dotnet publish -r linux-arm64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish
+  - mv ./publish/dug ./publish/dug-linux-arm64 #Rename the binary to its architecture type
   - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish
   - dotnet deb -c Release -r linux-arm64 -o ./publish
@@ -89,6 +91,8 @@ steps:
     base_url: https://git.kaijucode.com
     files:
       - publish/dug-linux-x64
+      - publish/dug-linux-arm64
+      - .ci/win/dug.${DRONE_TAG}.nupkg
       - publish/*.deb
       - publish/*.rpm
       - publish/*.tar.gz
@@ -100,4 +104,3 @@ steps:
   depends_on:
   - build win-x64
   - package linux
-
