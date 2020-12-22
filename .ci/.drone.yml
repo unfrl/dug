@@ -63,10 +63,14 @@ steps:
 - name: package/publish npm
   image: node:10
   environment:
-    NPM_TOKEN:
-      from_secret: npm_token
+    NPM_TOKEN_1:
+      from_secret: npm_token_1
+    NPM_TOKEN_2:
+      from_secret: npm_token_2
   commands:
-  - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN}
+  - npm set //https://registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
+  - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
+  - npm set //registry.npmjs.org/:_authToken $${NPM_TOKEN_2}
   - sed -i '0,/0.0.1/s//${DRONE_TAG}/' ./.ci/npm_packaging/package.json #Set the Version in the package.json (this sed syntax just updates the first match it finds)
   - npm publish ./.ci/npm_packaging
   when:
