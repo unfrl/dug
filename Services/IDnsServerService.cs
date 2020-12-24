@@ -28,7 +28,7 @@ namespace dug.Services
         // It also slightly improves the reliability of servers (up to 1.0) that responded
         // The improvement is specified by 'promotion' and can range from 0.0 to 1.0, it defaults to 0.01.
         // NOTE: The numbers specified are NOT percentages, even though they usually are when we import the servers. When you specify a penalty of 0.1 and a server that had a reliability of 0.5 fails, it will now have a reliability of 0.4.
-        void UpdateServerReliabilityFromResults(Dictionary<DnsServer, DnsResponse> results, double penalty = 0.1, double promotion = 0.01);
+        void UpdateServerReliabilityFromResults(Dictionary<DnsServer, List<DnsResponse>> results, double penalty = 0.1, double promotion = 0.01);
 
         void EnsureServers();
     }

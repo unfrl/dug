@@ -121,7 +121,7 @@ namespace dug.Services
             PersistServers();
         }
 
-        public void UpdateServerReliabilityFromResults(Dictionary<DnsServer, DnsResponse> results, double penalty = 0.1, double promotion = 0.01)
+        public void UpdateServerReliabilityFromResults(Dictionary<DnsServer, List<DnsResponse>> rawResults, double penalty = 0.1, double promotion = 0.01)
         {
             if(penalty < 0 || penalty > 1){
                 throw new ArgumentOutOfRangeException("penalty must be between 0 and 1");
@@ -129,16 +129,18 @@ namespace dug.Services
             if(promotion < 0 || promotion > 1){
                 throw new ArgumentOutOfRangeException("promotion must be between 0 and 1");
             }
-            foreach(var result in results){
-                var server = result.Key;
+            foreach(var serverResults in rawResults){
+                var server = serverResults.Key;
                 var extantServer = _servers.Find(existingServer => existingServer.IPAddress.ToString() == server.IPAddress.ToString());
-                if(result.Value.HasError){
-                    extantServer.Reliability = extantServer.Reliability - penalty;
+                foreach(var dnsResponse in serverResults.Value){
+                    if(dnsResponse.HasError){
+                        extantServer.Reliability = extantServer.Reliability - penalty;
+                    }
+                    else{
+                        extantServer.Reliability = extantServer.Reliability + promotion;
+                    }
+                    extantServer.Reliability = Math.Clamp(extantServer.Reliability, 0, 1);
                 }
-                else{
-                    extantServer.Reliability = extantServer.Reliability + promotion;
-                }
-                extantServer.Reliability = Math.Clamp(extantServer.Reliability, 0, 1);
             }
             
             PersistServers();

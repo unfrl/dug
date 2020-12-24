@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using CommandLine;
+using CommandLine.Text;
 using dug.Options;
 using dug.Parsing;
 using DnsClient;
@@ -32,8 +33,7 @@ namespace dug
 
         public async Task<int> RunAsync()
         {
-            // await _cliArgs.WithNotParsedAsync(HandleCliErrorsAsync); //TODO: Handle CLI Parsing errors (maybe)
-            
+            // _cliArgs.WithNotParsed(errs => DisplayHelp(_cliArgs, errs)); //TODO: Handle CLI Parsing errors (maybe)
             await _cliArgs.WithParsedAsync(ExecuteArgumentsAsync);
                 
             return 0;
@@ -48,9 +48,6 @@ namespace dug
                     await ExecuteUpdate(uo);
                     break;
                 case RunOptions ro:
-                    // If there are no servers in the db populate it from the built in list. I do this after the update so i dont load them before then just have them updated right away.
-                    // Theoretically the update command could be the first one they run :)
-                    // await _dnsServerService.EnsureServers();
                     await ExecuteRun(ro);
                     break;
                 default:
@@ -95,15 +92,16 @@ namespace dug
 
             // 2. Run the queries with any options (any records, specific records, etc)            
             Console.WriteLine("URL: " + opts.Url); //Print pretty query info panel here
-            var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.QueryTypes);
+            
+            var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes);
 
             // 3. Draw beautiful results in fancy table
             _consoleService.DrawResults(queryResults, opts);
 
             // 4. Update server reliability depending on results?
-            // if(string.IsNullOrEmpty(opts.CustomServerFile)){
-            //     _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
-            // }
+            if(string.IsNullOrEmpty(opts.CustomServerFile)){
+                _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
+            }
         }
 
         private async Task ExecuteUpdate(UpdateOptions options)

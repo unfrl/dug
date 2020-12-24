@@ -30,7 +30,7 @@ namespace dug.Services
                 .AddColumn(new TableColumn("[green][u]Consensus by Continent[/][/]").LeftAligned());
 
             
-            foreach(var queryType in options.QueryTypes){
+            foreach(var queryType in options.ParsedQueryTypes){
                 var resultsWithContinentCounts = new Dictionary<string, Dictionary<ContinentCodes, int>>();
                 foreach(var result in results){
                     var server = result.Key;
