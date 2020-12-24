@@ -47,9 +47,9 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
     <!--<docsUrl>At what url are the software docs located?</docsUrl>-->
     <!--<mailingListUrl></mailingListUrl>-->
     <!--<bugTrackerUrl></bugTrackerUrl>-->
-    <tags>dug DNS Propogation CLI</tags>
-    <summary>A global DNS progagation checker that gives pretty output.</summary>
-    <description>A global DNS progagation checker that gives pretty output.</description>
+    <tags>dug DNS Propagation CLI</tags>
+    <summary>A global DNS propagation checker that gives pretty output.</summary>
+    <description>A global DNS propagation checker that gives pretty output.</description>
     <!-- <releaseNotes>__REPLACE_OR_REMOVE__MarkDown_Okay</releaseNotes> -->
     <!-- =============================== -->      
 
@@ -74,7 +74,7 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->
-    <file src="win/output/**" target="output" />
+    <file src=".ci/win/output/**" target="output" />
     <!--Building from Linux? You may need this instead: <file src="tools/**" target="tools" />-->
   </files>
 </package>
