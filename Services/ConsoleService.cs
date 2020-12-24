@@ -9,33 +9,28 @@ using dug.Data.Models;
 using dug.Options;
 using Spectre.Console;
 using Spectre.Console.Rendering;
+using dug.Utils;
 
 namespace dug.Services
 {
     public class ConsoleService : IConsoleService
     {
-        public void DrawConciseResults(Dictionary<DnsServer, DnsResponse> results, RunOptions options)
-        {
-            DrawUrlHeader(options);
-            // DrawConciseTable(results);
-        }
-
         public void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options)
         {
             DrawUrlHeader(options);
-            DrawTable(results, options.QueryTypes);
+            DrawTable(results, options);
         }
 
-        private void DrawTable(Dictionary<DnsServer, List<DnsResponse>> results, IEnumerable<QueryType> queryTypes){
+        private void DrawTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options){
             var table = new Table()
-                .Border(TableBorder.Rounded)
+                .Border(TableBorder.MinimalHeavyHead)
                 .BorderColor(Color.White)
-                .AddColumn(new TableColumn("[u]Record Type[/]").Centered())
-                .AddColumn(new TableColumn("[u]Value[/]").Centered())
-                .AddColumn(new TableColumn("[u]Consensus by Continent[/]").LeftAligned());
+                .AddColumn(new TableColumn("[green][u]Record Type[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Value[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Consensus by Continent[/][/]").LeftAligned());
 
             
-            foreach(var queryType in queryTypes){
+            foreach(var queryType in options.QueryTypes){
                 var resultsWithContinentCounts = new Dictionary<string, Dictionary<ContinentCodes, int>>();
                 foreach(var result in results){
                     var server = result.Key;
@@ -62,28 +57,18 @@ namespace dug.Services
                     continentTotals[continent] = totalContinentInstances;
                 }
 
-
                 foreach(var groupedResult in resultsWithContinentCounts){
                     table.AddRow(
                         new Text(queryType.ToString()),
-                        new Text(groupedResult.Key),
-                        new Text(GetConsensusString(groupedResult.Value, continentTotals))
+                        new Markup(MarkupHelper.FormatDnsResponseMarkup(groupedResult.Key, options.Url)),
+                        new Markup(MarkupHelper.FormatConsensusMarkup(groupedResult.Value, continentTotals))
                         );
                         table.AddEmptyRow();
                 }
+
+                table.AddRow(new Rule().HeavyBorder(), new Rule().HeavyBorder(), new Rule().HeavyBorder());
             }
-
-
             AnsiConsole.Render(table);
-        }
-
-        private string GetConsensusString(Dictionary<ContinentCodes, int> continentCounts, Dictionary<ContinentCodes, int> continentTotals){
-            StringBuilder sb = new StringBuilder();
-            foreach(ContinentCodes continent in continentCounts.Keys){
-                float continentConsensusPercentage = (float)continentCounts[continent]/(float)continentTotals[continent];
-                sb.AppendLine($"{continent.Name} {continentConsensusPercentage.ToString("P0")}%");
-            }
-            return sb.ToString();
         }
 
         private string GetAnswersString(DnsResponse response){
