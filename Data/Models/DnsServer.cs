@@ -21,7 +21,10 @@ namespace dug.Data.Models
 
         public ContinentCodes ContinentCode {
             get {
-                return DataMaps.CountryContinentMap.ContainsKey(CountryCode) ? DataMaps.CountryContinentMap[CountryCode] : null;
+                if(string.IsNullOrEmpty(CountryCode)){
+                    return ContinentCodes.UNKNOWN;
+                }
+                return DataMaps.CountryContinentMap.ContainsKey(CountryCode) ? DataMaps.CountryContinentMap[CountryCode] : ContinentCodes.UNKNOWN;
             }
         }
 

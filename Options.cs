@@ -4,6 +4,7 @@ using System.Net;
 using CommandLine;
 using CommandLine.Text;
 using DnsClient;
+using dug.Data.Models;
 
 namespace dug.Options
 {
@@ -49,8 +50,26 @@ namespace dug.Options
             }
         }
 
-        [Option('s', "servers", Separator = ',', HelpText = "TODO: NOT IMPLEMENTED")]
-        public IEnumerable<ParseableIPAddress> Servers { get; set; }
+        [Option('s', "servers", HelpText = "The servers to query against instead of the integrated servers. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
+        public string Servers { get; set; }
+        // [Option('s', "servers", Separator = ',', HelpText = "The servers to query against, used instead of the integrated servers. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
+        // public IEnumerable<ParseableIPAddress> Servers { get; set; }
+        private List<DnsServer> _parsedServers;
+        public IEnumerable<DnsServer> ParsedServers { 
+            get {
+                if(_parsedServers != null){
+                    return _parsedServers;
+                }
+                _parsedServers = new List<DnsServer>();
+                foreach(string addressString in Servers.Split(",")){
+                    IPAddress parsedAddress;
+                    if(IPAddress.TryParse(addressString, out parsedAddress)){
+                        _parsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
+                    }
+                }
+                return _parsedServers;
+            }
+        }
 
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
@@ -59,21 +78,21 @@ namespace dug.Options
         public string Url { get; set; }
     }
 
-    public class ParseableIPAddress : IPAddress
-    {
-        public ParseableIPAddress(string address) : base(parseIPFromString(address))
-        {
-        }
+    //This will likely be needed later
+    // public class ParseableIPAddress : IPAddress
+    // {
+    //     public ParseableIPAddress(string address) : base(parseIPFromString(address))
+    //     {
+    //     }
 
-        private static byte[] parseIPFromString(string address){
-            IPAddress result;
-            if(IPAddress.TryParse(address, out result)){
-                return result.GetAddressBytes();
-            }
-            throw new ArgumentException($"Unable to parse provided IPAddress: {address}");
-        }
-
-    }
+    //     private static byte[] parseIPFromString(string address){
+    //         IPAddress result;
+    //         if(IPAddress.TryParse(address, out result)){
+    //             return result.GetAddressBytes();
+    //         }
+    //         throw new ArgumentException($"Unable to parse provided IPAddress: {address}");
+    //     }
+    // }
 
     [Verb("update", HelpText = "Update DNS server list with any new unique servers. Uses remote server to get list by default.")]
     public class UpdateOptions : GlobalOptions

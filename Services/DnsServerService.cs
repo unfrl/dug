@@ -132,6 +132,9 @@ namespace dug.Services
             foreach(var serverResults in rawResults){
                 var server = serverResults.Key;
                 var extantServer = _servers.Find(existingServer => existingServer.IPAddress.ToString() == server.IPAddress.ToString());
+                if(extantServer == null){
+                    continue;
+                }
                 foreach(var dnsResponse in serverResults.Value){
                     if(dnsResponse.HasError){
                         extantServer.Reliability = extantServer.Reliability - penalty;
