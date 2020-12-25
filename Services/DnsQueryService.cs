@@ -36,50 +36,103 @@ namespace dug.Services
             return response.Header.IsAuthenticData;
         }
 
-        public async Task<Dictionary<DnsServer, List<DnsResponse>>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int retries = 0)
+        public async Task<Dictionary<DnsServer, List<DnsResponse>>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int batchSize, int retries)
         {
             ConcurrentDictionary<DnsServer, List<DnsResponse>> results = new ConcurrentDictionary<DnsServer, List<DnsResponse>>();
-            
-            var serverTasks = dnsServers.Select(async server => {
-                var queryTasks = queryTypes.Select(async queryType => {
-                    Stopwatch clock = new Stopwatch();
-                    try{
-                        DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
-                        clock.Start();
-                        var queryResult = await QueryDnsServer(server, url, queryType, timeout, retries);
-                        long responseTime = clock.ElapsedMilliseconds;
-                        DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
-                        var response = new DnsResponse(queryResult, responseTime, queryType);
-                        results.AddOrUpdate(server,
-                            (serv) => new List<DnsResponse>{response},
-                            (serv, list) => {
-                                list.Add(response);
-                                return list;
-                            });
-                    }
-                    catch (DnsResponseException dnsException){ //TODO: There is an issue where ThrowDnsErrors isnt respected, so i have to catch them and deal with it... https://github.com/MichaCo/DnsClient.NET/issues/99
-                        long responseTime = clock.ElapsedMilliseconds;
-                        var response = new DnsResponse(dnsException, responseTime, queryType);
-                        results.AddOrUpdate(server,
-                            (serv) => new List<DnsResponse>{response},
-                            (serv, list) => {
-                                list.Add(response);
-                                return list;
-                            });
-                        if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
-                            DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
-                            return;
-                        }
-                        DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
-                    }
-                    catch{
-                        DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
-                    }
-                });
-                await Task.WhenAll(queryTasks);
-            });
+            List<DnsServer> dnsServersList = dnsServers.ToList();
 
-            await Task.WhenAll(serverTasks);
+            List<Task> serverTasks = new List<Task>(dnsServersList.Count());
+
+            var partitioner = Partitioner.Create(0, dnsServersList.Count(), batchSize);
+            foreach (var serverRange in partitioner.GetDynamicPartitions()){
+                Console.WriteLine($"RANGE: {serverRange.Item1} -> {serverRange.Item2}");
+                var subServerTasks = dnsServersList.GetRange(serverRange.Item1, serverRange.Item2-serverRange.Item1).Select(async server => {
+                    var queryTasks = queryTypes.Select(async queryType => {
+                        Stopwatch clock = new Stopwatch();
+                        try{
+                            DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
+                            clock.Start();
+                            var queryResult = await QueryDnsServer(server, url, queryType, timeout, retries);
+                            long responseTime = clock.ElapsedMilliseconds;
+                            DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
+                            var response = new DnsResponse(queryResult, responseTime, queryType);
+                            results.AddOrUpdate(server,
+                                (serv) => new List<DnsResponse>{response},
+                                (serv, list) => {
+                                    list.Add(response);
+                                    return list;
+                                });
+                        }
+                        catch (DnsResponseException dnsException){ //TODO: There is an issue where ThrowDnsErrors isnt respected, so i have to catch them and deal with it... https://github.com/MichaCo/DnsClient.NET/issues/99
+                            long responseTime = clock.ElapsedMilliseconds;
+                            var response = new DnsResponse(dnsException, responseTime, queryType);
+                            results.AddOrUpdate(server,
+                                (serv) => new List<DnsResponse>{response},
+                                (serv, list) => {
+                                    list.Add(response);
+                                    return list;
+                                });
+                            if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
+                                DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
+                                return;
+                            }
+                            DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
+                        }
+                        catch{
+                            DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                        }
+                    });
+                    await Task.WhenAll(queryTasks);
+                });
+                await Task.WhenAll(subServerTasks);
+            }
+
+            // Parallel.ForEach(Partitioner.Create(0, dnsServersList.Count(), 100), serverRange => {
+            //     Console.WriteLine($"RANGE: {serverRange.Item1} -> {serverRange.Item2}");
+            //     var subServerTasks = dnsServersList.GetRange(serverRange.Item1, serverRange.Item2-serverRange.Item1).Select(async server => {
+            //         var queryTasks = queryTypes.Select(async queryType => {
+            //             Stopwatch clock = new Stopwatch();
+            //             try{
+            //                 DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
+            //                 clock.Start();
+            //                 var queryResult = await QueryDnsServer(server, url, queryType, timeout, retries);
+            //                 long responseTime = clock.ElapsedMilliseconds;
+            //                 DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
+            //                 var response = new DnsResponse(queryResult, responseTime, queryType);
+            //                 results.AddOrUpdate(server,
+            //                     (serv) => new List<DnsResponse>{response},
+            //                     (serv, list) => {
+            //                         list.Add(response);
+            //                         return list;
+            //                     });
+            //             }
+            //             catch (DnsResponseException dnsException){ //TODO: There is an issue where ThrowDnsErrors isnt respected, so i have to catch them and deal with it... https://github.com/MichaCo/DnsClient.NET/issues/99
+            //                 long responseTime = clock.ElapsedMilliseconds;
+            //                 var response = new DnsResponse(dnsException, responseTime, queryType);
+            //                 results.AddOrUpdate(server,
+            //                     (serv) => new List<DnsResponse>{response},
+            //                     (serv, list) => {
+            //                         list.Add(response);
+            //                         return list;
+            //                     });
+            //                 if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
+            //                     DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
+            //                     return;
+            //                 }
+            //                 DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
+            //             }
+            //             catch{
+            //                 DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+            //             }
+            //         });
+            //         await Task.WhenAll(queryTasks);
+            //     });
+            //     lock(serverTasks){
+            //         serverTasks.AddRange(subServerTasks);
+            //     }
+            // });
+
+            // await Task.WhenAll(serverTasks);
 
             Console.WriteLine($"Finished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {dnsServers.Count() * queryTypes.Count()} requests");
             

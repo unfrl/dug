@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using dug.Data.Models;
 using System.IO;
 using dug.Data;
+using DnsClient;
 
 namespace dug
 {
@@ -93,7 +94,7 @@ namespace dug
             // 2. Run the queries with any options (any records, specific records, etc)            
             Console.WriteLine("URL: " + opts.Url); //TODO: Print pretty query info panel here
             
-            var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes);
+            var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes, opts.QueryBatchSize, opts.QueryRetries);
 
             // 3. Draw beautiful results in fancy table
             _consoleService.DrawResults(queryResults, opts);
@@ -104,13 +105,21 @@ namespace dug
             }
         }
 
-        private async Task ExecuteUpdate(UpdateOptions options)
+        private async Task ExecuteUpdate(UpdateOptions opts)
         {
-            if(!string.IsNullOrEmpty(options.CustomServerFile)){
-                _dnsServerService.UpdateServersFromFile(options.CustomServerFile, options.Overwite);
+            if(!string.IsNullOrEmpty(opts.CustomServerFile)){
+                _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
+            }
+
+            if(opts.Reliability){
+                var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromSeconds(3), new [] { QueryType.A }, opts.QueryBatchSize, opts.QueryRetries);
+                _dnsServerService.UpdateServerReliabilityFromResults(results);
                 return;
             }
-            await _dnsServerService.UpdateServersFromRemote(options.Overwite);
+
+            if(string.IsNullOrEmpty(opts.CustomServerFile)){
+                await _dnsServerService.UpdateServersFromRemote(opts.Overwite);
+            }
         }
 
         // private async Task HandleCliErrorsAsync(IEnumerable<Error> errs){
