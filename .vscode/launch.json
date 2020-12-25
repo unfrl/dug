@@ -93,6 +93,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "Debug run with Continents",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["kaijucode.com" , "--continents", "SA,NA"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",

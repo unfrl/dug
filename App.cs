@@ -2,15 +2,14 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using CommandLine;
-using CommandLine.Text;
 using dug.Options;
 using dug.Parsing;
-using DnsClient;
 using dug.Utils;
 using dug.Services;
 using System.Collections.Generic;
 using dug.Data.Models;
 using System.IO;
+using dug.Data;
 
 namespace dug
 {
@@ -76,7 +75,7 @@ namespace dug
                 }
             }
 
-            if(opts.Servers.Count() > 0){
+            if(opts.Servers?.Count() > 0){
                 //TODO: Should we 'decorate' these servers (turn them into DnsServers) before using them?
                         //If yes: We should do things like determine if they have DNSSEC, etc. Maybe this could be a static parse method off of DnsServer or something?
                 // Also when we're rendering the results we shouldnt assume to have anything except the IPAddress... Maybe when you do this the rendering should be way simpler?
@@ -84,8 +83,11 @@ namespace dug
                 serversToUse.AddRange(opts.ParsedServers);
             }
 
-            if(serversToUse.Count == 0) {
-                serversToUse.AddRange(_dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(6)).ToList());
+            if(opts.MultipleServerSources || serversToUse.Count == 0) {
+                var serversByReliability = _dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability));
+                serversToUse.AddRange(serversByReliability
+                    .Where(server => opts.ParsedContinents.Contains(server.ContinentCode, new ContinentCodeComparer()))
+                    .Take(opts.ServerCount));
             }
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 

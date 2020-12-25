@@ -4,6 +4,7 @@ using System.Net;
 using CommandLine;
 using CommandLine.Text;
 using DnsClient;
+using dug.Data;
 using dug.Data.Models;
 
 namespace dug.Options
@@ -18,6 +19,8 @@ namespace dug.Options
             {
                 yield return new Example("Default", new RunOptions { Url = "git.kaijucode.com"});
                 yield return new Example("Specify query type(s)", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Url = "git.kaijucode.com", QueryTypes= "A,MX" });
+                yield return new Example("Specify continents to query on", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Url = "git.kaijucode.com", Continents= "AF,NA,SA" });
+                yield return new Example("Query the top 3 most reliable servers in Africa and North America as well as 8.8.8.8", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Url = "git.kaijucode.com", Continents= "AF,NA", Servers = "8.8.8.8", ServerCount = 3, MultipleServerSources = true });
             }
         }
 
@@ -27,9 +30,32 @@ namespace dug.Options
         [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (A) or multiple separated by commas (A,MX).", Default = "A")]
         public string QueryTypes { get; set; }
 
+        [Option("server-count", Required = false, HelpText = "dug runs queries against the top servers, ranked by reliability, per continent. This allows you to set how many servers from each continent to use.", Default = 6)]
+        public int ServerCount { get; set; }
+
+        [Option("continents", Required = false, HelpText = "The continents on which servers will be queried. Defaults to all.", Default = "AF,SA,NA,OC,AS,EU,AN")]
+        public string Continents { get; set; }
+
+        private List<ContinentCodes> _parsedContinents;
+
+        public IEnumerable<ContinentCodes> ParsedContinents { 
+            get {
+                if(_parsedContinents != null){
+                    return _parsedContinents;
+                }
+                _parsedContinents = new List<ContinentCodes>();
+                foreach(string continent in Continents.Split(",")){
+                    ContinentCodes parsedContinentCode;
+                    if(ContinentCodes.TryParse(continent, out parsedContinentCode)){
+                        _parsedContinents.Add(parsedContinentCode);
+                    }
+                }
+                return _parsedContinents;
+            }
+        }
+
         // [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (\"A\") or multiple separated by commas (\"A,MX\").", Separator = ',', Default = new [] { QueryType.A })]
         // public IEnumerable<QueryType> QueryTypes { get; set; }
-
         private List<QueryType> _parsedQueryTypes;
         // NOTE: This is because of a really annoying issue that almost makes using IEnumerables with a separator as commandline options useless.
         // Any [Option] with an IEnumerable is very 'greedy' see: https://github.com/commandlineparser/commandline/issues/687
@@ -49,6 +75,9 @@ namespace dug.Options
                 return _parsedQueryTypes;
             }
         }
+
+        [Option('m', "multiple-sources", HelpText = "When specifying servers (-s or --servers) also use integrated servers", Default = false)]
+        public bool MultipleServerSources { get; set; }
 
         [Option('s', "servers", HelpText = "The servers to query against instead of the integrated servers. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
         public string Servers { get; set; }
