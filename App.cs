@@ -84,10 +84,9 @@ namespace dug
             }
 
             if(opts.MultipleServerSources || serversToUse.Count == 0) {
-                var serversByReliability = _dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability));
+                var serversByReliability = _dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(opts.ServerCount));
                 serversToUse.AddRange(serversByReliability
-                    .Where(server => opts.ParsedContinents.Contains(server.ContinentCode, new ContinentCodeComparer()))
-                    .Take(opts.ServerCount));
+                    .Where(server => opts.ParsedContinents.Contains(server.ContinentCode, new ContinentCodeComparer())));
             }
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
