@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -24,7 +24,19 @@ namespace dug.Data
         public static ContinentCodes AS { get { return new ContinentCodes("AS", "Asia"); } }
         public static ContinentCodes EU   { get { return new ContinentCodes("EU", "Europe"); } }
         public static ContinentCodes AN   { get { return new ContinentCodes("AN", "Antarctica"); } }
-        public static List<ContinentCodes> Continents { get { return new List<ContinentCodes>() {AF, SA, NA, OC, AS, EU, AN}; } }
+        public static ContinentCodes UNKNOWN   { get { return new ContinentCodes("UNKNOWN", "Unknown"); } }
+        public static List<ContinentCodes> Continents { get { return new List<ContinentCodes>() {AF, SA, NA, OC, AS, EU, AN, UNKNOWN}; } }
+
+        public static bool TryParse(string value, out ContinentCodes result){
+            ContinentCodes parsedContinent = Continents.FirstOrDefault(c => c.Code == value || c.Name == value);
+            if(parsedContinent != null){
+                result = parsedContinent;
+                return true;
+            }
+
+            result = null;
+            return false;
+        }
     }
 
     public class ContinentCodeComparer : IEqualityComparer<ContinentCodes>

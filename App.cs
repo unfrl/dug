@@ -2,15 +2,14 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using CommandLine;
-using CommandLine.Text;
 using dug.Options;
 using dug.Parsing;
-using DnsClient;
 using dug.Utils;
 using dug.Services;
 using System.Collections.Generic;
 using dug.Data.Models;
 using System.IO;
+using dug.Data;
 
 namespace dug
 {
@@ -76,29 +75,31 @@ namespace dug
                 }
             }
 
-            if(opts.Servers.Count() > 0){
-                throw new NotImplementedException("Specifying individual servers in a run is not supported yet");
+            if(opts.Servers?.Count() > 0){
                 //TODO: Should we 'decorate' these servers (turn them into DnsServers) before using them?
                         //If yes: We should do things like determine if they have DNSSEC, etc. Maybe this could be a static parse method off of DnsServer or something?
                 // Also when we're rendering the results we shouldnt assume to have anything except the IPAddress... Maybe when you do this the rendering should be way simpler?
 
-                //serversToUse.AddRange(opts.Servers);
+                serversToUse.AddRange(opts.ParsedServers);
             }
 
-            if(serversToUse.Count == 0) {
-                serversToUse = _dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability).Take(6)).ToList();
+            if(opts.MultipleServerSources || serversToUse.Count == 0) {
+                var serversByReliability = _dnsServerService.ServersByContinent.SelectMany(group => group.OrderByDescending(server => server.Reliability));
+                serversToUse.AddRange(serversByReliability
+                    .Where(server => opts.ParsedContinents.Contains(server.ContinentCode, new ContinentCodeComparer()))
+                    .Take(opts.ServerCount));
             }
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
             // 2. Run the queries with any options (any records, specific records, etc)            
-            Console.WriteLine("URL: " + opts.Url); //Print pretty query info panel here
+            Console.WriteLine("URL: " + opts.Url); //TODO: Print pretty query info panel here
             
             var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes);
 
             // 3. Draw beautiful results in fancy table
             _consoleService.DrawResults(queryResults, opts);
 
-            // 4. Update server reliability depending on results?
+            // 4. Update server reliability depending on results
             if(string.IsNullOrEmpty(opts.CustomServerFile)){
                 _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
             }
