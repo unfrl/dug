@@ -139,6 +139,9 @@ namespace dug.Services
                     if(dnsResponse.HasError){
                         extantServer.Reliability = extantServer.Reliability - penalty;
                     }
+                    else if(dnsResponse.QueryResponse.Answers.Count() == 0){ //Dont do anything for servers with an empty response.
+                        continue;
+                    }
                     else{
                         extantServer.Reliability = extantServer.Reliability + promotion;
                     }
