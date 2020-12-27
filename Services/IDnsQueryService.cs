@@ -9,6 +9,6 @@ namespace dug.Services
 {
     public interface IDnsQueryService
     {
-        Task<Dictionary<DnsServer, List<DnsResponse>>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int batchSize, int retries);
+        Task<Dictionary<DnsServer, List<DnsResponse>>> QueryServers(string url, IEnumerable<DnsServer> dnsServers, TimeSpan timeout, IEnumerable<QueryType> queryTypes, int parallelism, int retries, Action<string> updateFunction = null);
     }
 }
