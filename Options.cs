@@ -137,16 +137,28 @@ namespace dug.Options
             }
         }
 
-        [Option('f', "file", Required = false, HelpText = "Update DNS server list using the specified file.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
+        [Option('f', "file", Required = false, HelpText = "Update DNS server list using the specified file instead of the remote source")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
         [Option('o', "overwrite", Required = false, HelpText = "Overwrite the current server list instead of updating it.")]
         public bool Overwite { get; set; }
+
+        [Option('r', "reliability", Required = false, HelpText = "Runs a query for a very stable domain (google.com) against ALL servers and updates server reliability based on the results")]
+        public bool Reliability { get; set; }
     }
+
+
+    
 
     public class GlobalOptions
     {
         [Option('v', "verbose", Required = false, HelpText = "Enable Verbose Output")]
         public bool Verbose { get; set; }
+
+        [Option('p', "parallel", Required = false, HelpText = "The number of servers to perform queries against in parralel", Default = 100)]
+        public int QueryParallelism { get; set; }
+
+        [Option("retries", Required = false, HelpText = "The number of times to retry queries one servers that error (or timeout)", Default = 0)]
+        public int QueryRetries { get; set; }
     }
 }

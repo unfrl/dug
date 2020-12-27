@@ -1,11 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CommandLine;
 using dug.Services;
 using dug.Options;
@@ -38,6 +31,7 @@ namespace dug
             services.AddTransient<IDnsServerService, DnsServerService>();
             services.AddTransient<IDnsQueryService, DnsQueryService>();
             services.AddTransient<IConsoleService, ConsoleService>();
+            services.AddSingleton<IPercentageAnimator>(new PercentageAnimator());
 
             // required to run the application
             services.AddTransient<App>();

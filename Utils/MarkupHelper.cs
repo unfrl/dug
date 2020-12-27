@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DnsClient;
 using dug.Data;
 
 namespace dug.Utils
@@ -25,10 +26,17 @@ namespace dug.Utils
         }
 
         /*
-            Takes in a string and replaces all occurences of the specified url with markup making it green.
+            Takes in a string and replaces all occurences of the specified url, as well as record types, with markup making it green.
         */
         public static string UrlMarkupInPlace(string value, string url){
-            return value.Replace(url, $"[green]{url}[/]");
+            StringBuilder sb = new StringBuilder(value);
+            sb.Replace(url, $"[green]{url}[/]");
+            var queryTypeNames = Enum.GetNames(typeof(QueryType));
+            foreach(string queryType in queryTypeNames){
+                sb.Replace($" {queryType} ", $" [green]{queryType}[/] ");
+            }
+
+            return sb.ToString();
         }
 
         /*
