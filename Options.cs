@@ -130,6 +130,8 @@ namespace dug.Options
             {
                 yield return new Example("Default", new UpdateOptions());
                 yield return new Example("Overwrite current servers", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Overwite = true });
+                yield return new Example("Import servers", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Servers = "8.8.8.8,2001:4860:4860::8888" });
+                yield return new Example("Import and overwrite servers", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Servers = "8.8.8.8,2001:4860:4860::8888", Overwite = true });
             }
         }
 

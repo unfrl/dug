@@ -79,6 +79,7 @@ namespace dug.Services
                 return;
             }
             Console.WriteLine($"Added {serversAdded} DNS Servers.");
+            PersistServers();
         }
 
         public List<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format){
