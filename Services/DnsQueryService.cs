@@ -48,11 +48,11 @@ namespace dug.Services
                     var queryTasks = queryTypes.Select(async queryType => {
                         Stopwatch clock = new Stopwatch();
                         try{
-                            DugConsole.VerboseWriteLine($"START -- {server.IPAddress}");
+                            DugConsole.VerboseWriteLine($"START -- {server.CityCountryContinentName} {server.IPAddress}");
                             clock.Start();
                             var queryResult = await QueryDnsServer(server, url, queryType, timeout, retries);
                             long responseTime = clock.ElapsedMilliseconds;
-                            DugConsole.VerboseWriteLine($"FINISH -- {server.IPAddress} -- {responseTime}");
+                            DugConsole.VerboseWriteLine($"FINISH -- {server.CityCountryContinentName} {server.IPAddress} -- {responseTime}ms");
                             var response = new DnsResponse(queryResult, responseTime, queryType);
                             results.AddOrUpdate(server,
                                 (serv) => new List<DnsResponse>{response},
@@ -71,17 +71,18 @@ namespace dug.Services
                                     return list;
                                 });
                             if(dnsException.Code == DnsResponseCode.ConnectionTimeout){
-                                DugConsole.VerboseWriteLine($"TIMEOUT -- {server.IPAddress} -- {responseTime}");
+                                DugConsole.VerboseWriteLine($"TIMEOUT -- {server.CityCountryContinentName} {server.IPAddress} -- {responseTime}ms");
                                 return;
                             }
-                            DugConsole.VerboseWriteLine($"ERROR -- {server.IPAddress} -- {responseTime}");
+                            DugConsole.VerboseWriteLine($"ERROR -- {server.CityCountryContinentName} {server.IPAddress} -- {responseTime}ms");
                         }
                         catch{
-                            DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.IPAddress} -- {clock.ElapsedMilliseconds}");
+                            long responseTime = clock.ElapsedMilliseconds;
+                            DugConsole.VerboseWriteLine($"UNHANDLED ERROR -- {server.CityCountryContinentName} {server.IPAddress} -- {responseTime}ms");
                         }
                         finally{
                             if(updateFunction != null){
-                                updateFunction(server.CountryFlag);
+                                updateFunction(server.CountryCode);
                             }
                         }
                     });

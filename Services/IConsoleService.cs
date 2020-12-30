@@ -10,6 +10,9 @@ namespace dug.Services
     {
         void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options);
 
-        void RenderInfoPanel(object args);
+        /*
+            Used during verbose output to allow the user to see what arguments were parsed by the application
+        */
+        void RenderInfoPanel<T>(object args);
     }
 }

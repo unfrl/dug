@@ -58,6 +58,7 @@ namespace dug.Services
                 return;
             }
             _active = false;
+            _customString = " ";
             Draw(' ');
         }
 

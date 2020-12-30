@@ -1,15 +1,13 @@
-using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DnsClient;
-using DnsClient.Protocol;
 using dug.Data;
 using dug.Data.Models;
 using dug.Options;
 using Spectre.Console;
-using Spectre.Console.Rendering;
 using dug.Utils;
+using CommandLine;
 
 namespace dug.Services
 {
@@ -205,29 +203,38 @@ namespace dug.Services
             AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} records for {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
         }
 
-        public void RenderInfoPanel(object args)
+        public void RenderInfoPanel<T>(object args)
         {
-            switch(args){
-                case UpdateOptions uo:
-                    RenderUpdateOptionsInfoPanel(uo);
-                    break;
-                case RunOptions ro:
-                    RenderRunOptionsInfoPanel(ro);
-                    break;
-                default:
-                    //TODO: Idk when itd get here...
-                    break;
+            var table = new Table()
+                .Border(TableBorder.MinimalHeavyHead)
+                .BorderColor(Color.White)
+                .AddColumn(new TableColumn("[green][u]Argument[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Value[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Description[/][/]").LeftAligned());
+            var optionProperties = typeof(T).GetProperties().Where(prop => prop.GetCustomAttribute<OptionAttribute>() != null);
+            foreach(var property in optionProperties){
+                
+                var optionAttribute = property.GetCustomAttribute<OptionAttribute>();
+                var valueString = property.GetValue(args)?.ToString() ?? "";
+
+                if(valueString != (optionAttribute.Default?.ToString() ?? ReflectionHelper.GetDefaultValueAsString(property.PropertyType))){
+                    valueString = $"[green]{valueString}[/]";
+                }
+                else{
+                    continue;
+                }
+
+                string shortArgString = string.IsNullOrEmpty(optionAttribute.ShortName)? string.Empty : $"-{optionAttribute.ShortName} , ";
+                string longArgString = string.IsNullOrEmpty(optionAttribute.LongName) ? string.Empty : $"--{optionAttribute.LongName}";
+                var argumentString = shortArgString + longArgString;
+                var descriptionString = optionAttribute.HelpText;
+                table.AddRow(
+                    new Markup(argumentString),
+                    new Markup(valueString),
+                    new Markup(descriptionString)
+                );
             }
-        }
-
-        private void RenderUpdateOptionsInfoPanel(UpdateOptions opts){
-            
-            var panel = new Panel(new Markup("TEST")).Header("| [blue]Update[/] |").HeaderAlignment(Justify.Center).Expand().RoundedBorder();
-            AnsiConsole.Render(panel);
-        }
-
-        private void RenderRunOptionsInfoPanel(RunOptions opts){
-            
+            AnsiConsole.Render(table);
         }
     }
 }

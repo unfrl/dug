@@ -11,8 +11,6 @@ using dug.Data.Models;
 using System.IO;
 using dug.Data;
 using DnsClient;
-using FluentValidation;
-using CommandLine.Text;
 
 namespace dug
 {
@@ -46,12 +44,19 @@ namespace dug
         private async Task ExecuteArgumentsAsync(object args)
         {
             HandleGlobalOptions(args as GlobalOptions);
+            
             _dnsServerService.EnsureServers();
             switch(args){
                 case UpdateOptions uo:
+                    if(Config.Verbose){
+                        _consoleService.RenderInfoPanel<UpdateOptions>(args);
+                    }
                     await ExecuteUpdate(uo);
                     break;
                 case RunOptions ro:
+                    if(Config.Verbose){
+                        _consoleService.RenderInfoPanel<RunOptions>(args);
+                    }
                     await ExecuteRun(ro);
                     break;
                 default:
@@ -67,7 +72,7 @@ namespace dug
 
         private async Task ExecuteRun(RunOptions opts)
         {
-            // 0. Validate Arguments (Happening in Options.cs)
+            // 0. Validate Arguments (Happening in Options.cs in the set methods)
 
             // 1. Determine the servers to be used
             //    - For now just get the top opts.ServerCount most "reliable" servers per continent. Eventually I'll provide cli options to refine this.
@@ -114,9 +119,6 @@ namespace dug
 
         private async Task ExecuteUpdate(UpdateOptions opts)
         {
-            // _consoleService.RenderInfoPanel(opts);
-            // Environment.Exit(1);
-
             if(!string.IsNullOrEmpty(opts.CustomServerFile)){
                 _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
             }

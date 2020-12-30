@@ -42,7 +42,7 @@ namespace dug.Options
                         ParsedContinents.Add(parsedContinentCode);
                     }
                     else{
-                        throw new InvalidCastException($"Invalid Continent value: {continentString}");
+                        throw new Exception($"Invalid Continent value: {continentString}");
                     }
                 }
             }
@@ -62,7 +62,7 @@ namespace dug.Options
                         ParsedQueryTypes.Add(parsedQueryType);
                     }
                     else{
-                        throw new InvalidCastException($"Invalid Query Type value: {queryTypeString}");
+                        throw new Exception($"Invalid Query Type value: {queryTypeString}");
                     }
                     
                 }
@@ -89,7 +89,7 @@ namespace dug.Options
                         ParsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
                     }
                     else{
-                        throw new InvalidCastException($"Unable to parse provided Server: {addressString}");
+                        throw new Exception($"Unable to parse provided Server: {addressString}");
                     }
                 }
             }
