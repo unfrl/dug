@@ -11,6 +11,8 @@ using dug.Data.Models;
 using System.IO;
 using dug.Data;
 using DnsClient;
+using FluentValidation;
+using CommandLine.Text;
 
 namespace dug
 {
@@ -21,7 +23,6 @@ namespace dug
         private IDnsServerService _dnsServerService;
         private IDnsQueryService _dnsQueryService;
         private IConsoleService _consoleService;
-
         private IPercentageAnimator _percentageAnimator;
 
         public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService, IDnsQueryService dnsQueryService, IConsoleService consoleService, IPercentageAnimator percentageAnimator)
@@ -66,8 +67,10 @@ namespace dug
 
         private async Task ExecuteRun(RunOptions opts)
         {
+            // 0. Validate Arguments (Happening in Options.cs)
+
             // 1. Determine the servers to be used
-            //    - For now just get the top 3 most "reliable" servers per continent. Eventually I'll provide cli options to refine this.
+            //    - For now just get the top opts.ServerCount most "reliable" servers per continent. Eventually I'll provide cli options to refine this.
             List<DnsServer> serversToUse = new List<DnsServer>();
             if(!string.IsNullOrEmpty(opts.CustomServerFile)){
                 if(!File.Exists(opts.CustomServerFile)){
@@ -79,7 +82,7 @@ namespace dug
                 }
             }
 
-            if(opts.Servers?.Count() > 0){
+            if(opts.ParsedServers?.Count() > 0){
                 //TODO: Should we 'decorate' these servers (turn them into DnsServers) before using them?
                         //If yes: We should do things like determine if they have DNSSEC, etc. Maybe this could be a static parse method off of DnsServer or something?
                 // Also when we're rendering the results we shouldnt assume to have anything except the IPAddress... Maybe when you do this the rendering should be way simpler?
@@ -97,7 +100,7 @@ namespace dug
             // 2. Run the queries with any options (any records, specific records, etc)            
             //TODO: Print pretty query info panel here
             _percentageAnimator.Start("", serversToUse.Count * opts.ParsedQueryTypes.Count());
-            var queryResults = await _dnsQueryService.QueryServers(opts.Url, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
+            var queryResults = await _dnsQueryService.QueryServers(opts.Hostname, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
             _percentageAnimator.Stop();
 
             // 3. Draw beautiful results in fancy table
@@ -111,6 +114,9 @@ namespace dug
 
         private async Task ExecuteUpdate(UpdateOptions opts)
         {
+            // _consoleService.RenderInfoPanel(opts);
+            // Environment.Exit(1);
+
             if(!string.IsNullOrEmpty(opts.CustomServerFile)){
                 _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
             }

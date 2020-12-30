@@ -76,7 +76,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
-            "args": ["kaijucode.com" , "-q", "MX,NS"],
+            "args": ["kaijucode.com" , "-q", "MX,A"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false
@@ -87,7 +87,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
-            "args": ["kaijucode.com" , "-s", "8.8.8.8,2001:4860:4860::8888"],
+            "args": ["git.kaijucode.com" , "-s", "8.8.8.8,2001:4860:4860::8888"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false
@@ -99,6 +99,17 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
             "args": ["kaijucode.com" , "--continents", "SA,NA"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug run with invalid args",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["git.kaijucode.com" , "--continents", "NA,SA,ZA",],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

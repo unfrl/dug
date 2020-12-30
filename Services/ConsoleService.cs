@@ -60,7 +60,7 @@ namespace dug.Services
                 foreach(var groupedResult in resultsWithContinentCounts){
                     table.AddRow(
                         new Text(queryType.ToString()),
-                        new Markup(MarkupHelper.FormatDnsResponseMarkup(groupedResult.Key, options.Url)),
+                        new Markup(MarkupHelper.FormatDnsResponseMarkup(groupedResult.Key, options.Hostname)),
                         new Markup(MarkupHelper.FormatConsensusMarkup(groupedResult.Value, continentTotals))
                         );
                         table.AddEmptyRow();
@@ -202,7 +202,32 @@ namespace dug.Services
 
         private void DrawUrlHeader(RunOptions options)
         {
-            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.QueryTypes)} records for {options.Url}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} records for {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+        }
+
+        public void RenderInfoPanel(object args)
+        {
+            switch(args){
+                case UpdateOptions uo:
+                    RenderUpdateOptionsInfoPanel(uo);
+                    break;
+                case RunOptions ro:
+                    RenderRunOptionsInfoPanel(ro);
+                    break;
+                default:
+                    //TODO: Idk when itd get here...
+                    break;
+            }
+        }
+
+        private void RenderUpdateOptionsInfoPanel(UpdateOptions opts){
+            
+            var panel = new Panel(new Markup("TEST")).Header("| [blue]Update[/] |").HeaderAlignment(Justify.Center).Expand().RoundedBorder();
+            AnsiConsole.Render(panel);
+        }
+
+        private void RenderRunOptionsInfoPanel(RunOptions opts){
+            
         }
     }
 }

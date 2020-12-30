@@ -9,5 +9,7 @@ namespace dug.Services
     public interface IConsoleService
     {
         void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options);
+
+        void RenderInfoPanel(object args);
     }
 }
