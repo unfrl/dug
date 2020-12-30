@@ -53,19 +53,32 @@ namespace dug.Services
             //TODO: Ensure the headers are correct
             var parsedServers = ParseServersFromStream(stream, format).ToList();
 
-            if(overwrite){
-                Console.WriteLine($"Overwriting {_servers.Count()} with {parsedServers.Count()} specified servers");
+            return LoadServers(parsedServers, overwrite);
+        }
 
-                _servers = parsedServers;
-                return parsedServers.Count();
+        private int LoadServers(List<DnsServer> servers, bool overwrite = false){
+            if(overwrite){
+                Console.WriteLine($"Overwriting {_servers.Count()} with {servers.Count()} specified servers");
+
+                _servers = servers;
+                return servers.Count();
             }
 
-            var novelServers = parsedServers.Where(newServer => !_servers.Any(presentServer => presentServer.IPAddress.ToString() == newServer.IPAddress.ToString())).ToList();
+            var novelServers = servers.Where(newServer => !_servers.Any(presentServer => presentServer.IPAddress.ToString() == newServer.IPAddress.ToString())).ToList();
             int novelServerCount = novelServers.Count();
             if(novelServerCount > 0){
                 _servers.AddRange(novelServers);
             }
             return novelServerCount;
+        }
+
+        public void UpdateServers(List<DnsServer> servers, bool overwrite){
+            int serversAdded = LoadServers(servers, overwrite);
+            if(serversAdded == 0){
+                Console.WriteLine($"Added {serversAdded} DNS Servers. The provided server(s) are already present.");
+                return;
+            }
+            Console.WriteLine($"Added {serversAdded} DNS Servers.");
         }
 
         public List<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format){
@@ -98,7 +111,7 @@ namespace dug.Services
             using(var streamReader = File.OpenText(customFilePath)){
                 serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local, overwrite);
             }
-            Console.WriteLine($"Retrieved {serversAdded} DNS Servers from {customFilePath}");
+            Console.WriteLine($"Added {serversAdded} DNS Servers from {customFilePath}");
             PersistServers();
         }
 

@@ -122,6 +122,11 @@ namespace dug
                 _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
             }
 
+            bool hasSpecifiedServers = opts.ParsedServers != null && opts.ParsedServers.Any();
+            if(hasSpecifiedServers){
+                _dnsServerService.UpdateServers(opts.ParsedServers, opts.Overwite);
+            }
+
             if(opts.Reliability){
                 _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
                 var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromSeconds(3), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
@@ -132,7 +137,7 @@ namespace dug
                 return;
             }
 
-            if(string.IsNullOrEmpty(opts.CustomServerFile)){
+            if(string.IsNullOrEmpty(opts.CustomServerFile) && !hasSpecifiedServers){
                 await _dnsServerService.UpdateServersFromRemote(opts.Overwite);
             }
         }

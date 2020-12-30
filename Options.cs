@@ -141,6 +141,25 @@ namespace dug.Options
 
         [Option('r', "reliability", Required = false, HelpText = "Runs a query for a very stable domain (google.com) against ALL servers and updates server reliability based on the results")]
         public bool Reliability { get; set; }
+
+        private string _servers;
+        [Option('s', "servers", Required = false, HelpText = "The server IPs to import instead of the remote source. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
+        public string Servers { get {return _servers;}
+            set {
+                _servers = value;
+                ParsedServers = new List<DnsServer>();
+                foreach(string addressString in Servers?.Split(",")){
+                    IPAddress parsedAddress;
+                    if(IPAddress.TryParse(addressString, out parsedAddress)){
+                        ParsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
+                    }
+                    else{
+                        throw new Exception($"Unable to parse provided Server: {addressString}");
+                    }
+                }
+            }
+        }
+        public List<DnsServer> ParsedServers { get; set; }
     }
 
 
