@@ -102,8 +102,7 @@ namespace dug
             }
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
-            // 2. Run the queries with any options (any records, specific records, etc)            
-            //TODO: Print pretty query info panel here
+            // 2. Run the queries with any options (any records, specific records, etc)
             _percentageAnimator.Start("", serversToUse.Count * opts.ParsedQueryTypes.Count());
             var queryResults = await _dnsQueryService.QueryServers(opts.Hostname, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
             _percentageAnimator.Stop();
