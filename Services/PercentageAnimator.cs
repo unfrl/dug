@@ -34,6 +34,10 @@ namespace dug.Services
 
         public void Start(string header, double totalEvents, int progressBarLength = 50)
         {
+            if(Config.Verbose){
+                Console.WriteLine("Progress Animation disabled during verbose output");
+                return;
+            }
             Console.WriteLine(header);
             _totalEvents = totalEvents;
             _count = 0;
@@ -50,7 +54,11 @@ namespace dug.Services
 
         public void Stop()
         {
+            if(Config.Verbose){
+                return;
+            }
             _active = false;
+            _customString = " ";
             Draw(' ');
         }
 

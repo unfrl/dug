@@ -21,6 +21,10 @@ namespace dug.Services
         // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
         Task UpdateServersFromRemote(bool overwrite);
 
+        // Update the current server file (Config.ServersFile) with any novel servers provided
+        // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
+        void UpdateServers(List<DnsServer> servers, bool overwrite);
+
         List<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format);
 
         // This will walk through the results and reduce the reliability of the servers that either gave an error or timed out.

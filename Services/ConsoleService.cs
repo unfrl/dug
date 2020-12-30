@@ -1,15 +1,13 @@
-using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DnsClient;
-using DnsClient.Protocol;
 using dug.Data;
 using dug.Data.Models;
 using dug.Options;
 using Spectre.Console;
-using Spectre.Console.Rendering;
 using dug.Utils;
+using CommandLine;
 
 namespace dug.Services
 {
@@ -60,7 +58,7 @@ namespace dug.Services
                 foreach(var groupedResult in resultsWithContinentCounts){
                     table.AddRow(
                         new Text(queryType.ToString()),
-                        new Markup(MarkupHelper.FormatDnsResponseMarkup(groupedResult.Key, options.Url)),
+                        new Markup(MarkupHelper.FormatDnsResponseMarkup(groupedResult.Key, options.Hostname)),
                         new Markup(MarkupHelper.FormatConsensusMarkup(groupedResult.Value, continentTotals))
                         );
                         table.AddEmptyRow();
@@ -202,7 +200,41 @@ namespace dug.Services
 
         private void DrawUrlHeader(RunOptions options)
         {
-            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.QueryTypes)} records for {options.Url}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} records for {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+        }
+
+        public void RenderInfoPanel<T>(object args)
+        {
+            var table = new Table()
+                .Border(TableBorder.MinimalHeavyHead)
+                .BorderColor(Color.White)
+                .AddColumn(new TableColumn("[green][u]Argument[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Value[/][/]").Centered())
+                .AddColumn(new TableColumn("[green][u]Description[/][/]").LeftAligned());
+            var optionProperties = typeof(T).GetProperties().Where(prop => prop.GetCustomAttribute<OptionAttribute>() != null);
+            foreach(var property in optionProperties){
+                
+                var optionAttribute = property.GetCustomAttribute<OptionAttribute>();
+                var valueString = property.GetValue(args)?.ToString() ?? "";
+
+                if(valueString != (optionAttribute.Default?.ToString() ?? ReflectionHelper.GetDefaultValueAsString(property.PropertyType))){
+                    valueString = $"[green]{valueString}[/]";
+                }
+                else{
+                    continue;
+                }
+
+                string shortArgString = string.IsNullOrEmpty(optionAttribute.ShortName)? string.Empty : $"-{optionAttribute.ShortName} , ";
+                string longArgString = string.IsNullOrEmpty(optionAttribute.LongName) ? string.Empty : $"--{optionAttribute.LongName}";
+                var argumentString = shortArgString + longArgString;
+                var descriptionString = optionAttribute.HelpText;
+                table.AddRow(
+                    new Markup(argumentString),
+                    new Markup(valueString),
+                    new Markup(descriptionString)
+                );
+            }
+            AnsiConsole.Render(table);
         }
     }
 }

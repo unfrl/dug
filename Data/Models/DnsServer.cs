@@ -36,6 +36,9 @@ namespace dug.Data.Models
 
         public string CountryFlag {
             get {
+                if(CountryCode == null){
+                    return null;
+                }
                 return DataMaps.CountryFlagMap.ContainsKey(CountryCode) ? DataMaps.CountryFlagMap[CountryCode] : null;
             }
         }
