@@ -112,33 +112,35 @@ namespace dug
 
             // 4. Update server reliability depending on results
             if(string.IsNullOrEmpty(opts.CustomServerFile)){
-                _dnsServerService.UpdateServerReliabilityFromResults(queryResults);
+                _dnsServerService.UpdateServerReliabilityFromResults(queryResults, false);
             }
         }
 
         private async Task ExecuteUpdate(UpdateOptions opts)
         {
-            if(!string.IsNullOrEmpty(opts.CustomServerFile)){
-                _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
+            if(!opts.ReliabilityOnly){
+                if(!string.IsNullOrEmpty(opts.CustomServerFile)){
+                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
+                }
+
+                bool hasSpecifiedServers = opts.ParsedServers != null && opts.ParsedServers.Any();
+                if(hasSpecifiedServers){
+                    _dnsServerService.UpdateServers(opts.ParsedServers, opts.Overwite);
+                }
+
+                if(string.IsNullOrEmpty(opts.CustomServerFile) && !hasSpecifiedServers){
+                    await _dnsServerService.UpdateServersFromRemote(opts.Overwite);
+                }
             }
 
-            bool hasSpecifiedServers = opts.ParsedServers != null && opts.ParsedServers.Any();
-            if(hasSpecifiedServers){
-                _dnsServerService.UpdateServers(opts.ParsedServers, opts.Overwite);
-            }
-
-            if(opts.Reliability){
+            if(opts.Reliability != null){
                 _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
                 var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromSeconds(3), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
                 _percentageAnimator.Stop();
                 Console.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
                 
-                _dnsServerService.UpdateServerReliabilityFromResults(results);
+                _dnsServerService.UpdateServerReliabilityFromResults(results, opts.Reliability == ReliabilityUpdateType.Prune);
                 return;
-            }
-
-            if(string.IsNullOrEmpty(opts.CustomServerFile) && !hasSpecifiedServers){
-                await _dnsServerService.UpdateServersFromRemote(opts.Overwite);
             }
         }
     }

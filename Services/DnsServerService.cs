@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using dug.Data;
 using dug.Data.Models;
 using dug.Parsing;
+using dug.Utils;
 
 namespace dug.Services
 {
@@ -131,17 +132,19 @@ namespace dug.Services
             string remoteSourceURL = "https://public-dns.info/nameservers.csv";
             var serverInfoStream = await new HttpClient().GetStreamAsync(remoteSourceURL);
             int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerCsvFormats.Remote, overwrite);
-            Console.WriteLine($"Retrieved {serversAdded} DNS Servers from {remoteSourceURL}");
+            Console.WriteLine($"Retrieved {serversAdded} novel DNS Servers from {remoteSourceURL}");
             PersistServers();
         }
 
-        public void UpdateServerReliabilityFromResults(Dictionary<DnsServer, List<DnsResponse>> rawResults, double penalty = 0.1, double promotion = 0.01)
+        public void UpdateServerReliabilityFromResults(Dictionary<DnsServer, List<DnsResponse>> rawResults, bool prune,  double penalty = 0.1, double promotion = 0.01)
         {
-            if(penalty < 0 || penalty > 1){
-                throw new ArgumentOutOfRangeException("penalty must be between 0 and 1");
-            }
-            if(promotion < 0 || promotion > 1){
-                throw new ArgumentOutOfRangeException("promotion must be between 0 and 1");
+            if(!prune){
+                if(penalty < 0 || penalty > 1){
+                    throw new ArgumentOutOfRangeException("penalty must be between 0 and 1");
+                }
+                if(promotion < 0 || promotion > 1){
+                    throw new ArgumentOutOfRangeException("promotion must be between 0 and 1");
+                }
             }
             foreach(var serverResults in rawResults){
                 var server = serverResults.Key;
@@ -151,6 +154,11 @@ namespace dug.Services
                 }
                 foreach(var dnsResponse in serverResults.Value){
                     if(dnsResponse.HasError){
+                        if(prune){
+                            _servers.Remove(extantServer);
+                            DugConsole.VerboseWriteLine($"PRUNING -- {extantServer.CityCountryContinentName} {extantServer.IPAddress} due to failed response");
+                            continue;
+                        }
                         extantServer.Reliability = extantServer.Reliability - penalty;
                     }
                     else if(dnsResponse.QueryResponse.Answers.Count() == 0){ //Dont do anything for servers with an empty response.

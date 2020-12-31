@@ -115,12 +115,23 @@
             "stopAtEntry": false
         },
         {
-            "name": "Debug update reliability",
+            "name": "Debug update reliability (normal)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
-            "args": ["update" , "-r"],
+            "args": ["update" , "-r", "normal"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug update reliability (prune) with reliability only",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["update" , "-r", "prune", "--reliability-only"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

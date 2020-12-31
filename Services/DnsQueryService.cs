@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using DnsClient;
 using dug.Data;
@@ -41,11 +42,10 @@ namespace dug.Services
             ConcurrentDictionary<DnsServer, List<DnsResponse>> results = new ConcurrentDictionary<DnsServer, List<DnsResponse>>();
             List<DnsServer> dnsServersList = dnsServers.ToList();
 
-            List<Task> serverTasks = new List<Task>(dnsServersList.Count());
-
-            Parallel.ForEach(Partitioner.Create(0, dnsServersList.Count(), 100), new ParallelOptions { MaxDegreeOfParallelism = parallelism}, serverRange => {
-                var subServerTasks = dnsServersList.GetRange(serverRange.Item1, serverRange.Item2-serverRange.Item1).Select(async server => {
-                    var queryTasks = queryTypes.Select(async queryType => {
+            var throttler = new SemaphoreSlim(parallelism);
+            var serverTasks = dnsServersList.Select(async server => {
+                var queryTasks = queryTypes.Select(async queryType => {
+                        await throttler.WaitAsync();
                         Stopwatch clock = new Stopwatch();
                         try{
                             DugConsole.VerboseWriteLine($"START -- {server.CityCountryContinentName} {server.IPAddress}");
@@ -84,13 +84,10 @@ namespace dug.Services
                             if(updateFunction != null){
                                 updateFunction(server.CountryCode);
                             }
+                            throttler.Release();
                         }
                     });
                     await Task.WhenAll(queryTasks);
-                });
-                lock(serverTasks){
-                    serverTasks.AddRange(subServerTasks);
-                }
             });
 
             await Task.WhenAll(serverTasks);

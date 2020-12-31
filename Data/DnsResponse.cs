@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
 using DnsClient;
-using DnsClient.Protocol;
 
 namespace dug.Data
 {
