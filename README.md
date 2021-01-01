@@ -53,3 +53,10 @@ You can also do complicated things like ask for specific record types, get the o
 1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .exe binary.
     * It should look like `dug.exe`
 2. You should be able to download that and run it from the terminal. Then you can put it somewhere and update your path so you can execute it from anywhere.
+
+### NPM
+> EXPERIMENTAL! (Currently only supports linux-x64)
+1. Run: `npm -g @unfrl/dug`
+
+Idk why I wanted to publish it on npm as well, its really not a good way to distribute a binary...
+
