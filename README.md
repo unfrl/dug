@@ -2,12 +2,54 @@
 
 [![Build Status](https://drone.kaijucode.com/api/badges/matt/dug/status.svg)](https://drone.kaijucode.com/matt/dug)
 
-A global DNS progagation checker that gives pretty output. Written in dotnet core
+If you are viewing this anywhere but git.kaijucode.com, the **real** repository is located [here](https://git.kaijucode.com/matt/dug)
 
-If you are viewing this anywhere but gitea, the **real** repository is located [here](https://git.kaijucode.com/matt/dug)
+A powerful global DNS progagation checker that can output in a variety of formats.
 
-The initial version is functional and can be found under the Releases tab as a binary. The latest binary can be downloaded [here](https://git.kaijucode.com/matt/dug/releases/latest)
+The goal of dug is to make it easy to check the propagation of DNS records. It is also capable of providing templated output that can be used in scripts for things like monitoring.
 
-Notes:
+## Usage
+Until theres a wiki for this, the easiest way to explore dug is through the help.
+* `dug help` -> Get top level help explaining the different verbs
+* `dug help run` or `dug run --help` -> Get details about a specific verb (run, which is the default)
+* `dug help update` or `dug update --help` -> Get details about the update verb
 
-Dig command to test DNSSEC on a server: `dig @<dns_server_here> www.dnssec-tools.org +dnssec`
+The simplest way to get started is to just run a query against the domain whose DNS records you're updating.
+For example: `dug git.kaijucode.com`:
+![](Resources/gif1.gif)
+
+You can also do complicated things like ask for specific record types, get the output as json, and pipe it into other applications: `dug git.kaijucode.com -q A --output-format JSON --template Ipaddress,city,value,responsetime | jq`:
+![](Resources/gif2.gif)
+
+## Installation
+
+### Linux Deb (Debian, Ubuntu, Mint, Pop!_os)
+
+1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .deb package.
+    * It should look like `dug.<version>.linux-x64.deb`
+2. On most distros double clicking the .deb package will allow you to install via a UI, alternatively it can be installed by running `sudo dpkg -i ./dug.<version>.linux-x64.deb`
+
+### Linux RPM (RHEL, CentOS, Fedora)
+
+1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .rpm package.
+    * It should look like `dug.<version>.linux-x64.rpm`
+2. On most distros double clicking the .deb package will allow you to install via a UI, alternatively it can be installed by running `rpm -i ./dug.<version>.linux-x64.deb`
+
+### OSX
+> Not Officially Supported Yet
+1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the osx binary.
+    * It should look like `dug-osx-x64`
+2. You should be able to download that, make is executable, and run it from the terminal. Then you can put it somewhere and update your path so you can execute it from anywhere.
+
+### Windows
+
+#### Chocolatey (choco cli)
+> Waiting on chocolatey to approve my package, then I can publish there so this wont require a manual download. [here](https://chocolatey.org/packages/dug)
+1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .nupkg package.
+    * It should look like `dug.<version>.nupkg`
+2. Install by running `choco install dug.<version>.nupkg`
+
+#### Executable
+1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .exe binary.
+    * It should look like `dug.exe`
+2. You should be able to download that and run it from the terminal. Then you can put it somewhere and update your path so you can execute it from anywhere.
