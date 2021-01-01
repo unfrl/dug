@@ -17,7 +17,7 @@ namespace dug.Options
         JSON
     }
 
-    [Verb("run", isDefault: true, HelpText = "Get DNS propogation info for a URL")]
+    [Verb("run", isDefault: true, HelpText = "Get DNS propagation info for a URL")]
     public class RunOptions : GlobalOptions
     {
         [Usage]
@@ -135,6 +135,7 @@ namespace dug.Options
                 if(string.IsNullOrEmpty(Template)){
                     throw new Exception("A template (--template) is required when using an output-format other than the default (TABLES)");
                 }
+                _outputFormat = value;
             }
         }
 
