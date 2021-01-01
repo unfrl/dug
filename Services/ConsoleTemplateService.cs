@@ -26,7 +26,7 @@ namespace dug.Services
 
         private void DrawJsonResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options)
         {
-            var headers = options.Template.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var headers = options.Template.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             var dynamicResults = new List<dynamic>();
 
@@ -42,8 +42,13 @@ namespace dug.Services
                             throw new Exception($"Unable to determine how to resolved specified header: {header}");
                         }
                         
-                        object data = TemplateHelper.TemplateHeaderMap[header](KeyValuePair.Create(server, response));
-                        ((IDictionary<String, Object>)expando).Add(header, data);
+                        try{
+                            object data = TemplateHelper.TemplateHeaderMap[header](KeyValuePair.Create(server, response));
+                            ((IDictionary<String, Object>)expando).Add(header, data);
+                        }
+                        catch{
+                            // Most of the time this means the data isnt present (like if they want errorcode but there was no error)
+                        }
                     }
                     dynamicResults.Add(expando);
                 }
@@ -55,7 +60,7 @@ namespace dug.Services
 
         private void DrawCsvResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options)
         {
-            var headers = options.Template.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var headers = options.Template.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             var csvResults = new List<string>();
 
@@ -69,10 +74,14 @@ namespace dug.Services
                         if(!TemplateHelper.TemplateHeaderMap.ContainsKey(header)){
                             throw new Exception($"Unable to determine how to resolved specified header: {header}");
                         }
-                        
+                        try{
                         string dataString = TemplateHelper.TemplateHeaderMap[header](KeyValuePair.Create(server, response)).ToString();
                         dataString = dataString.Replace(Environment.NewLine, "\\n"); //Cant have real newlines in the csv output...
                         responseResults.Add(dataString);
+                        }
+                        catch{
+                            // Most of the time this means the data isnt present (like if they want errorcode but there was no error)
+                        }
                     }
                     csvResults.Add(string.Join(',' , responseResults));
                 }

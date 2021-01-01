@@ -8,9 +8,22 @@ namespace dug.Utils
     public class TemplateHelper
     {
         public static Dictionary<string, Func<KeyValuePair<DnsServer, DnsResponse>,object>> TemplateHeaderMap = new Dictionary<string,Func<KeyValuePair<DnsServer, DnsResponse>,object>> {
-            {"IPAddress", pair => pair.Key.IPAddress.ToString()},
-            {"ResponseTime", pair => pair.Value.ResponseTime},
-            {"Value", pair => { return GetAnswersString(pair.Value); } },
+            {"ipaddress", pair => pair.Key.IPAddress.ToString()},
+            {"countrycode", pair => pair.Key.CountryCode},
+            {"city", pair => pair.Key.City},
+            {"dnssec", pair => pair.Key.DNSSEC},
+            {"reliability", pair => pair.Key.Reliability},
+            {"continentcode", pair => pair.Key.ContinentCode},
+            {"countryname", pair => pair.Key.CountryName},
+            {"countryflag", pair => pair.Key.CountryFlag},
+            {"citycountryname", pair => pair.Key.CityCountryName},
+            {"citycountrycontinentname", pair => pair.Key.CityCountryContinentName},
+            {"responsetime", pair => pair.Value.ResponseTime},
+            {"recordtype", pair => pair.Value.RecordType.ToString()},
+            {"haserror", pair => pair.Value.HasError},
+            {"errormessage", pair => pair.Value.Error.Message},
+            {"errorcode", pair => pair.Value.Error.Code.ToString()},
+            {"value", pair => { return GetAnswersString(pair.Value); } },
         };
 
         /*
