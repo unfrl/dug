@@ -6,6 +6,6 @@ namespace dug.Services
 
         void Start(string header, double totalEvents, int progressBarLength = 50);
 
-        void Stop();
+        void StopIfRunning();
     }
 }

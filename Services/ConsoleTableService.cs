@@ -11,7 +11,7 @@ using CommandLine;
 
 namespace dug.Services
 {
-    public class ConsoleService : IConsoleService
+    public class ConsoleTableService : IConsoleTableService
     {
         public void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options)
         {
@@ -35,7 +35,7 @@ namespace dug.Services
                     var responses = result.Value;
 
                     var relevantResponse = responses.Single(res => (QueryType)res.RecordType == queryType);
-                    var answerString = GetAnswersString(relevantResponse);
+                    var answerString = TemplateHelper.GetAnswersString(relevantResponse);
                     if(resultsWithContinentCounts.ContainsKey(answerString)){
                         if(resultsWithContinentCounts[answerString].ContainsKey(server.ContinentCode)){
                             resultsWithContinentCounts[answerString][server.ContinentCode]++;
@@ -69,27 +69,7 @@ namespace dug.Services
             AnsiConsole.Render(table);
         }
 
-        private string GetAnswersString(DnsResponse response){
-            if(response.HasError){
-                return response.Error.Code.ToString(); //TODO: Might be nice to make these prettier someday
-            }
-
-            var records = response.QueryResponse.Answers;
-            if(records.Count() == 0){
-                return "Empty";
-            }
-
-            List<string> recordStrings = new List<string>();
-            foreach(var record in records){
-                var recordString = record.ToString();
-                var ttlStart = recordString.IndexOf(' ');
-                var ttlEnd = recordString.IndexOf(' ', ttlStart+1);
-                recordString = recordString.Remove(ttlStart, ttlEnd-ttlStart);
-                recordStrings.Add(recordString);
-            }
-            recordStrings.Sort();
-            return string.Join(System.Environment.NewLine, recordStrings);
-        }
+        
 
         // private void DrawConciseTable(Dictionary<DnsServer, DnsResponse> results)
         // {

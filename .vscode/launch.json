@@ -115,6 +115,28 @@
             "stopAtEntry": false
         },
         {
+            "name": "Debug run with csv output",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["git.kaijucode.com", "--template", "IPAddress,ResponseTime,Value", "--output-format", "CSV"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug run with json output",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/dug.dll",
+            "args": ["git.kaijucode.com", "--template", "IPAddress,ResponseTime,Value", "--output-format", "JSON"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "Debug update reliability (normal)",
             "type": "coreclr",
             "request": "launch",

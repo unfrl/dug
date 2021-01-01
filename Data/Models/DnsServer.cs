@@ -60,6 +60,9 @@ namespace dug.Data.Models
         }
 
         public string ToCsvString(){
+            // TODO: This is using the local csvformat (defined in LocalCsvDnsServerMapping.cs) and IS being used to persist servers.
+            // We should probably use the csvparser (which can serialize as well i believe) to generate this instead of just doint it by hand so if
+            // LocalCsvDnsServerMapping.cs is updates this continues to work.
             return $"{IPAddress.ToString()},{CountryCode},{City},{DNSSEC},{Reliability}";
         }
     }

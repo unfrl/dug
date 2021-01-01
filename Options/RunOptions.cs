@@ -9,6 +9,13 @@ using dug.Data.Models;
 
 namespace dug.Options
 {
+    public enum OutputFormats
+    {
+        TABLES,
+        CSV,
+        JSON
+    }
+
     [Verb("run", isDefault: true, HelpText = "Get DNS propogation info for a URL")]
     public class RunOptions : GlobalOptions
     {
@@ -98,6 +105,12 @@ namespace dug.Options
 
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
+
+        [Option("template", Required = false)] //TODO: This should maybe have a default? Also it absolutely needs to be validated...
+        public string Template { get; set; }
+
+        [Option("output-format", Required = false, Default = OutputFormats.TABLES)]
+        public OutputFormats OutputFormat { get; set; }
 
         [Value(0, Required = true, HelpText = "The Hostname you would like to see propogation for", MetaName = "Hostname")]
         public string Hostname { get; set; }

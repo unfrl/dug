@@ -52,9 +52,9 @@ namespace dug.Services
             }
         }
 
-        public void Stop()
+        public void StopIfRunning()
         {
-            if(Config.Verbose){
+            if(!_active || Config.Verbose){
                 return;
             }
             _active = false;
@@ -121,7 +121,7 @@ namespace dug.Services
 
         public void Dispose()
         {
-            Stop();
+            StopIfRunning();
         }
 
         private Color Interpolate(Color color1, Color color2, double fraction)

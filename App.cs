@@ -20,16 +20,18 @@ namespace dug
         private IDnsServerParser _parser;
         private IDnsServerService _dnsServerService;
         private IDnsQueryService _dnsQueryService;
-        private IConsoleService _consoleService;
+        private IConsoleTableService _consoleTableService;
+        private IConsoleTemplateService _consoleTemplateService;
         private IPercentageAnimator _percentageAnimator;
 
-        public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService, IDnsQueryService dnsQueryService, IConsoleService consoleService, IPercentageAnimator percentageAnimator)
+        public App(ParserResult<object> cliArgs, IDnsServerParser parser, IDnsServerService dnsServerService, IDnsQueryService dnsQueryService, IConsoleTableService consoleTableService, IConsoleTemplateService consoleTemplateService, IPercentageAnimator percentageAnimator)
         {
             _cliArgs = cliArgs;
             _parser = parser;
             _dnsServerService = dnsServerService;
             _dnsQueryService = dnsQueryService;
-            _consoleService = consoleService;
+            _consoleTableService = consoleTableService;
+            _consoleTemplateService = consoleTemplateService;
             _percentageAnimator = percentageAnimator;
         }
 
@@ -49,13 +51,13 @@ namespace dug
             switch(args){
                 case UpdateOptions uo:
                     if(Config.Verbose){
-                        _consoleService.RenderInfoPanel<UpdateOptions>(args);
+                        _consoleTableService.RenderInfoPanel<UpdateOptions>(args);
                     }
                     await ExecuteUpdate(uo);
                     break;
                 case RunOptions ro:
                     if(Config.Verbose){
-                        _consoleService.RenderInfoPanel<RunOptions>(args);
+                        _consoleTableService.RenderInfoPanel<RunOptions>(args);
                     }
                     await ExecuteRun(ro);
                     break;
@@ -103,12 +105,19 @@ namespace dug
             DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
 
             // 2. Run the queries with any options (any records, specific records, etc)
-            _percentageAnimator.Start("", serversToUse.Count * opts.ParsedQueryTypes.Count());
+            if(opts.OutputFormat == OutputFormats.TABLES){
+                _percentageAnimator.Start("", serversToUse.Count * opts.ParsedQueryTypes.Count());
+            }
             var queryResults = await _dnsQueryService.QueryServers(opts.Hostname, serversToUse, TimeSpan.FromMilliseconds(opts.Timeout), opts.ParsedQueryTypes, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
-            _percentageAnimator.Stop();
+            _percentageAnimator.StopIfRunning();
 
             // 3. Draw beautiful results in fancy table
-            _consoleService.DrawResults(queryResults, opts);
+            if(opts.OutputFormat == OutputFormats.TABLES){
+                _consoleTableService.DrawResults(queryResults, opts);
+            }
+            else{
+                _consoleTemplateService.DrawResults(queryResults, opts);
+            }
 
             // 4. Update server reliability depending on results
             if(string.IsNullOrEmpty(opts.CustomServerFile)){
@@ -136,7 +145,7 @@ namespace dug
             if(opts.Reliability != null){
                 _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
                 var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromSeconds(3), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
-                _percentageAnimator.Stop();
+                _percentageAnimator.StopIfRunning();
                 Console.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
                 
                 _dnsServerService.UpdateServerReliabilityFromResults(results, opts.Reliability == ReliabilityUpdateType.Prune);
