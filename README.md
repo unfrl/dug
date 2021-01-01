@@ -60,3 +60,12 @@ You can also do complicated things like ask for specific record types, get the o
 
 Idk why I wanted to publish it on npm as well, its really not a good way to distribute a binary...
 
+
+## Development
+
+This is a .net 5 project, so as long as you have the dotnet cli, available [here](https://dotnet.microsoft.com/download/dotnet/5.0) you should be able to do the following: `dotnet build ./cli`
+
+The project was developed in VSCode so the debugger profiles that I have used are available if you're also using VSCode.
+
+## License
+The license used by dug, [here](./cli/LICENSE), is very explicitly designed to try to keep capitalists from benefiting from this tool. This is not a traditional license but it is very simple, please read it.
