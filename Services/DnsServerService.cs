@@ -104,7 +104,6 @@ namespace dug.Services
 
         public void UpdateServersFromFile(string customFilePath, bool overwrite)
         {
-            //TODO: Ensure the file exists
             if(!File.Exists(customFilePath))
             {
                 throw new FileNotFoundException($"Unable to find file at: {customFilePath}");
