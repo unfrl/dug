@@ -27,10 +27,10 @@ steps:
   - dotnet publish -r linux-arm64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-linux-arm64 #Rename the binary to its architecture type
   - dotnet tool restore
-  - dotnet deb -c Release -r linux-x64 -o ./publish
-  - dotnet deb -c Release -r linux-arm64 -o ./publish
-  - dotnet rpm -c Release -r linux-x64 -o ./publish
-  - dotnet tarball -c Release -r linux-x64 -o ./publish
+  - dotnet deb -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
+  - dotnet deb -c Release -r linux-arm64 -o ./publish ./cli/dug.csproj
+  - dotnet rpm -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
+  - dotnet tarball -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
   when:
     ref:
     - refs/tags/*.*.*
