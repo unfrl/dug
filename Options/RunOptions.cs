@@ -29,6 +29,7 @@ namespace dug.Options
                 yield return new Example("Specify query type(s)", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", QueryTypes= "A,MX" });
                 yield return new Example("Specify continents to query on", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", Continents= "AF,NA,SA" });
                 yield return new Example("Query the top 3 most reliable servers in Africa and North America as well as 8.8.8.8", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", Continents= "AF,NA", Servers = "8.8.8.8", ServerCount = 3, MultipleServerSources = true });
+                yield return new Example("Output specific fields of results as json", new RunOptions { Hostname = "git.kaijucode.com", Template="ipaddress,city,responsetime,value", OutputFormat = OutputFormats.JSON});
             }
         }
 
@@ -108,7 +109,7 @@ namespace dug.Options
         public string CustomServerFile { get; set; }
 
         private string _template;
-        [Option("template", Required = false)] //TODO: This should maybe have a default? Also it absolutely needs to be validated...
+        [Option("template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
         public string Template { get{return _template;}
             set
             {
@@ -123,7 +124,7 @@ namespace dug.Options
         }
 
         private OutputFormats _outputFormat;
-        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--template)")]
+        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--template). Options: CSV,JSON")]
         public OutputFormats OutputFormat { get{return _outputFormat;}
             set
             {
