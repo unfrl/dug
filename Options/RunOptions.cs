@@ -6,6 +6,7 @@ using CommandLine.Text;
 using DnsClient;
 using dug.Data;
 using dug.Data.Models;
+using dug.Utils;
 
 namespace dug.Options
 {
@@ -106,11 +107,36 @@ namespace dug.Options
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
+        private string _template;
         [Option("template", Required = false)] //TODO: This should maybe have a default? Also it absolutely needs to be validated...
-        public string Template { get; set; }
+        public string Template { get{return _template;}
+            set
+            {
+                var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries);
+                foreach(var header in headers){
+                    if(!TemplateHelper.TemplateHeaderMap.ContainsKey(header)){
+                        throw new Exception($"Unable to parse provided template header: {header}");
+                    }
+                }
+                _template = value.ToLowerInvariant();
+            }
+        }
 
-        [Option("output-format", Required = false, Default = OutputFormats.TABLES)]
-        public OutputFormats OutputFormat { get; set; }
+        private OutputFormats _outputFormat;
+        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--template)")]
+        public OutputFormats OutputFormat { get{return _outputFormat;}
+            set
+            {
+                if(value == OutputFormats.TABLES){
+                    _outputFormat = value;
+                    return;
+                }
+
+                if(string.IsNullOrEmpty(Template)){
+                    throw new Exception("A template (--template) is required when using an output-format other than the default (TABLES)");
+                }
+            }
+        }
 
         [Value(0, Required = true, HelpText = "The Hostname you would like to see propogation for", MetaName = "Hostname")]
         public string Hostname { get; set; }
