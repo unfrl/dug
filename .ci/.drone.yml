@@ -13,7 +13,6 @@ steps:
   commands:
   - echo "Publishing tagged version ${DRONE_TAG}"
   - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-  - dotnet tool restore
   when:
     ref:
     - refs/tags/*.*.*
@@ -46,6 +45,7 @@ steps:
 - name: build linux-arm64-deb
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
+  - dotnet tool restore
   - dotnet deb -c Release -r linux-arm64 -o ./publish ./cli/dug.csproj
   when:
     ref:
@@ -56,6 +56,7 @@ steps:
 - name: build linux-x64-deb
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
+  - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
   when:
     ref:
@@ -66,6 +67,7 @@ steps:
 - name: build linux-x64-rpm
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
+  - dotnet tool restore
   - dotnet rpm -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
   when:
     ref:
@@ -76,6 +78,7 @@ steps:
 - name: build linux-x64-tarball
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
+  - dotnet tool restore
   - dotnet tarball -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
   when:
     ref:
