@@ -6,13 +6,13 @@ steps:
 - name: build #Doesnt currently do any testing...
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - dotnet build -c Release
+  - dotnet build -c Release ./cli
 
 - name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - echo "Publishing tagged version ${DRONE_TAG}"
-  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+  - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
   when:
     ref:
     - refs/tags/*.*.*
@@ -22,9 +22,9 @@ steps:
 - name: package linux
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish
+  - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
-  - dotnet publish -r linux-arm64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish
+  - dotnet publish -r linux-arm64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-linux-arm64 #Rename the binary to its architecture type
   - dotnet tool restore
   - dotnet deb -c Release -r linux-x64 -o ./publish
@@ -41,7 +41,7 @@ steps:
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - sed -i 's~<version>0.0.1</version>~<version>${DRONE_TAG}</version>~' ./.ci/win/dug.nuspec #Set the Version in the nuspec
-  - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./.ci/win/output
+  - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./.ci/win/output ./cli
   when:
     ref:
     - refs/tags/*.*.*
@@ -66,7 +66,7 @@ steps:
 - name: build osx-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-  - dotnet publish -r osx-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish
+  - dotnet publish -r osx-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-osx-x64 #Rename the binary to its architecture type
   when:
     ref:
