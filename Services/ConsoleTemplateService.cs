@@ -80,6 +80,7 @@ namespace dug.Services
                         responseResults.Add(dataString);
                         }
                         catch{
+                            responseResults.Add(string.Empty);
                             // Most of the time this means the data isnt present (like if they want errorcode but there was no error)
                         }
                     }
