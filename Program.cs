@@ -30,7 +30,8 @@ namespace dug
             services.AddTransient<IDnsServerParser, DnsServerParser>();
             services.AddTransient<IDnsServerService, DnsServerService>();
             services.AddTransient<IDnsQueryService, DnsQueryService>();
-            services.AddTransient<IConsoleService, ConsoleService>();
+            services.AddTransient<IConsoleTableService, ConsoleTableService>();
+            services.AddTransient<IConsoleTemplateService, ConsoleTemplateService>();
             services.AddSingleton<IPercentageAnimator>(new PercentageAnimator());
 
             // required to run the application

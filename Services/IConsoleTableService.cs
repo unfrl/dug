@@ -6,7 +6,7 @@ using dug.Options;
 
 namespace dug.Services
 {
-    public interface IConsoleService
+    public interface IConsoleTableService
     {
         void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options);
 
