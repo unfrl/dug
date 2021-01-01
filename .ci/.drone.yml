@@ -13,29 +13,76 @@ steps:
   commands:
   - echo "Publishing tagged version ${DRONE_TAG}"
   - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+  - dotnet tool restore
   when:
     ref:
     - refs/tags/*.*.*
   depends_on:
   - build
 
-- name: package linux
+#region Linux Packaging
+- name: build linux-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
+  when:
+    ref:
+    - refs/tags/*.*.*
+  depends_on:
+  - prepare_publishing
+
+- name: build linux-arm64
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
   - dotnet publish -r linux-arm64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-linux-arm64 #Rename the binary to its architecture type
-  - dotnet tool restore
-  - dotnet deb -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
+  when:
+    ref:
+    - refs/tags/*.*.*
+  depends_on:
+  - prepare_publishing
+
+- name: build linux-arm64-deb
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
   - dotnet deb -c Release -r linux-arm64 -o ./publish ./cli/dug.csproj
+  when:
+    ref:
+    - refs/tags/*.*.*
+  depends_on:
+  - prepare_publishing
+
+- name: build linux-x64-deb
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
+  - dotnet deb -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
+  when:
+    ref:
+    - refs/tags/*.*.*
+  depends_on:
+  - prepare_publishing
+
+- name: build linux-x64-rpm
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
   - dotnet rpm -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
+  when:
+    ref:
+    - refs/tags/*.*.*
+  depends_on:
+  - prepare_publishing
+
+- name: build linux-x64-tarball
+  image: mcr.microsoft.com/dotnet/sdk:5.0
+  commands:
   - dotnet tarball -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
   when:
     ref:
     - refs/tags/*.*.*
   depends_on:
   - prepare_publishing
+#endregion
 
 - name: build win-x64
   image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -91,8 +138,7 @@ steps:
     ref:
     - refs/tags/*.*.*
   depends_on:
-  - build win-x64
-  - package linux
+  - build linux-x64-tarball
 
 - name: gitea release
   image: plugins/gitea-release
@@ -113,6 +159,11 @@ steps:
     ref:
     - refs/tags/*.*.*
   depends_on:
+  - build linux-x64
+  - build linux-x64-deb
+  - build linux-x64-rpm
+  - build linux-x64-tarball
+  - build linux-arm64
+  - build linux-arm64-deb
   - build win-x64
-  - package linux
   - build osx-x64
