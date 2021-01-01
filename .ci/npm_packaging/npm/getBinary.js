@@ -28,11 +28,11 @@ async function getBinary() {
     var response = await axios.get("https://git.kaijucode.com/api/v1/repos/matt/dug/releases");
     var targetReleaseObject = _.filter(response.data, {tag_name: version})[0];
     var releaseAssets = targetReleaseObject.assets;
-    console.log("Available Assets: ", releaseAssets);
+    // console.log("Available Assets: ", releaseAssets);
     var targetAsset = _.filter(releaseAssets, {name: `dug.${version}.${getPlatformAssetPattern()}.tar.gz`})[0];
-    console.log("Target Asset: ", targetAsset);
+    // console.log("Target Asset: ", targetAsset);
     var downloadURL = targetAsset.browser_download_url;
-    console.log("Target URL: ", downloadURL);
+    // console.log("Target URL: ", downloadURL);
     return new Binary("dug", downloadURL);
 }
 
