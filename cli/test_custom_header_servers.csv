@@ -1,0 +1,4 @@
+city,ip_address,country_code,dnssec,reliability
+Rawalpindi,103.209.52.250,PK,False,0.85
+Lake Saint Louis,8.8.8.8,US,True,1
+,8.8.4.4,US,True,1
