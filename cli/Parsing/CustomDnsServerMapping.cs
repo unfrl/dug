@@ -31,7 +31,7 @@ namespace dug.Parsing
                     setterFunction(server, headerValue);
                 }
                 catch{
-                    throw new Exception($"Unable to set field {headerName} to provided value: {headerValue}");
+                    throw new Exception($"Unable to set field {headerName} to provided value: {headerValue}. This might be a header trying to be parsed as a value, try adding --data-headers-present");
                 }
             }
 
