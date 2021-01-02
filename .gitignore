@@ -404,3 +404,4 @@ $RECYCLE.BIN/
 
 #Build Output
 publish/
+.ci/win/output/dug.exe
