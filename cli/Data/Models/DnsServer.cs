@@ -29,7 +29,7 @@ namespace dug.Data.Models
 
         public string CountryName { 
             get {
-                return DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : null;
+                return CountryCode != null && DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : null;
             }
         }
 
@@ -38,7 +38,7 @@ namespace dug.Data.Models
                 if(CountryCode == null){
                     return null;
                 }
-                return DataMaps.CountryFlagMap.ContainsKey(CountryCode) ? DataMaps.CountryFlagMap[CountryCode] : null;
+                return CountryCode != null && DataMaps.CountryFlagMap.ContainsKey(CountryCode) ? DataMaps.CountryFlagMap[CountryCode] : null;
             }
         }
 

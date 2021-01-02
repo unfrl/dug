@@ -105,6 +105,36 @@ namespace dug.Options
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
+        private string _dataColumns;
+        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, in the file specified with (-f). Must be used with (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        public string DataColumns { get{return _dataColumns;}
+            set
+            {
+                if(string.IsNullOrEmpty(CustomServerFile)){
+                    throw new Exception("--data-columns cannot be used without specifying a server file (-f)");
+                }
+                var columns = value.ToLowerInvariant().Split(',', StringSplitOptions.None); //Specifically DO NOT remove empty entries
+                foreach(var column in columns){
+                    if(!TemplateHelper.ServerSetterMap.ContainsKey(column)){
+                        throw new Exception($"Unable to parse provided column header: {column}");
+                    }
+                }
+                _dataColumns = value.ToLowerInvariant();
+            }
+        }
+
+        private bool _dataHeadersPresent;
+        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present on the in the file specified with (-f). Can only be used in conjuction with --data-columns")]
+        public bool DataHeadersPresent { get{return _dataHeadersPresent;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-headers-present cannot be used without (--data-columns)");
+                }
+                _dataHeadersPresent = value;
+            }
+        }
+
         private string _template;
         [Option("template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
         public string Template { get{return _template;}

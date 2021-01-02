@@ -74,7 +74,7 @@ namespace dug.Options
         public List<DnsServer> ParsedServers { get; set; }
 
         private string _dataColumns;
-        [Option("data-columns", Required = false, HelpText = "Specify the field, and order, of the data being imported. Currently only supports importing from files (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
         public string DataColumns { get{return _dataColumns;}
             set
             {

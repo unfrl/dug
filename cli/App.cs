@@ -84,9 +84,19 @@ namespace dug
                     Console.WriteLine($"Specified file does not exist: {opts.CustomServerFile}");
                     System.Environment.Exit(1);
                 }
-                using(var streamReader = File.OpenText(opts.CustomServerFile)){
-                    serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true);
+                
+                if(!string.IsNullOrEmpty(opts.DataColumns)){
+                    var mapper = new CustomDnsServerMapping(opts.DataColumns);
+                    using(var streamReader = File.OpenText(opts.CustomServerFile)){
+                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, mapper, opts.DataHeadersPresent);
+                    }
                 }
+                else{
+                    using(var streamReader = File.OpenText(opts.CustomServerFile)){
+                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true);
+                    }
+                }
+            
             }
 
             if(opts.ParsedServers?.Count() > 0){
