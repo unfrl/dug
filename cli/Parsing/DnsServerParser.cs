@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System;
+using TinyCsvParser.Mapping;
 
 namespace dug.Parsing
 {
@@ -14,25 +15,16 @@ namespace dug.Parsing
 
     public class DnsServerParser: IDnsServerParser
     {
-        private CsvParser<DnsServer> _remoteParser;
-        private CsvParser<DnsServer> _localParser;
+        public static readonly ICsvMapping<DnsServer> DefaultRemoteParser = new RemoteCsvDnsServerMapping();
+        public static readonly ICsvMapping<DnsServer> DefaultLocalParser = new LocalCsvDnsServerMapping();
 
         public DnsServerParser(){
-            CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
-            _remoteParser = new CsvParser<DnsServer>(csvParserOptions, new RemoteCsvDnsServerMapping());
-            _localParser = new CsvParser<DnsServer>(csvParserOptions, new LocalCsvDnsServerMapping());
         }
 
-        public ParallelQuery<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format){
-            switch(format){
-                case DnsServerCsvFormats.Remote:
-                    return _remoteParser.ReadFromStream(stream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result);
-                case DnsServerCsvFormats.Local:
-                    return _localParser.ReadFromStream(stream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result);
-                default:
-                    throw new NotImplementedException(); //TODO: Handle this?
-            }
-            
+        public ParallelQuery<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator){
+            var parserOptions = new CsvParserOptions(skipHeaders, separator);
+            var parser = new CsvParser<DnsServer>(parserOptions, format);
+            return parser.ReadFromStream(stream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result);
         }
     }
 }

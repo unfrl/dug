@@ -4,6 +4,7 @@ using System.Net;
 using CommandLine;
 using CommandLine.Text;
 using dug.Data.Models;
+using dug.Utils;
 
 namespace dug.Options
 {
@@ -71,5 +72,64 @@ namespace dug.Options
             }
         }
         public List<DnsServer> ParsedServers { get; set; }
+
+        private string _dataColumns;
+        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely. Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        public string DataColumns { get{return _dataColumns;}
+            set
+            {
+                var columns = value.ToLowerInvariant().Split(',', StringSplitOptions.None); //Specifically DO NOT remove empty entries
+                foreach(var column in columns){
+                    if(!TemplateHelper.ServerSetterMap.ContainsKey(column)){
+                        throw new Exception($"Unable to parse provided column header: {column}");
+                    }
+                }
+                _dataColumns = value.ToLowerInvariant();
+            }
+        }
+
+        private bool _dataHeadersPresent;
+        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present on the data being imported. Can only be used in conjuction with --data-columns")]
+        public bool DataHeadersPresent { get{return _dataHeadersPresent;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-headers-present cannot be used without (--data-columns)");
+                }
+                _dataHeadersPresent = value;
+            }
+        }
+
+        private char? _dataSeparator;
+        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing import data. Can only be used in conjuction with --data-columns. Assumes ',' if not set.")]
+        public char? DataSeparator { get{return _dataSeparator;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-separator cannot be used without (--data-columns)");
+                }
+                _dataSeparator = value;
+            }
+        }
+
+        private string _updateURL;
+        [Option("update-url", Required = false, HelpText = "Specifies the remote URL to use to retrieve servers. To use this you must also set --data-columns so the servers can be deserialized")]
+        public string UpdateURL { get{return _updateURL;}
+            set
+            {
+                if(!string.IsNullOrEmpty(CustomServerFile) || !string.IsNullOrEmpty(Servers)){
+                    throw new Exception("--update-url cannot be used with (-f) or (-s)");
+                }
+                else if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-columns must be specified when using a custom update URL (--update-url)");
+                }
+                Uri parseResult;
+                var validURL = Uri.TryCreate(value, UriKind.Absolute, out parseResult) && (parseResult.Scheme == Uri.UriSchemeHttp || parseResult.Scheme == Uri.UriSchemeHttps);
+                if(!validURL){
+                    throw new Exception($"Unable to parse specified --update-url {value}");
+                }
+                _updateURL = value;
+            }
+        }
     }
 }

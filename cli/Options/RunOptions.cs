@@ -33,9 +33,6 @@ namespace dug.Options
             }
         }
 
-        [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
-        public int Timeout { get; set; }
-
         [Option("server-count", Required = false, HelpText = "dug runs queries against the top servers, ranked by reliability, per continent. This allows you to set how many servers from each continent to use.", Default = 6)]
         public int ServerCount { get; set; }
         
@@ -108,15 +105,57 @@ namespace dug.Options
         [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
+        private string _dataColumns;
+        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, in the file specified with (-f). Must be used with (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        public string DataColumns { get{return _dataColumns;}
+            set
+            {
+                if(string.IsNullOrEmpty(CustomServerFile)){
+                    throw new Exception("--data-columns cannot be used without specifying a server file (-f)");
+                }
+                var columns = value.ToLowerInvariant().Split(',', StringSplitOptions.None); //Specifically DO NOT remove empty entries
+                foreach(var column in columns){
+                    if(!TemplateHelper.ServerSetterMap.ContainsKey(column)){
+                        throw new Exception($"Unable to parse provided column header: {column}");
+                    }
+                }
+                _dataColumns = value.ToLowerInvariant();
+            }
+        }
+
+        private bool _dataHeadersPresent;
+        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present in the file specified with (-f). Can only be used in conjuction with --data-columns")]
+        public bool DataHeadersPresent { get{return _dataHeadersPresent;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-headers-present cannot be used without (--data-columns)");
+                }
+                _dataHeadersPresent = value;
+            }
+        }
+
+        private char? _dataSeparator;
+        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing servers from the file specified with (-f). Can only be used in conjuction with --data-columns. Assumes ',' if not set.")]
+        public char? DataSeparator { get{return _dataSeparator;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-separator cannot be used without (--data-columns)");
+                }
+                _dataSeparator = value;
+            }
+        }
+
         private string _template;
-        [Option("template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
+        [Option("output-template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
         public string Template { get{return _template;}
             set
             {
-                var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries);
+                var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries); //Specifically DO NOT remove empty entries
                 foreach(var header in headers){
-                    if(!TemplateHelper.TemplateHeaderMap.ContainsKey(header)){
-                        throw new Exception($"Unable to parse provided template header: {header}");
+                    if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
+                        throw new Exception($"Unable to parse provided output-template header: {header}");
                     }
                 }
                 _template = value.ToLowerInvariant();
@@ -124,7 +163,7 @@ namespace dug.Options
         }
 
         private OutputFormats _outputFormat;
-        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--template). Options: CSV,JSON")]
+        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--output-template). Options: CSV,JSON")]
         public OutputFormats OutputFormat { get{return _outputFormat;}
             set
             {
@@ -134,7 +173,7 @@ namespace dug.Options
                 }
 
                 if(string.IsNullOrEmpty(Template)){
-                    throw new Exception("A template (--template) is required when using an output-format other than the default (TABLES)");
+                    throw new Exception("A template (--output-template) is required when using an output-format other than the default (TABLES)");
                 }
                 _outputFormat = value;
             }

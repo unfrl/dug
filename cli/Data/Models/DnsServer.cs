@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
@@ -30,7 +29,7 @@ namespace dug.Data.Models
 
         public string CountryName { 
             get {
-                return DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : null;
+                return CountryCode != null && DataMaps.CountryNameMap.ContainsKey(CountryCode) ? DataMaps.CountryNameMap[CountryCode] : null;
             }
         }
 
@@ -39,7 +38,7 @@ namespace dug.Data.Models
                 if(CountryCode == null){
                     return null;
                 }
-                return DataMaps.CountryFlagMap.ContainsKey(CountryCode) ? DataMaps.CountryFlagMap[CountryCode] : null;
+                return CountryCode != null && DataMaps.CountryFlagMap.ContainsKey(CountryCode) ? DataMaps.CountryFlagMap[CountryCode] : null;
             }
         }
 
@@ -60,9 +59,9 @@ namespace dug.Data.Models
         }
 
         public string ToCsvString(){
-            // TODO: This is using the local csvformat (defined in LocalCsvDnsServerMapping.cs) and IS being used to persist servers.
-            // We should probably use the csvparser (which can serialize as well i believe) to generate this instead of just doint it by hand so if
-            // LocalCsvDnsServerMapping.cs is updates this continues to work.
+            // This is using the local csvformat (defined in LocalCsvDnsServerMapping.cs) and IS being used to persist servers.
+            // Apparently TinyCsvParser (true to its name) cannot also serialize. Thats fine, i wish it exposed the mappings it has registered though...
+            // Keep this format in sync with the one defined in LocalCsvDnsServerMapping!
             return $"{IPAddress.ToString()},{CountryCode},{City},{DNSSEC},{Reliability}";
         }
     }

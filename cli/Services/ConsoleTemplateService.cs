@@ -38,12 +38,12 @@ namespace dug.Services
                     
                     foreach(string header in headers)
                     {
-                        if(!TemplateHelper.TemplateHeaderMap.ContainsKey(header)){
+                        if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
                             throw new Exception($"Unable to determine how to resolved specified header: {header}");
                         }
                         
                         try{
-                            object data = TemplateHelper.TemplateHeaderMap[header](KeyValuePair.Create(server, response));
+                            object data = TemplateHelper.ResponseGetterMap[header](KeyValuePair.Create(server, response));
                             ((IDictionary<String, Object>)expando).Add(header, data);
                         }
                         catch{
@@ -71,11 +71,11 @@ namespace dug.Services
                     List<string> responseResults = new List<string>();
                     foreach(string header in headers)
                     {
-                        if(!TemplateHelper.TemplateHeaderMap.ContainsKey(header)){
+                        if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
                             throw new Exception($"Unable to determine how to resolved specified header: {header}");
                         }
                         try{
-                        string dataString = TemplateHelper.TemplateHeaderMap[header](KeyValuePair.Create(server, response)).ToString();
+                        string dataString = TemplateHelper.ResponseGetterMap[header](KeyValuePair.Create(server, response)).ToString();
                         dataString = dataString.Replace(Environment.NewLine, "\\n"); //Cant have real newlines in the csv output...
                         responseResults.Add(dataString);
                         }

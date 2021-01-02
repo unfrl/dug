@@ -84,9 +84,19 @@ namespace dug
                     Console.WriteLine($"Specified file does not exist: {opts.CustomServerFile}");
                     System.Environment.Exit(1);
                 }
-                using(var streamReader = File.OpenText(opts.CustomServerFile)){
-                    serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local);
+                
+                if(!string.IsNullOrEmpty(opts.DataColumns)){
+                    var mapper = new CustomDnsServerMapping(opts.DataColumns);
+                    using(var streamReader = File.OpenText(opts.CustomServerFile)){
+                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, mapper, opts.DataHeadersPresent, opts.DataSeparator ?? ',');
+                    }
                 }
+                else{
+                    using(var streamReader = File.OpenText(opts.CustomServerFile)){
+                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',');
+                    }
+                }
+            
             }
 
             if(opts.ParsedServers?.Count() > 0){
@@ -129,7 +139,7 @@ namespace dug
         {
             if(!opts.ReliabilityOnly){
                 if(!string.IsNullOrEmpty(opts.CustomServerFile)){
-                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
+                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.DataColumns, opts.DataSeparator ?? ',', opts.DataHeadersPresent, opts.Overwite);
                 }
 
                 bool hasSpecifiedServers = opts.ParsedServers != null && opts.ParsedServers.Any();
@@ -138,13 +148,18 @@ namespace dug
                 }
 
                 if(string.IsNullOrEmpty(opts.CustomServerFile) && !hasSpecifiedServers){
-                    await _dnsServerService.UpdateServersFromRemote(opts.Overwite);
+                    if(!string.IsNullOrEmpty(opts.UpdateURL)){
+                        await _dnsServerService.UpdateServersFromRemote(opts.UpdateURL, opts.DataSeparator ?? ',', opts.DataColumns, opts.DataHeadersPresent, opts.Overwite);
+                    }
+                    else{
+                        await _dnsServerService.UpdateServersFromDefaultRemote(opts.Overwite);
+                    }
                 }
             }
 
             if(opts.Reliability != null){
                 _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
-                var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromSeconds(3), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
+                var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromMilliseconds(opts.Timeout), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
                 _percentageAnimator.StopIfRunning();
                 Console.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
                 

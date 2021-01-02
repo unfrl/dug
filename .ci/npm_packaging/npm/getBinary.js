@@ -18,7 +18,7 @@ function getPlatformAssetPattern() {
 }
 
 async function getBinary() {
-    const version = require('../package.json').version; //TODO: Use this instead of below!
+    const version = require('../package.json').version;
     // const version = "0.0.25";
 
     //Using curl+jq you can get the download link with something like this:
