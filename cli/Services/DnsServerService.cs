@@ -11,6 +11,7 @@ using dug.Data.Models;
 using dug.Parsing;
 using dug.Utils;
 using TinyCsvParser.Mapping;
+using TinyCsvParser.Model;
 
 namespace dug.Services
 {
@@ -102,12 +103,33 @@ namespace dug.Services
             File.Replace(Config.ServersTempFile, Config.ServersFile, null);
         }
 
-        public void UpdateServersFromFile(string customFilePath, bool overwrite)
+        public void UpdateServersFromFile(string customFilePath, string customHeaders, bool skipHeaders, bool overwrite)
         {
             if(!File.Exists(customFilePath))
             {
                 throw new FileNotFoundException($"Unable to find file at: {customFilePath}");
             }
+
+            if(string.IsNullOrEmpty(customHeaders)){
+                UpdateServersFromFileDefaultHeaders(customFilePath, overwrite);
+                return;
+            }
+
+            var tokenizedLines = File
+                .ReadLines(customFilePath, Encoding.UTF8)
+                .Skip(skipHeaders ? 1 : 0) //TODO: This should only be skipped if headers are present!
+                .Select((line, index) => new TokenizedRow(index, line.Split(',', StringSplitOptions.None))); //Specifically DO NOT remove empty entries
+
+            var customMapper = new CustomDnsServerMapping(customHeaders);
+            var parsedServers = tokenizedLines.Select(line => customMapper.Map(line)).Where(res => res.IsValid).Select(res => res.Result);
+            int serversAdded = LoadServers(parsedServers.ToList(), overwrite);
+
+            Console.WriteLine($"Added {serversAdded} DNS Servers from {customFilePath}");
+            PersistServers();
+        }
+
+        private void UpdateServersFromFileDefaultHeaders(string customFilePath, bool overwrite)
+        {
             int serversAdded;
             using(var streamReader = File.OpenText(customFilePath)){
                 serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, overwrite);
@@ -119,7 +141,7 @@ namespace dug.Services
         private void LoadServersFromDatastore(){
             int serversAdded;
             using(var streamReader = File.OpenText(Config.ServersFile)){
-                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, true);
+                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, false);
             }
 
             if(Config.Verbose)

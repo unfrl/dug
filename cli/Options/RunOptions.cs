@@ -33,9 +33,6 @@ namespace dug.Options
             }
         }
 
-        [Option('t', "timeout", Required = false, HelpText = "The timeout (in ms) to be used when querying the DNS Server(s). If there are multiple it will apply to each server", Default = 3000)]
-        public int Timeout { get; set; }
-
         [Option("server-count", Required = false, HelpText = "dug runs queries against the top servers, ranked by reliability, per continent. This allows you to set how many servers from each continent to use.", Default = 6)]
         public int ServerCount { get; set; }
         
@@ -115,7 +112,7 @@ namespace dug.Options
             {
                 var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries);
                 foreach(var header in headers){
-                    if(!TemplateHelper.TemplateHeaderMap.ContainsKey(header)){
+                    if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
                         throw new Exception($"Unable to parse provided template header: {header}");
                     }
                 }

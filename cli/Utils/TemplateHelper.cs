@@ -1,13 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Net;
 using dug.Data;
 using dug.Data.Models;
+using dug.Parsing;
 
 namespace dug.Utils
 {
     public class TemplateHelper
     {
-        public static Dictionary<string, Func<KeyValuePair<DnsServer, DnsResponse>,object>> TemplateHeaderMap = new Dictionary<string,Func<KeyValuePair<DnsServer, DnsResponse>,object>> {
+        // Contains headers mapped to a function that can retrieve their property from a DnsServer
+        public static Dictionary<string, Action<DnsServer, string>> ServerSetterMap = new Dictionary<string, Action<DnsServer, string>>{
+            {"ipaddress", (server, value) => server.IPAddress = IPAddress.Parse(value)},
+            {"countrycode", (server, value) => server.CountryCode = value},
+            {"city", (server, value) => server.City = value},
+            {"dnssec", (server, value) => server.DNSSEC = bool.Parse(value)},
+            {"reliability", (server, value) => server.Reliability = double.Parse(value)}
+        };
+
+        // Contains headers mapped to a function that can retrieve their value from a KeyValuePair<DnsServer, DnsResponse>
+        public static Dictionary<string, Func<KeyValuePair<DnsServer, DnsResponse>,object>> ResponseGetterMap = new Dictionary<string,Func<KeyValuePair<DnsServer, DnsResponse>,object>> {
             {"ipaddress", pair => pair.Key.IPAddress.ToString()},
             {"countrycode", pair => pair.Key.CountryCode},
             {"city", pair => pair.Key.City},

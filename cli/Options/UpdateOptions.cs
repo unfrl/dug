@@ -4,6 +4,7 @@ using System.Net;
 using CommandLine;
 using CommandLine.Text;
 using dug.Data.Models;
+using dug.Utils;
 
 namespace dug.Options
 {
@@ -71,5 +72,32 @@ namespace dug.Options
             }
         }
         public List<DnsServer> ParsedServers { get; set; }
+
+        private string _dataColumns;
+        [Option("data-columns", Required = false, HelpText = "Specify the field, and order, of the data being imported. Currently only supports importing from files (-f). Options: ipaddress,countrycode,city,dnssec,reliability")]
+        public string DataColumns { get{return _dataColumns;}
+            set
+            {
+                var columns = value.ToLowerInvariant().Split(',', StringSplitOptions.None); //Specifically DO NOT remove empty entries
+                foreach(var column in columns){
+                    if(!TemplateHelper.ServerSetterMap.ContainsKey(column)){
+                        throw new Exception($"Unable to parse provided column header: {column}");
+                    }
+                }
+                _dataColumns = value.ToLowerInvariant();
+            }
+        }
+
+        private bool _dataHeadersPresent;
+        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present on the data being imported. Can only be used in conjuction with --data-columns")]
+        public bool DataHeadersPresent { get{return _dataHeadersPresent;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-headers-present cannot be used without (--data-columns)");
+                }
+                _dataHeadersPresent = value;
+            }
+        }
     }
 }

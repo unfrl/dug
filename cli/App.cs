@@ -129,7 +129,7 @@ namespace dug
         {
             if(!opts.ReliabilityOnly){
                 if(!string.IsNullOrEmpty(opts.CustomServerFile)){
-                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.Overwite);
+                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.DataColumns, opts.DataHeadersPresent, opts.Overwite);
                 }
 
                 bool hasSpecifiedServers = opts.ParsedServers != null && opts.ParsedServers.Any();
@@ -144,7 +144,7 @@ namespace dug
 
             if(opts.Reliability != null){
                 _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
-                var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromSeconds(3), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
+                var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromMilliseconds(opts.Timeout), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
                 _percentageAnimator.StopIfRunning();
                 Console.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
                 
