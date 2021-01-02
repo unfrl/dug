@@ -39,7 +39,7 @@ namespace dug.Services
                 int newServers = 0;
                 using (var reader = new StreamReader(resource))
                 {
-                    newServers = LoadServersFromStream(reader.BaseStream, DnsServerParser.DefaultLocalParser, true, false);
+                    newServers = LoadServersFromStream(reader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',', false);
                     PersistServers();
                 }
                 Console.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
@@ -51,9 +51,9 @@ namespace dug.Services
 
         // Returns the number of servers added
         // If overwrite is set the current server list is overwritten, instead of being updated with novel servers
-        private int LoadServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, bool overwrite)
+        private int LoadServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator, bool overwrite)
         {
-            var parsedServers = ParseServersFromStream(stream, format, skipHeaders).ToList();
+            var parsedServers = ParseServersFromStream(stream, format, skipHeaders, separator).ToList();
 
             return LoadServers(parsedServers, overwrite);
         }
@@ -84,9 +84,9 @@ namespace dug.Services
             PersistServers();
         }
 
-        public List<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders){
+        public List<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator){
             //This is almost always used in a 'using' context, so we dont want to return an IEnumerable where the actual enumeration would likely occur outside of that context
-            return _serverParser.ParseServersFromStream(stream, format, skipHeaders).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
+            return _serverParser.ParseServersFromStream(stream, format, skipHeaders, separator).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
         }
 
         private void PersistServers(){
@@ -103,7 +103,7 @@ namespace dug.Services
             File.Replace(Config.ServersTempFile, Config.ServersFile, null);
         }
 
-        public void UpdateServersFromFile(string customFilePath, string customHeaders, bool skipHeaders, bool overwrite)
+        public void UpdateServersFromFile(string customFilePath, string customHeaders, char separator, bool skipHeaders, bool overwrite)
         {
             if(!File.Exists(customFilePath))
             {
@@ -118,7 +118,7 @@ namespace dug.Services
             var tokenizedLines = File
                 .ReadLines(customFilePath, Encoding.UTF8)
                 .Skip(skipHeaders ? 1 : 0)
-                .Select((line, index) => new TokenizedRow(index, line.Split(',', StringSplitOptions.None))); //Specifically DO NOT remove empty entries
+                .Select((line, index) => new TokenizedRow(index, line.Split(separator, StringSplitOptions.None))); //Specifically DO NOT remove empty entries
 
             var customMapper = new CustomDnsServerMapping(customHeaders);
             var parsedServers = tokenizedLines.Select(line => customMapper.Map(line)).Where(res => res.IsValid).Select(res => res.Result);
@@ -132,7 +132,7 @@ namespace dug.Services
         {
             int serversAdded;
             using(var streamReader = File.OpenText(customFilePath)){
-                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, overwrite);
+                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',', overwrite);
             }
             Console.WriteLine($"Added {serversAdded} DNS Servers from {customFilePath}");
             PersistServers();
@@ -141,17 +141,17 @@ namespace dug.Services
         private void LoadServersFromDatastore(){
             int serversAdded;
             using(var streamReader = File.OpenText(Config.ServersFile)){
-                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, false);
+                serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',', false);
             }
 
             if(Config.Verbose)
                 Console.WriteLine($"Loaded {serversAdded} DNS Servers from {Config.ServersFile}");
         }
 
-        public async Task UpdateServersFromRemote(string url, string customHeaders, bool skipHeaders, bool overwrite)
+        public async Task UpdateServersFromRemote(string url, char separator, string customHeaders, bool skipHeaders, bool overwrite)
         {
             var serverInfoStream = await new HttpClient().GetStreamAsync(url);
-            int serversAdded = LoadServersFromStream(serverInfoStream, new CustomDnsServerMapping(customHeaders), skipHeaders, overwrite);
+            int serversAdded = LoadServersFromStream(serverInfoStream, new CustomDnsServerMapping(customHeaders), skipHeaders, separator, overwrite);
             Console.WriteLine($"Retrieved {serversAdded} novel DNS Servers from {url}");
             PersistServers();
         }
@@ -160,7 +160,7 @@ namespace dug.Services
         {
             string remoteSourceURL = "https://public-dns.info/nameservers.csv";
             var serverInfoStream = await new HttpClient().GetStreamAsync(remoteSourceURL);
-            int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerParser.DefaultRemoteParser, true, overwrite);
+            int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerParser.DefaultRemoteParser, true, ',', overwrite);
             Console.WriteLine($"Retrieved {serversAdded} novel DNS Servers from {remoteSourceURL}");
             PersistServers();
         }

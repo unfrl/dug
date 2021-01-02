@@ -74,7 +74,7 @@ namespace dug.Options
         public List<DnsServer> ParsedServers { get; set; }
 
         private string _dataColumns;
-        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely. Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
         public string DataColumns { get{return _dataColumns;}
             set
             {
@@ -97,6 +97,18 @@ namespace dug.Options
                     throw new Exception("--data-headers-present cannot be used without (--data-columns)");
                 }
                 _dataHeadersPresent = value;
+            }
+        }
+
+        private char _dataSeparator = ',';
+        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing import data. Can only be used in conjuction with --data-columns")]
+        public char DataSeparator { get{return _dataSeparator;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-separator cannot be used without (--data-columns)");
+                }
+                _dataSeparator = value;
             }
         }
 

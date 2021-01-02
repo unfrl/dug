@@ -21,7 +21,7 @@ namespace dug.Parsing
         public DnsServerParser(){
         }
 
-        public ParallelQuery<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator= ','){
+        public ParallelQuery<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator){
             var parserOptions = new CsvParserOptions(skipHeaders, separator);
             var parser = new CsvParser<DnsServer>(parserOptions, format);
             return parser.ReadFromStream(stream, Encoding.UTF8).Where(res => res.IsValid).Select(res => res.Result);

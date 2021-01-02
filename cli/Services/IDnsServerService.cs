@@ -15,7 +15,7 @@ namespace dug.Services
 
         // Specify the source file to load servers from and update the current server file (Config.ServersFile) with any novel servers found.
         // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
-        void UpdateServersFromFile(string customFilePath, string customHeaders, bool skipHeaders, bool overwrite);
+        void UpdateServersFromFile(string customFilePath, string customHeaders, char separator, bool skipHeaders, bool overwrite);
 
         // Update the current server file (Config.ServersFile) with any novel servers found from the remote source (https://public-dns.info/nameservers.csv).
         // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
@@ -25,13 +25,13 @@ namespace dug.Services
         // Attempt to parse the data using the specified customHeaders
         // Ignore the first line if skipHeaders is true
         // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
-        Task UpdateServersFromRemote(string url, string customHeaders, bool skipHeaders, bool overwrite);
+        Task UpdateServersFromRemote(string url, char separator, string customHeaders, bool skipHeaders, bool overwrite);
 
         // Update the current server file (Config.ServersFile) with any novel servers provided
         // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
         void UpdateServers(List<DnsServer> servers, bool overwrite);
 
-        List<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders);
+        List<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator);
 
         // This will walk through the results and reduce the reliability of the servers that either gave an error or timed out.
         // If prune is set to true servers that failed are removed.

@@ -124,7 +124,7 @@ namespace dug.Options
         }
 
         private bool _dataHeadersPresent;
-        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present on the in the file specified with (-f). Can only be used in conjuction with --data-columns")]
+        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present in the file specified with (-f). Can only be used in conjuction with --data-columns")]
         public bool DataHeadersPresent { get{return _dataHeadersPresent;}
             set
             {
@@ -135,12 +135,24 @@ namespace dug.Options
             }
         }
 
+        private char _dataSeparator = ',';
+        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing servers from the file specified with (-f). Can only be used in conjuction with --data-columns")]
+        public char DataSeparator { get{return _dataSeparator;}
+            set
+            {
+                if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-separator cannot be used without (--data-columns)");
+                }
+                _dataSeparator = value;
+            }
+        }
+
         private string _template;
         [Option("template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
         public string Template { get{return _template;}
             set
             {
-                var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries);
+                var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries); //Specifically DO NOT remove empty entries
                 foreach(var header in headers){
                     if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
                         throw new Exception($"Unable to parse provided template header: {header}");
