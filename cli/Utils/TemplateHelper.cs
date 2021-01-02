@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Net;
 using dug.Data;
 using dug.Data.Models;
-using dug.Parsing;
 
 namespace dug.Utils
 {
@@ -16,7 +14,8 @@ namespace dug.Utils
             {"countrycode", (server, value) => server.CountryCode = value},
             {"city", (server, value) => server.City = value},
             {"dnssec", (server, value) => server.DNSSEC = bool.Parse(value)},
-            {"reliability", (server, value) => server.Reliability = double.Parse(value)}
+            {"reliability", (server, value) => server.Reliability = double.Parse(value)},
+            {"ignore", (server, value) => {}}
         };
 
         // Contains headers mapped to a function that can retrieve their value from a KeyValuePair<DnsServer, DnsResponse>

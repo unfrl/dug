@@ -74,7 +74,7 @@ namespace dug.Options
         public List<DnsServer> ParsedServers { get; set; }
 
         private string _dataColumns;
-        [Option("data-columns", Required = false, HelpText = "Specify the field, and order, of the data being imported. Currently only supports importing from files (-f). Options: ipaddress,countrycode,city,dnssec,reliability")]
+        [Option("data-columns", Required = false, HelpText = "Specify the field, and order, of the data being imported. Currently only supports importing from files (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
         public string DataColumns { get{return _dataColumns;}
             set
             {
@@ -97,6 +97,26 @@ namespace dug.Options
                     throw new Exception("--data-headers-present cannot be used without (--data-columns)");
                 }
                 _dataHeadersPresent = value;
+            }
+        }
+
+        private string _updateURL;
+        [Option("update-url", Required = false, HelpText = "Specifies the remote URL to use to retrieve servers. To use this you must also set --data-columns so the servers can be deserialized")]
+        public string UpdateURL { get{return _updateURL;}
+            set
+            {
+                if(!string.IsNullOrEmpty(CustomServerFile) || !string.IsNullOrEmpty(Servers)){
+                    throw new Exception("--update-url cannot be used with (-f) or (-s)");
+                }
+                else if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-columns must be specified when using a custom update URL (--update-url)");
+                }
+                Uri parseResult;
+                var validURL = Uri.TryCreate(value, UriKind.Absolute, out parseResult) && (parseResult.Scheme == Uri.UriSchemeHttp || parseResult.Scheme == Uri.UriSchemeHttps);
+                if(!validURL){
+                    throw new Exception($"Unable to parse specified --update-url {value}");
+                }
+                _updateURL = value;
             }
         }
     }

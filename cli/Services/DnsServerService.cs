@@ -117,7 +117,7 @@ namespace dug.Services
 
             var tokenizedLines = File
                 .ReadLines(customFilePath, Encoding.UTF8)
-                .Skip(skipHeaders ? 1 : 0) //TODO: This should only be skipped if headers are present!
+                .Skip(skipHeaders ? 1 : 0)
                 .Select((line, index) => new TokenizedRow(index, line.Split(',', StringSplitOptions.None))); //Specifically DO NOT remove empty entries
 
             var customMapper = new CustomDnsServerMapping(customHeaders);
@@ -148,7 +148,15 @@ namespace dug.Services
                 Console.WriteLine($"Loaded {serversAdded} DNS Servers from {Config.ServersFile}");
         }
 
-        public async Task UpdateServersFromRemote(bool overwrite)
+        public async Task UpdateServersFromRemote(string url, string customHeaders, bool skipHeaders, bool overwrite)
+        {
+            var serverInfoStream = await new HttpClient().GetStreamAsync(url);
+            int serversAdded = LoadServersFromStream(serverInfoStream, new CustomDnsServerMapping(customHeaders), skipHeaders, overwrite);
+            Console.WriteLine($"Retrieved {serversAdded} novel DNS Servers from {url}");
+            PersistServers();
+        }
+
+        public async Task UpdateServersFromDefaultRemote(bool overwrite)
         {
             string remoteSourceURL = "https://public-dns.info/nameservers.csv";
             var serverInfoStream = await new HttpClient().GetStreamAsync(remoteSourceURL);

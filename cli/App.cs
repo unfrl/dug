@@ -138,7 +138,12 @@ namespace dug
                 }
 
                 if(string.IsNullOrEmpty(opts.CustomServerFile) && !hasSpecifiedServers){
-                    await _dnsServerService.UpdateServersFromRemote(opts.Overwite);
+                    if(!string.IsNullOrEmpty(opts.UpdateURL)){
+                        await _dnsServerService.UpdateServersFromRemote(opts.UpdateURL, opts.DataColumns, opts.DataHeadersPresent, opts.Overwite);
+                    }
+                    else{
+                        await _dnsServerService.UpdateServersFromDefaultRemote(opts.Overwite);
+                    }
                 }
             }
 

@@ -3,6 +3,7 @@ using dug.Data.Models;
 using dug.Utils;
 using TinyCsvParser.Mapping;
 using TinyCsvParser.Model;
+using System.Linq;
 
 namespace dug.Parsing
 {
@@ -19,10 +20,19 @@ namespace dug.Parsing
         {
             for(int headerIndex = 0; headerIndex < _customHeaders.Length; headerIndex++){
                 string headerName = _customHeaders[headerIndex];
-                string headerValue = headers.Tokens[headerIndex]; //TODO: Handle if this is missing!
-                var setterFunction = TemplateHelper.ServerSetterMap[headerName]; //TODO: Handle if this is missing!
+                
+                string headerValue = headers.Tokens.ElementAtOrDefault(headerIndex);
+                if(headerValue == null){
+                    throw new Exception($"Unable to retrieve expected value from specified header: {headerName}. Expected to be at index {headerIndex}");
+                }
+                var setterFunction = TemplateHelper.ServerSetterMap[headerName]; // This should always be present, its validation in UpdateOptions.cs
 
-                setterFunction(server, headerValue);
+                try{
+                    setterFunction(server, headerValue);
+                }
+                catch{
+                    throw new Exception($"Unable to set field {headerName} to provided value: {headerValue}");
+                }
             }
 
             return true;
