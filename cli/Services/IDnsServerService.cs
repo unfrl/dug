@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using dug.Data;
 using dug.Data.Models;
 using dug.Parsing;
+using TinyCsvParser.Mapping;
 
 namespace dug.Services
 {
@@ -25,7 +26,7 @@ namespace dug.Services
         // If overwrite is set the current server file (Config.ServersFile) will be overwritten, not just updated
         void UpdateServers(List<DnsServer> servers, bool overwrite);
 
-        List<DnsServer> ParseServersFromStream(Stream stream, DnsServerCsvFormats format);
+        List<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders);
 
         // This will walk through the results and reduce the reliability of the servers that either gave an error or timed out.
         // If prune is set to true servers that failed are removed.

@@ -85,7 +85,7 @@ namespace dug
                     System.Environment.Exit(1);
                 }
                 using(var streamReader = File.OpenText(opts.CustomServerFile)){
-                    serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerCsvFormats.Local);
+                    serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true);
                 }
             }
 
