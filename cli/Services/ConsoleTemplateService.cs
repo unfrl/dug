@@ -54,7 +54,7 @@ namespace dug.Services
                 }
             }
 
-            var jsonResult = JsonSerializer.Serialize(dynamicResults);
+            var jsonResult = JsonSerializer.Serialize(dynamicResults, new JsonSerializerOptions {WriteIndented = true});
             Console.WriteLine(jsonResult);
         }
 
