@@ -88,12 +88,12 @@ namespace dug
                 if(!string.IsNullOrEmpty(opts.DataColumns)){
                     var mapper = new CustomDnsServerMapping(opts.DataColumns);
                     using(var streamReader = File.OpenText(opts.CustomServerFile)){
-                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, mapper, opts.DataHeadersPresent, opts.DataSeparator);
+                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, mapper, opts.DataHeadersPresent, opts.DataSeparator ?? ',');
                     }
                 }
                 else{
                     using(var streamReader = File.OpenText(opts.CustomServerFile)){
-                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, opts.DataSeparator);
+                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',');
                     }
                 }
             
@@ -139,7 +139,7 @@ namespace dug
         {
             if(!opts.ReliabilityOnly){
                 if(!string.IsNullOrEmpty(opts.CustomServerFile)){
-                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.DataColumns, opts.DataSeparator, opts.DataHeadersPresent, opts.Overwite);
+                    _dnsServerService.UpdateServersFromFile(opts.CustomServerFile, opts.DataColumns, opts.DataSeparator ?? ',', opts.DataHeadersPresent, opts.Overwite);
                 }
 
                 bool hasSpecifiedServers = opts.ParsedServers != null && opts.ParsedServers.Any();
@@ -149,7 +149,7 @@ namespace dug
 
                 if(string.IsNullOrEmpty(opts.CustomServerFile) && !hasSpecifiedServers){
                     if(!string.IsNullOrEmpty(opts.UpdateURL)){
-                        await _dnsServerService.UpdateServersFromRemote(opts.UpdateURL, opts.DataSeparator, opts.DataColumns, opts.DataHeadersPresent, opts.Overwite);
+                        await _dnsServerService.UpdateServersFromRemote(opts.UpdateURL, opts.DataSeparator ?? ',', opts.DataColumns, opts.DataHeadersPresent, opts.Overwite);
                     }
                     else{
                         await _dnsServerService.UpdateServersFromDefaultRemote(opts.Overwite);

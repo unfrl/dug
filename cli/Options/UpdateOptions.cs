@@ -100,9 +100,9 @@ namespace dug.Options
             }
         }
 
-        private char _dataSeparator = ',';
-        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing import data. Can only be used in conjuction with --data-columns")]
-        public char DataSeparator { get{return _dataSeparator;}
+        private char? _dataSeparator;
+        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing import data. Can only be used in conjuction with --data-columns. Assumes ',' if not set.")]
+        public char? DataSeparator { get{return _dataSeparator;}
             set
             {
                 if(string.IsNullOrEmpty(DataColumns)){

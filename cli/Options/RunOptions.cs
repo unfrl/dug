@@ -135,9 +135,9 @@ namespace dug.Options
             }
         }
 
-        private char _dataSeparator = ',';
-        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing servers from the file specified with (-f). Can only be used in conjuction with --data-columns")]
-        public char DataSeparator { get{return _dataSeparator;}
+        private char? _dataSeparator;
+        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing servers from the file specified with (-f). Can only be used in conjuction with --data-columns. Assumes ',' if not set.")]
+        public char? DataSeparator { get{return _dataSeparator;}
             set
             {
                 if(string.IsNullOrEmpty(DataColumns)){
@@ -148,14 +148,14 @@ namespace dug.Options
         }
 
         private string _template;
-        [Option("template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
+        [Option("output-template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
         public string Template { get{return _template;}
             set
             {
                 var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries); //Specifically DO NOT remove empty entries
                 foreach(var header in headers){
                     if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
-                        throw new Exception($"Unable to parse provided template header: {header}");
+                        throw new Exception($"Unable to parse provided output-template header: {header}");
                     }
                 }
                 _template = value.ToLowerInvariant();
@@ -163,7 +163,7 @@ namespace dug.Options
         }
 
         private OutputFormats _outputFormat;
-        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--template). Options: CSV,JSON")]
+        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--output-template). Options: CSV,JSON")]
         public OutputFormats OutputFormat { get{return _outputFormat;}
             set
             {
@@ -173,7 +173,7 @@ namespace dug.Options
                 }
 
                 if(string.IsNullOrEmpty(Template)){
-                    throw new Exception("A template (--template) is required when using an output-format other than the default (TABLES)");
+                    throw new Exception("A template (--output-template) is required when using an output-format other than the default (TABLES)");
                 }
                 _outputFormat = value;
             }
