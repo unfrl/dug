@@ -120,7 +120,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
-            "args": ["git.kaijucode.com", "--template", "IPAddress,ResponseTime,Value", "--output-format", "CSV"],
+            "args": ["git.kaijucode.com", "--output-template", "IPAddress,ResponseTime,Value", "--output-format", "CSV"],
             "cwd": "${workspaceFolder}/cli",
             "console": "internalConsole",
             "stopAtEntry": false
@@ -131,7 +131,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
-            "args": ["git.kaijucode.com", "--template", "IPAddress,ResponseTime,Value", "--output-format", "JSON"],
+            "args": ["git.kaijucode.com", "--output-template", "IPAddress,ResponseTime,Value", "--output-format", "JSON"],
             "cwd": "${workspaceFolder}/cli",
             "console": "internalConsole",
             "stopAtEntry": false
