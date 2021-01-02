@@ -41,7 +41,7 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
     <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/mypackage.png</iconUrl>-->
     <copyright>2020 Unfrl LLC</copyright>
     <!-- If there is a license Url available, it is required for the community feed -->
-    <licenseUrl>https://git.kaijucode.com/matt/dug/src/branch/main/LICENSE</licenseUrl>
+    <licenseUrl>https://git.kaijucode.com/matt/dug/raw/branch/main/cli/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://git.kaijucode.com/matt/dug</projectSourceUrl>
     <!--<docsUrl>At what url are the software docs located?</docsUrl>-->
