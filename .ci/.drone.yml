@@ -103,6 +103,7 @@ steps:
     files:
       - publish/dug-linux-x64
       - publish/dug-linux-arm64
+      - publish/dug-osx-x64
       - .ci/win/dug.${DRONE_TAG}.nupkg
       - ./cli/publish/*.deb
       - ./cli/publish/*.rpm
