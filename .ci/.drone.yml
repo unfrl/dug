@@ -104,9 +104,9 @@ steps:
       - publish/dug-linux-x64
       - publish/dug-linux-arm64
       - .ci/win/dug.${DRONE_TAG}.nupkg
-      - publish/*.deb
-      - publish/*.rpm
-      - publish/*.tar.gz
+      - ./cli/publish/*.deb
+      - ./cli/publish/*.rpm
+      - ./cli/publish/*.tar.gz
       - ./.ci/win/output/*.exe
     title: ${DRONE_TAG}
   when:
