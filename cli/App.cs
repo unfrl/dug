@@ -46,16 +46,27 @@ namespace dug
 
         private void HandleErrors(IEnumerable<Error> errors)
         {
+            HelpText helpText;
+            // This only happens if the call is 'blank'. I.e. `dug` or `dug run` or `dug update` in which case we should show something helpful.
+            // I chose not to show THE help because required values that are missing generate bad errors. See below for Issue/PR relevant to it.
+            if(errors.Count() == 1 && errors.Single() is MissingRequiredOptionError){
+                Console.WriteLine($"A {nameof(RunOptions.Hostname)} must be provided. (run dug help or dug --help for more info)");
+                return;
+            }
+
             foreach(var error in errors){
                 switch(error){
                     case HelpRequestedError:
                     case HelpVerbRequestedError:
-                        var helpText = HelpText.AutoBuild(_cliArgs, h =>
-                            {
-                                return h;
-                            }
-                        );
+                        helpText = HelpText.AutoBuild(_cliArgs, h => h);
                         Console.WriteLine(helpText);
+                        continue;
+                    case MissingRequiredOptionError:
+                        // Currently required values that are missing generate bad errors. Since we only have 1 (Hostname) this error ir better.
+                        // People are working to remedy this:
+                        // https://github.com/commandlineparser/commandline/pull/727
+                        // https://github.com/commandlineparser/commandline/issues/363
+                        Console.WriteLine($"A {nameof(RunOptions.Hostname)} must be provided.");
                         continue;
                     default:
                         var sb = SentenceBuilder.Create();
