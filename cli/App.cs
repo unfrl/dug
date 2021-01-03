@@ -47,11 +47,22 @@ namespace dug
         private void HandleErrors(IEnumerable<Error> errors)
         {
             HelpText helpText;
-            // This only happens if the call is 'blank'. I.e. `dug` or `dug run` or `dug update` in which case we should show something helpful.
-            // I chose not to show THE help because required values that are missing generate bad errors. See below for Issue/PR relevant to it.
-            if(errors.Count() == 1 && errors.Single() is MissingRequiredOptionError){
-                Console.WriteLine($"A {nameof(RunOptions.Hostname)} must be provided. (run dug help or dug --help for more info)");
-                return;
+            
+            if(errors.Count() == 1){
+                var err = errors.Single();
+
+                // This only happens if the call is 'blank'. I.e. `dug` or `dug run` or `dug update` in which case we should show something helpful.
+                // I chose not to show THE help because required values that are missing generate bad errors. See below for Issue/PR relevant to it.
+                if(err is MissingRequiredOptionError){
+                    Console.WriteLine($"A {nameof(RunOptions.Hostname)} must be provided. (run dug help or dug --help for more info)");
+                    return;
+                }
+                // For some reason `dug version` and `dug --version` was giving `Operation is not valid due to the current state of the object.`
+                if(err is VersionRequestedError){
+                    var version = GetType().Assembly.GetName().Version;
+                    Console.WriteLine($"{version.Major}.{version.Minor}.{version.Build}");
+                    return;
+                }
             }
 
             foreach(var error in errors){

@@ -126,6 +126,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "Debug version",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
+            "args": ["version"],
+            "cwd": "${workspaceFolder}/cli",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "Debug run with csv output",
             "type": "coreclr",
             "request": "launch",
