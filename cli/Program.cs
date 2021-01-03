@@ -4,6 +4,7 @@ using dug.Services;
 using dug.Options;
 using dug.Parsing;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace dug
 {
@@ -16,8 +17,21 @@ namespace dug
 
             var serviceProvider = services.BuildServiceProvider();
 
-            // calls the Run method in App, which is replacing Main
-            return await serviceProvider.GetService<App>().RunAsync();
+            int exitCode = 1;
+            try{
+                // calls the Run method in App, which is replacing Main
+                exitCode = await serviceProvider.GetService<App>().RunAsync();
+            }
+            catch(Exception ex){
+                if(ex is AggregateException ag){
+                    Console.Error.WriteLine(ag.InnerExceptions[0].Message);
+                }
+                else{
+                    Console.Error.WriteLine(ex.Message);
+                }
+            }
+
+            return exitCode;
         }
 
         private static IServiceCollection ConfigureServices(string[] args)
