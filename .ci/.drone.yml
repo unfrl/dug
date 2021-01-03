@@ -110,6 +110,7 @@ steps:
       - ./cli/publish/*.tar.gz
       - ./.ci/win/output/*.exe
     title: ${DRONE_TAG}
+    prerelease: true
   when:
     ref:
     - refs/tags/*.*.*
