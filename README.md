@@ -2,7 +2,8 @@
 
 [![Build Status](https://drone.kaijucode.com/api/badges/matt/dug/status.svg)](https://drone.kaijucode.com/matt/dug)
 
-If you are viewing this anywhere but git.kaijucode.com, the **real** repository is located [here](https://git.kaijucode.com/matt/dug)
+The **real** repository is located [here](https://git.kaijucode.com/matt/dug)
+The GitHub repository [here](https://github.com/unfrl/dug) is used for issues and stars 🌟
 
 A powerful global DNS progagation checker that can output in a variety of formats.
 
