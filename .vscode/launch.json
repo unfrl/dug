@@ -38,12 +38,12 @@
             "stopAtEntry": false
         },
         {
-            "name": "Debug --help",
+            "name": "Debug help",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
-            "args": ["update","--help"],
+            "args": ["help", "run"],
             "cwd": "${workspaceFolder}/cli",
             "console": "internalConsole",
             "stopAtEntry": false
@@ -109,7 +109,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
-            "args": ["git.kaijucode.com" , "--continents", "NA,SA,ZA",],
+            "args": ["git.kaijucode.com" , "--continents", "NA,SA,ZA", "--output-template", "catz"],
             "cwd": "${workspaceFolder}/cli",
             "console": "internalConsole",
             "stopAtEntry": false

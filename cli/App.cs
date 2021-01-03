@@ -11,6 +11,7 @@ using dug.Data.Models;
 using System.IO;
 using dug.Data;
 using DnsClient;
+using CommandLine.Text;
 
 namespace dug
 {
@@ -37,10 +38,32 @@ namespace dug
 
         public async Task<int> RunAsync()
         {
-            // _cliArgs.WithNotParsed(errs => DisplayHelp(_cliArgs, errs)); //TODO: Handle CLI Parsing errors (maybe)
+            _cliArgs.WithNotParsed(HandleErrors);
             await _cliArgs.WithParsedAsync(ExecuteArgumentsAsync);
                 
             return 0;
+        }
+
+        private void HandleErrors(IEnumerable<Error> errors)
+        {
+            foreach(var error in errors){
+                switch(error){
+                    case HelpRequestedError:
+                    case HelpVerbRequestedError:
+                        var helpText = HelpText.AutoBuild(_cliArgs, h =>
+                            {
+                                return h;
+                            }
+                        );
+                        Console.WriteLine(helpText);
+                        continue;
+                    default:
+                        var sb = SentenceBuilder.Create();
+                        Console.WriteLine(sb.FormatError(error));
+                        continue;
+                }
+            }
+            Environment.Exit(1);
         }
 
         private async Task ExecuteArgumentsAsync(object args)

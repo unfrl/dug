@@ -38,9 +38,10 @@ namespace dug
         {
             IServiceCollection services = new ServiceCollection();
 
-            var parsedArgs = Parser.Default.ParseArguments<RunOptions, UpdateOptions>(args);
+            var parser = new CommandLine.Parser(with => with.HelpWriter = null);
+            var parserResult = parser.ParseArguments<RunOptions, UpdateOptions>(args);
 
-            services.AddSingleton(parsedArgs);
+            services.AddSingleton(parserResult);
             services.AddTransient<IDnsServerParser, DnsServerParser>();
             services.AddTransient<IDnsServerService, DnsServerService>();
             services.AddTransient<IDnsQueryService, DnsQueryService>();
