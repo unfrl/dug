@@ -71,3 +71,5 @@ The project was developed in VSCode so the debugger profiles that I have used ar
 
 ## License
 The license used by dug, [here](./cli/LICENSE), is very explicitly designed to try to keep capitalists from benefiting from this tool. This is not a traditional license but it is very simple, please read it.
+
+Made with ❤️ by [Unfrl](https://unfrl.com)
