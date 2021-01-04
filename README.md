@@ -37,6 +37,10 @@ You can also do complicated things like ask for specific record types, get the o
     * It should look like `dug.<version>.linux-x64.rpm`
 2. On most distros double clicking the .deb package will allow you to install via a UI, alternatively it can be installed by running `rpm -i ./dug.<version>.linux-x64.deb`
 
+### Arch
+
+1. A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
+
 ### OSX
 > Not Officially Supported Yet
 1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the osx binary.
