@@ -33,6 +33,32 @@ namespace dug.Options
             }
         }
 
+
+        [Value(0, Required = true, HelpText = "The Hostname you would like to see propogation for", MetaName = "Hostname")]
+        public string Hostname { get; set; }
+
+        [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
+        public string CustomServerFile { get; set; }
+
+        private string _servers;
+        [Option('s', "servers", Required = false, HelpText = "The servers to query against instead of the integrated servers. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
+        public string Servers { get {return _servers;}
+            set {
+                _servers = value;
+                ParsedServers = new List<DnsServer>();
+                foreach(string addressString in Servers?.Split(",")){
+                    IPAddress parsedAddress;
+                    if(IPAddress.TryParse(addressString, out parsedAddress)){
+                        ParsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
+                    }
+                    else{
+                        throw new Exception($"Unable to parse provided Server: {addressString}");
+                    }
+                }
+            }
+        }
+        public List<DnsServer> ParsedServers { get; set; }
+
         [Option("server-count", Required = false, HelpText = "dug runs queries against the top servers, ranked by reliability, per continent. This allows you to set how many servers from each continent to use.", Default = 6)]
         public int ServerCount { get; set; }
         
@@ -82,28 +108,6 @@ namespace dug.Options
 
         [Option('m', "multiple-sources", Required = false, HelpText = "When specifying servers (-s or --servers) also use integrated servers", Default = false)]
         public bool MultipleServerSources { get; set; }
-
-        private string _servers;
-        [Option('s', "servers", Required = false, HelpText = "The servers to query against instead of the integrated servers. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
-        public string Servers { get {return _servers;}
-            set {
-                _servers = value;
-                ParsedServers = new List<DnsServer>();
-                foreach(string addressString in Servers?.Split(",")){
-                    IPAddress parsedAddress;
-                    if(IPAddress.TryParse(addressString, out parsedAddress)){
-                        ParsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
-                    }
-                    else{
-                        throw new Exception($"Unable to parse provided Server: {addressString}");
-                    }
-                }
-            }
-        }
-        public List<DnsServer> ParsedServers { get; set; }
-
-        [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
-        public string CustomServerFile { get; set; }
 
         private string _dataColumns;
         [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, in the file specified with (-f). Must be used with (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
@@ -178,9 +182,6 @@ namespace dug.Options
                 _outputFormat = value;
             }
         }
-
-        [Value(0, Required = true, HelpText = "The Hostname you would like to see propogation for", MetaName = "Hostname")]
-        public string Hostname { get; set; }
     }
 
     //This will likely be needed later

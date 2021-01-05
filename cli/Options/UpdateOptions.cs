@@ -36,24 +36,6 @@ namespace dug.Options
         [Option('f', "file", Required = false, HelpText = "Update DNS server list using the specified file instead of the remote source")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
-        [Option('o', "overwrite", Required = false, HelpText = "Overwrite the current server list instead of updating it.")]
-        public bool Overwite { get; set; }
-
-        [Option('r', "reliability", Required = false, HelpText = "Runs a query for a very stable domain (google.com) against ALL servers. Can be set to 'normal' or 'prune'. Normal updates server reliability based on the results, Prune removes servers that failed (timeout, error, etc)")]
-        public ReliabilityUpdateType? Reliability { get; set; }
-
-        private bool _reliabilityOnly;
-        [Option("reliability-only", Required = false, HelpText = "Can only be used with the (-r,--reliability) option. This will keep any new servers from other options (-s,-f,etc) or remote sources from being added. Use if you only want to update the reliability of the currently present servers")]
-        public bool ReliabilityOnly {get{return _reliabilityOnly;}
-            set
-            {
-                if(Reliability == null){
-                    throw new Exception("--reliability-only cannot be used without (-r,--reliability)");
-                }
-                _reliabilityOnly = value;
-            }
-        }
-
         private string _servers;
         [Option('s', "servers", Required = false, HelpText = "The server IPs to import instead of the remote source. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
         public string Servers { get {return _servers;}
@@ -73,7 +55,45 @@ namespace dug.Options
         }
         public List<DnsServer> ParsedServers { get; set; }
 
-        private string _dataColumns;
+        [Option('o', "overwrite", Required = false, HelpText = "Overwrite the current server list instead of updating it.")]
+        public bool Overwite { get; set; }
+
+        [Option('r', "reliability", Required = false, HelpText = "Runs a query for a very stable domain (google.com) against ALL servers. Can be set to 'normal' or 'prune'. Normal updates server reliability based on the results, Prune removes servers that failed (timeout, error, etc)")]
+        public ReliabilityUpdateType? Reliability { get; set; }
+
+        private bool _reliabilityOnly;
+        [Option("reliability-only", Required = false, HelpText = "Can only be used with the (-r,--reliability) option. This will keep any new servers from other options (-s,-f,etc) or remote sources from being added. Use if you only want to update the reliability of the currently present servers")]
+        public bool ReliabilityOnly {get{return _reliabilityOnly;}
+            set
+            {
+                if(Reliability == null){
+                    throw new Exception("--reliability-only cannot be used without (-r,--reliability)");
+                }
+                _reliabilityOnly = value;
+            }
+        }
+
+        private string _updateURL;
+        [Option("update-url", Required = false, HelpText = "Specifies the remote URL to use to retrieve servers. To use this you must also set --data-columns so the servers can be deserialized")]
+        public string UpdateURL { get{return _updateURL;}
+            set
+            {
+                if(!string.IsNullOrEmpty(CustomServerFile) || !string.IsNullOrEmpty(Servers)){
+                    throw new Exception("--update-url cannot be used with (-f) or (-s)");
+                }
+                else if(string.IsNullOrEmpty(DataColumns)){
+                    throw new Exception("--data-columns must be specified when using a custom update URL (--update-url)");
+                }
+                Uri parseResult;
+                var validURL = Uri.TryCreate(value, UriKind.Absolute, out parseResult) && (parseResult.Scheme == Uri.UriSchemeHttp || parseResult.Scheme == Uri.UriSchemeHttps);
+                if(!validURL){
+                    throw new Exception($"Unable to parse specified --update-url {value}");
+                }
+                _updateURL = value;
+            }
+        }
+
+                private string _dataColumns;
         [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely. Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
         public string DataColumns { get{return _dataColumns;}
             set
@@ -109,26 +129,6 @@ namespace dug.Options
                     throw new Exception("--data-separator cannot be used without (--data-columns)");
                 }
                 _dataSeparator = value;
-            }
-        }
-
-        private string _updateURL;
-        [Option("update-url", Required = false, HelpText = "Specifies the remote URL to use to retrieve servers. To use this you must also set --data-columns so the servers can be deserialized")]
-        public string UpdateURL { get{return _updateURL;}
-            set
-            {
-                if(!string.IsNullOrEmpty(CustomServerFile) || !string.IsNullOrEmpty(Servers)){
-                    throw new Exception("--update-url cannot be used with (-f) or (-s)");
-                }
-                else if(string.IsNullOrEmpty(DataColumns)){
-                    throw new Exception("--data-columns must be specified when using a custom update URL (--update-url)");
-                }
-                Uri parseResult;
-                var validURL = Uri.TryCreate(value, UriKind.Absolute, out parseResult) && (parseResult.Scheme == Uri.UriSchemeHttp || parseResult.Scheme == Uri.UriSchemeHttps);
-                if(!validURL){
-                    throw new Exception($"Unable to parse specified --update-url {value}");
-                }
-                _updateURL = value;
             }
         }
     }
