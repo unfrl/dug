@@ -8,7 +8,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Usage',
-      items: ['run', 'update'],
+      items: ['run', 'update', 'templated_input', 'templated_output'],
     },
   ]
 };
