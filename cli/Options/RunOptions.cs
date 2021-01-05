@@ -105,7 +105,7 @@ namespace dug.Options
         // SUpposedly this will be fixed in version 2.9.0 but hasnt yet and this in on 2.9.0-preview1
         public List<QueryType> ParsedQueryTypes { get; set; }
 
-        [Option('m', "multiple-sources", Required = false, HelpText = "When specifying servers (-s or --servers) also use integrated servers", Default = false)]
+        [Option('m', "multiple-sources", Required = false, HelpText = "When specifying servers (-s, --servers) or (-f, --file) also use integrated servers", Default = false)]
         public bool MultipleServerSources { get; set; }
 
         private string _dataColumns;
