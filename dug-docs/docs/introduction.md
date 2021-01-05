@@ -4,7 +4,7 @@ title: Introduction
 slug: /
 ---
 
-dug is designed to be usable by humans (the default output is pretty tables) as well as automation scripts via templated output to CSV or JSON. The easiest way to get started is to [install it](./install) and run `dug help`.
+dug is designed to be usable by humans (the default output is pretty tables) as well as automation scripts via templated output to CSV or JSON. The easiest way to get started is to [install it](./install) and run `dug help` or `dug mysite.com`.
 
 ## Verbs
 

@@ -148,6 +148,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "Debug run with custom file with custom headers",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
+            "args": ["run" , "-f", "./test_custom_header_servers_color.csv","--data-headers-present", "--data-columns", "city,ipaddress,countrycode,dnssec,reliability,ignore", "git.kaijucode.com"],
+            "cwd": "${workspaceFolder}/cli",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "Debug run with json output",
             "type": "coreclr",
             "request": "launch",
