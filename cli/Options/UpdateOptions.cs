@@ -93,8 +93,8 @@ namespace dug.Options
             }
         }
 
-                private string _dataColumns;
-        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely. Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        private string _dataColumns;
+        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely (--update-url). Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
         public string DataColumns { get{return _dataColumns;}
             set
             {
