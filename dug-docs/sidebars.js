@@ -1,6 +1,14 @@
 module.exports = {
-  someSidebar: {
-    Dug: ['doc1', 'doc2', 'doc3'],
-    Features: ['mdx'],
-  },
+  docs: [
+    {
+      type: 'category',
+      label: 'Intro/Setup',
+      items: ['introduction', 'install'],
+    },
+    {
+      type: 'category',
+      label: 'Usage',
+      items: ['run', 'update'],
+    },
+  ]
 };
