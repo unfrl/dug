@@ -100,7 +100,6 @@ namespace dug.Options
                 }
             }
         }
-
         // NOTE: This is because of a really annoying issue that almost makes using IEnumerables with a separator as commandline options useless.
         // Any [Option] with an IEnumerable is very 'greedy' see: https://github.com/commandlineparser/commandline/issues/687
         // SUpposedly this will be fixed in version 2.9.0 but hasnt yet and this in on 2.9.0-preview1
