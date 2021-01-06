@@ -86,7 +86,7 @@ namespace dug.Services
 
         public List<DnsServer> ParseServersFromStream(Stream stream, ICsvMapping<DnsServer> format, bool skipHeaders, char separator){
             //This is almost always used in a 'using' context, so we dont want to return an IEnumerable where the actual enumeration would likely occur outside of that context
-            return _serverParser.ParseServersFromStream(stream, format, skipHeaders, separator).Where(server => !string.IsNullOrEmpty(server.CountryCode)).ToList();
+            return _serverParser.ParseServersFromStream(stream, format, skipHeaders, separator).Where(server => server.IPAddress != null).ToList();
         }
 
         private void PersistServers(){

@@ -138,7 +138,11 @@ namespace dug
                 }
                 else{
                     using(var streamReader = File.OpenText(opts.CustomServerFile)){
-                        serversToUse = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',');
+                        var serversFromFile = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',');
+                        if(serversFromFile == null || serversFromFile.Count == 0){
+                            throw new Exception($"Unable to parse content from specified file: {opts.CustomServerFile}\n Consider using --data-columns");
+                        }
+                        serversToUse.AddRange(serversFromFile);
                     }
                 }
             
