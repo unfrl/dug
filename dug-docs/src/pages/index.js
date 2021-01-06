@@ -8,32 +8,31 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: 'Blazing Fast',
+    imageUrl: 'img/undraw_Outer_space_rocket.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        dug's querys are highly performant and as parallelizable as you want. Defaults to 200 simultaneous queries!
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: 'Flexible Output',
+    imageUrl: 'img/undraw_proud_coder.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        By default dug outputs pretty human-readable tables, but can easily be configured
+        to provide templated JSON or CSV data. Use it in monitoring scripts or other applications!
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: 'Highly Configurable',
+    imageUrl: 'img/undraw_maintenance.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Use the included servers or bring in your own list from local/remote sources. Control what
+        queries are run and what servers they're run against.
       </>
     ),
   },
@@ -63,6 +62,7 @@ function Home() {
       description="A global DNS propagation checker">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
+          <img src={useBaseUrl("img/logo.svg")} width="150px"/>
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
