@@ -24,7 +24,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://git.kaijucode.com/matt/dug',
+          href: 'https://github.com/unfrl/dug',
           label: 'Source Repository',
           position: 'left',
         },
