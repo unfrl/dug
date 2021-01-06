@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Blazing Fast',
-    imageUrl: 'img/undraw_Outer_space_rocket.svg',
+    imageUrl: 'img/rocket.svg',
     description: (
       <>
         dug's querys are highly performant and as parallelizable as you want. Defaults to 200 simultaneous queries!
@@ -18,7 +18,7 @@ const features = [
   },
   {
     title: 'Flexible Output',
-    imageUrl: 'img/undraw_proud_coder.svg',
+    imageUrl: 'img/robot.svg',
     description: (
       <>
         By default dug outputs pretty human-readable tables, but can easily be configured
@@ -28,7 +28,7 @@ const features = [
   },
   {
     title: 'Highly Configurable',
-    imageUrl: 'img/undraw_maintenance.svg',
+    imageUrl: 'img/toolbox.svg',
     description: (
       <>
         Use the included servers or bring in your own list from local/remote sources. Control what
