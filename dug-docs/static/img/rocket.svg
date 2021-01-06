@@ -30,17 +30,17 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="2552"
+   inkscape:window-width="1274"
    inkscape:window-height="1395"
    id="namedview242"
    showgrid="false"
-   inkscape:zoom="1.19"
-   inkscape:cx="253.78151"
-   inkscape:cy="500"
-   inkscape:window-x="4"
+   inkscape:zoom="6.7316565"
+   inkscape:cx="503.97084"
+   inkscape:cy="645.69984"
+   inkscape:window-x="1282"
    inkscape:window-y="4"
    inkscape:window-maximized="0"
-   inkscape:current-layer="layer2" />
+   inkscape:current-layer="Layer_1" />
 <style
    type="text/css"
    id="style148">
@@ -370,11 +370,13 @@
 <path
    id="XMLID_44_"
    class="st11"
-   d="M456.2,329.8c24.9-8.6,52.2-8.6,77.1,0.1c-11.3-13.7-24.4-25.2-38.6-34.6  C480.5,304.7,467.4,316.2,456.2,329.8z" />
+   d="M456.2,329.8c24.9-8.6,52.2-8.6,77.1,0.1c-11.3-13.7-24.4-25.2-38.6-34.6  C480.5,304.7,467.4,316.2,456.2,329.8z"
+   style="fill:#17742e;fill-opacity:1" />
 <path
    id="XMLID_23_"
    class="st0"
-   d="M456.2,329.8c24.9-8.6,52.2-8.6,77.1,0.1c-11.3-13.7-24.4-25.2-38.6-34.6  C480.5,304.7,467.4,316.2,456.2,329.8z" />
+   d="M456.2,329.8c24.9-8.6,52.2-8.6,77.1,0.1c-11.3-13.7-24.4-25.2-38.6-34.6  C480.5,304.7,467.4,316.2,456.2,329.8z"
+   style="stroke:#17742e;stroke-opacity:1" />
 <path
    id="XMLID_18_"
    class="st20"
