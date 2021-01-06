@@ -70,7 +70,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/unfrl/dug/tree/docs/dug-docs',
+            'https://github.com/unfrl/dug/tree/main/dug-docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
