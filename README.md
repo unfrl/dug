@@ -50,10 +50,8 @@ You can also do complicated things like ask for specific record types, get the o
 ### Windows
 
 #### Chocolatey (choco cli)
-> Waiting on chocolatey to approve my package, then I can publish there so this wont require a manual download. [here](https://chocolatey.org/packages/dug)
-1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .nupkg package.
-    * It should look like `dug.<version>.nupkg`
-2. Install by running `choco install dug.<version>.nupkg`
+> Chocolatey manually reviews all packages, which takes a while, so this can lag behind the latest. [status info here](https://chocolatey.org/packages/dug)
+1. Run: `choco install dug`
 
 #### Executable
 1. Go to the [latest release](https://git.kaijucode.com/matt/dug/releases) and download the .exe binary.
