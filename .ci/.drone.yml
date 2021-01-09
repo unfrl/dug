@@ -1,6 +1,6 @@
 kind: pipeline
 type: kubernetes
-name: build_test
+name: dug_build
 
 steps:
 - name: build #Doesnt currently do any testing...
@@ -79,12 +79,12 @@ steps:
   environment:
     NPM_TOKEN_1:
       from_secret: npm_token_1
-    NPM_TOKEN_2:
-      from_secret: npm_token_2
+    # NPM_TOKEN_2:
+    #   from_secret: npm_token_2
   commands:
-  - npm set //https://registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
-  - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
-  - npm set //registry.npmjs.org/:_authToken $${NPM_TOKEN_2}
+  # - npm set //https://registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
+  # - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
+  - npm set //registry.npmjs.org/:_authToken $${NPM_TOKEN_1}
   - sed -i '0,/0.0.1/s//${DRONE_TAG}/' ./.ci/npm_packaging/package.json #Set the Version in the package.json (this sed syntax just updates the first match it finds)
   - npm publish ./.ci/npm_packaging
   when:
@@ -94,12 +94,11 @@ steps:
   - build win-x64
   - package linux
 
-- name: gitea release
-  image: plugins/gitea-release
+- name: github release
+  image: plugins/github-release
   settings:
     api_key:
-      from_secret: gitea_token
-    base_url: https://git.kaijucode.com
+      from_secret: github_token
     files:
       - publish/dug-linux-x64
       - publish/dug-linux-arm64
