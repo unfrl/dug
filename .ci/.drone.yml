@@ -8,6 +8,30 @@ steps:
   commands:
   - dotnet build -c Release ./cli
 
+- name: build docs
+  image: node:12-buster
+  commands:
+  - cd ./dug-docs
+  - yarn
+  - yarn build
+  when:
+    ref:
+    - refs/tags/docs.*
+
+- name: publish docs
+  image: plugins/gh-pages
+  settings:
+    username:
+      from_secret: github_username
+    password:
+      from_secret: github_token
+    pages_directory: dug-docs/build
+  when:
+    ref:
+    - refs/tags/docs.*
+  depends_on:
+  - build docs
+
 - name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -73,26 +97,6 @@ steps:
     - refs/tags/*.*.*
   depends_on:
   - prepare_publishing
-
-- name: package/publish npm
-  image: node:10
-  environment:
-    NPM_TOKEN_1:
-      from_secret: npm_token_1
-    # NPM_TOKEN_2:
-    #   from_secret: npm_token_2
-  commands:
-  # - npm set //https://registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
-  # - npm set //registry.npmjs.org/npm/:_authToken $${NPM_TOKEN_1}
-  - npm set //registry.npmjs.org/:_authToken $${NPM_TOKEN_1}
-  - sed -i '0,/0.0.1/s//${DRONE_TAG}/' ./.ci/npm_packaging/package.json #Set the Version in the package.json (this sed syntax just updates the first match it finds)
-  - npm publish ./.ci/npm_packaging
-  when:
-    ref:
-    - refs/tags/*.*.*
-  depends_on:
-  - build win-x64
-  - package linux
 
 - name: github release
   image: plugins/github-release
