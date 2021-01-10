@@ -8,30 +8,6 @@ steps:
   commands:
   - dotnet build -c Release ./cli
 
-- name: build docs
-  image: node:12-buster
-  commands:
-  - cd ./dug-docs
-  - yarn
-  - yarn build
-  when:
-    ref:
-    - refs/tags/docs.*
-
-- name: publish docs
-  image: plugins/gh-pages
-  settings:
-    username:
-      from_secret: github_username
-    password:
-      from_secret: github_token
-    pages_directory: dug-docs/build
-  when:
-    ref:
-    - refs/tags/docs.*
-  depends_on:
-  - build docs
-
 - name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
