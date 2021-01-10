@@ -44,7 +44,7 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
     <licenseUrl>https://raw.githubusercontent.com/unfrl/dug/main/cli/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/unfrl/dug</projectSourceUrl>
-    <!--<docsUrl>At what url are the software docs located?</docsUrl>-->
+    <docsUrl>https://dug.unfrl.com</docsUrl>
     <!--<mailingListUrl></mailingListUrl>-->
     <!--<bugTrackerUrl></bugTrackerUrl>-->
     <tags>dug DNS Propagation CLI</tags>
