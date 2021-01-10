@@ -426,3 +426,5 @@ yarn-error.log*
 #Build Output
 publish/
 .ci/win/output/dug.exe
+dug-docs/build
+
