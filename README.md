@@ -6,8 +6,10 @@ A powerful global DNS progagation checker that can output in a variety of format
 
 The goal of dug is to make it easy to check the propagation of DNS records. It is also capable of providing templated output that can be used in scripts for things like monitoring.
 
+For detailed documentation check out dug.unfrl.com
+
 ## Usage
-Until theres a wiki for this, the easiest way to explore dug is through the help.
+The easiest way to explore dug is through the help.
 * `dug help` -> Get top level help explaining the different verbs
 * `dug help run` or `dug run --help` -> Get details about a specific verb (run, which is the default)
 * `dug help update` or `dug update --help` -> Get details about the update verb

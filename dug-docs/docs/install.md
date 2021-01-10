@@ -35,10 +35,3 @@ A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
 1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the .exe binary.
     * It should look like `dug.exe`
 2. You should be able to download that and run it from the terminal. Then you can put it somewhere and update your path so you can execute it from anywhere.
-
-### NPM
-> EXPERIMENTAL! (Currently only supports linux-x64)
-
-Run: `npm -g @unfrl/dug`
-
-Idk why I wanted to publish it on npm as well, its really not a good way to distribute a binary...
