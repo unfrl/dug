@@ -1,7 +1,7 @@
 module.exports = {
   title: 'dug',
   tagline: 'A global DNS propagation checker',
-  url: 'dug.unfrl.com',
+  url: 'https://dug.unfrl.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
