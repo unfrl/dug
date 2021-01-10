@@ -1,6 +1,6 @@
 # dug
 
-[![Build Status](https://drone.kaijucode.com/api/badges/matt/dug/status.svg)](https://drone.kaijucode.com/matt/dug)
+[![Build Status](https://drone.unfrl.com/api/badges/unfrl/dug/status.svg)](https://drone.unfrl.com/unfrl/dug)
 
 The **real** repository is located [here](https://git.kaijucode.com/matt/dug)
 
