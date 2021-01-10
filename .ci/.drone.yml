@@ -12,6 +12,7 @@ steps:
   image: node:12-buster
   commands:
   - cd ./dug-docs
+  - yarn
   - yarn build
   when:
     ref:
@@ -28,6 +29,8 @@ steps:
   when:
     ref:
     - refs/tags/docs.*
+  depends_on:
+  - build docs
 
 - name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
