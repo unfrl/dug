@@ -1,6 +1,6 @@
 module.exports = {
   title: 'dug',
-  tagline: 'A global DNS propagation checker',
+  tagline: 'A global DNS propagation checker on your CLI!',
   url: 'https://dug.unfrl.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',

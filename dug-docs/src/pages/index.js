@@ -59,7 +59,7 @@ function Home() {
   return (
     <Layout
       title={`Know your DNS!`}
-      description="A global DNS propagation checker">
+      description="A global DNS propagation checker on your CLI!">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <img src={useBaseUrl("img/logo.svg")} width="150px"/>
