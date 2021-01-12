@@ -29,7 +29,19 @@ setup() {
 }
 
 @test "Invoking dug with --output-format but without --output-template should fail" {
-  run $DUG --output-format JSON
+  run $DUG --output-format JSON google.com
   [ "$status" -eq 1 ]
-  [ "$output" = "This test should blow up now, testing CI" ]
+  [[ "$output" == *"Error setting value to option 'output-format':"* ]]
+}
+
+@test "Invoking dug with invalid value in --continents should fail" {
+  run $DUG --continents AZ,AS,NA google.com
+  [ "$status" -eq 1 ]
+  [[ "$output" == *"Error setting value to option 'continents':"* ]]
+}
+
+@test "Invoking dug with -v should enable verbose output" {
+  run $DUG google.com -s 8.8.8.8 -v
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"Verbose Output Enabled"* ]]
 }

@@ -3,7 +3,7 @@ type: kubernetes
 name: dug test
 
 steps:
-  - name: build
+  - name: build and test
     image: mcr.microsoft.com/dotnet/sdk:5.0
     commands:
     - apt update
@@ -48,11 +48,6 @@ depends_on:
 - dug test
 
 steps:
-- name: build #Doesnt currently do any testing...
-  image: mcr.microsoft.com/dotnet/sdk:5.0
-  commands:
-  - dotnet build -c Release ./cli
-
 - name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
