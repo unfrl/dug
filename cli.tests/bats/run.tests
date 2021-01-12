@@ -1,5 +1,0 @@
-@test "Invoke 'dug version'" {
-  run ../../publish/dug version
-  [ "$status" -eq 0 ]
-  [ "$output" = "0.0.1" ]
-}
