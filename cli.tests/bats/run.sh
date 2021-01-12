@@ -45,3 +45,17 @@ setup() {
   [ "$status" -eq 0 ]
   [[ "$output" == *"Verbose Output Enabled"* ]]
 }
+
+@test "Verify that the default run prints a table with A records" {
+  run $DUG google.com -s 8.8.8.8
+  [ "$status" -eq 0 ]
+  # echo "ouput: $output"
+  [[ "$output" =~ "A records for google.com" ]]
+}
+
+@test "Verify that the requesting specific records prints the correct table" {
+  run $DUG google.com -s 8.8.8.8 -q A,MX
+  [ "$status" -eq 0 ]
+  # echo "ouput: $output"
+  [[ "$output" =~ "A,MX records for google.com" ]]
+}
