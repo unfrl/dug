@@ -3,6 +3,16 @@ type: kubernetes
 name: dug test
 
 steps:
+  - name: build
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    commands:
+    - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+  
+  - name: BATS test
+    image: bats:latest
+    # commands:
+    # - 
+
   - name: test
     image: docker:20.10-dind
     volumes:
@@ -21,14 +31,6 @@ steps:
       - sleep 5
       - docker ps
       - docker build . -t dug-test
-
-# services:
-# - name: docker
-#   image: docker:20.10-dind
-#   privileged: true
-#   volumes:
-#   - name: dockersock
-#     path: /var/run
 
 volumes:
 - name: dockersock
