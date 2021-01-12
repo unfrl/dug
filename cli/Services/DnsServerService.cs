@@ -42,7 +42,7 @@ namespace dug.Services
                     newServers = LoadServersFromStream(reader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',', false);
                     PersistServers();
                 }
-                Console.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
+                DugConsole.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
             }
             else {
                 LoadServersFromDatastore();

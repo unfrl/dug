@@ -90,7 +90,7 @@ namespace dug
 
         private async Task ExecuteArgumentsAsync(object args)
         {
-            HandleGlobalOptions(args as GlobalOptions);
+            HandleGlobalAndSpecialOptions(args as GlobalOptions);
             
             _dnsServerService.EnsureServers();
             switch(args){
@@ -112,9 +112,11 @@ namespace dug
             }
         }
 
-        private void HandleGlobalOptions(GlobalOptions options){
+        private void HandleGlobalAndSpecialOptions(GlobalOptions options){
             Config.Verbose = options.Verbose;
             DugConsole.VerboseWriteLine("Verbose Output Enabled");
+            if(options is RunOptions ro)
+                Config.CanWrite = ro.OutputFormat == OutputFormats.TABLES; //Dont allow normal console output if the output is templated (JSON or CSV), it will pollute it
         }
 
         private async Task ExecuteRun(RunOptions opts)
@@ -210,7 +212,7 @@ namespace dug
                 _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
                 var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromMilliseconds(opts.Timeout), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
                 _percentageAnimator.StopIfRunning();
-                Console.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
+                DugConsole.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
                 
                 _dnsServerService.UpdateServerReliabilityFromResults(results, opts.Reliability == ReliabilityUpdateType.Prune);
                 return;

@@ -1,6 +1,29 @@
 kind: pipeline
 type: kubernetes
-name: dug_build
+name: dug test
+
+steps:
+    - name: build
+      image: docker:20.10-dind
+      environment:
+        DOCKER_HOST: tcp://docker:2375
+      commands:
+        - sleep 5
+        - docker ps
+        - docker build . -t dug-test
+
+services:
+  - name: docker
+    image: docker:20.10-dind
+    privileged: true
+
+---
+
+kind: pipeline
+type: kubernetes
+name: dug publish
+depends_on:
+- dug test
 
 steps:
 - name: build #Doesnt currently do any testing...
@@ -97,3 +120,4 @@ steps:
   - build win-x64
   - package linux
   - build osx-x64
+
