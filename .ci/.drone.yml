@@ -3,16 +3,16 @@ type: kubernetes
 name: dug test
 
 steps:
-  - name: build
+  - name: build and test
     image: mcr.microsoft.com/dotnet/sdk:5.0
     commands:
     - apt update
     - apt install bats
-    # - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+    - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
     - bats cli.tests/bats/run.sh
   
-  - name: BATS test
-    image: bats:latest
+  # - name: BATS test
+  #   image: bats:latest
     # commands:
     # - 
 
@@ -44,15 +44,13 @@ steps:
 kind: pipeline
 type: kubernetes
 name: dug publish
+when:
+    ref:
+    - refs/tags/*.*.*
 depends_on:
 - dug test
 
 steps:
-- name: build #Doesnt currently do any testing...
-  image: mcr.microsoft.com/dotnet/sdk:5.0
-  commands:
-  - dotnet build -c Release ./cli
-
 - name: prepare_publishing
   image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
@@ -61,8 +59,6 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
-  depends_on:
-  - build
 
 - name: docker  
   image: plugins/docker
