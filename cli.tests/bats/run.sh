@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-#This is intended to be run from the root directory with `bats ./cli.tests/bats/run.sh`
+# This is intended to be run from the root directory with `bats ./cli.tests/bats/run.sh`
+# The publish command below is not used in CI/CD, its just there for running bats locally.
 setup() {
   DUG=publish/dug
 
@@ -30,4 +31,5 @@ setup() {
 @test "Invoking dug with --output-format but without --output-template should fail" {
   run $DUG --output-format JSON
   [ "$status" -eq 1 ]
+  [ "$output" = "This test should blow up now, testing CI" ]
 }
