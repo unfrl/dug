@@ -6,6 +6,7 @@ steps:
   - name: build
     image: mcr.microsoft.com/dotnet/sdk:5.0
     commands:
+    - apt update
     - apt install bats
     # - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
     - bats cli.tests/bats/run.sh
