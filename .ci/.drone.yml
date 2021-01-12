@@ -56,8 +56,6 @@ steps:
   when:
     ref:
     - refs/tags/*.*.*
-  depends_on:
-  - build
 
 - name: docker  
   image: plugins/docker
