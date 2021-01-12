@@ -1,7 +1,8 @@
 #!/bin/bash
 
+#This is intended to be run from the root directory with `bats ./cli.tests/bats/run.sh`
 setup() {
-  DUG=cli.tests/bats/dug
+  DUG=publish/dug
 
   if [ ! -f "$DUG" ]; then
     echo "dug executable doesnt exist, building..."
