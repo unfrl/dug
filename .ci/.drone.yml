@@ -1,48 +1,48 @@
-kind: pipeline
-type: kubernetes
-name: dug test
+# kind: pipeline
+# type: kubernetes
+# name: dug test
 
-steps:
-  - name: build
-    image: mcr.microsoft.com/dotnet/sdk:5.0
-    commands:
-    - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+# steps:
+#   - name: build
+#     image: mcr.microsoft.com/dotnet/sdk:5.0
+#     commands:
+#     - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
   
-  - name: BATS test
-    image: bats:latest
-    # commands:
-    # - 
+#   - name: BATS test
+#     image: bats:latest
+#     # commands:
+#     # - 
 
-  - name: test
-    image: docker:20.10-dind
-    volumes:
-    - name: dockersock
-      path: /var/run
-    commands:
-    - sleep 5 # give docker enough time to start
-    - docker ps -a
+#   - name: test
+#     image: docker:20.10-dind
+#     volumes:
+#     - name: dockersock
+#       path: /var/run
+#     commands:
+#     - sleep 5 # give docker enough time to start
+#     - docker ps -a
 
-  - name: build
-    image: docker:20.10-dind
-    volumes:
-    - name: dockersock
-      path: /var/run
-    commands:
-      - sleep 5
-      - docker ps
-      - docker build . -t dug-test
+#   - name: build
+#     image: docker:20.10-dind
+#     volumes:
+#     - name: dockersock
+#       path: /var/run
+#     commands:
+#       - sleep 5
+#       - docker ps
+#       - docker build . -t dug-test
 
-volumes:
-- name: dockersock
-  temp: {}
+# volumes:
+# - name: dockersock
+#   temp: {}
 
----
+# ---
 
 kind: pipeline
 type: kubernetes
 name: dug publish
-depends_on:
-- dug test
+# depends_on:
+# - dug test
 
 steps:
 - name: build #Doesnt currently do any testing...
@@ -60,6 +60,18 @@ steps:
     - refs/tags/*.*.*
   depends_on:
   - build
+
+- name: docker  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: unfrl/dug
+    dockerfile: Dockerfile
+    tags: ${DRONE_TAG}
+    
 
 - name: package linux
   image: mcr.microsoft.com/dotnet/sdk:5.0
