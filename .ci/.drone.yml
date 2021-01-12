@@ -5,17 +5,18 @@ name: dug test
 steps:
     - name: build
       image: docker:20.10-dind
-      environment:
-        DOCKER_HOST: tcp://docker:2375
       commands:
         - sleep 5
         - docker ps
         - docker build . -t dug-test
 
 services:
-  - name: docker
-    image: docker:20.10-dind
-    privileged: true
+- name: docker
+  image: docker:20.10-dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
 
 ---
 
