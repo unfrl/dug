@@ -3,12 +3,24 @@ type: kubernetes
 name: dug test
 
 steps:
-    - name: build
-      image: docker:20.10-dind
-      commands:
-        - sleep 5
-        - docker ps
-        - docker build . -t dug-test
+  - name: test
+    image: docker:dind
+    volumes:
+    - name: dockersock
+      path: /var/run
+    commands:
+    - sleep 5 # give docker enough time to start
+    - docker ps -a
+
+  - name: build
+    image: docker:20.10-dind
+    volumes:
+    - name: dockersock
+      path: /var/run
+    commands:
+      - sleep 5
+      - docker ps
+      - docker build . -t dug-test
 
 services:
 - name: docker
@@ -18,6 +30,10 @@ services:
   - name: dockersock
     path: /var/run
 
+volumes:
+- name: dockersock
+  temp: {}
+  
 ---
 
 kind: pipeline
