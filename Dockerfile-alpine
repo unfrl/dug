@@ -1,0 +1,13 @@
+#This DOckerfile "works" but for some reason the animated parts of the output dont look correct.
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as build
+WORKDIR /app
+
+COPY ./cli/dug.csproj .
+RUN dotnet restore
+COPY ./cli .
+RUN dotnet publish -r linux-musl-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish
+
+FROM mcr.microsoft.com/dotnet/runtime:5.0-alpine as runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT [ "./dug" ]

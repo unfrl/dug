@@ -19,6 +19,10 @@ title: Install
 
 A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
 
+### Docker
+
+Not sure if this counts as an "Installation" but there is a docker image available [here](https://hub.docker.com/r/unfrl/dug)
+
 ### OSX
 1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the osx binary.
     * It should look like `dug-osx-x64`
