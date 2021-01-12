@@ -71,6 +71,9 @@ steps:
     repo: unfrl/dug
     dockerfile: Dockerfile
     tags: ${DRONE_TAG}
+  when:
+    ref:
+    - refs/tags/*.*.*
     
 
 - name: package linux
