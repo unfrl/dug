@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 #This is intended to be run from the root directory with `bats ./cli.tests/bats/run.sh`
 setup() {
