@@ -4,7 +4,7 @@ name: dug test
 
 steps:
   - name: test
-    image: docker:dind
+    image: docker:20.10-dind
     volumes:
     - name: dockersock
       path: /var/run
@@ -22,18 +22,18 @@ steps:
       - docker ps
       - docker build . -t dug-test
 
-services:
-- name: docker
-  image: docker:20.10-dind
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
+# services:
+# - name: docker
+#   image: docker:20.10-dind
+#   privileged: true
+#   volumes:
+#   - name: dockersock
+#     path: /var/run
 
 volumes:
 - name: dockersock
   temp: {}
-  
+
 ---
 
 kind: pipeline
