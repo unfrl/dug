@@ -5,7 +5,7 @@ setup() {
 
   if [ ! -f "$DUG" ]; then
     echo "dug executable doesnt exist, building..."
-    dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o ../../publish ../../cli
+    dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish ./cli
   fi
   if [ ! -f "$DUG" ]; then
     echo "Failed to build executable!"
