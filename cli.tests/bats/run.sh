@@ -53,9 +53,16 @@ setup() {
   [[ "$output" =~ "A records for google.com" ]]
 }
 
-@test "Verify that the requesting specific records prints the correct table" {
+@test "Verify that requesting specific records prints the correct table" {
   run $DUG google.com -s 8.8.8.8 -q A,MX
   [ "$status" -eq 0 ]
   # echo "ouput: $output"
   [[ "$output" =~ "A,MX records for google.com" ]]
+}
+
+@test "Verify that requesting specific records, in any case, prints the correct table" {
+  run $DUG google.com -s 8.8.8.8 -q A,mx,Ns
+  [ "$status" -eq 0 ]
+  # echo "ouput: $output"
+  [[ "$output" =~ "A,MX,NS records for google.com" ]]
 }
