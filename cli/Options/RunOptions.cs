@@ -90,7 +90,7 @@ namespace dug.Options
                 ParsedQueryTypes = new List<QueryType>();
                 foreach(string queryTypeString in QueryTypes.Split(",")){
                     QueryType parsedQueryType;
-                    if(Enum.TryParse<QueryType>(queryTypeString, out parsedQueryType)){
+                    if(Enum.TryParse<QueryType>(queryTypeString.ToUpperInvariant(), out parsedQueryType)){
                         ParsedQueryTypes.Add(parsedQueryType);
                     }
                     else{
