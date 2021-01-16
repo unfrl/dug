@@ -1,0 +1,9 @@
+[submodule "cli.tests/bats/libs/bats"]
+	path = cli.tests/bats/libs/bats
+	url = https://github.com/sstephenson/bats
+[submodule "cli.tests/bats/libs/bats-support"]
+	path = cli.tests/bats/libs/bats-support
+	url = https://github.com/ztombol/bats-support
+[submodule "cli.tests/bats/libs/bats-assert"]
+	path = cli.tests/bats/libs/bats-assert
+	url = https://github.com/ztombol/bats-assert
