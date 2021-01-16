@@ -6,7 +6,7 @@ name: dug test
 #   disable: true
 
 steps:
-  - name: clone
+  - name: setup bats
     image: alpine/git
     commands:
     # - git clone --recurse-submodules https://github.com/unfrl/dug.git .
@@ -19,6 +19,8 @@ steps:
     # Dont allow bats to do the build, thats a convenience for local development but BATS eats a bunch of the output and can hang.
     - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
     - ./cli.tests/bats/run.sh
+    depends_on:
+      - setup bats
 
 #   - name: test
 #     image: docker:20.10-dind
