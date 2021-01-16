@@ -12,15 +12,12 @@ steps:
     - git clone --recurse-submodules https://github.com/unfrl/dug.git .
     - git checkout $DRONE_COMMIT
     - git submodule update --recursive --remote
-    - ls ./cli.tests/bats
-    - ls ./cli.tests/bats/libs
 
   - name: build and test
     image: mcr.microsoft.com/dotnet/sdk:5.0
     commands:
-    # - apt update
-    # - apt install bats
-    # - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+    # Dont allow bats to do the build, thats a convenience for local development but BATS eats a bunch of the output and can hang.
+    - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
     - ./cli.tests/bats/run.sh
   
   # - name: BATS test
