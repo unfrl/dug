@@ -2,11 +2,16 @@ kind: pipeline
 type: kubernetes
 name: dug test
 
+clone:
+  disable: true
+
 steps:
-  - name: Retrieve BATS submodules for testing
+  - name: clone
     image: alpine/git
     commands:
-    - git submodule update --recursive --remote
+    - git clone --recurse-submodules https://github.com/unfrl/dug.git .
+    - git checkout $DRONE_COMMIT
+    - ls ./cli.tests/bats
 
   - name: build and test
     image: mcr.microsoft.com/dotnet/sdk:5.0
