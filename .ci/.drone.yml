@@ -12,6 +12,7 @@ steps:
     - git clone --recurse-submodules https://github.com/unfrl/dug.git .
     - git checkout $DRONE_COMMIT
     - ls ./cli.tests/bats
+    - ls ./cli.tests/bats/libs
 
   - name: build and test
     image: mcr.microsoft.com/dotnet/sdk:5.0
