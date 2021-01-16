@@ -3,13 +3,18 @@ type: kubernetes
 name: dug test
 
 steps:
+  - name: Retrieve BATS submodules for testing
+    image: alpine/git
+    commands:
+    - git submodule update --recursive --remote
+
   - name: build and test
     image: mcr.microsoft.com/dotnet/sdk:5.0
     commands:
     # - apt update
     # - apt install bats
     # - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
-    - cli.tests/bats/run.sh
+    - ./cli.tests/bats/run.sh
   
   # - name: BATS test
   #   image: bats:latest
