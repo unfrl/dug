@@ -2,15 +2,15 @@ kind: pipeline
 type: kubernetes
 name: dug test
 
-clone:
-  disable: true
+# clone:
+#   disable: true
 
 steps:
   - name: clone
     image: alpine/git
     commands:
-    - git clone --recurse-submodules https://github.com/unfrl/dug.git .
-    - git checkout $DRONE_COMMIT
+    # - git clone --recurse-submodules https://github.com/unfrl/dug.git .
+    # - git checkout $DRONE_COMMIT
     - git submodule update --recursive --remote
 
   - name: build and test
@@ -19,11 +19,6 @@ steps:
     # Dont allow bats to do the build, thats a convenience for local development but BATS eats a bunch of the output and can hang.
     - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
     - ./cli.tests/bats/run.sh
-  
-  # - name: BATS test
-  #   image: bats:latest
-    # commands:
-    # - 
 
 #   - name: test
 #     image: docker:20.10-dind
