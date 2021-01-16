@@ -11,6 +11,7 @@ steps:
     commands:
     - git clone --recurse-submodules https://github.com/unfrl/dug.git .
     - git checkout $DRONE_COMMIT
+    - git submodule update --recursive --remote
     - ls ./cli.tests/bats
     - ls ./cli.tests/bats/libs
 
