@@ -76,7 +76,7 @@ namespace dug.Services
                         }
                         try{
                         string dataString = TemplateHelper.ResponseGetterMap[header](KeyValuePair.Create(server, response)).ToString();
-                        dataString = dataString.Replace(Environment.NewLine, "\\n"); //Cant have real newlines in the csv output...
+                        dataString = dataString.Replace(Environment.NewLine, "\\n").Replace(",",string.Empty); //Cant have real newlines or rogue commas in the csv output...
                         responseResults.Add(dataString);
                         }
                         catch{
