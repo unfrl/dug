@@ -9,6 +9,13 @@ module.exports = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
+    algolia: {
+      apiKey: '795d47f4fab665843179ac87c6e27c85',
+      indexName: 'unfrl',
+      contextualSearch: true,
+      // Optional: Algolia search parameters
+      searchParameters: {},
+    },
     colorMode: {
       defaultMode: 'dark'
     },
