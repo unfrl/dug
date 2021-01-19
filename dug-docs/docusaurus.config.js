@@ -12,7 +12,7 @@ module.exports = {
     algolia: {
       apiKey: '795d47f4fab665843179ac87c6e27c85',
       indexName: 'unfrl',
-      contextualSearch: true,
+      // contextualSearch: true,
       // Optional: Algolia search parameters
       // searchParameters: {},
     },
