@@ -14,7 +14,7 @@ module.exports = {
       indexName: 'unfrl',
       contextualSearch: true,
       // Optional: Algolia search parameters
-      searchParameters: {},
+      // searchParameters: {},
     },
     colorMode: {
       defaultMode: 'dark'
