@@ -61,14 +61,22 @@ steps:
     volumes:
     - name: dockersock
       path: /var/run
+    environment:
+    SNAP_MACAROON:
+      from_secret: snap_macaroon
+    SNAP_UD:
+      from_secret: snap_unbound_discharge
     commands:
+      - sed -i "s~version: '0.0.1'~version: '0.0.2'~" ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
+      - sed -i "s~macaroon = macaroon_value~macaroon = ${SNAP_MACAROON}~" ./cli/auth_template
+      - sed -i "s~unbound_discharge = ud_value~unbound_discharge = ${SNAP_UD}~" ./cli/auth_template
       - sleep 5 # Give Docker a second...
       - docker ps
-      - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli
+      - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
       - docker image ls
-      - ls
-      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable snapcraft
-      - ls
+      - ls ./cli
+      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable snapcraft login --with ./auth_template & snapcraft
+      - ls ./cli
 
 services:
 - name: docker

@@ -1,0 +1,5 @@
+[login.ubuntu.com]
+macaroon = macaroon_value
+unbound_discharge = ud_value
+email = matt@unfrl.com
+
