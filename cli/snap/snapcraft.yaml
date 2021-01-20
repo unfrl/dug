@@ -9,20 +9,21 @@ description: |
   store.
 
 grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
+confinement: strict # use 'strict' once you have the right plugs and slots
 
 apps:
   dug:
     command: ./dug
-    # plugs:
-    #   - home
+    plugs:
+      - home
+      - network
 parts:
   dug:
     plugin: dotnet
     dotnet-version: 5.0
     dotnet-runtime-version: '5.0.2'
     source: .
-    # source-type: local
+    source-type: local
     override-build: |
       dotnet build -c Release
       dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o $SNAPCRAFT_PART_INSTALL
