@@ -67,7 +67,7 @@ steps:
     - name: dockersock
       path: /var/run
     commands:
-      - sleep 5 # Give Docker a second...
+      - sleep 10 # Give Docker a second...
       - docker ps
       - sed -i 's/0.0.1/0.0.2/g' ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
       - sed -i "s~macaroon = macaroon_value~macaroon = ${SNAP_MACAROON}~" ./cli/auth_template
