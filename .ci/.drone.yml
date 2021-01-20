@@ -58,20 +58,20 @@ name: dug publish snap
 steps:
   - name: build
     image: docker:20.10-dind
-    volumes:
-    - name: dockersock
-      path: /var/run
     environment:
       SNAP_MACAROON:
         from_secret: snap_macaroon
       SNAP_UD:
         from_secret: snap_unbound_discharge
+    volumes:
+    - name: dockersock
+      path: /var/run
     commands:
+      - sleep 5 # Give Docker a second...
+      - docker ps
       - sed -i 's/0.0.1/0.0.2/g' ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
       - sed -i "s~macaroon = macaroon_value~macaroon = ${SNAP_MACAROON}~" ./cli/auth_template
       - sed -i "s~unbound_discharge = ud_value~unbound_discharge = ${SNAP_UD}~" ./cli/auth_template
-      - sleep 5 # Give Docker a second...
-      - docker ps
       - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
       - docker image ls
       - ls ./cli
