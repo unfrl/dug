@@ -37,7 +37,13 @@ You can also do complicated things like ask for specific record types, get the o
 
 ### Arch
 
-1. A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
+A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
+
+### Snap
+
+Run `snap install unfrl-dug`
+
+Note: Annoying `dug` is a reserved package name and I am waiting for them to give it to me. In the meantime in order to run dug after installing it as specified above you should run: `unfrl-dug.dug ...`
 
 ### Docker
 

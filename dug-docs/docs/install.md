@@ -19,6 +19,12 @@ title: Install
 
 A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
 
+### Snap
+
+Run `snap install unfrl-dug`
+
+Note: Annoying `dug` is a reserved package name and I am waiting for them to give it to me. In the meantime in order to run dug after installing it as specified above you should run: `unfrl-dug.dug ...`
+
 ### Docker
 
 Not sure if this counts as an "Installation" but there is a docker image available [here](https://hub.docker.com/r/unfrl/dug)
