@@ -70,6 +70,9 @@ steps:
       - docker run -v "$PWD":/build -w /build snap18custom:stable snapcraft
       - ls
 
+volumes:
+- name: dockersock
+  temp: {}
 ---
 
 kind: pipeline
