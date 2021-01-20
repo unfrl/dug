@@ -70,11 +70,11 @@ steps:
       - sleep 10 # Give Docker a second...
       - docker ps
       - sed -i 's/0.0.1/0.0.2/g' ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
-      - sed -i 's~macaroon_value~${SNAP_MACAROON}~' ./cli/auth_template
-      - sed -i 's~ud_value~${SNAP_UD}~' ./cli/auth_template
+      - sed -i 's~macaroon_value~$${SNAP_MACAROON}~' ./cli/auth_template
+      - sed -i 's~ud_value~$${SNAP_UD}~' ./cli/auth_template
       - cat ./cli/auth_template
-      - echo ${SNAP_MACAROON} | wc -c
-      - echo ${SNAP_UD} | wc -c
+      - echo $${SNAP_MACAROON} | wc -c
+      - echo $${SNAP_UD} | wc -c
       - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
       - docker image ls
       - ls ./cli
