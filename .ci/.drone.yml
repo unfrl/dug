@@ -49,15 +49,15 @@ steps:
 kind: pipeline
 type: kubernetes
 name: dug publish snap
-when:
-    ref:
-    - refs/tags/*.*.*
 depends_on:
 - dug test
 
 steps:
   - name: build
     image: docker:20.10-dind
+    when:
+      ref:
+      - refs/tags/*.*.*
     environment:
       SNAP_MACAROON:
         from_secret: snap_macaroon
@@ -93,9 +93,6 @@ volumes:
 kind: pipeline
 type: kubernetes
 name: dug publish
-when:
-    ref:
-    - refs/tags/*.*.*
 depends_on:
 - dug test
 
