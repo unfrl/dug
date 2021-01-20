@@ -49,11 +49,11 @@ steps:
 kind: pipeline
 type: kubernetes
 name: dug publish snap
-# when:
-#     ref:
-#     - refs/tags/*.*.*
-# depends_on:
-# - dug test
+when:
+    ref:
+    - refs/tags/*.*.*
+depends_on:
+- dug test
 
 steps:
   - name: build
@@ -69,16 +69,12 @@ steps:
     commands:
       - sleep 10 # Give Docker a second...
       - docker ps
-      - sed -i 's/0.0.1/0.0.2/g' ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
+      - sed -i 's/0.0.1/${DRONE_TAG}/g' ./cli/snap/snapcraft.yaml
       - sed -i "s~macaroon_value~$${SNAP_MACAROON}~" ./cli/auth_template
       - sed -i "s~ud_value~$${SNAP_UD}~" ./cli/auth_template
-      - cat ./cli/auth_template
-      - echo $${SNAP_MACAROON} | wc -c
-      - echo $${SNAP_UD} | wc -c
       - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
-      - docker image ls
       - ls ./cli
-      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable /bin/bash -c "snapcraft login --with ./auth_template; snapcraft; snapcraft upload --release=stable unfrl-dug_0.0.2_amd64.snap" #Replace 0.0.2 with ${DRONE_TAG}
+      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable /bin/bash -c "snapcraft login --with ./auth_template; snapcraft; snapcraft upload --release=stable unfrl-dug_${DRONE_TAG}_amd64.snap"
       - ls ./cli
 
 services:
