@@ -67,9 +67,9 @@ steps:
       SNAP_UD:
         from_secret: snap_unbound_discharge
     commands:
-      # - sed -i "s~version: '0.0.1'~version: '0.0.2'~" ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
-      # - sed -i "s~macaroon = macaroon_value~macaroon = ${SNAP_MACAROON}~" ./cli/auth_template
-      # - sed -i "s~unbound_discharge = ud_value~unbound_discharge = ${SNAP_UD}~" ./cli/auth_template
+      - sed -i 's/version: 0.0.1/version: 0.0.2/g' ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
+      - sed -i "s~macaroon = macaroon_value~macaroon = ${SNAP_MACAROON}~" ./cli/auth_template
+      - sed -i "s~unbound_discharge = ud_value~unbound_discharge = ${SNAP_UD}~" ./cli/auth_template
       - sleep 5 # Give Docker a second...
       - docker ps
       - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
