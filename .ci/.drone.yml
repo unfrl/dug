@@ -70,6 +70,14 @@ steps:
       - docker run -v "$PWD":/build -w /build snap18custom:stable snapcraft
       - ls
 
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
+    
 volumes:
 - name: dockersock
   temp: {}
