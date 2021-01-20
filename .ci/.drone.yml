@@ -62,10 +62,10 @@ steps:
     - name: dockersock
       path: /var/run
     environment:
-    SNAP_MACAROON:
-      from_secret: snap_macaroon
-    SNAP_UD:
-      from_secret: snap_unbound_discharge
+      SNAP_MACAROON:
+        from_secret: snap_macaroon
+      SNAP_UD:
+        from_secret: snap_unbound_discharge
     commands:
       - sed -i "s~version: '0.0.1'~version: '0.0.2'~" ./cli/snap/snapcraft.yaml #Replace 0.0.2 with ${DRONE_TAG}
       - sed -i "s~macaroon = macaroon_value~macaroon = ${SNAP_MACAROON}~" ./cli/auth_template
