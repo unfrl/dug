@@ -75,7 +75,7 @@ steps:
       - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
       - docker image ls
       - ls ./cli
-      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable snapcraft login --with ./auth_template & snapcraft
+      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable snapcraft login --with ./auth_template && snapcraft
       - ls ./cli
 
 services:
