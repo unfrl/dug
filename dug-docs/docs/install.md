@@ -20,10 +20,12 @@ title: Install
 A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
 
 ### Snap
+> Install snap if you dont have it [Guide](https://snapcraft.io/docs/getting-started#heading--install)
 
-Run `snap install unfrl-dug`
+1. Run: `sudo snap install unfrl-dug`
+2. Invoke with: `unfrl-dug [OPTIONS]`
 
-Note: Annoying `dug` is a reserved package name and I am waiting for them to give it to me. In the meantime in order to run dug after installing it as specified above you should run: `unfrl-dug.dug ...`
+Note: Annoyingly `dug` is a reserved package name and I am waiting for them to give it to me. When I get it the package will just be named `dug`
 
 ### Docker
 
