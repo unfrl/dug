@@ -1,6 +1,7 @@
 # dug
 
 [![Build Status](https://drone.unfrl.com/api/badges/unfrl/dug/status.svg)](https://drone.unfrl.com/unfrl/dug)
+[![unfrl-dug](https://snapcraft.io/unfrl-dug/badge.svg)](https://snapcraft.io/unfrl-dug)
 
 A powerful global DNS progagation checker that can output in a variety of formats.
 
@@ -40,6 +41,7 @@ You can also do complicated things like ask for specific record types, get the o
 A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
 
 ### Snap
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/unfrl-dug)
 > Install snap if you dont have it [Guide](https://snapcraft.io/docs/getting-started#heading--install)
 
 1. Run: `sudo snap install unfrl-dug`
