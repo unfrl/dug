@@ -3,10 +3,9 @@ base: core18 # the base snap is the execution environment for this snap
 version: 0.0.1 # just for humans, typically '1.2+git' or '1.3.2'
 summary: A powerful DNS progagation checker that can output in a variety of formats. # 79 char long summary
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  A powerful global DNS progagation checker that can output in a variety of formats.
+  The goal of dug is to make it easy to check the propagation of DNS records. It is also capable of providing templated output that can be used in scripts for things like monitoring.
+  For detailed documentation check out dug.unfrl.com
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
