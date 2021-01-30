@@ -76,6 +76,16 @@ This is a .net 5 project, so as long as you have the dotnet cli, available [here
 
 The project was developed in VSCode so the debugger profiles that I have used are available if you're also using VSCode.
 
+### Testing
+
+There is currently fairly limited testing, what does exist uses the [BATS](https://github.com/sstephenson/bats) tool.
+
+To run the BATS tests you will need to have cloned dug recursively, like: `git clone --recursive <dug_repo_url>`
+
+If you didnt do that you can run this to restore the BATS submodules into ./cli.tests/bats/libs: `git submodule update --init --recursive`
+
+Once you have BATS you should be able to simply run the BATS tests with: `./cli.tests/bats/run.sh`
+
 ## License
 The license used by dug, [here](./cli/LICENSE), is very explicitly designed to try to keep capitalists from benefiting from this tool. This is not a traditional license but it is very simple, please read it.
 

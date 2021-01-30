@@ -79,6 +79,12 @@ setup() {
   run $DUG google.com -s 8.8.8.8 -q A,mx,Ns
   assert_success
   # echo "ouput: $output"
-  assert_line --index 1 --partial "A,MX,NS records for google.com"
+  assert_line --partial "A,MX,NS records for google.com"
 }
 
+@test "Verify that specifying table-detail out of range fails" {
+  run $DUG google.com -s 8.8.8.8 -q A -d 0
+  assert_failure
+  # echo "ouput: $output"
+  assert_line --index 0 --partial "Error setting value to option 'd, table-detail':"
+}

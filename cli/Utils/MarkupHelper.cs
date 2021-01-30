@@ -19,18 +19,18 @@ namespace dug.Utils
                 case "Empty":
                     return $"[yellow]{dnsResponse}[/]";
                 case "ConnectionTimeout":
-                    return "[red]Connection Timeout[/]";
+                    return "[red]Connection Timeout[/]⏲️";
                 default:
-                    return UrlMarkupInPlace(dnsResponse, url);
+                    return ResponseMarkupInPlace(dnsResponse, url);
             }
         }
 
         /*
-            Takes in a string and replaces all occurences of the specified url, as well as record types, with markup making it green.
+            Takes in a string and replaces all occurences of the specified 'highlight' string (usually a URL), as well as record types, with markup making it green.
         */
-        public static string UrlMarkupInPlace(string value, string url){
+        public static string ResponseMarkupInPlace(string value, string highlight){
             StringBuilder sb = new StringBuilder(value);
-            sb.Replace(url, $"[green]{url}[/]");
+            sb.Replace(highlight, $"[green]{highlight}[/]");
             var queryTypeNames = Enum.GetNames(typeof(QueryType));
             foreach(string queryType in queryTypeNames){
                 sb.Replace($" {queryType} ", $" [green]{queryType}[/] ");
