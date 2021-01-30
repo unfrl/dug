@@ -176,11 +176,25 @@ namespace dug.Options
                 }
 
                 if(string.IsNullOrEmpty(Template)){
-                    throw new Exception("A template (--output-template) is required when using an output-format other than the default (TABLES)");
+                    throw new Exception($"A template (--output-template) is required when using an output-format other than the default ({default(OutputFormats)})");
                 }
                 _outputFormat = value;
             }
         }
+
+        private int _tableDetailLevel;
+        [Option('d', "table-detail", Default = 1, HelpText = "Specify the level of detail to show when rendering tables. Ignored if output-format is set to anything other than its default (TABLES)")]
+        public int TableDetailLevel { get{return _tableDetailLevel;}
+             set
+             {
+                 if(value < 1 || value > 2) //Currently only support 1 and 2
+                 {
+                    throw new Exception("The specified table-detail is out of range. Valid values are in the range [1-2]");
+                 }
+                 _tableDetailLevel = value;
+             }
+        }
+
     }
 
     //This will likely be needed later
