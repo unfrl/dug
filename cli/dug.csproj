@@ -21,6 +21,18 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources/default_servers.csv" />
+    <EmbeddedResource Update="i18n\dug.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>dug.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="i18n\dug.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dug.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

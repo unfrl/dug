@@ -4,6 +4,9 @@ namespace dug.Options
 {
     public class GlobalOptions
     {
+        // [Option('z', "helloworld", Required = false, HelpText = "HelloWorld", ResourceType = typeof(i18n.dug))]
+        // public bool Hello { get; set; }
+
         [Option('v', "verbose", Required = false, HelpText = "Enable Verbose Output")]
         public bool Verbose { get; set; }
 
