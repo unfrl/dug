@@ -71,7 +71,7 @@ namespace dug
                         // People are working to remedy this:
                         // https://github.com/commandlineparser/commandline/pull/727
                         // https://github.com/commandlineparser/commandline/issues/363
-                        Console.WriteLine($"A {nameof(RunOptions.Hostname)} must be provided. (run dug help or dug --help for more info)");
+                        Console.WriteLine(i18n.dug.ER_Hostname_Missing, nameof(RunOptions.Hostname));
                         continue;
                     default:
                         var sb = SentenceBuilder.Create();
@@ -108,7 +108,7 @@ namespace dug
 
         private void HandleGlobalAndSpecialOptions(GlobalOptions options){
             Config.Verbose = options.Verbose;
-            DugConsole.VerboseWriteLine("Verbose Output Enabled");
+            DugConsole.VerboseWriteLine(i18n.dug.Output_Verbose_Enabled);
             if(options is RunOptions ro)
                 Config.CanWrite = ro.OutputFormat == OutputFormats.TABLES; //Dont allow normal console output if the output is templated (JSON or CSV), it will pollute it
         }
@@ -122,7 +122,7 @@ namespace dug
             List<DnsServer> serversToUse = new List<DnsServer>();
             if(!string.IsNullOrEmpty(opts.CustomServerFile)){
                 if(!File.Exists(opts.CustomServerFile)){
-                    Console.WriteLine($"Specified file does not exist: {opts.CustomServerFile}");
+                    Console.WriteLine(i18n.dug.ER_Specified_File_Not_Found, opts.CustomServerFile);
                     System.Environment.Exit(1);
                 }
                 
@@ -136,7 +136,7 @@ namespace dug
                     using(var streamReader = File.OpenText(opts.CustomServerFile)){
                         var serversFromFile = _dnsServerService.ParseServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',');
                         if(serversFromFile == null || serversFromFile.Count == 0){
-                            throw new Exception($"Unable to parse content from specified file: {opts.CustomServerFile}\n Consider using --data-columns");
+                            throw new Exception(string.Format(i18n.dug.ER_Unable_To_Parse_File, opts.CustomServerFile));
                         }
                         serversToUse.AddRange(serversFromFile);
                     }
@@ -157,7 +157,7 @@ namespace dug
                 serversToUse.AddRange(serversByReliability
                     .Where(server => opts.ParsedContinents.Contains(server.ContinentCode, new ContinentCodeComparer())));
             }
-            DugConsole.VerboseWriteLine("Server Count: "+serversToUse.Count());
+            DugConsole.VerboseWriteLine(string.Format(i18n.dug.Output_Servers_To_Use, serversToUse.Count));
 
             // 2. Run the queries with any options (any records, specific records, etc)
             if(opts.OutputFormat == OutputFormats.TABLES){
@@ -203,10 +203,10 @@ namespace dug
             }
 
             if(opts.Reliability != null){
-                _percentageAnimator.Start($"Testing {_dnsServerService.Servers.Count} server responses for google.com", _dnsServerService.Servers.Count);
+                _percentageAnimator.Start(string.Format(i18n.dug.Output_Testing_Server_Responses, _dnsServerService.Servers.Count), _dnsServerService.Servers.Count);
                 var results = await _dnsQueryService.QueryServers("google.com", _dnsServerService.Servers, TimeSpan.FromMilliseconds(opts.Timeout), new [] { QueryType.A }, opts.QueryParallelism, opts.QueryRetries, _percentageAnimator.EventHandler);
                 _percentageAnimator.StopIfRunning();
-                DugConsole.WriteLine($"\nFinished, got {results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum()} good responses out of {_dnsServerService.Servers.Count() * 1} requests");
+                DugConsole.WriteLine(string.Format(i18n.dug.Output_Testing_Server_Responses_Finished, results.Select(pair => pair.Value.Count(res => !res.HasError)).Sum(), _dnsServerService.Servers.Count() * 1));
                 
                 _dnsServerService.UpdateServerReliabilityFromResults(results, opts.Reliability == ReliabilityUpdateType.Prune);
                 return;

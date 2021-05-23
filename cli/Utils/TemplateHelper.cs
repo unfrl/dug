@@ -39,7 +39,7 @@ namespace dug.Utils
         };
 
         /*
-            From a DnsResponse get a string reprisenting the answers it provided with the TTLs removed.
+            From a DnsResponse get a string representing the answers it provided with the TTLs removed.
         */
         public static string GetAnswersString(DnsResponse response){
             if(response.HasError){

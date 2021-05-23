@@ -23,7 +23,7 @@ namespace dug.Parsing
                 
                 string headerValue = headers.Tokens.ElementAtOrDefault(headerIndex);
                 if(headerValue == null){
-                    throw new Exception($"Unable to retrieve expected value from specified header: {headerName}. Expected to be at index {headerIndex}");
+                    throw new Exception(string.Format(i18n.dug.ER_Unable_To_Get_Value_From_Header_X_Expected_At_Index_X, headerName, headerIndex));
                 }
                 var setterFunction = TemplateHelper.ServerSetterMap[headerName]; // This should always be present, its validation in UpdateOptions.cs
 
@@ -31,7 +31,7 @@ namespace dug.Parsing
                     setterFunction(server, headerValue);
                 }
                 catch{
-                    throw new Exception($"Unable to set field {headerName} to provided value: {headerValue}. This might be a header trying to be parsed as a value, try adding --data-headers-present");
+                    throw new Exception(string.Format(i18n.dug.ER_Unable_Set_Field_X_To_Value_X, headerName, headerValue));
                 }
             }
 

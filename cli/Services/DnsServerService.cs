@@ -42,7 +42,7 @@ namespace dug.Services
                     newServers = LoadServersFromStream(reader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',', false);
                     PersistServers();
                 }
-                DugConsole.WriteLine($"Loaded {newServers} DNS Servers from built-in source");
+                DugConsole.WriteLine(String.Format(i18n.dug.Output_Loaded_X_Servers_From_Included_Source, newServers));
             }
             else {
                 LoadServersFromDatastore();
@@ -60,7 +60,7 @@ namespace dug.Services
 
         private int LoadServers(List<DnsServer> servers, bool overwrite = false){
             if(overwrite){
-                Console.WriteLine($"Overwriting {_servers.Count()} with {servers.Count()} specified servers");
+                Console.WriteLine(i18n.dug.Output_Overwritting_X_With_X_Specified_Servers, _servers.Count(), servers.Count());
 
                 _servers = servers;
                 return servers.Count();
@@ -77,10 +77,10 @@ namespace dug.Services
         public void UpdateServers(List<DnsServer> servers, bool overwrite){
             int serversAdded = LoadServers(servers, overwrite);
             if(serversAdded == 0){
-                Console.WriteLine($"Added {serversAdded} DNS Servers. The provided server(s) are already present.");
+                Console.WriteLine(i18n.dug.Output_Added_X_Servers_Provided_Already_Present, serversAdded);
                 return;
             }
-            Console.WriteLine($"Added {serversAdded} DNS Servers.");
+            Console.WriteLine(i18n.dug.Output_Added_X_Servers, serversAdded);
             PersistServers();
         }
 
@@ -107,7 +107,7 @@ namespace dug.Services
         {
             if(!File.Exists(customFilePath))
             {
-                throw new FileNotFoundException($"Unable to find file at: {customFilePath}");
+                throw new FileNotFoundException(string.Format(i18n.dug.ER_File_Not_Found, customFilePath));
             }
 
             if(string.IsNullOrEmpty(customHeaders)){
@@ -124,7 +124,7 @@ namespace dug.Services
             var parsedServers = tokenizedLines.Select(line => customMapper.Map(line)).Where(res => res.IsValid).Select(res => res.Result);
             int serversAdded = LoadServers(parsedServers.ToList(), overwrite);
 
-            Console.WriteLine($"Added {serversAdded} DNS Servers from {customFilePath}");
+            Console.WriteLine(i18n.dug.Output_Added_X_Servers_From_X, serversAdded, customFilePath);
             PersistServers();
         }
 
@@ -134,7 +134,7 @@ namespace dug.Services
             using(var streamReader = File.OpenText(customFilePath)){
                 serversAdded = LoadServersFromStream(streamReader.BaseStream, DnsServerParser.DefaultLocalParser, true, ',', overwrite);
             }
-            Console.WriteLine($"Added {serversAdded} DNS Servers from {customFilePath}");
+            Console.WriteLine(i18n.dug.Output_Added_X_Servers_From_X, serversAdded, customFilePath);
             PersistServers();
         }
 
@@ -145,14 +145,14 @@ namespace dug.Services
             }
 
             if(Config.Verbose)
-                Console.WriteLine($"Loaded {serversAdded} DNS Servers from {Config.ServersFile}");
+                Console.WriteLine(i18n.dug.Output_Loaded_X_Servers_From_X, serversAdded, Config.ServersFile);
         }
 
         public async Task UpdateServersFromRemote(string url, char separator, string customHeaders, bool skipHeaders, bool overwrite)
         {
             var serverInfoStream = await new HttpClient().GetStreamAsync(url);
             int serversAdded = LoadServersFromStream(serverInfoStream, new CustomDnsServerMapping(customHeaders), skipHeaders, separator, overwrite);
-            Console.WriteLine($"Retrieved {serversAdded} novel DNS Servers from {url}");
+            Console.WriteLine(i18n.dug.Output_Retrieved_X_Servers_From_Remote_X, serversAdded, url);
             PersistServers();
         }
 
@@ -161,7 +161,7 @@ namespace dug.Services
             string remoteSourceURL = "https://public-dns.info/nameservers.csv";
             var serverInfoStream = await new HttpClient().GetStreamAsync(remoteSourceURL);
             int serversAdded = LoadServersFromStream(serverInfoStream, DnsServerParser.DefaultRemoteParser, true, ',', overwrite);
-            Console.WriteLine($"Retrieved {serversAdded} novel DNS Servers from {remoteSourceURL}");
+            Console.WriteLine(i18n.dug.Output_Retrieved_X_Servers_From_Remote_X, serversAdded, remoteSourceURL);
             PersistServers();
         }
 
@@ -169,10 +169,10 @@ namespace dug.Services
         {
             if(!prune){
                 if(penalty < 0 || penalty > 1){
-                    throw new ArgumentOutOfRangeException("penalty must be between 0 and 1");
+                    throw new ArgumentOutOfRangeException($"penalty {i18n.dug.ER_Must_Be_Between_0_1}");
                 }
                 if(promotion < 0 || promotion > 1){
-                    throw new ArgumentOutOfRangeException("promotion must be between 0 and 1");
+                    throw new ArgumentOutOfRangeException($"promotion {i18n.dug.ER_Must_Be_Between_0_1}");
                 }
             }
             foreach(var serverResults in rawResults){
@@ -185,12 +185,12 @@ namespace dug.Services
                     if(dnsResponse.HasError){
                         if(prune){
                             _servers.Remove(extantServer);
-                            DugConsole.VerboseWriteLine($"PRUNING -- {extantServer.CityCountryContinentName} {extantServer.IPAddress} due to failed response");
+                            DugConsole.VerboseWriteLine(string.Format(i18n.dug.Output_Pruning_Because_Failed, extantServer.CityCountryContinentName, extantServer.IPAddress));
                             continue;
                         }
                         extantServer.Reliability = extantServer.Reliability - penalty;
                     }
-                    else if(dnsResponse.QueryResponse.Answers.Count() == 0){ //Dont do anything for servers with an empty response.
+                    else if(!dnsResponse.QueryResponse.Answers.Any()){ //Dont do anything for servers with an empty response.
                         continue;
                     }
                     else{

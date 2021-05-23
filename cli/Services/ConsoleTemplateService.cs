@@ -20,7 +20,7 @@ namespace dug.Services
                     DrawJsonResults(results, options);
                     break;
                 default:
-                    throw new Exception($"Unable to render results in specified format {options.OutputFormat}");
+                    throw new Exception(string.Format(i18n.dug.ER_Unable_Render_Results_In_Format, options.OutputFormat));
             }
         }
 
@@ -39,7 +39,7 @@ namespace dug.Services
                     foreach(string header in headers)
                     {
                         if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
-                            throw new Exception($"Unable to determine how to resolved specified header: {header}");
+                            throw new Exception(string.Format(i18n.dug.ER_Unable_Resolve_Header, header));
                         }
                         
                         try{
@@ -72,7 +72,7 @@ namespace dug.Services
                     foreach(string header in headers)
                     {
                         if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
-                            throw new Exception($"Unable to determine how to resolved specified header: {header}");
+                            throw new Exception(string.Format(i18n.dug.ER_Unable_Resolve_Header, header));
                         }
                         try{
                         string dataString = TemplateHelper.ResponseGetterMap[header](KeyValuePair.Create(server, response)).ToString();

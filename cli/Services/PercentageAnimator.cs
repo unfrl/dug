@@ -35,7 +35,7 @@ namespace dug.Services
         public void Start(string header, double totalEvents, int progressBarLength = 50)
         {
             if(Config.Verbose){
-                Console.WriteLine("Progress Animation disabled during verbose output");
+                Console.WriteLine(i18n.dug.Output_Animation_Disabled);
                 return;
             }
             Console.WriteLine(header);

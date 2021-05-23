@@ -14,7 +14,7 @@ namespace dug.Options
         Prune
     }
 
-    [Verb("update", HelpText = "Update DNS server list with any new unique servers. Uses remote server to get list by default.")]
+    [Verb("update", HelpText = "HT_Update")]
     public class UpdateOptions : GlobalOptions
     {
 
@@ -23,21 +23,21 @@ namespace dug.Options
         {
             get
             {
-                yield return new Example("Default", new UpdateOptions());
-                yield return new Example("Overwrite current servers", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Overwite = true });
-                yield return new Example("Import servers", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Servers = "8.8.8.8,2001:4860:4860::8888" });
-                yield return new Example("Import and overwrite servers", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Servers = "8.8.8.8,2001:4860:4860::8888", Overwite = true });
-                yield return new Example("Import servers from remote source, then update all servers' reliability", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Reliability = ReliabilityUpdateType.Normal });
-                yield return new Example("Import servers from remote source, then update all servers' reliability. Remove servers that fail", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Reliability = ReliabilityUpdateType.Prune });
-                yield return new Example("Update server reliability, remove any that fail. Also use up to 2 retries when querying each server", new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Reliability = ReliabilityUpdateType.Prune, ReliabilityOnly = true, QueryRetries = 2 });
+                yield return new Example(i18n.dug.Default, new UpdateOptions());
+                yield return new Example(i18n.dug.EX_Overwrite, new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Overwite = true });
+                yield return new Example(i18n.dug.EX_Import_Servers, new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Servers = "8.8.8.8,2001:4860:4860::8888" });
+                yield return new Example(i18n.dug.EX_Import_And_Overwrite_Servers, new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Servers = "8.8.8.8,2001:4860:4860::8888", Overwite = true });
+                yield return new Example(i18n.dug.EX_Remote_Import_And_Update, new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Reliability = ReliabilityUpdateType.Normal });
+                yield return new Example(i18n.dug.EX_Remote_Import_And_Update_Prune, new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Reliability = ReliabilityUpdateType.Prune });
+                yield return new Example(i18n.dug.EX_Update_Reliability_Prune_2_Retries, new UnParserSettings(){ PreferShortName = true}, new UpdateOptions { Reliability = ReliabilityUpdateType.Prune, ReliabilityOnly = true, QueryRetries = 2 });
             }
         }
 
-        [Option('f', "file", Required = false, HelpText = "Update DNS server list using the specified file instead of the remote source")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
+        [Option('f', "file", Required = false, HelpText = "HT_Update_Custom_Server_File", ResourceType = typeof(i18n.dug))] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
         private string _servers;
-        [Option('s', "servers", Required = false, HelpText = "The server IPs to import instead of the remote source. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
+        [Option('s', "servers", Required = false, HelpText = "HT_Update_Servers", ResourceType = typeof(i18n.dug))]
         public string Servers { get {return _servers;}
             set {
                 _servers = value;
@@ -48,60 +48,60 @@ namespace dug.Options
                         ParsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
                     }
                     else{
-                        throw new Exception($"Unable to parse provided Server: {addressString}");
+                        throw new Exception($"{i18n.dug.ER_Update_Server_Parse} {addressString}");
                     }
                 }
             }
         }
         public List<DnsServer> ParsedServers { get; set; }
 
-        [Option('o', "overwrite", Required = false, HelpText = "Overwrite the current server list instead of updating it.")]
+        [Option('o', "overwrite", Required = false, HelpText = "HT_Update_Overwrite", ResourceType = typeof(i18n.dug))]
         public bool Overwite { get; set; }
 
-        [Option('r', "reliability", Required = false, HelpText = "Runs a query for a very stable domain (google.com) against ALL servers. Can be set to 'normal' or 'prune'. Normal updates server reliability based on the results, Prune removes servers that failed (timeout, error, etc)")]
+        [Option('r', "reliability", Required = false, HelpText = "HT_Update_Reliability", ResourceType = typeof(i18n.dug))]
         public ReliabilityUpdateType? Reliability { get; set; }
 
         private bool _reliabilityOnly;
-        [Option("reliability-only", Required = false, HelpText = "Can only be used with the (-r,--reliability) option. This will keep any new servers from other options (-s,-f,etc) or remote sources from being added. Use if you only want to update the reliability of the currently present servers")]
+        [Option("reliability-only", Required = false, HelpText = "HT_Update_Reliability_Only", ResourceType = typeof(i18n.dug))]
         public bool ReliabilityOnly {get{return _reliabilityOnly;}
             set
             {
                 if(Reliability == null){
-                    throw new Exception("--reliability-only cannot be used without (-r,--reliability)");
+                    throw new Exception(i18n.dug.ER_Update_Reliability_Only_Requires_Reliability);
                 }
                 _reliabilityOnly = value;
             }
         }
 
         private string _updateURL;
-        [Option("update-url", Required = false, HelpText = "Specifies the remote URL to use to retrieve servers. To use this you must also set --data-columns so the servers can be deserialized")]
+        [Option("update-url", Required = false, HelpText = "HT_Update_Update_URL", ResourceType = typeof(i18n.dug))]
         public string UpdateURL { get{return _updateURL;}
             set
             {
                 if(!string.IsNullOrEmpty(CustomServerFile) || !string.IsNullOrEmpty(Servers)){
-                    throw new Exception("--update-url cannot be used with (-f) or (-s)");
+                    throw new Exception(i18n.dug.ER_Update_Update_URL_Requires_File_Or_Servers);
                 }
                 else if(string.IsNullOrEmpty(DataColumns)){
-                    throw new Exception("--data-columns must be specified when using a custom update URL (--update-url)");
+                    throw new Exception(i18n.dug.ER_Update_Update_URL_Requires_Data_Columns);
                 }
                 Uri parseResult;
                 var validURL = Uri.TryCreate(value, UriKind.Absolute, out parseResult) && (parseResult.Scheme == Uri.UriSchemeHttp || parseResult.Scheme == Uri.UriSchemeHttps);
                 if(!validURL){
-                    throw new Exception($"Unable to parse specified --update-url {value}");
+                    throw new Exception($"{i18n.dug.ER_Update_Unable_Parse_Update_URL} {value}");
                 }
                 _updateURL = value;
             }
         }
 
         private string _dataColumns;
-        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely (--update-url). Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        [Option("data-columns", Required = false, HelpText = "HT_Update_Data_Columns", ResourceType = typeof(i18n.dug))]
         public string DataColumns { get{return _dataColumns;}
             set
             {
                 var columns = value.ToLowerInvariant().Split(',', StringSplitOptions.None); //Specifically DO NOT remove empty entries
                 foreach(var column in columns){
                     if(!TemplateHelper.ServerSetterMap.ContainsKey(column)){
-                        throw new Exception($"Unable to parse provided column header: {column}");
+                        throw new Exception($"{i18n.dug.ER_Update_Unable_Parse_Data_Column_Header} {column}");
                     }
                 }
                 _dataColumns = value.ToLowerInvariant();
@@ -109,24 +109,24 @@ namespace dug.Options
         }
 
         private bool _dataHeadersPresent;
-        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present on the data being imported. Can only be used in conjuction with --data-columns")]
+        [Option("data-headers-present", Required = false, HelpText = "HT_Update_Data_Headers_Present", ResourceType = typeof(i18n.dug))]
         public bool DataHeadersPresent { get{return _dataHeadersPresent;}
             set
             {
                 if(string.IsNullOrEmpty(DataColumns)){
-                    throw new Exception("--data-headers-present cannot be used without (--data-columns)");
+                    throw new Exception(i18n.dug.ER_Update_Data_Headers_Present_Requires_Data_Columns);
                 }
                 _dataHeadersPresent = value;
             }
         }
 
         private char? _dataSeparator;
-        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing import data. Can only be used in conjuction with --data-columns. Assumes ',' if not set.")]
+        [Option("data-separator", Required = false, HelpText = "HT_Update_Data_Separator", ResourceType = typeof(i18n.dug))]
         public char? DataSeparator { get{return _dataSeparator;}
             set
             {
                 if(string.IsNullOrEmpty(DataColumns)){
-                    throw new Exception("--data-separator cannot be used without (--data-columns)");
+                    throw new Exception(i18n.dug.ER_Update_Data_Separator_Requires_Data_Columns);
                 }
                 _dataSeparator = value;
             }
