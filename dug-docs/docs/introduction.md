@@ -42,3 +42,11 @@ The relevant options for templating input are `--data-columns`, `--data-headers-
 By default dug is setup to quickly give a user an idea of the state of DNS records for a domain globally. While this is its core functionality, it is also capable of providing output in a templated manner that can be used by scripts, applications, or just piping the output around.
 
 The relevant options for templating output are `--output-template` and `--output-format` and are present on the `run` verb.
+
+## Localization
+dug automatically uses the current system's culture for localization. (You can override LANG on linux to test it).
+
+Currently supports the following languages:
+- (en) English
+- (es) Spanish
+- (de) German

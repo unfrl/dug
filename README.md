@@ -22,6 +22,14 @@ For example: `dug git.kaijucode.com`:
 You can also do complicated things like ask for specific record types, get the output as json, and pipe it into other applications: `dug git.kaijucode.com -q A --output-format JSON --output-template Ipaddress,city,value,responsetime | jq`:
 ![](cli/Resources/gif2.gif)
 
+## Localization
+dug automatically uses the current system's culture for localization. (You can override LANG on linux to test it).
+
+Currently supports the following languages:
+- (en) English
+- (es) Spanish
+- (de) German
+
 ## Installation
 
 ### Linux Deb (Debian, Ubuntu, Mint, Pop!_os)
