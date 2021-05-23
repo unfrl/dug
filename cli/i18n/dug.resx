@@ -408,4 +408,28 @@
     <value>
 Finished, got {0} good responses out of {1} requests</value>
   </data>
+  <data name="Africa" xml:space="preserve">
+    <value>Africa</value>
+  </data>
+  <data name="South_America" xml:space="preserve">
+    <value>South America</value>
+  </data>
+  <data name="North_America" xml:space="preserve">
+    <value>North America</value>
+  </data>
+  <data name="Oceania" xml:space="preserve">
+    <value>Oceania</value>
+  </data>
+  <data name="Asia" xml:space="preserve">
+    <value>Asia</value>
+  </data>
+  <data name="Europe" xml:space="preserve">
+    <value>Europe</value>
+  </data>
+  <data name="Antarctica" xml:space="preserve">
+    <value>Antarctica</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
 </root>

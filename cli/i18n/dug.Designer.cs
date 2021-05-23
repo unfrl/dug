@@ -620,5 +620,53 @@ namespace dug.i18n {
                 return ResourceManager.GetString("Output_Testing_Server_Responses_Finished", resourceCulture);
             }
         }
+        
+        public static string Africa {
+            get {
+                return ResourceManager.GetString("Africa", resourceCulture);
+            }
+        }
+        
+        public static string South_America {
+            get {
+                return ResourceManager.GetString("South_America", resourceCulture);
+            }
+        }
+        
+        public static string North_America {
+            get {
+                return ResourceManager.GetString("North_America", resourceCulture);
+            }
+        }
+        
+        public static string Oceania {
+            get {
+                return ResourceManager.GetString("Oceania", resourceCulture);
+            }
+        }
+        
+        public static string Asia {
+            get {
+                return ResourceManager.GetString("Asia", resourceCulture);
+            }
+        }
+        
+        public static string Europe {
+            get {
+                return ResourceManager.GetString("Europe", resourceCulture);
+            }
+        }
+        
+        public static string Antarctica {
+            get {
+                return ResourceManager.GetString("Antarctica", resourceCulture);
+            }
+        }
+        
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
     }
 }

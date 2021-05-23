@@ -405,4 +405,28 @@
   <data name="Table_Value" xml:space="preserve">
     <value>Valor</value>
   </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="South_America" xml:space="preserve">
+    <value>Sudamerica</value>
+  </data>
+  <data name="North_America" xml:space="preserve">
+    <value>América del norte</value>
+  </data>
+  <data name="Oceania" xml:space="preserve">
+    <value>Oceanía</value>
+  </data>
+  <data name="Europe" xml:space="preserve">
+    <value>Europa</value>
+  </data>
+  <data name="Asia" xml:space="preserve">
+    <value>Asia</value>
+  </data>
+  <data name="Antarctica" xml:space="preserve">
+    <value>Antártida</value>
+  </data>
+  <data name="Africa" xml:space="preserve">
+    <value>África</value>
+  </data>
 </root>

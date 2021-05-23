@@ -1,0 +1,327 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Default" xml:space="preserve">
+        <value>Standard</value>
+    </data>
+    <data name="ER_File_Not_Found" xml:space="preserve">
+        <value>Kann Datei zu finden unter: {0}</value>
+    </data>
+    <data name="ER_Hostname_Missing" xml:space="preserve">
+        <value>A {0} muss zur Verfügung gestellt werden. (Run dug Hilfe oder dug --help für weitere Informationen)</value>
+    </data>
+    <data name="ER_Specified_File_Not_Found" xml:space="preserve">
+        <value>Die angegebene Datei nicht vorhanden ist: {0}</value>
+    </data>
+    <data name="ER_Must_Be_Between_0_1" xml:space="preserve">
+        <value>muss zwischen o und 1</value>
+    </data>
+    <data name="ER_Run_Data_Columns_Without_Server_File" xml:space="preserve">
+        <value>--data-columns können nicht ohne die Angabe einer Server-Datei verwendet werden (-f)</value>
+    </data>
+    <data name="ER_Run_Data_Headers_Present_Requires_Data_Columns" xml:space="preserve">
+        <value>--data-headers-present nicht ohne verwendet werden (--data-columns)</value>
+    </data>
+    <data name="ER_Run_Data_Separator_Requires_Data_Columns" xml:space="preserve">
+        <value>--data separator kann nicht verwendet werden, ohne (--data-columns)</value>
+    </data>
+    <data name="ER_Run_Inavlid_Continent" xml:space="preserve">
+        <value>Ungültige Kontinent Wert:</value>
+    </data>
+    <data name="ER_Run_Invalid_Query_Type" xml:space="preserve">
+        <value>Ungültige Abfragetyp Wert:</value>
+    </data>
+    <data name="ER_Run_Output_Format_Requires_Template" xml:space="preserve">
+        <value>Eine Vorlage (--output-template) erforderlich ist, wenn ein Ausgabeformat anders als der Standard Verwendung</value>
+    </data>
+    <data name="ER_Run_Server_Parse" xml:space="preserve">
+        <value>Unfähig bereitgestellt Server zu analysieren:</value>
+    </data>
+    <data name="ER_Run_Table_Detail_Out_Of_Range" xml:space="preserve">
+        <value>Das angegebene Tabelle-Detail ist außerhalb des Bereichs. Gültige Werte sind im Bereich [1-2]</value>
+    </data>
+    <data name="ER_Run_Unable_Parse_Data_Column_Header" xml:space="preserve">
+        <value>Kann nicht Parse bereitgestellt Spaltenkopf:</value>
+    </data>
+    <data name="ER_Run_Unable_Parse_Template_Header" xml:space="preserve">
+        <value>Kann nicht Parse bereitgestellt Ausgabe-Template-Header:</value>
+    </data>
+    <data name="ER_Unable_Render_Results_In_Format" xml:space="preserve">
+        <value>Unfähig Ergebnisse in bestimmtem Format zu machen {0}</value>
+    </data>
+    <data name="ER_Unable_Resolve_Header" xml:space="preserve">
+        <value>Nicht in der Lage zu bestimmen, wie angegebene Header zu beheben: {0}</value>
+    </data>
+    <data name="ER_Unable_Set_Field_X_To_Value_X" xml:space="preserve">
+        <value>Kann set Feld {0} bereitgestellt Wert: {1}. Dies könnte ein Header, die versuchen, als ein Wert analysiert werden, versuchen Sie, --data-headers-present</value>
+    </data>
+    <data name="ER_Unable_To_Get_Value_From_Header_X_Expected_At_Index_X" xml:space="preserve">
+        <value>Unfähig Erwartungswert von bestimmten Header abzurufen: {0}. Erwartete im Index {1}</value>
+    </data>
+    <data name="ER_Unable_To_Parse_File" xml:space="preserve">
+        <value>Können Parse-Gehalt von angegebener Datei: {0}
+ Erwägen Sie die Verwendung --data-columns</value>
+    </data>
+    <data name="ER_Update_Data_Headers_Present_Requires_Data_Columns" xml:space="preserve">
+        <value>--data-headers-present nicht ohne verwendet werden (--data-columns)</value>
+    </data>
+    <data name="ER_Update_Data_Separator_Requires_Data_Columns" xml:space="preserve">
+        <value>--data-separator kann nicht verwendet werden, ohne (--data-columns)</value>
+    </data>
+    <data name="ER_Update_Reliability_Only_Requires_Reliability" xml:space="preserve">
+        <value>--reliability-only kann nicht verwendet werden, ohne (-r, -reliability)</value>
+    </data>
+    <data name="ER_Update_Server_Parse" xml:space="preserve">
+        <value>Unfähig bereitgestellt Server zu analysieren:</value>
+    </data>
+    <data name="ER_Update_Unable_Parse_Data_Column_Header" xml:space="preserve">
+        <value>Kann nicht Parse bereitgestellt Spaltenkopf:</value>
+    </data>
+    <data name="ER_Update_Unable_Parse_Update_URL" xml:space="preserve">
+        <value>Unfähig angegeben --update-url zu analysieren</value>
+    </data>
+    <data name="ER_Update_Update_URL_Requires_Data_Columns" xml:space="preserve">
+        <value>--data-columns müssen angegeben werden, wenn eine benutzerdefinierte Update-URL (--update-url) unter Verwendung von</value>
+    </data>
+    <data name="ER_Update_Update_URL_Requires_File_Or_Servers" xml:space="preserve">
+        <value>--update-url kann nicht verwendet werden (-f) oder (-s)</value>
+    </data>
+    <data name="EX_Import_And_Overwrite_Servers" xml:space="preserve">
+        <value>Import und Überschreiben-Server</value>
+    </data>
+    <data name="EX_Import_Servers" xml:space="preserve">
+        <value>Import servers</value>
+    </data>
+    <data name="EX_Json_Fields_Output" xml:space="preserve">
+        <value>Output bestimmte Bereiche der Ergebnisse als json</value>
+    </data>
+    <data name="EX_Overwrite" xml:space="preserve">
+        <value>Überschreiben aktuelle Server</value>
+    </data>
+    <data name="EX_Query_Reliable_On_Continents" xml:space="preserve">
+        <value>Abfrage der Top-3 zuverlässigsten Server in Afrika und Nordamerika sowie 8.8.8.8</value>
+    </data>
+    <data name="EX_Remote_Import_And_Update" xml:space="preserve">
+        <value>Import-Server von entfernten Quelle, dann ist alle Zuverlässigkeit des Servers aktualisieren</value>
+    </data>
+    <data name="EX_Remote_Import_And_Update_Prune" xml:space="preserve">
+        <value>Import-Server von entfernten Quelle, dann ist alle Zuverlässigkeit des Servers aktualisieren. Entfernen von Servern, die fehlschlagen</value>
+    </data>
+    <data name="EX_Specify_Continents" xml:space="preserve">
+        <value>Geben Kontinente abfragen auf</value>
+    </data>
+    <data name="EX_Specify_Query_Types" xml:space="preserve">
+        <value>Geben Sie den oder die Abfragetypen an</value>
+    </data>
+    <data name="EX_Update_Reliability_Prune_2_Retries" xml:space="preserve">
+        <value>Update-Server Zuverlässigkeit, entfernen Sie alle, fehlschlagen. Verwenden Sie auch bis zu 2 Wiederholungen bei dem jeder Server abfragt</value>
+    </data>
+    <data name="HT_Enable_Verbose_Output" xml:space="preserve">
+        <value>Aktivieren Sie die ausführliche Ausgabe</value>
+    </data>
+    <data name="HT_Parallel" xml:space="preserve">
+        <value>Die Anzahl der Server-Abfragen parallel auszuführen</value>
+    </data>
+    <data name="HT_Retries" xml:space="preserve">
+        <value>Die Anzahl der zu Wiederholungs Abfragen auf Servern, die Fehler (oder Timeout)</value>
+    </data>
+    <data name="HT_Run" xml:space="preserve">
+        <value>Erhalten DNS Propagation info für eine URL</value>
+    </data>
+    <data name="HT_Run_Continents" xml:space="preserve">
+        <value>Die Kontinente, auf dem Server abgefragt werden. Defaults für alle.</value>
+    </data>
+    <data name="HT_Run_Custom_Server_File" xml:space="preserve">
+        <value>Verwenden Sie die angegebene DNS-Serverliste für diesen Lauf.</value>
+    </data>
+    <data name="HT_Run_Data_Columns" xml:space="preserve">
+        <value>Geben Sie die Felder und ihre Reihenfolge, in der Datei mit (-f) angegeben. Muss mit (-f) verwendet werden. Optionen: ipaddress,countrycode,city,dnssec,reliability,ignore</value>
+    </data>
+    <data name="HT_Run_Data_Headers_Present" xml:space="preserve">
+        <value>Gibt an, ob nicht-Header sind in der Datei mit (-f) angegeben. Nur in Verbindung mit --data-columns verwendet werden</value>
+    </data>
+    <data name="HT_Run_Data_Separator" xml:space="preserve">
+        <value>Gibt den Separator verwendet werden soll, wenn Server aus der Datei angegeben mit (-f) Parsen. Nur in Verbindung mit --data-columns verwendet werden. wenn nicht gesetzt Geht davon aus  ','.</value>
+    </data>
+    <data name="HT_Run_Hostname" xml:space="preserve">
+        <value>Der Hostname möchten Sie Ausbreitung sehen für.</value>
+    </data>
+    <data name="HT_Run_Multiple_Server_Sources" xml:space="preserve">
+        <value>Bei der Angabe von Servern (-s, --servers) oder (-f, --file) verwendet auch integrierte Server</value>
+    </data>
+    <data name="HT_Run_Output_Format" xml:space="preserve">
+        <value>Geben Sie das Ausgabeformat. Für andere Formate als der Standard Sie auch eine Vorlage (--output-template) angeben müssen. Optionen: CSV, JSON</value>
+    </data>
+    <data name="HT_Run_Query_Types" xml:space="preserve">
+        <value>Der oder die Abfragetypen, die für jeden Server ausgeführt werden sollen. Geben Sie einen einzelnen Wert (A) oder mehrere durch Kommas getrennte Werte (A, MX) an.</value>
+    </data>
+    <data name="HT_Run_Servers" xml:space="preserve">
+        <value>Die Server abzufragen gegen anstelle der integrierten Server. Geben Sie einen einzelnen Wert ( "8.8.8.8") oder mehr durch Komma getrennt ( "8.8.8.8", "2001: 4860: 4860 :: 8888").</value>
+    </data>
+    <data name="HT_Run_Server_Count" xml:space="preserve">
+        <value>dug führt Abfragen gegen den Top-Server, durch Zuverlässigkeit Platz, pro Kontinent. Auf diese Weise können Sie festlegen, wie viele Server von jedem Kontinent zu verwenden.</value>
+    </data>
+    <data name="HT_Run_Table_Detail_Level" xml:space="preserve">
+        <value>Geben Sie den Detailgrad zu zeigen, wenn Tabellen-Rendering. Wird ignoriert, wenn output-format auf etwas anderes als die Standard gesetzt (TABLES)</value>
+    </data>
+    <data name="HT_Run_Template" xml:space="preserve">
+        <value>Angeben, welche Daten in welcher Reihenfolge, in heraus zu setzen. Wird ignoriert, wenn --output-format = TABLES. Optionen: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value</value>
+    </data>
+    <data name="HT_Timeout" xml:space="preserve">
+        <value>Die Timeout (in ms) verwendet werden, wenn jeder DNS-Server abfragt</value>
+    </data>
+    <data name="HT_Update" xml:space="preserve">
+        <value>Update DNS-Server-Liste mit allen neuen einzigartigen Servern. Verwendet Remote-Server-Liste standardmäßig zu bekommen.</value>
+    </data>
+    <data name="HT_Update_Custom_Server_File" xml:space="preserve">
+        <value>Update DNS-Liste Server die angegebene Datei anstelle der Fernquelle</value>
+    </data>
+    <data name="HT_Update_Data_Columns" xml:space="preserve">
+        <value>die Felder angeben, und deren Reihenfolge, der Daten importiert werden. Gilt für Daten aus einer Datei importiert (-f) oder remote (--update-url). Verwenden Sie einzeln oder geben Sie mehrere durch Kommata getrennte Felder. Optionen: ipaddress,countrycode,city,dnssec,reliability,ignore</value>
+    </data>
+    <data name="HT_Update_Data_Headers_Present" xml:space="preserve">
+        <value>Gibt an, ob nicht Header sind auf den Daten importiert werden. Nur in Verbindung mit --data-columns verwendet werden</value>
+    </data>
+    <data name="HT_Update_Data_Separator" xml:space="preserve">
+        <value>Gibt den Separator verwendet werden soll, wenn das Parsen Importdaten. Nur in Verbindung mit --data-columns verwendet werden. wenn nicht gesetzt Geht davon aus ','.</value>
+    </data>
+    <data name="HT_Update_Overwrite" xml:space="preserve">
+        <value>Überschreiben Sie die aktuelle Serverliste, anstatt sie zu aktualisieren.</value>
+    </data>
+    <data name="HT_Update_Reliability" xml:space="preserve">
+        <value>Führt eine Abfrage für eine sehr stabile Domain (google.com) für ALLE Server aus. Kann auf "normal" oder "prune" eingestellt werden. Normalen Aktualisierungen der Serverzuverlässigkeit basierend auf den Ergebnissen entfernt Prune Server, die ausgefallen sind (Zeitüberschreitung, Fehler usw.).</value>
+    </data>
+    <data name="HT_Update_Reliability_Only" xml:space="preserve">
+        <value>Cann nur mit der (-r, --reliability) verwendet werden. Dies hält alle neue Server von anderen Optionen (-s, -f, usw.) oder entfernten Quellen aus hinzugefügt werden. Verwenden Sie, wenn Sie nur die Zuverlässigkeit der aktuell vorhandenen Server aktualisieren möchten</value>
+    </data>
+    <data name="HT_Update_Servers" xml:space="preserve">
+        <value>Die Server-IP-Adressen anstelle der entfernten Quelle zu importieren. Geben Sie einen einzelnen Wert ( "8.8.8.8") oder mehr durch Komma getrennt ( "8.8.8.8", "2001: 4860: 4860 :: 8888").</value>
+    </data>
+    <data name="HT_Update_Update_URL" xml:space="preserve">
+        <value>Gibt die Remote-URL zu verwenden, um Server abzurufen. Um dies zu verwenden, müssen Sie auch --data-columns gesetzt, so kann der Server deserialisiert wird</value>
+    </data>
+    <data name="Output_Added_X_Servers" xml:space="preserve">
+        <value>Hinzugefügt {0} DNS-Server.</value>
+    </data>
+    <data name="Output_Added_X_Servers_From_X" xml:space="preserve">
+        <value>Hinzugefügt {0} DNS-Server von {1}</value>
+    </data>
+    <data name="Output_Added_X_Servers_Provided_Already_Present" xml:space="preserve">
+        <value>Hinzugefügt {0} DNS-Server. Die zur Verfügung gestellten Server (n) sind bereits vorhanden.</value>
+    </data>
+    <data name="Output_Animation_Disabled" xml:space="preserve">
+        <value>Progress Animation während ausführliche Ausgabe deaktiviert</value>
+    </data>
+    <data name="Output_Connection_Timeout" xml:space="preserve">
+        <value>Verbindungszeitüberschreitung</value>
+    </data>
+    <data name="Output_Error" xml:space="preserve">
+        <value>ERROR - {0} {1} - {2} ms</value>
+    </data>
+    <data name="Output_Finish_Query" xml:space="preserve">
+        <value>FINISH - {0} {1} - {2} ms</value>
+    </data>
+    <data name="Output_Loaded_X_Servers_From_Included_Source" xml:space="preserve">
+        <value>Geladen {0} DNS-Server von Einbau-Quelle</value>
+    </data>
+    <data name="Output_Loaded_X_Servers_From_X" xml:space="preserve">
+        <value>Geladen {0} DNS-Server von {1}</value>
+    </data>
+    <data name="Output_Overwritting_X_With_X_Specified_Servers" xml:space="preserve">
+        <value>Überschreiben {0} mit {1} angegebenen Servern</value>
+    </data>
+    <data name="Output_Pruning_Because_Failed" xml:space="preserve">
+        <value>PRUNING - {0} {1} aufgrund fehlerhafter Antwort</value>
+    </data>
+    <data name="Output_Retrieved_X_Servers_From_Remote_X" xml:space="preserve">
+        <value>Abgerufen {0} neuer DNS-Server von {1}</value>
+    </data>
+    <data name="Output_Servers_To_Use" xml:space="preserve">
+        <value>Server-Zähler: {0}</value>
+    </data>
+    <data name="Output_Start_Query" xml:space="preserve">
+        <value>START - {0} {1}</value>
+    </data>
+    <data name="Output_Testing_Server_Responses" xml:space="preserve">
+        <value>Testing {0} Serverantworten für google.com</value>
+    </data>
+    <data name="Output_Testing_Server_Responses_Finished" xml:space="preserve">
+        <value>Fertig, bekam {0} gute Antworten aus {1} Anfragen</value>
+    </data>
+    <data name="Output_Timeout" xml:space="preserve">
+        <value>TIMEOUT - {0} {1} - {2} ms</value>
+    </data>
+    <data name="Output_Unhandled_Error" xml:space="preserve">
+        <value>Nicht behandelter Fehler - {0} {1} - {2} ms</value>
+    </data>
+    <data name="Output_Verbose_Enabled" xml:space="preserve">
+        <value>Ausführlich Ausgang Aktiviert</value>
+    </data>
+    <data name="Table_Argument" xml:space="preserve">
+        <value>Streit</value>
+    </data>
+    <data name="Table_Continent_Consensus" xml:space="preserve">
+        <value>Konsens von Kontinent</value>
+    </data>
+    <data name="Table_Description" xml:space="preserve">
+        <value>Beschreibung</value>
+    </data>
+    <data name="Table_Out_OF" xml:space="preserve">
+        <value>aus</value>
+    </data>
+    <data name="Table_Overall" xml:space="preserve">
+        <value>Insgesamt</value>
+    </data>
+    <data name="Table_Records_For" xml:space="preserve">
+        <value>Aufzeichnungen</value>
+    </data>
+    <data name="Table_Record_Type" xml:space="preserve">
+        <value>Aufnahmetyp</value>
+    </data>
+    <data name="Table_Reliability" xml:space="preserve">
+        <value>Verlässlichkeit</value>
+    </data>
+    <data name="Table_Results" xml:space="preserve">
+        <value>Ergebnisse</value>
+    </data>
+    <data name="Table_Server_Info" xml:space="preserve">
+        <value>Server Info</value>
+    </data>
+    <data name="Table_Value" xml:space="preserve">
+        <value>Wert</value>
+    </data>
+    <data name="Africa" xml:space="preserve">
+        <value>Afrika</value>
+    </data>
+    <data name="South_America" xml:space="preserve">
+        <value>Südamerika</value>
+    </data>
+    <data name="North_America" xml:space="preserve">
+        <value>Nordamerika</value>
+    </data>
+    <data name="Oceania" xml:space="preserve">
+        <value>Ozeanien</value>
+    </data>
+    <data name="Asia" xml:space="preserve">
+        <value>Asien</value>
+    </data>
+    <data name="Europe" xml:space="preserve">
+        <value>Europa</value>
+    </data>
+    <data name="Antarctica" xml:space="preserve">
+        <value>Antarktis</value>
+    </data>
+    <data name="Unknown" xml:space="preserve">
+        <value>Unbekannt</value>
+    </data>
+</root>
