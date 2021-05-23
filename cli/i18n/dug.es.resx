@@ -117,4 +117,292 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Default" xml:space="preserve">
+    <value>Defecto</value>
+  </data>
+  <data name="ER_Specified_File_Not_Found" xml:space="preserve">
+    <value>El archivo especificado no existe: {0}</value>
+  </data>
+  <data name="ER_File_Not_Found" xml:space="preserve">
+    <value>No se ha podido encontrar el archivo en: {0}</value>
+  </data>
+  <data name="ER_Hostname_Missing" xml:space="preserve">
+    <value>A {0} debe ser proporcionada. (Cavado ayuda de ejecución o excavados --help para obtener más información)</value>
+  </data>
+  <data name="ER_Must_Be_Between_0_1" xml:space="preserve">
+    <value>debe estar entre O y 1</value>
+  </data>
+  <data name="ER_Run_Data_Columns_Without_Server_File" xml:space="preserve">
+    <value>--data-columns no se pueden utilizar sin especificar un archivo de servidor (f)</value>
+  </data>
+  <data name="ER_Run_Data_Headers_Present_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-headers-present no se puede utilizar sin (--data-columns)</value>
+  </data>
+  <data name="ER_Run_Data_Separator_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-separator no puede utilizarse sin (--data-columns)</value>
+  </data>
+  <data name="ER_Run_Inavlid_Continent" xml:space="preserve">
+    <value>Continente valor no válido:</value>
+  </data>
+  <data name="ER_Run_Invalid_Query_Type" xml:space="preserve">
+    <value>Tipo de consulta no válido valor:</value>
+  </data>
+  <data name="ER_Run_Output_Format_Requires_Template" xml:space="preserve">
+    <value>Una plantilla (--output-template) se requiere cuando se utiliza una salida en formato distinto del predeterminado</value>
+  </data>
+  <data name="ER_Run_Server_Parse" xml:space="preserve">
+    <value>No se puede analizar proporcionado Servidor:</value>
+  </data>
+  <data name="ER_Run_Table_Detail_Out_Of_Range" xml:space="preserve">
+    <value>La mesa de detalle especificado está fuera de rango. Los valores válidos están en el intervalo [1-2]</value>
+  </data>
+  <data name="ER_Run_Unable_Parse_Data_Column_Header" xml:space="preserve">
+    <value>No se puede analizar proporcionado encabezado de la columna:</value>
+  </data>
+  <data name="ER_Run_Unable_Parse_Template_Header" xml:space="preserve">
+    <value>No se puede analizar proporcionado cabecera de salida-plantilla:</value>
+  </data>
+  <data name="ER_Unable_Render_Results_In_Format" xml:space="preserve">
+    <value>No se puede representar los resultados en formato especificado {0}</value>
+  </data>
+  <data name="ER_Unable_Resolve_Header" xml:space="preserve">
+    <value>No se puede determinar cómo resolver encabezado especificado: {0}</value>
+  </data>
+  <data name="ER_Unable_Set_Field_X_To_Value_X" xml:space="preserve">
+    <value>Incapaz de campo conjunto {0} al valor proporcionado: {1}. Esto podría ser una cabecera tratando de ser analizada como un valor, trate de añadir --data-headers-present</value>
+  </data>
+  <data name="ER_Unable_To_Get_Value_From_Header_X_Expected_At_Index_X" xml:space="preserve">
+    <value>No se puede recuperar el valor esperado de encabezado especificado: {0}. Se espera que sea en el índice {1}</value>
+  </data>
+  <data name="ER_Unable_To_Parse_File" xml:space="preserve">
+    <value>Incapaz de contenido de análisis de archivo especificado: {0} Considere el uso de --data-columns</value>
+  </data>
+  <data name="ER_Update_Data_Headers_Present_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-headers-present no se puede utilizar sin (--data-columns)</value>
+  </data>
+  <data name="ER_Update_Data_Separator_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-separator no puede utilizarse sin (--data-columns)</value>
+  </data>
+  <data name="ER_Update_Reliability_Only_Requires_Reliability" xml:space="preserve">
+    <value>--reliability sólo no se pueden utilizar sin (-r, - reliability)</value>
+  </data>
+  <data name="ER_Update_Server_Parse" xml:space="preserve">
+    <value>No se puede analizar proporcionado Servidor:</value>
+  </data>
+  <data name="ER_Update_Unable_Parse_Data_Column_Header" xml:space="preserve">
+    <value>No se puede analizar proporcionado encabezado de la columna:</value>
+  </data>
+  <data name="ER_Update_Unable_Parse_Update_URL" xml:space="preserve">
+    <value>No se puede analizar especificada --update-url</value>
+  </data>
+  <data name="ER_Update_Update_URL_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-columns deben especificarse cuando se utiliza una URL de actualización personalizada (--update-url)</value>
+  </data>
+  <data name="ER_Update_Update_URL_Requires_File_Or_Servers" xml:space="preserve">
+    <value>--update-url no se puede utilizar con (-f) o (-s)</value>
+  </data>
+  <data name="EX_Import_And_Overwrite_Servers" xml:space="preserve">
+    <value>Importación y servidores de sobreescritura</value>
+  </data>
+  <data name="EX_Import_Servers" xml:space="preserve">
+    <value>servidores de importación</value>
+  </data>
+  <data name="EX_Json_Fields_Output" xml:space="preserve">
+    <value>campos específicos de salida de resultados como JSON</value>
+  </data>
+  <data name="EX_Overwrite" xml:space="preserve">
+    <value>servidores actuales de sobreescritura</value>
+  </data>
+  <data name="EX_Query_Reliable_On_Continents" xml:space="preserve">
+    <value>Consulta de los 3 mejores servidores más confiables en África y América del Norte, así como 8.8.8.8</value>
+  </data>
+  <data name="EX_Remote_Import_And_Update" xml:space="preserve">
+    <value>servidores de importación de origen remoto, a continuación, actualizar todos los servidores fiabilidad</value>
+  </data>
+  <data name="EX_Remote_Import_And_Update_Prune" xml:space="preserve">
+    <value>servidores de importación desde la fuente remota, a continuación, actualizar todos los servidores fiabilidad. Quitar los servidores que no</value>
+  </data>
+  <data name="EX_Specify_Continents" xml:space="preserve">
+    <value>Especificar continentes para consultar en</value>
+  </data>
+  <data name="EX_Specify_Query_Types" xml:space="preserve">
+    <value>Especificar tipo de consulta(s)</value>
+  </data>
+  <data name="EX_Update_Reliability_Prune_2_Retries" xml:space="preserve">
+    <value>Actualización de confiabilidad del servidor, elimine las que fallan. También utilizar hasta 2 reintentos cuando se consulta cada servidor</value>
+  </data>
+  <data name="HT_Enable_Verbose_Output" xml:space="preserve">
+    <value>Habilitar Salida detallada</value>
+  </data>
+  <data name="HT_Parallel" xml:space="preserve">
+    <value>El número de servidores para realizar consultas en forma paralela</value>
+  </data>
+  <data name="HT_Retries" xml:space="preserve">
+    <value>El número de veces de reintento a consultas en los servidores de ese error (o tiempo de espera)</value>
+  </data>
+  <data name="HT_Run" xml:space="preserve">
+    <value>Obtener información propagación de DNS para una dirección URL</value>
+  </data>
+  <data name="HT_Run_Continents" xml:space="preserve">
+    <value>Los continentes en los que se consulta a los servidores. El valor predeterminado es todo.</value>
+  </data>
+  <data name="HT_Run_Custom_Server_File" xml:space="preserve">
+    <value>Utilice la lista de servidores DNS especificado para esta ejecución.</value>
+  </data>
+  <data name="HT_Run_Data_Columns" xml:space="preserve">
+    <value>Especificar los campos, y su orden, en el archivo especificado con (-f). Se debe utilizar con (-f). Opciones: direcciónip, código del país, ciudad, dnssec, fiabilidad, ignoran</value>
+  </data>
+  <data name="HT_Run_Data_Headers_Present" xml:space="preserve">
+    <value>Especifica si las cabeceras están presentes en el archivo especificado con (-f). Sólo se puede usar en conjunción con --data-columns</value>
+  </data>
+  <data name="HT_Run_Data_Separator" xml:space="preserve">
+    <value>Especifica el separador que se utilizará cuando se analizan los servidores desde el archivo especificado con (-f). Sólo se puede usar en conjunción con --data-columns. Asume ',' si no se establece.</value>
+  </data>
+  <data name="HT_Run_Hostname" xml:space="preserve">
+    <value>El nombre de host que le gustaría ver que la propagación de.</value>
+  </data>
+  <data name="HT_Run_Multiple_Server_Sources" xml:space="preserve">
+    <value>Al especificar los servidores (-s, --servers) o (-f, --file) también utilizan servidores integrados</value>
+  </data>
+  <data name="HT_Run_Output_Format" xml:space="preserve">
+    <value>Especificar el formato de salida. Para formatos que no sean por defecto también debe especificar una plantilla (--output-template). Opciones: CSV, JSON</value>
+  </data>
+  <data name="HT_Run_Query_Types" xml:space="preserve">
+    <value>El tipo de consulta(s) para ejecutar el uno contra el servidor. Especificar un solo valor (A) o múltiples separados por comas (A, MX).</value>
+  </data>
+  <data name="HT_Run_Servers" xml:space="preserve">
+    <value>Los servidores de consulta en lugar de los servidores integrados. Especificar un único valor ( "8.8.8.8") o múltiples separados por comas ( "8.8.8.8", "2001: 4860: 4860 :: 8888").</value>
+  </data>
+  <data name="HT_Run_Server_Count" xml:space="preserve">
+    <value>dug ejecuta consultas contra los servidores principales, calificadas por la fiabilidad, por continente. Esto le permite ajustar el número de servidores de cada continente para su uso.</value>
+  </data>
+  <data name="HT_Run_Table_Detail_Level" xml:space="preserve">
+    <value>Especificar el nivel de detalle para mostrar al representar tablas. Ignora si la --output-format se establece en otra cosa que no sea su valor por defecto (TABLES)</value>
+  </data>
+  <data name="HT_Run_Template" xml:space="preserve">
+    <value>Especificar los datos, y en qué orden, para poner en salir. Se ignora si --output-format=TABLES. Opciones: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value</value>
+  </data>
+  <data name="HT_Timeout" xml:space="preserve">
+    <value>El tiempo de espera (en ms) que se utilizará cuando se consulta cada servidor DNS</value>
+  </data>
+  <data name="HT_Update" xml:space="preserve">
+    <value>Actualizar lista de servidores DNS con los nuevos servidores únicos. Utiliza servidor remoto para obtener la lista por defecto.</value>
+  </data>
+  <data name="HT_Update_Custom_Server_File" xml:space="preserve">
+    <value>Actualizar lista de servidores DNS que utiliza el archivo especificado en lugar de la fuente remota</value>
+  </data>
+  <data name="HT_Update_Data_Columns" xml:space="preserve">
+    <value>Especificar los campos, y su orden, de los datos que se importa. Se aplica a los datos importados de un archivo (-f) o remota (--update-url). Utilizar de forma individual o especificar varios campos separados por comas. Opciones: ipaddress,countrycode,city,dnssec,reliability,ignore</value>
+  </data>
+  <data name="HT_Update_Data_Headers_Present" xml:space="preserve">
+    <value>Especifica si las cabeceras están presentes en los datos importados. Sólo se puede usar en conjunción con --data-columns</value>
+  </data>
+  <data name="HT_Update_Data_Separator" xml:space="preserve">
+    <value>Especifica el separador que se utilizará cuando se analizan los datos de importación. Sólo se puede usar en conjunción con --data-columns. Asume ',' si no se establece.</value>
+  </data>
+  <data name="HT_Update_Overwrite" xml:space="preserve">
+    <value>Sobrescribir la lista de servidores actual en lugar de su actualización.</value>
+  </data>
+  <data name="HT_Update_Reliability" xml:space="preserve">
+    <value>Se ejecuta una consulta para un dominio muy estable (google.com) en contra de todos los servidores. Se puede establecer en 'normal' o 'prune'. actualizaciones normales fiabilidad del servidor basado en los resultados, ciruela pasa elimina los servidores que han fallado (tiempo de espera, errores, etc.)</value>
+  </data>
+  <data name="HT_Update_Reliability_Only" xml:space="preserve">
+    <value>Sólo se puede utilizar con el (, -r --reliability) opción. Esto evitará que los nuevos servidores de otras opciones (-s, -f, etc.) o fuentes remotas se agreguen. Utilizar si sólo desea actualizar la fiabilidad de los servidores actualmente presentes</value>
+  </data>
+  <data name="HT_Update_Servers" xml:space="preserve">
+    <value>Las IP del servidor importar en lugar de la fuente remota. Especificar un único valor ( "8.8.8.8") o múltiples separados por comas ( "8.8.8.8", "2001: 4860: 4860 :: 8888").</value>
+  </data>
+  <data name="HT_Update_Update_URL" xml:space="preserve">
+    <value>Especifica la URL remoto para utilizar para recuperar servidores. Para utilizar esta también debe establecer --data-columns por lo que los servidores se pueden deserializan</value>
+  </data>
+  <data name="Output_Added_X_Servers" xml:space="preserve">
+    <value>Añadido {0} servidores DNS.</value>
+  </data>
+  <data name="Output_Added_X_Servers_From_X" xml:space="preserve">
+    <value>Añadido {0} servidores DNS desde {1}</value>
+  </data>
+  <data name="Output_Added_X_Servers_Provided_Already_Present" xml:space="preserve">
+    <value>Añadido {0} servidores DNS. El servidor(s) proporcionado ya están presentes.</value>
+  </data>
+  <data name="Output_Animation_Disabled" xml:space="preserve">
+    <value>El progreso de Animación desactiva durante la salida detallada</value>
+  </data>
+  <data name="Output_Connection_Timeout" xml:space="preserve">
+    <value>El tiempo de conexión expiro</value>
+  </data>
+  <data name="Output_Error" xml:space="preserve">
+    <value>ERROR - {0} {1} - {2} ms</value>
+  </data>
+  <data name="Output_Finish_Query" xml:space="preserve">
+    <value>ACABADO - {0} {1} - {2} ms</value>
+  </data>
+  <data name="Output_Loaded_X_Servers_From_Included_Source" xml:space="preserve">
+    <value>Cargadas {0} servidores DNS de una función de fuente</value>
+  </data>
+  <data name="Output_Loaded_X_Servers_From_X" xml:space="preserve">
+    <value>Cargadas {0} servidores DNS desde {1}</value>
+  </data>
+  <data name="Output_Overwritting_X_With_X_Specified_Servers" xml:space="preserve">
+    <value>Sobrescribiendo {0} {1} con servidores especificados</value>
+  </data>
+  <data name="Output_Pruning_Because_Failed" xml:space="preserve">
+    <value>PODA - {0} {1} debido a la respuesta fallida</value>
+  </data>
+  <data name="Output_Retrieved_X_Servers_From_Remote_X" xml:space="preserve">
+    <value>Obtenido {0} nuevos servidores DNS desde {1}</value>
+  </data>
+  <data name="Output_Servers_To_Use" xml:space="preserve">
+    <value>Conde servidor: {0}</value>
+  </data>
+  <data name="Output_Start_Query" xml:space="preserve">
+    <value>INICIO - {0} {1}</value>
+  </data>
+  <data name="Output_Testing_Server_Responses" xml:space="preserve">
+    <value>Pruebas {0} respuestas del servidor para google.com</value>
+  </data>
+  <data name="Output_Testing_Server_Responses_Finished" xml:space="preserve">
+    <value>Terminados, obtuvo {0} buenas respuestas fuera de {1} solicitudes</value>
+  </data>
+  <data name="Output_Timeout" xml:space="preserve">
+    <value>TIMEOUT - {0} {1} - {2} ms</value>
+  </data>
+  <data name="Output_Unhandled_Error" xml:space="preserve">
+    <value>No controlada ERROR - {0} {1} - {2} ms</value>
+  </data>
+  <data name="Output_Verbose_Enabled" xml:space="preserve">
+    <value>Verbosa salida habilitada</value>
+  </data>
+  <data name="Table_Argument" xml:space="preserve">
+    <value>Argumento</value>
+  </data>
+  <data name="Table_Continent_Consensus" xml:space="preserve">
+    <value>Consenso por Continente</value>
+  </data>
+  <data name="Table_Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Table_Out_OF" xml:space="preserve">
+    <value>fuera de</value>
+  </data>
+  <data name="Table_Overall" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Table_Records_For" xml:space="preserve">
+    <value>registros para</value>
+  </data>
+  <data name="Table_Record_Type" xml:space="preserve">
+    <value>Tipo de registro</value>
+  </data>
+  <data name="Table_Reliability" xml:space="preserve">
+    <value>Fiabilidad</value>
+  </data>
+  <data name="Table_Results" xml:space="preserve">
+    <value>resultados</value>
+  </data>
+  <data name="Table_Server_Info" xml:space="preserve">
+    <value>Información del servidor</value>
+  </data>
+  <data name="Table_Value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
 </root>
