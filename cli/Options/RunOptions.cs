@@ -17,7 +17,7 @@ namespace dug.Options
         JSON
     }
 
-    [Verb("run", isDefault: true, HelpText = "Get DNS propagation info for a URL")]
+    [Verb("run", isDefault: true, HelpText = "HT_Run", ResourceType = typeof(i18n.dug))]
     public class RunOptions : GlobalOptions
     {
         [Usage]
@@ -25,23 +25,23 @@ namespace dug.Options
         {
             get
             {
-                yield return new Example("Default", new RunOptions { Hostname = "git.kaijucode.com"});
-                yield return new Example("Specify query type(s)", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", QueryTypes= "A,MX" });
-                yield return new Example("Specify continents to query on", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", Continents= "AF,NA,SA" });
-                yield return new Example("Query the top 3 most reliable servers in Africa and North America as well as 8.8.8.8", new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", Continents= "AF,NA", Servers = "8.8.8.8", ServerCount = 3, MultipleServerSources = true });
-                yield return new Example("Output specific fields of results as json", new RunOptions { Hostname = "git.kaijucode.com", Template="ipaddress,city,responsetime,value", OutputFormat = OutputFormats.JSON});
+                yield return new Example(i18n.dug.Default, new RunOptions { Hostname = "git.kaijucode.com"});
+                yield return new Example(i18n.dug.EX_Specify_Query_Types, new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", QueryTypes= "A,MX" });
+                yield return new Example(i18n.dug.EX_Specify_Continents, new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", Continents= "AF,NA,SA" });
+                yield return new Example(i18n.dug.EX_Query_Reliable_On_Continents, new UnParserSettings(){ PreferShortName = true}, new RunOptions { Hostname = "git.kaijucode.com", Continents= "AF,NA", Servers = "8.8.8.8", ServerCount = 3, MultipleServerSources = true });
+                yield return new Example(i18n.dug.EX_Json_Fields_Output, new RunOptions { Hostname = "git.kaijucode.com", Template="ipaddress,city,responsetime,value", OutputFormat = OutputFormats.JSON});
             }
         }
 
 
-        [Value(0, Required = true, HelpText = "The Hostname you would like to see propogation for", MetaName = "Hostname")]
+        [Value(0, Required = true, HelpText = "HT_Run_Hostname", ResourceType = typeof(i18n.dug), MetaName = "Hostname")]
         public string Hostname { get; set; }
 
-        [Option('f', "file", Required = false, HelpText = "Use the specified DNS server list for this run.")] //TODO: At some point we need a link here to a readme showing the format the file must be in.
+        [Option('f', "file", Required = false, HelpText = "HT_Run_Custom_Server_File", ResourceType = typeof(i18n.dug))] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 
         private string _servers;
-        [Option('s', "servers", Required = false, HelpText = "The servers to query against instead of the integrated servers. Specify a single value (\"8.8.8.8\") or multiple separated by commas (\"8.8.8.8\",\"2001:4860:4860::8888\").")]
+        [Option('s', "servers", Required = false, HelpText = "HT_Run_Servers", ResourceType = typeof(i18n.dug))]
         public string Servers { get {return _servers;}
             set {
                 _servers = value;
@@ -52,18 +52,18 @@ namespace dug.Options
                         ParsedServers.Add(new DnsServer() {IPAddress = parsedAddress});
                     }
                     else{
-                        throw new Exception($"Unable to parse provided Server: {addressString}");
+                        throw new Exception($"{i18n.dug.ER_Run_Server_Parse} {addressString}");
                     }
                 }
             }
         }
         public List<DnsServer> ParsedServers { get; set; }
 
-        [Option("server-count", Required = false, HelpText = "dug runs queries against the top servers, ranked by reliability, per continent. This allows you to set how many servers from each continent to use.", Default = 6)]
+        [Option("server-count", Required = false, HelpText = "HT_Run_Server_Count", ResourceType = typeof(i18n.dug), Default = 6)]
         public int ServerCount { get; set; }
         
         private string _continents;
-        [Option("continents", Required = false, HelpText = "The continents on which servers will be queried. Defaults to all.", Default = "AF,SA,NA,OC,AS,EU,AN")]
+        [Option("continents", Required = false, HelpText = "HT_Run_Continents", ResourceType = typeof(i18n.dug), Default = "AF,SA,NA,OC,AS,EU,AN")]
         public string Continents { get {return _continents;}
             set{
                 _continents = value;
@@ -74,7 +74,7 @@ namespace dug.Options
                         ParsedContinents.Add(parsedContinentCode);
                     }
                     else{
-                        throw new Exception($"Invalid Continent value: {continentString}");
+                        throw new Exception($"{i18n.dug.ER_Run_Inavlid_Continent} {continentString}");
                     }
                 }
             }
@@ -83,7 +83,7 @@ namespace dug.Options
         public List<ContinentCodes> ParsedContinents { get; set; }
 
         private string _queryTypes;
-        [Option('q', "query-types", Required = false, HelpText = "The query type(s) to run against each server. Specify a single value (A) or multiple separated by commas (A,MX).", Default = "A")]
+        [Option('q', "query-types", Required = false, HelpText = "HT_Run_Query_Types", ResourceType = typeof(i18n.dug), Default = "A")]
         public string QueryTypes { get{return _queryTypes;} 
             set{
                 _queryTypes = value;
@@ -94,7 +94,7 @@ namespace dug.Options
                         ParsedQueryTypes.Add(parsedQueryType);
                     }
                     else{
-                        throw new Exception($"Invalid Query Type value: {queryTypeString}");
+                        throw new Exception($"{i18n.dug.ER_Run_Invalid_Query_Type} {queryTypeString}");
                     }
                     
                 }
@@ -102,24 +102,24 @@ namespace dug.Options
         }
         // NOTE: This is because of a really annoying issue that almost makes using IEnumerables with a separator as commandline options useless.
         // Any [Option] with an IEnumerable is very 'greedy' see: https://github.com/commandlineparser/commandline/issues/687
-        // SUpposedly this will be fixed in version 2.9.0 but hasnt yet and this in on 2.9.0-preview1
+        // Supposedly this will be fixed in version 2.9.0 but hasnt yet and this is on 2.9.0-preview1
         public List<QueryType> ParsedQueryTypes { get; set; }
 
-        [Option('m', "multiple-sources", Required = false, HelpText = "When specifying servers (-s, --servers) or (-f, --file) also use integrated servers", Default = false)]
+        [Option('m', "multiple-sources", Required = false, HelpText = "HT_Run_Multiple_Server_Sources", ResourceType = typeof(i18n.dug), Default = false)]
         public bool MultipleServerSources { get; set; }
 
         private string _dataColumns;
-        [Option("data-columns", Required = false, HelpText = "Specify the fields, and their order, in the file specified with (-f). Must be used with (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore")]
+        [Option("data-columns", Required = false, HelpText = "HT_Run_Data_Columns", ResourceType = typeof(i18n.dug))]
         public string DataColumns { get{return _dataColumns;}
             set
             {
                 if(string.IsNullOrEmpty(CustomServerFile)){
-                    throw new Exception("--data-columns cannot be used without specifying a server file (-f)");
+                    throw new Exception(i18n.dug.ER_Run_Data_Columns_Without_Server_File);
                 }
                 var columns = value.ToLowerInvariant().Split(',', StringSplitOptions.None); //Specifically DO NOT remove empty entries
                 foreach(var column in columns){
                     if(!TemplateHelper.ServerSetterMap.ContainsKey(column)){
-                        throw new Exception($"Unable to parse provided column header: {column}");
+                        throw new Exception($"{i18n.dug.ER_Run_Unable_Parse_Data_Column_Header} {column}");
                     }
                 }
                 _dataColumns = value.ToLowerInvariant();
@@ -127,38 +127,38 @@ namespace dug.Options
         }
 
         private bool _dataHeadersPresent;
-        [Option("data-headers-present", Required = false, HelpText = "Specifies whether or not headers are present in the file specified with (-f). Can only be used in conjuction with --data-columns")]
+        [Option("data-headers-present", Required = false, HelpText = "HT_Run_Data_Headers_Present", ResourceType = typeof(i18n.dug))]
         public bool DataHeadersPresent { get{return _dataHeadersPresent;}
             set
             {
                 if(string.IsNullOrEmpty(DataColumns)){
-                    throw new Exception("--data-headers-present cannot be used without (--data-columns)");
+                    throw new Exception(i18n.dug.ER_Run_Data_Headers_Present_Requires_Data_Columns);
                 }
                 _dataHeadersPresent = value;
             }
         }
 
         private char? _dataSeparator;
-        [Option("data-separator", Required = false, HelpText = "Specifies the separator to be used when parsing servers from the file specified with (-f). Can only be used in conjuction with --data-columns. Assumes ',' if not set.")]
+        [Option("data-separator", Required = false, HelpText = "HT_Run_Data_Separator", ResourceType = typeof(i18n.dug))]
         public char? DataSeparator { get{return _dataSeparator;}
             set
             {
                 if(string.IsNullOrEmpty(DataColumns)){
-                    throw new Exception("--data-separator cannot be used without (--data-columns)");
+                    throw new Exception(i18n.dug.ER_Run_Data_Separator_Requires_Data_Columns);
                 }
                 _dataSeparator = value;
             }
         }
 
         private string _template;
-        [Option("output-template", Required = false, HelpText = "Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value")]
+        [Option("output-template", Required = false, HelpText = "HT_Run_Template", ResourceType = typeof(i18n.dug))]
         public string Template { get{return _template;}
             set
             {
                 var headers = value.ToLowerInvariant().Split(',', StringSplitOptions.RemoveEmptyEntries); //Specifically DO NOT remove empty entries
                 foreach(var header in headers){
                     if(!TemplateHelper.ResponseGetterMap.ContainsKey(header)){
-                        throw new Exception($"Unable to parse provided output-template header: {header}");
+                        throw new Exception($"{i18n.dug.ER_Run_Unable_Parse_Template_Header} {header}");
                     }
                 }
                 _template = value.ToLowerInvariant();
@@ -166,7 +166,7 @@ namespace dug.Options
         }
 
         private OutputFormats _outputFormat;
-        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "Specify the output format. For formats other than the default you must also specify a template (--output-template). Options: CSV,JSON")]
+        [Option("output-format", Required = false, Default = OutputFormats.TABLES, HelpText = "HT_Run_Output_Format", ResourceType = typeof(i18n.dug))]
         public OutputFormats OutputFormat { get{return _outputFormat;}
             set
             {
@@ -176,20 +176,20 @@ namespace dug.Options
                 }
 
                 if(string.IsNullOrEmpty(Template)){
-                    throw new Exception($"A template (--output-template) is required when using an output-format other than the default ({default(OutputFormats)})");
+                    throw new Exception($"{i18n.dug.ER_Run_Output_Format_Requires_Template} ({default(OutputFormats)})");
                 }
                 _outputFormat = value;
             }
         }
 
         private int _tableDetailLevel;
-        [Option('d', "table-detail", Default = 1, HelpText = "Specify the level of detail to show when rendering tables. Ignored if output-format is set to anything other than its default (TABLES)")]
+        [Option('d', "table-detail", Default = 1, HelpText = "HT_Run_Table_Detail_Level", ResourceType = typeof(i18n.dug))]
         public int TableDetailLevel { get{return _tableDetailLevel;}
              set
              {
                  if(value < 1 || value > 2) //Currently only support 1 and 2
                  {
-                    throw new Exception("The specified table-detail is out of range. Valid values are in the range [1-2]");
+                    throw new Exception(i18n.dug.ER_Run_Table_Detail_Out_Of_Range);
                  }
                  _tableDetailLevel = value;
              }

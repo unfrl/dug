@@ -1,27 +1,411 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <root>
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:element name="root" msdata:IsDataSet="true">
-            
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>1.3</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <data name="HelloWorld" xml:space="preserve">
-        <value>Hello World</value>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="Dog" xml:space="preserve">
-        <value>Dog</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HT_Enable_Verbose_Output" xml:space="preserve">
+    <value>Enable Verbose Output</value>
+    <comment/>
+  </data>
+  <data name="HT_Parallel" xml:space="preserve">
+    <value>The number of servers to perform queries against in parallel</value>
+  </data>
+  <data name="HT_Retries" xml:space="preserve">
+    <value>The number of times to retry queries on servers that error (or timeout)</value>
+  </data>
+  <data name="HT_Timeout" xml:space="preserve">
+    <value>The timeout (in ms) to be used when querying each DNS Server</value>
+  </data>
+  <data name="HT_Run" xml:space="preserve">
+    <value>Get DNS propagation info for a URL</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="EX_Specify_Query_Types" xml:space="preserve">
+    <value>Specify query type(s)</value>
+  </data>
+  <data name="EX_Specify_Continents" xml:space="preserve">
+    <value>Specify continents to query on</value>
+  </data>
+  <data name="EX_Query_Reliable_On_Continents" xml:space="preserve">
+    <value>Query the top 3 most reliable servers in Africa and North America as well as 8.8.8.8</value>
+  </data>
+  <data name="EX_Json_Fields_Output" xml:space="preserve">
+    <value>Output specific fields of results as json</value>
+  </data>
+  <data name="HT_Run_Hostname" xml:space="preserve">
+    <value>The Hostname you would like to see propagation for.</value>
+  </data>
+  <data name="HT_Run_Custom_Server_File" xml:space="preserve">
+    <value>Use the specified DNS server list for this run.</value>
+  </data>
+  <data name="HT_Run_Servers" xml:space="preserve">
+    <value>The servers to query against instead of the integrated servers. Specify a single value ("8.8.8.8") or multiple separated by commas ("8.8.8.8","2001:4860:4860::8888").</value>
+  </data>
+  <data name="ER_Run_Server_Parse" xml:space="preserve">
+    <value>Unable to parse provided Server:</value>
+  </data>
+  <data name="HT_Run_Server_Count" xml:space="preserve">
+    <value>dug runs queries against the top servers, ranked by reliability, per continent. This allows you to set how many servers from each continent to use.</value>
+  </data>
+  <data name="HT_Run_Continents" xml:space="preserve">
+    <value>The continents on which servers will be queried. Defaults to all.</value>
+  </data>
+  <data name="ER_Run_Inavlid_Continent" xml:space="preserve">
+    <value>Invalid Continent value:</value>
+  </data>
+  <data name="HT_Run_Query_Types" xml:space="preserve">
+    <value>The query type(s) to run against each server. Specify a single value (A) or multiple separated by commas (A,MX).</value>
+  </data>
+  <data name="ER_Run_Invalid_Query_Type" xml:space="preserve">
+    <value>Invalid Query Type value:</value>
+  </data>
+  <data name="HT_Run_Multiple_Server_Sources" xml:space="preserve">
+    <value>When specifying servers (-s, --servers) or (-f, --file) also use integrated servers</value>
+  </data>
+  <data name="HT_Run_Data_Columns" xml:space="preserve">
+    <value>Specify the fields, and their order, in the file specified with (-f). Must be used with (-f). Options: ipaddress,countrycode,city,dnssec,reliability,ignore</value>
+  </data>
+  <data name="ER_Run_Data_Columns_Without_Server_File" xml:space="preserve">
+    <value>--data-columns cannot be used without specifying a server file (-f)</value>
+  </data>
+  <data name="ER_Run_Unable_Parse_Data_Column_Header" xml:space="preserve">
+    <value>Unable to parse provided column header:</value>
+  </data>
+  <data name="HT_Run_Data_Headers_Present" xml:space="preserve">
+    <value>Specifies whether or not headers are present in the file specified with (-f). Can only be used in conjunction with --data-columns</value>
+  </data>
+  <data name="ER_Run_Data_Headers_Present_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-headers-present cannot be used without (--data-columns)</value>
+  </data>
+  <data name="HT_Run_Data_Separator" xml:space="preserve">
+    <value>Specifies the separator to be used when parsing servers from the file specified with (-f). Can only be used in conjunction with --data-columns. Assumes ',' if not set.</value>
+  </data>
+  <data name="ER_Run_Data_Separator_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-separator cannot be used without (--data-columns)</value>
+  </data>
+  <data name="HT_Run_Template" xml:space="preserve">
+    <value>Specify which data, and in what order, to put into out. Ignored if --output-format=TABLES. Options: ipaddress,countrycode,city,dnssec,reliability,continentcode,countryname,countryflag,citycountryname,citycountrycontinentname,responsetime,recordtype,haserror,errormessage,errorcode,value</value>
+  </data>
+  <data name="ER_Run_Unable_Parse_Template_Header" xml:space="preserve">
+    <value>Unable to parse provided output-template header:</value>
+  </data>
+  <data name="HT_Run_Output_Format" xml:space="preserve">
+    <value>Specify the output format. For formats other than the default you must also specify a template (--output-template). Options: CSV,JSON</value>
+  </data>
+  <data name="ER_Run_Output_Format_Requires_Template" xml:space="preserve">
+    <value>A template (--output-template) is required when using an output-format other than the default</value>
+  </data>
+  <data name="HT_Run_Table_Detail_Level" xml:space="preserve">
+    <value>Specify the level of detail to show when rendering tables. Ignored if output-format is set to anything other than its default (TABLES)</value>
+  </data>
+  <data name="ER_Run_Table_Detail_Out_Of_Range" xml:space="preserve">
+    <value>The specified table-detail is out of range. Valid values are in the range [1-2]</value>
+  </data>
+  <data name="HT_Update" xml:space="preserve">
+    <value>Update DNS server list with any new unique servers. Uses remote server to get list by default.</value>
+  </data>
+  <data name="EX_Overwrite" xml:space="preserve">
+    <value>Overwrite current servers</value>
+  </data>
+  <data name="EX_Import_Servers" xml:space="preserve">
+    <value>Import servers</value>
+  </data>
+  <data name="EX_Import_And_Overwrite_Servers" xml:space="preserve">
+    <value>Import and overwrite servers</value>
+  </data>
+  <data name="EX_Remote_Import_And_Update" xml:space="preserve">
+    <value>Import servers from remote source, then update all servers' reliability</value>
+  </data>
+  <data name="EX_Remote_Import_And_Update_Prune" xml:space="preserve">
+    <value>Import servers from remote source, then update all servers' reliability. Remove servers that fail</value>
+  </data>
+  <data name="EX_Update_Reliability_Prune_2_Retries" xml:space="preserve">
+    <value>Update server reliability, remove any that fail. Also use up to 2 retries when querying each server</value>
+  </data>
+  <data name="HT_Update_Custom_Server_File" xml:space="preserve">
+    <value>Update DNS server list using the specified file instead of the remote source</value>
+  </data>
+  <data name="HT_Update_Servers" xml:space="preserve">
+    <value>The server IPs to import instead of the remote source. Specify a single value ("8.8.8.8") or multiple separated by commas ("8.8.8.8","2001:4860:4860::8888").</value>
+  </data>
+  <data name="ER_Update_Server_Parse" xml:space="preserve">
+    <value>Unable to parse provided Server:</value>
+  </data>
+  <data name="HT_Update_Overwrite" xml:space="preserve">
+    <value>Overwrite the current server list instead of updating it.</value>
+  </data>
+  <data name="HT_Update_Reliability" xml:space="preserve">
+    <value>Runs a query for a very stable domain (google.com) against ALL servers. Can be set to 'normal' or 'prune'. Normal updates server reliability based on the results, Prune removes servers that failed (timeout, error, etc)</value>
+  </data>
+  <data name="HT_Update_Reliability_Only" xml:space="preserve">
+    <value>Can only be used with the (-r,--reliability) option. This will keep any new servers from other options (-s,-f,etc) or remote sources from being added. Use if you only want to update the reliability of the currently present servers</value>
+  </data>
+  <data name="ER_Update_Reliability_Only_Requires_Reliability" xml:space="preserve">
+    <value>--reliability-only cannot be used without (-r,--reliability)</value>
+  </data>
+  <data name="HT_Update_Update_URL" xml:space="preserve">
+    <value>Specifies the remote URL to use to retrieve servers. To use this you must also set --data-columns so the servers can be deserialized</value>
+  </data>
+  <data name="ER_Update_Update_URL_Requires_File_Or_Servers" xml:space="preserve">
+    <value>--update-url cannot be used with (-f) or (-s)</value>
+  </data>
+  <data name="ER_Update_Update_URL_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-columns must be specified when using a custom update URL (--update-url)</value>
+  </data>
+  <data name="ER_Update_Unable_Parse_Update_URL" xml:space="preserve">
+    <value>Unable to parse specified --update-url</value>
+  </data>
+  <data name="HT_Update_Data_Columns" xml:space="preserve">
+    <value>Specify the fields, and their order, of the data being imported. Applies to data imported from a file (-f) or remotely (--update-url). Use individually or specify multiple fields separated by commas. Options: ipaddress,countrycode,city,dnssec,reliability,ignore</value>
+  </data>
+  <data name="ER_Update_Unable_Parse_Data_Column_Header" xml:space="preserve">
+    <value>Unable to parse provided column header:</value>
+  </data>
+  <data name="HT_Update_Data_Headers_Present" xml:space="preserve">
+    <value>Specifies whether or not headers are present on the data being imported. Can only be used in conjunction with --data-columns</value>
+  </data>
+  <data name="ER_Update_Data_Headers_Present_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-headers-present cannot be used without (--data-columns)</value>
+  </data>
+  <data name="HT_Update_Data_Separator" xml:space="preserve">
+    <value>Specifies the separator to be used when parsing import data. Can only be used in conjunction with --data-columns. Assumes ',' if not set.</value>
+  </data>
+  <data name="ER_Update_Data_Separator_Requires_Data_Columns" xml:space="preserve">
+    <value>--data-separator cannot be used without (--data-columns)</value>
+  </data>
+  <data name="Output_Retrieved_X_Servers_From_Remote_X" xml:space="preserve">
+    <value>Retrieved {0} novel DNS Servers from {1}</value>
+  </data>
+  <data name="Output_Loaded_X_Servers_From_X" xml:space="preserve">
+    <value>Loaded {0} DNS Servers from {1}</value>
+  </data>
+  <data name="Output_Added_X_Servers_From_X" xml:space="preserve">
+    <value>Added {0} DNS Servers from {1}</value>
+  </data>
+  <data name="Output_Added_X_Servers" xml:space="preserve">
+    <value>Added {0} DNS Servers.</value>
+  </data>
+  <data name="Output_Added_X_Servers_Provided_Already_Present" xml:space="preserve">
+    <value>Added {0} DNS Servers. The provided server(s) are already present.</value>
+  </data>
+  <data name="Output_Overwritting_X_With_X_Specified_Servers" xml:space="preserve">
+    <value>Overwriting {0} with {1} specified servers</value>
+  </data>
+  <data name="Output_Loaded_X_Servers_From_Included_Source" xml:space="preserve">
+    <value>Loaded {0} DNS Servers from built-in source</value>
+  </data>
+  <data name="ER_File_Not_Found" xml:space="preserve">
+    <value>Unable to find file at: {0}</value>
+  </data>
+  <data name="ER_Must_Be_Between_0_1" xml:space="preserve">
+    <value>must be between o and 1</value>
+  </data>
+  <data name="Output_Pruning_Because_Failed" xml:space="preserve">
+    <value>PRUNING -- {0} {1} due to failed response</value>
+  </data>
+  <data name="ER_Unable_To_Get_Value_From_Header_X_Expected_At_Index_X" xml:space="preserve">
+    <value>Unable to retrieve expected value from specified header: {0}. Expected to be at index {1}</value>
+  </data>
+  <data name="ER_Unable_Set_Field_X_To_Value_X" xml:space="preserve">
+    <value>Unable to set field {0} to provided value: {1}. This might be a header trying to be parsed as a value, try adding --data-headers-present</value>
+  </data>
+  <data name="Table_Server_Info" xml:space="preserve">
+    <value>Server Info</value>
+  </data>
+  <data name="Table_Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="Table_Reliability" xml:space="preserve">
+    <value>Reliability</value>
+  </data>
+  <data name="Table_Record_Type" xml:space="preserve">
+    <value>Record Type</value>
+  </data>
+  <data name="Table_Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Table_Continent_Consensus" xml:space="preserve">
+    <value>Consensus by Continent</value>
+  </data>
+  <data name="Table_Records_For" xml:space="preserve">
+    <value>records for</value>
+  </data>
+  <data name="Table_Argument" xml:space="preserve">
+    <value>Argument</value>
+  </data>
+  <data name="Table_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ER_Unable_Render_Results_In_Format" xml:space="preserve">
+    <value>Unable to render results in specified format {0}</value>
+  </data>
+  <data name="ER_Unable_Resolve_Header" xml:space="preserve">
+    <value>Unable to determine how to resolve specified header: {0}</value>
+  </data>
+  <data name="Output_Start_Query" xml:space="preserve">
+    <value>START -- {0} {1}</value>
+  </data>
+  <data name="Output_Finish_Query" xml:space="preserve">
+    <value>FINISH -- {0} {1} -- {2}ms</value>
+  </data>
+  <data name="Output_Timeout" xml:space="preserve">
+    <value>TIMEOUT -- {0} {1} -- {2}ms</value>
+  </data>
+  <data name="Output_Error" xml:space="preserve">
+    <value>ERROR -- {0} {1} -- {2}ms</value>
+  </data>
+  <data name="Output_Unhandled_Error" xml:space="preserve">
+    <value>UNHANDLED ERROR -- {0} {1} -- {2}ms</value>
+  </data>
+  <data name="Output_Animation_Disabled" xml:space="preserve">
+    <value>Progress Animation disabled during verbose output</value>
+  </data>
+  <data name="Output_Connection_Timeout" xml:space="preserve">
+    <value>Connection Timeout</value>
+  </data>
+  <data name="Table_Overall" xml:space="preserve">
+    <value>Overall</value>
+  </data>
+  <data name="Table_Out_OF" xml:space="preserve">
+    <value>out of</value>
+  </data>
+  <data name="ER_Hostname_Missing" xml:space="preserve">
+    <value>A {0} must be provided. (run dug help or dug --help for more info)</value>
+  </data>
+  <data name="Output_Verbose_Enabled" xml:space="preserve">
+    <value>Verbose Output Enabled</value>
+  </data>
+  <data name="ER_Specified_File_Not_Found" xml:space="preserve">
+    <value>Specified file does not exist: {0}</value>
+  </data>
+  <data name="ER_Unable_To_Parse_File" xml:space="preserve">
+    <value>Unable to parse content from specified file: {0}
+ Consider using --data-columns</value>
+  </data>
+  <data name="Output_Servers_To_Use" xml:space="preserve">
+    <value>Server Count: {0}</value>
+  </data>
+  <data name="Output_Testing_Server_Responses" xml:space="preserve">
+    <value>Testing {0} server responses for google.com</value>
+  </data>
+  <data name="Output_Testing_Server_Responses_Finished" xml:space="preserve">
+    <value>
+Finished, got {0} good responses out of {1} requests</value>
+  </data>
 </root>

@@ -31,8 +31,8 @@ namespace dug.Services
             var parentTable = new Table()
                 .Border(TableBorder.MinimalHeavyHead)
                 .BorderColor(Color.White)
-                .AddColumn(new TableColumn("[green][u]Server Info[/][/]").Centered())
-                .AddColumn(new TableColumn("[green][u]Results[/][/]").Centered());
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Server_Info}[/][/]").Centered())
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Results}[/][/]").Centered());
 
             ContinentCodes currentContinent = null;
             foreach(var resultPair in resultsByContinent){
@@ -52,7 +52,7 @@ namespace dug.Services
                 // serverInfoGrid.AddRow(string.IsNullOrEmpty(server.CountryFlag) ? "" : server.CountryFlag); //I would really like to use these flag emojis but it seems like it has very little terminal support, most render them incorrectly...
                 serverInfoGrid.AddRow(server.CityCountryName);
                 serverInfoGrid.AddRow("DNSSEC: " + (server.DNSSEC == null ? "❓" : ((bool)server.DNSSEC ? "🔒" : "🔓")));
-                serverInfoGrid.AddRow($"Reliability: {server.Reliability * 100}%");
+                serverInfoGrid.AddRow($"{i18n.dug.Table_Reliability}: {server.Reliability * 100}%");
                 serverInfoGrid.AddEmptyRow();
 
                 var resultTable = new Table().AddColumns("","",""); //Currently you must declare the column headers, even when you dont want to render them.
@@ -73,9 +73,9 @@ namespace dug.Services
             var table = new Table()
                 .Border(TableBorder.MinimalHeavyHead)
                 .BorderColor(Color.White)
-                .AddColumn(new TableColumn("[green][u]Record Type[/][/]").Centered())
-                .AddColumn(new TableColumn("[green][u]Value[/][/]").Centered())
-                .AddColumn(new TableColumn("[green][u]Consensus by Continent[/][/]").LeftAligned());
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Record_Type}[/][/]").Centered())
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Value}[/][/]").Centered())
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Continent_Consensus}[/][/]").LeftAligned());
 
             
             foreach(var queryType in options.ParsedQueryTypes){
@@ -121,7 +121,7 @@ namespace dug.Services
 
         private void DrawUrlHeader(RunOptions options)
         {
-            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} records for {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} {i18n.dug.Table_Records_For} {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
         }
 
         public void RenderInfoPanel<T>(object args)
@@ -129,26 +129,26 @@ namespace dug.Services
             var table = new Table()
                 .Border(TableBorder.MinimalHeavyHead)
                 .BorderColor(Color.White)
-                .AddColumn(new TableColumn("[green][u]Argument[/][/]").Centered())
-                .AddColumn(new TableColumn("[green][u]Value[/][/]").Centered())
-                .AddColumn(new TableColumn("[green][u]Description[/][/]").LeftAligned());
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Argument}[/][/]").Centered())
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Value}[/][/]").Centered())
+                .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Description}[/][/]").LeftAligned());
             var optionProperties = typeof(T).GetProperties().Where(prop => prop.GetCustomAttribute<OptionAttribute>() != null);
             foreach(var property in optionProperties){
                 
                 var optionAttribute = property.GetCustomAttribute<OptionAttribute>();
                 var valueString = property.GetValue(args)?.ToString() ?? "";
 
-                if(valueString != (optionAttribute.Default?.ToString() ?? ReflectionHelper.GetDefaultValueAsString(property.PropertyType))){
+                if(valueString != (optionAttribute?.Default?.ToString() ?? ReflectionHelper.GetDefaultValueAsString(property.PropertyType))){
                     valueString = $"[green]{valueString}[/]";
                 }
                 else{
                     continue;
                 }
 
-                string shortArgString = string.IsNullOrEmpty(optionAttribute.ShortName)? string.Empty : $"-{optionAttribute.ShortName} , ";
-                string longArgString = string.IsNullOrEmpty(optionAttribute.LongName) ? string.Empty : $"--{optionAttribute.LongName}";
+                string shortArgString = string.IsNullOrEmpty(optionAttribute?.ShortName)? string.Empty : $"-{optionAttribute.ShortName} , ";
+                string longArgString = string.IsNullOrEmpty(optionAttribute?.LongName) ? string.Empty : $"--{optionAttribute.LongName}";
                 var argumentString = shortArgString + longArgString;
-                var descriptionString = optionAttribute.HelpText;
+                var descriptionString = optionAttribute?.HelpText ?? string.Empty;
                 table.AddRow(
                     new Markup(argumentString),
                     new Markup(valueString),

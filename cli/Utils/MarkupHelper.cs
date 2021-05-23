@@ -19,14 +19,14 @@ namespace dug.Utils
                 case "Empty":
                     return $"[yellow]{dnsResponse}[/]";
                 case "ConnectionTimeout":
-                    return "[red]Connection Timeout[/]⏲️";
+                    return $"[red]{i18n.dug.Output_Connection_Timeout}[/]⏲️";
                 default:
                     return ResponseMarkupInPlace(dnsResponse, url);
             }
         }
 
         /*
-            Takes in a string and replaces all occurences of the specified 'highlight' string (usually a URL), as well as record types, with markup making it green.
+            Takes in a string and replaces all occurrences of the specified 'highlight' string (usually a URL), as well as record types, with markup making it green.
         */
         public static string ResponseMarkupInPlace(string value, string highlight){
             StringBuilder sb = new StringBuilder(value);
@@ -55,7 +55,7 @@ namespace dug.Utils
                 sb.AppendLine($"{continent.Name} ({continentCounts[continent]}) {FormatPercentageMarkup(continentConsensusPercentage)}");
             }
 
-            sb.AppendLine($"[b][u]Overall[/] ({serverCountWithValue} out of {serverCountOverall}) {FormatPercentageMarkup((float)serverCountWithValue/(float)serverCountOverall)}[/]");
+            sb.AppendLine($"[b][u]{i18n.dug.Table_Overall}[/] ({serverCountWithValue} {i18n.dug.Table_Out_OF} {serverCountOverall}) {FormatPercentageMarkup((float)serverCountWithValue/(float)serverCountOverall)}[/]");
             return sb.ToString();
         }
 
