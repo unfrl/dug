@@ -127,7 +127,7 @@
     <value>No se ha podido encontrar el archivo en: {0}</value>
   </data>
   <data name="ER_Hostname_Missing" xml:space="preserve">
-    <value>A {0} debe ser proporcionada. (Cavado ayuda de ejecución o excavados --help para obtener más información)</value>
+    <value>A {0} debe ser proporcionada. (Use --help para obtener más información)</value>
   </data>
   <data name="ER_Must_Be_Between_0_1" xml:space="preserve">
     <value>debe estar entre O y 1</value>
@@ -151,10 +151,10 @@
     <value>Una plantilla (--output-template) se requiere cuando se utiliza una salida en formato distinto del predeterminado</value>
   </data>
   <data name="ER_Run_Server_Parse" xml:space="preserve">
-    <value>No se puede analizar proporcionado Servidor:</value>
+    <value>No se puede analizar la respuesta proporcionada por el servidor:</value>
   </data>
   <data name="ER_Run_Table_Detail_Out_Of_Range" xml:space="preserve">
-    <value>La mesa de detalle especificado está fuera de rango. Los valores válidos están en el intervalo [1-2]</value>
+    <value>???La mesa de detalle especificado está fuera de rango. Los valores válidos están en el intervalo [1-2]</value>
   </data>
   <data name="ER_Run_Unable_Parse_Data_Column_Header" xml:space="preserve">
     <value>No se puede analizar proporcionado encabezado de la columna:</value>
@@ -352,7 +352,7 @@
     <value>Obtenido {0} nuevos servidores DNS desde {1}</value>
   </data>
   <data name="Output_Servers_To_Use" xml:space="preserve">
-    <value>Conde servidor: {0}</value>
+    <value>???Conde servidor: {0}</value>
   </data>
   <data name="Output_Start_Query" xml:space="preserve">
     <value>INICIO - {0} {1}</value>
@@ -370,7 +370,7 @@
     <value>No controlada ERROR - {0} {1} - {2} ms</value>
   </data>
   <data name="Output_Verbose_Enabled" xml:space="preserve">
-    <value>Verbosa salida habilitada</value>
+    <value>Salida Detallada habilitada</value>
   </data>
   <data name="Table_Argument" xml:space="preserve">
     <value>Argumento</value>
@@ -412,7 +412,7 @@
     <value>Sudamerica</value>
   </data>
   <data name="North_America" xml:space="preserve">
-    <value>América del norte</value>
+    <value>Norteamerica</value>
   </data>
   <data name="Oceania" xml:space="preserve">
     <value>Oceanía</value>
