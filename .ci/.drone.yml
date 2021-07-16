@@ -9,7 +9,7 @@ steps:
   - name: clone
     image: alpine/git
     commands:
-    - git clone --recurse-submodules https://github.com/unfrl/dug.git .
+    - git clone --recurse-submodules $DRONE_REPO_LINK .
     - git checkout $DRONE_COMMIT
     - git submodule update --recursive --remote
 
