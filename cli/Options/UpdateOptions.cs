@@ -14,7 +14,7 @@ namespace dug.Options
         Prune
     }
 
-    [Verb("update", HelpText = "HT_Update")]
+    [Verb("update", HelpText = "HT_Update", ResourceType = typeof(i18n.dug))]
     public class UpdateOptions : GlobalOptions
     {
 
