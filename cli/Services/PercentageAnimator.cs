@@ -42,8 +42,9 @@ namespace dug.Services
             _totalEvents = totalEvents;
             _count = 0;
             _progressBarLength = progressBarLength;
-            _left = Console.CursorLeft;
-            _top = Console.CursorTop;
+            var pos = Console.GetCursorPosition();
+            _left = pos.Left;
+            _top = pos.Top;
             
             _active = true;
             if (!_thread.IsAlive){
@@ -59,7 +60,7 @@ namespace dug.Services
             }
             _active = false;
             _customString = " ";
-            Draw(' ');
+            Draw(' ', true);
         }
 
         private void Spin()
@@ -71,12 +72,16 @@ namespace dug.Services
             }
         }
 
-        private void Draw(char c)
+        private void Draw(char c, bool end = false)
         {
             double progress;
             TimeSpan elapsed;
+            double _lockCount;
+            double _lockTotalEvents;
             lock(_syncObject){
-                progress = _count/_totalEvents;
+                _lockCount = _count;
+                _lockTotalEvents = _totalEvents;
+                progress = _lockCount/_lockTotalEvents;
                 elapsed= _stopwatch.Elapsed;
             }
             Console.SetCursorPosition(_left, _top);
@@ -95,8 +100,8 @@ namespace dug.Services
                 Console.Write(GetProgressBar(progress));
             }
             Console.Write(_customString);
-            Console.Write($" {(progress).ToString("P3")} ({_count}/{_totalEvents}) ({elapsed.ToString("mm\\:ss\\:fff")})");
-            if(!_active){
+            Console.Write($" {(progress).ToString("P3")} ({_lockCount}/{_lockTotalEvents}) ({elapsed.ToString("mm\\:ss\\:fff")})");
+            if(end){
                 Console.Write(Environment.NewLine);
             }
         }

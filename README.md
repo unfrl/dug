@@ -17,9 +17,11 @@ The easiest way to explore dug is through the help.
 
 The simplest way to get started is to just run a query against the domain whose DNS records you're updating.
 For example: `dug git.kaijucode.com`:
+
 ![](cli/Resources/gif1.gif)
 
-You can also do complicated things like ask for specific record types, get the output as json, and pipe it into other applications: `dug git.kaijucode.com -q A --output-format JSON --output-template Ipaddress,city,value,responsetime | jq`:
+You can also do complicated things like ask for specific record types, use the most reliable server per continent, get the output as json, and pipe it into other applications: `dug git.kaijucode.com -q A --output-format JSON --server-count 1 --output-template Ipaddress,city,value,responsetime | jq`:
+
 ![](cli/Resources/gif2.gif)
 
 ## Localization
@@ -83,6 +85,10 @@ Not sure if this counts as an "Installation" but there is a docker image availab
 This is a .net 5 project, so as long as you have the dotnet cli, available [here](https://dotnet.microsoft.com/download/dotnet/5.0) you should be able to do the following: `dotnet build ./cli`
 
 The project was developed in VSCode so the debugger profiles that I have used are available if you're also using VSCode.
+
+The commands to build an optimized executable vary depending on the platform but are all available in the [.drone.yml](.ci/.drone.yml) file. Here is the one to build the linux-x64 executable as an example:
+
+`dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli`
 
 ### Testing
 
