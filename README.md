@@ -86,6 +86,10 @@ This is a .net 5 project, so as long as you have the dotnet cli, available [here
 
 The project was developed in VSCode so the debugger profiles that I have used are available if you're also using VSCode.
 
+The commands to build an optimized executable vary depending on the platform but are all available in the [.drone.yml](.ci/.drone.yml) file. Here is the one to build the linux-x64 executable as an example:
+
+`dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli`
+
 ### Testing
 
 There is currently fairly limited testing, what does exist uses the [BATS](https://github.com/sstephenson/bats) tool.
