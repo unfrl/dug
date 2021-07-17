@@ -17,9 +17,11 @@ The easiest way to explore dug is through the help.
 
 The simplest way to get started is to just run a query against the domain whose DNS records you're updating.
 For example: `dug git.kaijucode.com`:
+
 ![](cli/Resources/gif1.gif)
 
-You can also do complicated things like ask for specific record types, get the output as json, and pipe it into other applications: `dug git.kaijucode.com -q A --output-format JSON --output-template Ipaddress,city,value,responsetime | jq`:
+You can also do complicated things like ask for specific record types, use the most reliable server per continent, get the output as json, and pipe it into other applications: `dug git.kaijucode.com -q A --output-format JSON --server-count 1 --output-template Ipaddress,city,value,responsetime | jq`:
+
 ![](cli/Resources/gif2.gif)
 
 ## Localization
