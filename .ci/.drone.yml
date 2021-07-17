@@ -179,6 +179,8 @@ steps:
   commands:
   - dotnet publish -r osx-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish ./cli
   - mv ./publish/dug ./publish/dug-osx-x64 #Rename the binary to its architecture type
+  - dotnet tool restore
+  - dotnet tarball -c Release -r osx-x64 -o ./publish ./cli/dug.csproj
   when:
     ref:
     - refs/tags/*.*.*
