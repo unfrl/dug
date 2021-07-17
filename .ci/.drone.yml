@@ -101,7 +101,7 @@ depends_on:
 
 steps:
 - name: prepare_publishing
-  image: mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim-amd64
+  image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
   - echo "Publishing tagged version ${DRONE_TAG}"
   - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
@@ -125,7 +125,7 @@ steps:
     
 
 - name: package linux
-  image: mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim-amd64
+  image: mcr.microsoft.com/dotnet/sdk:5.0
   environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   commands:
@@ -145,7 +145,7 @@ steps:
   - prepare_publishing
 
 - name: build win-x64
-  image: mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim-amd64
+  image: mcr.microsoft.com/dotnet/sdk:5.0
   environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   commands:
@@ -173,7 +173,7 @@ steps:
   - build win-x64
 
 - name: build osx-x64
-  image: mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim-amd64
+  image: mcr.microsoft.com/dotnet/sdk:5.0
   environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   commands:
