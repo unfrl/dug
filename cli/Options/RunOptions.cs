@@ -37,6 +37,9 @@ namespace dug.Options
         [Value(0, Required = true, HelpText = "HT_Run_Hostname", ResourceType = typeof(i18n.dug), MetaName = "Hostname")]
         public string Hostname { get; set; }
 
+        [Option('w', "watch")] //TODO: Add helptext n stuff
+        public bool Watch { get; set; }
+
         [Option('f', "file", Required = false, HelpText = "HT_Run_Custom_Server_File", ResourceType = typeof(i18n.dug))] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
 

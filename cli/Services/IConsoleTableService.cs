@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DnsClient;
 using dug.Data;
 using dug.Data.Models;
@@ -8,6 +10,7 @@ namespace dug.Services
 {
     public interface IConsoleTableService
     {
+        Task DrawLiveTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options, Func<Task<Dictionary<DnsServer, List<DnsResponse>>>> queryFunction);
         void DrawResults(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options);
 
         /*
