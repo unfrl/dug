@@ -5,6 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug Watch run",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/cli/bin/Debug/net5.0/dug.dll",
+            "args": ["unfrl.com" , "-w"],
+            "cwd": "${workspaceFolder}/cli",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "Debug importing from file",
             "type": "coreclr",
             "request": "launch",

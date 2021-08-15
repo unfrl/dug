@@ -8,6 +8,9 @@ using dug.Options;
 using Spectre.Console;
 using dug.Utils;
 using CommandLine;
+using System.Threading;
+using System;
+using System.Threading.Tasks;
 
 namespace dug.Services
 {
@@ -17,11 +20,28 @@ namespace dug.Services
         {
             DrawUrlHeader(options);
             if(options.TableDetailLevel == 1){
-                DrawConciseTable(results, options);
+                AnsiConsole.Render(GenerateConciseTable(results, options));
             }
             else {
                 DrawVerboseTable(results, options);
             }
+        }
+
+        public async Task DrawLiveTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options, Func<Task<Dictionary<DnsServer, List<DnsResponse>>>> queryFunction){
+            var scan = 0;
+            var _liveTable = GenerateConciseTable(results, options, string.Format(i18n.dug.Output_Scan_Every, options.Watch, ++scan));
+
+            await AnsiConsole.Live(_liveTable)
+                .StartAsync(async (context) => {
+                    async Task UpdateAsync(){
+                        Thread.Sleep(options.Watch.HasValue ? options.Watch.Value : 1000);
+                        var newResults = await queryFunction();
+                        context.UpdateTarget(GenerateConciseTable(newResults, options, string.Format(i18n.dug.Output_Scan_Every, options.Watch, ++scan)));
+                        await UpdateAsync();
+                    }
+                    context.UpdateTarget(_liveTable);
+                    await UpdateAsync();
+                });
         }
 
         private void DrawVerboseTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options)
@@ -69,13 +89,17 @@ namespace dug.Services
             AnsiConsole.Render(parentTable);
         }
         
-        private void DrawConciseTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options){
+        private Table GenerateConciseTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options, string title = null){
             var table = new Table()
                 .Border(TableBorder.MinimalHeavyHead)
                 .BorderColor(Color.White)
                 .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Record_Type}[/][/]").Centered())
                 .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Value}[/][/]").Centered())
                 .AddColumn(new TableColumn($"[green][u]{i18n.dug.Table_Continent_Consensus}[/][/]").LeftAligned());
+            
+            if(!string.IsNullOrEmpty(title)){
+                table.Title = new TableTitle(title);
+            }
 
             
             foreach(var queryType in options.ParsedQueryTypes){
@@ -116,7 +140,8 @@ namespace dug.Services
 
                 table.AddRow(new Rule().HeavyBorder(), new Rule().HeavyBorder(), new Rule().HeavyBorder());
             }
-            AnsiConsole.Render(table);
+
+            return table;
         }
 
         private void DrawUrlHeader(RunOptions options)

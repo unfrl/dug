@@ -432,4 +432,28 @@ Finished, got {0} good responses out of {1} requests</value>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
+  <data name="HT_Run_Watch" xml:space="preserve">
+    <value>Run the query every X ms and render the results.</value>
+  </data>
+  <data name="ER_Run_Output_Format_Cannot_Be_Used_With_Watch" xml:space="preserve">
+    <value>Cannot specify output-format (--output-format) and watch (-w, --watch)</value>
+  </data>
+  <data name="ER_Run_Watch_Out_Of_Range" xml:space="preserve">
+    <value>When specifying watch (-w, --watch) only positive values can be used</value>
+  </data>
+  <data name="Output_Scan_Every" xml:space="preserve">
+    <value>Scan every {0} ms. #: {1}</value>
+  </data>
+  <data name="ER_Parallel_Out_Of_Range" xml:space="preserve">
+    <value>(-p, --parallel) must be at least 1</value>
+  </data>
+  <data name="ER_Retries_Out_Of_Range" xml:space="preserve">
+    <value>(--retries) must be positive</value>
+  </data>
+  <data name="ER_Timeout_Out_Of_Range" xml:space="preserve">
+    <value>(-t, --timeout) must be positive</value>
+  </data>
+  <data name="ER_Server_Count_Out_Of_Range" xml:space="preserve">
+    <value>(--server-count) must be at least 1</value>
+  </data>
 </root>

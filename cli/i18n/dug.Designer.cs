@@ -668,5 +668,53 @@ namespace dug.i18n {
                 return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
+        
+        public static string HT_Run_Watch {
+            get {
+                return ResourceManager.GetString("HT_Run_Watch", resourceCulture);
+            }
+        }
+        
+        public static string ER_Run_Output_Format_Cannot_Be_Used_With_Watch {
+            get {
+                return ResourceManager.GetString("ER_Run_Output_Format_Cannot_Be_Used_With_Watch", resourceCulture);
+            }
+        }
+        
+        public static string ER_Run_Watch_Out_Of_Range {
+            get {
+                return ResourceManager.GetString("ER_Run_Watch_Out_Of_Range", resourceCulture);
+            }
+        }
+        
+        public static string Output_Scan_Every {
+            get {
+                return ResourceManager.GetString("Output_Scan_Every", resourceCulture);
+            }
+        }
+        
+        public static string ER_Parallel_Out_Of_Range {
+            get {
+                return ResourceManager.GetString("ER_Parallel_Out_Of_Range", resourceCulture);
+            }
+        }
+        
+        public static string ER_Retries_Out_Of_Range {
+            get {
+                return ResourceManager.GetString("ER_Retries_Out_Of_Range", resourceCulture);
+            }
+        }
+        
+        public static string ER_Timeout_Out_Of_Range {
+            get {
+                return ResourceManager.GetString("ER_Timeout_Out_Of_Range", resourceCulture);
+            }
+        }
+        
+        public static string ER_Server_Count_Out_Of_Range {
+            get {
+                return ResourceManager.GetString("ER_Server_Count_Out_Of_Range", resourceCulture);
+            }
+        }
     }
 }

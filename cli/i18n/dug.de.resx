@@ -324,4 +324,25 @@
     <data name="Unknown" xml:space="preserve">
         <value>Unbekannt</value>
     </data>
+    <data name="HT_Run_Watch" xml:space="preserve">
+        <value>Führen Sie die Abfrage alle X ms aus und rendern Sie die Ergebnisse.</value>
+    </data>
+    <data name="ER_Run_Output_Format_Cannot_Be_Used_With_Watch" xml:space="preserve">
+        <value>Ausgabeformat (--output-format) und Watch (-w, --watch) kann nicht angegeben werden</value>
+    </data>
+    <data name="ER_Run_Watch_Out_Of_Range" xml:space="preserve">
+        <value>Bei der Angabe von Watch (-w, --watch) können nur positive Werte verwendet werden</value>
+    </data>
+    <data name="Output_Scan_Every" xml:space="preserve">
+        <value>Scannen Sie alle {0} ms. #: {1}</value>
+    </data>
+    <data name="ER_Parallel_Out_Of_Range" xml:space="preserve">
+        <value>(-p, --parallel) muss mindestens 1 . sein</value>
+    </data>
+    <data name="ER_Timeout_Out_Of_Range" xml:space="preserve">
+        <value>(-t, --timeout) muss positiv sein</value>
+    </data>
+    <data name="ER_Server_Count_Out_Of_Range" xml:space="preserve">
+        <value>(--server-count) muss mindestens 1 sein</value>
+    </data>
 </root>

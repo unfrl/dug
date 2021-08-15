@@ -19,7 +19,7 @@ namespace dug.Services
         private object _syncObject = 0;
         private string _customString;
         private Stopwatch _stopwatch = new Stopwatch();
-        private bool _trueColor = AnsiConsole.Capabilities.Supports(ColorSystem.TrueColor);
+        private bool _trueColor = true;//AnsiConsole.Capabilities.Supports(ColorSystem.TrueColor); //TODO: Fix this!
 
         public PercentageAnimator (){
             _thread = new Thread(Spin);
