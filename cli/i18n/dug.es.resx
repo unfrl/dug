@@ -441,4 +441,16 @@
   <data name="Output_Scan_Every" xml:space="preserve">
     <value>Escanea cada {0} ms. #: {1}</value>
   </data>
+  <data name="ER_Parallel_Out_Of_Range" xml:space="preserve">
+    <value>(-p, --parallel) debe ser al menos 1</value>
+  </data>
+  <data name="ER_Retries_Out_Of_Range" xml:space="preserve">
+    <value>(--retries) debe ser positivo</value>
+  </data>
+  <data name="ER_Timeout_Out_Of_Range" xml:space="preserve">
+    <value>(-t, --timeout) debe ser positiva</value>
+  </data>
+  <data name="ER_Server_Count_Out_Of_Range" xml:space="preserve">
+    <value>(--server-count) debe ser al menos 1</value>
+  </data>
 </root>

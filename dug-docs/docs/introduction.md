@@ -20,6 +20,8 @@ The `run` verb allows parallel queries to be executed against DNS Servers and fo
 The simplest use of `run`, with all defaults, gets the A records for the specified domain from the top 6 servers available from each continent (ranked by reliability). This looks like `dug run git.kaijucode.com` or `dug git.kaijucode.com` (because `run` is the default verb). It returns something like this:
 ![img](../static/img/docs/dug_default_run.png)
 
+`run` has one particularly useful flag (`-w` or `--watch`) that allows users to 'watch' their DNS propagate in realtime by scanning and updating the output table every as often as specified by the flag (in milliseconds).
+
 ### `update`:
 > Usage details [here](./update)
 

@@ -71,8 +71,16 @@ namespace dug.Options
         }
         public List<DnsServer> ParsedServers { get; set; }
 
+        private int _serverCount;
         [Option("server-count", Required = false, HelpText = "HT_Run_Server_Count", ResourceType = typeof(i18n.dug), Default = 6)]
-        public int ServerCount { get; set; }
+        public int ServerCount { get {return _serverCount;}
+            set{
+                if(value < 1){
+                    throw new Exception(i18n.dug.ER_Server_Count_Out_Of_Range);
+                }
+                _serverCount = value;
+            }
+        }
         
         private string _continents;
         [Option("continents", Required = false, HelpText = "HT_Run_Continents", ResourceType = typeof(i18n.dug), Default = "AF,SA,NA,OC,AS,EU,AN")]

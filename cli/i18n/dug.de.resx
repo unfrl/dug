@@ -336,4 +336,13 @@
     <data name="Output_Scan_Every" xml:space="preserve">
         <value>Scannen Sie alle {0} ms. #: {1}</value>
     </data>
+    <data name="ER_Parallel_Out_Of_Range" xml:space="preserve">
+        <value>(-p, --parallel) muss mindestens 1 . sein</value>
+    </data>
+    <data name="ER_Timeout_Out_Of_Range" xml:space="preserve">
+        <value>(-t, --timeout) muss positiv sein</value>
+    </data>
+    <data name="ER_Server_Count_Out_Of_Range" xml:space="preserve">
+        <value>(--server-count) muss mindestens 1 sein</value>
+    </data>
 </root>
