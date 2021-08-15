@@ -29,14 +29,14 @@ namespace dug.Services
 
         public async Task DrawLiveTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options, Func<Task<Dictionary<DnsServer, List<DnsResponse>>>> queryFunction){
             var scan = 0;
-            var _liveTable = GenerateConciseTable(results, options, $"Scan: {++scan}");
+            var _liveTable = GenerateConciseTable(results, options, string.Format(i18n.dug.Output_Scan_Every, options.Watch, ++scan));
 
             await AnsiConsole.Live(_liveTable)
                 .StartAsync(async (context) => {
                     async Task UpdateAsync(){
-                        Thread.Sleep(1000);
+                        Thread.Sleep(options.Watch.HasValue ? options.Watch.Value : 1000);
                         var newResults = await queryFunction();
-                        context.UpdateTarget(GenerateConciseTable(newResults, options, $"Scan: {++scan}"));
+                        context.UpdateTarget(GenerateConciseTable(newResults, options, string.Format(i18n.dug.Output_Scan_Every, options.Watch, ++scan)));
                         await UpdateAsync();
                     }
                     context.UpdateTarget(_liveTable);

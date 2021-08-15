@@ -187,7 +187,7 @@ namespace dug
             // 3. Draw beautiful results in fancy table
             if (opts.OutputFormat == OutputFormats.TABLES)
             {
-                if (!opts.Watch)
+                if (!opts.Watch.HasValue)
                 {
                     _consoleTableService.DrawResults(queryResults, opts);
                 }
@@ -203,7 +203,7 @@ namespace dug
                 _dnsServerService.UpdateServerReliabilityFromResults(queryResults, false);
             }
 
-            if (opts.Watch)
+            if (opts.Watch.HasValue)
             {
                 Console.Clear();
                 await _consoleTableService.DrawLiveTable(queryResults, opts, async () => await Query(opts, serversToUse));

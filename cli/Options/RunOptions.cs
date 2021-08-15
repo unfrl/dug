@@ -37,8 +37,17 @@ namespace dug.Options
         [Value(0, Required = true, HelpText = "HT_Run_Hostname", ResourceType = typeof(i18n.dug), MetaName = "Hostname")]
         public string Hostname { get; set; }
 
-        [Option('w', "watch")] //TODO: Add helptext n stuff
-        public bool Watch { get; set; }
+        private int? _watch;
+        [Option('w', "watch", Required = false, HelpText = "HT_Run_Watch", ResourceType = typeof(i18n.dug))]
+        public int? Watch { get {return _watch;}
+            set {
+                if(value.HasValue && value.Value < 0){
+                    throw new ArgumentOutOfRangeException(nameof(RunOptions.Watch), i18n.dug.ER_Run_Watch_Out_Of_Range);
+                }
+                
+                _watch = value;
+            }
+        }
 
         [Option('f', "file", Required = false, HelpText = "HT_Run_Custom_Server_File", ResourceType = typeof(i18n.dug))] //TODO: At some point we need a link here to a readme showing the format the file must be in.
         public string CustomServerFile { get; set; }
@@ -176,6 +185,10 @@ namespace dug.Options
                 if(value == OutputFormats.TABLES){
                     _outputFormat = value;
                     return;
+                }
+
+                if(Watch.HasValue){
+                    throw new Exception(i18n.dug.ER_Run_Output_Format_Cannot_Be_Used_With_Watch);
                 }
 
                 if(string.IsNullOrEmpty(Template)){
