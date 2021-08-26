@@ -10,12 +10,15 @@ namespace dug
 {
     class Program
     {
-
         static async Task<int> Main(string[] args)
         {
             var services = ConfigureServices(args);
 
             var serviceProvider = services.BuildServiceProvider();
+            
+            Console.CancelKeyPress += delegate {
+                Console.CursorVisible = true;
+            };
 
             int exitCode = 1;
             try{
