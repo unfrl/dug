@@ -159,6 +159,7 @@ steps:
 
 - name: package/publish win-x64
   image: linuturk/mono-choco
+  pull: always
   environment:
     CHOCO_API_KEY:
       from_secret: chocolatey_api_key
