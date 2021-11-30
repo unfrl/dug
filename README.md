@@ -3,7 +3,7 @@
 [![Build Status](https://drone.unfrl.com/api/badges/unfrl/dug/status.svg)](https://drone.unfrl.com/unfrl/dug)
 [![unfrl-dug](https://snapcraft.io/unfrl-dug/badge.svg)](https://snapcraft.io/unfrl-dug)
 
-A powerful global DNS progagation checker that can output in a variety of formats.
+A powerful global DNS propagation checker that can output in a variety of formats.
 
 The goal of dug is to make it easy to check the propagation of DNS records. It is also capable of providing templated output that can be used in scripts for things like monitoring.
 
