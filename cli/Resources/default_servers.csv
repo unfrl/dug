@@ -1,41 +1,32 @@
 ip_address,country_code,city,dnssec,reliability
 8.8.8.8,US,,True,1
-151.80.222.79,FR,Roubaix,False,0.5
-200.11.52.202,PE,Lima,False,0.93
-200.62.147.66,PE,Callao,False,0.99
-91.239.100.100,DK,,True,0.68
+151.80.222.79,FR,Roubaix,False,0.51
+200.11.52.202,PE,Lima,False,0.9400000000000001
+200.62.147.66,PE,Callao,False,1
+91.239.100.100,DK,,True,0.6900000000000001
 89.233.43.71,DK,Kobenhavn O,True,1
 80.80.81.81,NL,,True,1
 180.76.76.76,CN,,False,1
 199.85.126.10,US,,True,1
-203.81.75.37,MM,,False,0.68
 161.200.96.9,TH,Bang Khae,False,1
-103.123.226.10,IN,Mumbai,False,0.6900000000000001
-66.199.45.225,CA,Etobicoke,True,0.02
+103.123.226.10,IN,Mumbai,False,0.7000000000000001
+66.199.45.225,CA,Etobicoke,True,0.03
 149.112.112.112,US,,True,1
 142.77.2.101,US,,False,1
-142.77.2.85,US,,False,0.19
-190.211.104.93,CR,Pital,False,0.65
-200.87.195.70,BO,,False,0.96
-76.72.248.34,PR,Trujillo Alto,False,0.95
+142.77.2.85,US,,False,0.2
+200.87.195.70,BO,,False,0.97
+76.72.248.34,PR,Trujillo Alto,False,0.96
 193.183.98.66,IT,Milan,True,1
-176.103.130.130,RU,,True,1
-200.40.255.101,UY,Montevideo,False,0.97
-109.123.19.5,SI,Vuzenica,False,0.51
+176.103.130.130,RU,,True,0.91
 195.250.58.10,SI,,False,1
 185.107.80.84,NL,Pijnacker,False,1
 37.139.11.137,NL,Amsterdam,False,1
 87.213.100.113,NL,Amersfoort,True,1
-45.33.97.5,US,Atlanta,False,1
-193.19.64.88,NO,,False,0.99
+193.19.64.88,NO,,False,1
 158.43.128.72,GB,,True,1
 194.187.251.67,GB,Manchester,False,1
-188.227.240.58,GB,Romford,True,1
 195.46.39.39,,,False,1
-62.48.241.226,PT,Carcavelos,False,0.85
-5.83.92.254,ES,Morón de la Frontera,False,1
 81.27.162.100,DE,Regensburg,True,1
-84.16.240.43,DE,,False,1
 94.247.43.254,DE,,True,1
 129.250.35.250,US,,False,1
 144.76.83.104,DE,,False,1
@@ -45,32 +36,29 @@ ip_address,country_code,city,dnssec,reliability
 195.10.195.195,DE,,True,1
 195.76.233.2,ES,Santa Perpetua de Mogoda,False,1
 195.77.235.10,ES,Castro Urdiales,False,1
-31.47.196.211,AM,Yerevan,False,1
-12.156.228.164,US,,False,0.45
-80.228.63.124,DE,Wilhelmshaven,False,0.6
-152.101.4.130,HK,,False,0.79
+12.156.228.164,US,,False,0.46
+80.228.63.124,DE,Wilhelmshaven,False,0.61
+152.101.4.130,HK,,False,0.8
 176.103.130.131,RU,,True,1
-185.228.169.9,US,,True,0.99
+185.228.169.9,US,,True,1
 199.2.252.10,US,,True,1
-203.186.61.66,HK,Sham Shui Po,False,0.51
-203.186.217.188,HK,Central,False,0.34
+203.186.61.66,HK,Sham Shui Po,False,0.52
+203.186.217.188,HK,Central,False,0.35000000000000003
 204.117.214.10,US,,True,1
 204.194.232.200,US,,True,1
 204.194.234.200,US,,True,1
-210.5.56.145,CN,,False,0.68
+210.5.56.145,CN,,False,0.6900000000000001
 210.87.250.59,HK,,True,1
-210.176.64.219,HK,Tsimshatsui,False,1
-210.177.222.168,HK,Central,False,0.77
+210.177.222.168,HK,Central,False,0.78
 210.0.255.250,HK,Central,True,1
-210.0.128.251,HK,Central,True,0.99
+210.0.128.251,HK,Central,True,1
 165.87.13.129,US,,False,1
 165.87.201.244,US,,False,1
 202.175.81.160,MO,Macao,False,1
 202.86.133.35,MO,Macao,True,0.55
 91.239.207.90,GE,Tbilisi,False,0.97
-154.72.202.86,UG,,True,0.41000000000000003
+154.72.202.86,UG,,True,0.42000000000000004
 81.16.8.110,AM,Yerevan,False,1
-165.16.68.1,LY,,False,0.51
 1.0.0.2,AU,,True,1
 1.0.0.3,AU,,True,1
 8.0.6.0,US,Atlanta,False,1
@@ -82,54 +70,47 @@ ip_address,country_code,city,dnssec,reliability
 77.88.8.88,RU,,False,1
 176.103.130.136,RU,,True,1
 176.103.130.137,RU,,True,1
-180.180.247.42,TH,,False,0.97
+180.180.247.42,TH,,False,0.98
 192.221.134.0,US,Atlanta,False,1
 192.221.135.0,US,Atlanta,False,1
 208.67.222.220,US,,True,1
 37.235.1.177,AT,,False,1
-209.244.0.4,US,,False,0.99
-4.2.2.6,US,,False,0.51
+209.244.0.4,US,,False,1
+4.2.2.6,US,,False,0.52
 81.17.31.34,CH,Zurich,True,1
 162.13.11.127,GB,,False,1
 193.183.18.21,SE,,False,1
 198.82.247.34,US,Christiansburg,True,1
 202.86.191.50,MO,Macao,False,1
 212.89.130.180,DE,Quierschied,False,1
-154.73.209.69,ZA,Johannesburg,False,0.63
+154.73.209.69,ZA,Johannesburg,False,0.64
 177.104.127.114,BR,Fortaleza,False,1
-122.129.64.10,PK,Lahore,True,1
 1.1.1.1,AU,,True,1
 1.1.1.2,AU,,True,1
-85.175.46.130,RU,,False,0.48
+85.175.46.130,RU,,False,0.49
 81.163.3.1,IR,,False,1
-212.237.125.216,IQ,Erbil,False,0.8
 103.86.96.100,AU,Sydney,True,1
-103.86.99.100,SG,Singapore,True,0.87
-185.137.244.2,SA,Khobar,False,0.26
+103.86.99.100,SG,Singapore,True,0.88
+185.137.244.2,SA,Khobar,False,0.27
 9.9.9.10,US,,True,1
 42.116.255.180,VN,Ho Chi Minh City,False,1
 45.90.28.193,US,,True,1
 60.244.115.166,TW,Hsinchu,False,1
 62.149.132.2,IT,Arezzo,False,1
-66.249.150.50,JM,,False,1
-68.87.73.242,US,,True,1
-74.93.247.57,US,Kodak,False,1
 84.236.142.130,ES,,True,1
-103.9.12.5,IN,Indore,False,0.7
-116.48.150.197,HK,Tsimshatsui,False,0.96
+116.48.150.197,HK,Tsimshatsui,False,0.97
 190.151.144.21,AR,Zárate,False,1
 194.145.241.6,GB,,True,1
 196.3.132.153,TT,,False,1
-198.50.212.61,CA,,True,0.93
+198.50.212.61,CA,,True,0.9400000000000001
 202.175.113.124,MO,Macao,False,1
 210.228.48.238,JP,Chitose,False,1
-212.36.64.17,ES,Barcelona,False,0.68
 217.19.153.3,IT,Milan,False,1
 221.163.74.11,KR,Suwon,False,1
-222.118.225.37,KR,Dong-gu,False,0.8
+222.118.225.37,KR,Dong-gu,False,0.81
 223.6.6.6,CN,,False,1
 94.140.15.15,CY,,True,1
-114.130.5.5,BD,,True,0.92
+114.130.5.5,BD,,True,0.93
 114.130.5.6,BD,,True,1
 94.140.14.140,CY,,True,1
 185.228.168.9,US,,False,1
@@ -140,38 +121,28 @@ ip_address,country_code,city,dnssec,reliability
 45.90.28.0,US,,True,1
 46.224.1.43,IR,,False,1
 82.99.242.155,IR,,False,1
-45.90.28.165,US,,True,0.64
+45.90.28.165,US,,True,0.65
 200.221.11.101,BR,,True,1
-201.44.177.131,BR,,True,0.8
-138.97.84.3,BR,Aracruz,False,0.51
 164.163.1.90,BR,Brasília,False,1
 170.239.144.20,BR,Olinda,False,1
 177.135.239.132,BR,Brasília,False,1
-186.251.103.10,BR,Coronel Fabriciano,False,0.85
+186.251.103.10,BR,Coronel Fabriciano,False,0.86
 186.251.103.3,BR,Coronel Fabriciano,False,1
 189.126.192.4,BR,Sao Vicente,False,1
-189.23.31.242,BR,Campos dos Goytacazes,False,1
-189.44.104.13,BR,Bauru,True,0.92
-192.141.232.10,BR,,False,1
 177.92.1.35,BR,Curitiba,False,1
-200.150.84.26,BR,Curitiba,False,0.89
 45.90.28.226,US,,True,1
-37.111.49.182,MM,,False,0.3
-202.191.98.131,MM,,False,0.8
-5.145.112.38,IR,,False,0.74
-5.145.112.39,IR,,False,0.96
-217.219.72.194,IR,,False,0.95
-168.126.63.2,KR,Jongno-gu,False,0.99
+202.191.98.131,MM,,False,0.81
+5.145.112.38,IR,,False,0.75
+5.145.112.39,IR,,False,0.97
+217.219.72.194,IR,,False,0.96
+168.126.63.2,KR,Jongno-gu,False,1
 207.59.153.242,US,Baltimore,False,1
 182.19.95.34,IN,,False,1
-121.100.28.163,ID,Palembang,False,1
-202.51.111.149,ID,Jakarta,False,0.26
-202.83.121.10,ID,,False,1
-103.23.22.143,ID,,True,1
-202.87.249.5,ID,Jakarta,False,0.97
-103.226.174.7,ID,,False,0.51
-185.55.225.25,IR,,False,0.91
-31.24.234.37,IR,,False,0.98
+202.51.111.149,ID,Jakarta,False,0.27
+202.87.249.5,ID,Jakarta,False,0.98
+103.226.174.7,ID,,False,0.52
+185.55.225.25,IR,,False,0.92
+31.24.234.37,IR,,False,0.99
 77.88.8.8,RU,,False,1
 149.112.112.9,US,,True,1
 185.233.106.232,DE,,True,1
@@ -204,32 +175,30 @@ ip_address,country_code,city,dnssec,reliability
 194.25.0.60,DE,Vohringen,True,1
 195.129.12.122,NL,,True,1
 195.129.12.83,NL,,True,1
-152.99.1.10,KR,,False,1
-152.99.200.6,KR,Seo-gu,False,1
 195.186.1.107,CH,,True,1
 195.186.1.108,CH,,True,1
-195.186.4.107,CH,,True,0.01
+195.186.4.107,CH,,True,0.02
 195.186.4.109,CH,,True,1
 195.186.4.111,CH,,True,1
 195.27.1.1,GB,,False,1
 195.186.4.110,CH,,True,1
-195.67.27.18,SE,Limhamn,False,0.97
+195.67.27.18,SE,Limhamn,False,0.98
 203.146.237.222,TH,,False,1
 205.214.45.10,US,,True,1
 209.51.161.14,US,,True,1
 212.51.16.1,DE,Kiel,False,1
 212.66.129.98,DE,Düren,False,1
 213.211.50.1,CZ,Kostelec nad Orlici,False,1
-213.55.96.166,ET,,False,1
+213.55.96.166,ET,,False,0.91
 199.166.6.2,CA,,False,1
 64.94.1.33,US,Atlanta,False,1
 65.39.139.53,CA,Vancouver,True,1
 66.232.139.10,US,,False,1
 82.96.65.2,DE,,True,1
-83.137.41.8,AT,Terfens,False,0.77
-216.106.1.3,US,Columbia,False,0.9
+83.137.41.8,AT,Terfens,False,0.78
+216.106.1.3,US,Columbia,False,0.91
 216.165.129.158,US,McFarland,True,1
-84.8.2.11,GB,Camberley,False,0.060000000000000005
+84.8.2.11,GB,Camberley,False,0.07
 95.158.129.2,BG,Sofia,False,1
 62.94.0.42,IT,Olevano Romano,False,1
 66.28.0.45,US,Houston,True,1
@@ -240,21 +209,19 @@ ip_address,country_code,city,dnssec,reliability
 66.109.229.6,US,Reinholds,False,1
 216.199.54.9,US,,False,1
 216.21.128.22,CA,Richmond,True,1
-216.21.129.22,CA,Vancouver,True,0.99
+216.21.129.22,CA,Vancouver,True,1
 66.163.0.161,CA,Oshawa,True,1
 66.163.0.173,CA,Oshawa,True,1
 207.170.3.6,US,Eau Claire,False,1
 216.254.141.2,CA,Saint-Francois-de-Madawaska,False,1
 207.248.57.11,MX,Monterrey,False,1
-66.216.18.222,US,,True,0.93
-66.242.160.5,US,,True,0.76
+66.216.18.222,US,,True,0.9400000000000001
+66.242.160.5,US,,True,0.77
 207.68.32.39,US,,False,1
-208.38.65.35,US,,False,1
 200.56.224.11,MX,,False,1
-200.57.2.108,MX,Ecatepec,False,0.93
+200.57.2.108,MX,Ecatepec,False,0.9400000000000001
 200.76.5.147,MX,San Luis Potosí City,False,1
-200.94.26.115,MX,Cuernavaca,False,0.97
-209.216.160.2,US,Grass Valley,False,0.98
+209.216.160.2,US,Grass Valley,False,0.99
 209.239.11.98,CA,Springfield,False,1
 209.253.113.10,US,Dallas,False,1
 210.181.4.25,KR,,False,1
@@ -262,33 +229,32 @@ ip_address,country_code,city,dnssec,reliability
 69.16.132.4,US,,False,1
 69.169.190.211,US,Salt Lake City,False,1
 210.80.58.3,SG,,False,1
-211.63.64.11,KR,,False,0.76
+211.63.64.11,KR,,False,0.77
 202.180.160.1,HK,Lam Tin,False,1
-202.182.0.1,TH,,False,0.88
+202.182.0.1,TH,,False,0.89
 80.243.64.67,RU,,False,1
 202.44.52.1,TH,,False,1
 82.151.90.1,MR,,False,1
-62.134.11.4,GB,,False,0.85
+62.134.11.4,GB,,False,0.86
 203.119.36.106,VN,,True,1
 203.143.0.25,LK,Colombo,True,1
 203.146.237.237,TH,Bangkok,False,1
-87.117.196.200,GB,Maidenhead,False,1
 203.2.193.67,AU,,False,1
 203.50.2.71,AU,Glen Iris,False,1
 94.158.96.2,RU,Moscow,False,1
 213.244.72.31,PS,,False,1
-213.52.192.198,GB,,False,0.96
+213.52.192.198,GB,,False,0.97
 205.171.3.65,US,Vassar,False,1
 64.233.217.2,US,Saint Clair Shores,True,1
 64.238.96.12,US,Atlanta,False,1
 64.80.255.251,US,North Andover,False,1
-185.161.112.33,IR,,False,0.87
-185.161.112.34,IR,,False,0.98
+185.161.112.33,IR,,False,0.88
+185.161.112.34,IR,,False,0.99
 94.140.14.141,CY,,True,1
 201.217.41.75,PY,Aregua,False,1
 201.217.41.77,PY,Aregua,False,1
 201.217.41.78,PY,Asunción,False,1
-201.222.52.6,PY,Asunción,False,0.83
+201.222.52.6,PY,Asunción,False,0.84
 203.198.68.197,HK,Central,False,1
 198.54.117.10,US,,True,1
 5.2.75.75,NL,,True,1
@@ -297,25 +263,21 @@ ip_address,country_code,city,dnssec,reliability
 159.69.114.157,DE,,True,1
 130.225.244.166,DK,Copenhagen,True,1
 185.38.27.139,DK,,True,1
-198.180.150.12,EE,,True,0.99
+198.180.150.12,EE,,True,1
 194.36.144.87,AT,,False,1
-172.104.49.100,SG,Singapore,False,1
-146.196.40.106,ID,Karawang,False,0.28
+146.196.40.106,ID,Karawang,False,0.29000000000000004
 69.160.0.86,MM,,False,1
 213.55.96.148,ET,,False,1
 103.123.108.197,ID,,True,1
 77.42.130.37,LB,Beirut,False,1
-103.85.107.227,MM,Yangon,False,1
-103.121.228.1,MM,Yangon,True,0.7
+103.121.228.1,MM,Yangon,True,0.71
 45.90.30.126,US,,True,1
 194.67.109.176,RU,,True,0.97
 51.89.88.77,DE,Frankfurt am Main,True,1
 80.78.132.79,DE,,True,1
 185.52.0.55,NL,Alblasserdam,False,1
 78.47.243.3,DE,,False,1
-144.76.157.242,DE,Remscheid,True,0.84
-172.104.59.35,SG,Singapore,True,0.99
-202.56.128.30,SG,Singapore,False,1
+144.76.157.242,DE,Remscheid,True,0.85
 89.234.141.66,FR,Strasbourg,True,1
 76.76.2.0,CA,,True,1
 76.76.2.1,CA,,True,1
@@ -327,22 +289,20 @@ ip_address,country_code,city,dnssec,reliability
 202.46.34.74,CN,Guangzhou,True,1
 202.46.34.75,CN,,True,1
 202.46.34.76,CN,,True,1
-196.13.141.10,ZA,Midrand,False,0.83
-105.30.247.93,ZA,Durban,False,0.75
+196.13.141.10,ZA,Midrand,False,0.84
+105.30.247.93,ZA,Durban,False,0.76
 103.23.150.89,IN,,False,1
 185.51.200.10,IR,,False,1
 45.90.28.169,US,,True,1
 45.90.30.169,US,,True,1
 4.2.2.4,US,,False,1
-64.212.106.84,US,New York,False,0.02
+64.212.106.84,US,New York,False,0.03
 156.154.71.25,US,Louisville,True,1
 195.99.66.220,GB,,True,1
 206.165.6.11,US,Phoenix,False,1
 149.112.112.11,US,,True,1
-212.94.34.34,CH,Fischbach-Goeslikon,True,0.01
+212.94.34.34,CH,Fischbach-Goeslikon,True,0.02
 122.129.122.100,MY,Batu Caves,False,1
-101.110.50.106,JP,Kokubunji,False,0.83
-117.55.243.14,IN,Ghaziabad,True,1
 141.155.0.68,US,New York,False,1
 142.103.1.1,CA,Vancouver,False,1
 178.124.158.2,BY,Minsk,False,1
@@ -351,25 +311,19 @@ ip_address,country_code,city,dnssec,reliability
 193.138.115.103,DK,Rødovre Municipality,False,1
 193.238.223.91,LV,Riga,False,1
 199.187.127.201,US,,True,1
-208.105.189.156,US,Lincoln,False,0.93
 210.80.58.4,SG,,False,1
-46.170.35.251,PL,Gmina Grabów nad Prosną,False,0.34
-66.187.166.250,US,Matthews,False,0.15000000000000002
-69.159.233.253,CA,Montreal,False,0.59
-78.29.13.240,RU,Chelyabinsk,False,1
 81.175.40.21,NO,Larvik,False,1
 89.237.130.186,SA,Riyadh,False,1
 211.18.198.110,JP,Minato-ku,True,1
-195.186.1.162,CH,,True,0.02
-182.19.95.98,IN,Bhubaneswar,False,0.87
+195.186.1.162,CH,,True,0.03
+182.19.95.98,IN,Bhubaneswar,False,0.88
 121.52.154.225,PK,Hyderabad,False,1
 203.211.131.26,SG,Singapore,False,1
 9.9.9.12,US,,True,1
 38.132.106.139,US,New York,False,1
-46.182.19.48,DE,,True,0.02
+46.182.19.48,DE,,True,0.03
 46.234.226.122,IT,Nals,True,1
-59.125.90.50,TW,Taichung,False,0.95
-62.28.166.140,PT,Vila Nova de Famalicao,False,1
+59.125.90.50,TW,Taichung,False,0.96
 62.146.25.130,DE,Schwanstetten,False,1
 62.149.128.2,IT,Arezzo,False,1
 62.251.175.254,MA,Khouribga,False,1
@@ -378,113 +332,76 @@ ip_address,country_code,city,dnssec,reliability
 77.68.30.86,GB,,False,1
 79.141.83.250,CH,Geneva,True,1
 80.178.170.176,IL,Tel Aviv,False,1
-81.3.169.172,RU,St Petersburg,False,1
 85.118.192.3,BG,Sofia,False,1
 86.122.51.134,RO,Constanța,False,1
 89.255.2.228,NL,,False,1
 91.217.86.4,DE,Berlin,False,1
-101.101.101.101,TW,,True,0.58
+101.101.101.101,TW,,True,0.59
 103.47.134.195,ID,Jakarta,False,1
-109.70.207.43,IT,Albese Con Cassano,True,0.02
-109.70.207.44,IT,Albese Con Cassano,True,1
-109.172.10.70,RU,St Petersburg,False,1
-113.197.68.20,PF,Papeete,True,0.66
-146.230.128.128,ZA,Durban,False,0.91
-146.230.254.16,ZA,Durban,False,0.99
-149.112.112.12,US,,False,0.34
+113.197.68.20,PF,Papeete,True,0.67
+146.230.128.128,ZA,Durban,False,0.92
+146.230.254.16,ZA,Durban,False,1
+149.112.112.12,US,,False,0.35000000000000003
 149.112.121.30,CA,,True,1
-169.53.182.124,US,,False,0.03
-176.9.136.236,DE,,False,0.02
+169.53.182.124,US,,False,0.04
+176.9.136.236,DE,,False,0.03
 180.180.247.41,TH,,False,1
-188.128.110.66,RU,Moscow,False,0.51
-194.65.119.237,PT,Porto,False,0.51
-200.7.91.210,TT,Port of Spain,False,1
-202.131.64.91,HK,Central,False,0.51
-202.1.195.124,MV,,True,0.19
-203.104.26.102,MV,Eydhafushi,True,0.92
-76.81.95.43,US,San Luis,False,0.26
-185.231.182.126,IR,,False,1
+188.128.110.66,RU,Moscow,False,0.52
+202.1.195.124,MV,,True,0.2
+203.104.26.102,MV,Eydhafushi,True,0.93
+76.81.95.43,US,San Luis,False,0.27
 184.55.4.145,US,Plymouth,True,1
 98.38.222.125,US,Denver,True,1
-50.239.7.17,US,Longmont,False,1
-50.241.117.197,US,Farmington,True,1
 98.255.2.112,US,Davis,True,1
 98.208.56.152,US,Davis,True,1
 98.244.8.17,US,Chico,True,1
 63.66.34.238,US,Bryn Mawr,False,1
-76.82.118.158,US,Los Angeles,False,1
 174.99.18.188,US,Raleigh,True,1
-198.24.75.66,US,Raleigh,False,0.98
 65.246.64.217,US,Sanford,False,1
 50.220.226.155,US,Miami,True,1
-50.220.226.159,US,Fort Lauderdale,True,0.3
-50.205.171.65,US,Tinley Park,False,0.38
+50.220.226.159,US,Fort Lauderdale,True,0.31
 195.208.5.1,RU,,True,1
-70.62.148.66,US,Cleveland,False,0.93
-71.67.219.165,US,Cincinnati,False,0.91
-24.29.229.204,US,Norwalk,False,0.67
-74.62.109.178,US,Winchester,False,0.76
-74.218.74.28,US,Cleveland,True,1
-65.30.52.105,US,Milwaukee,False,0.85
+70.62.148.66,US,Cleveland,False,0.9400000000000001
+71.67.219.165,US,Cincinnati,False,0.92
+24.29.229.204,US,Norwalk,False,0.68
+74.62.109.178,US,Winchester,False,0.77
+65.30.52.105,US,Milwaukee,False,0.86
 184.57.52.14,US,Columbus,True,1
-74.137.101.244,US,Bellevue,False,0.84
-184.56.47.19,US,Chesterland,False,0.74
-98.144.100.248,US,Muskego,False,0.93
-75.75.2.183,US,Charlottesville,False,0.81
-98.45.82.80,US,Oakland,False,0.67
+184.56.47.19,US,Chesterland,False,0.75
 50.204.103.135,US,Palo Alto,True,1
-96.65.91.65,US,Saint Charles,False,1
 50.234.50.134,US,Murfreesboro,True,1
-96.88.179.101,US,Hillsborough,False,0.87
+96.88.179.101,US,Hillsborough,False,0.88
 75.73.8.108,US,Minneapolis,True,1
 107.0.74.232,US,,True,1
-96.64.207.245,US,Citrus Heights,False,0.99
-50.235.37.225,US,Sugar Land,False,0.98
+50.235.37.225,US,Sugar Land,False,0.99
 73.7.179.224,US,Atlanta,True,1
-73.69.210.137,US,Somerville,False,0.86
-173.15.216.99,US,Duluth,True,0.78
-71.238.94.130,US,Oregon City,True,0.89
-50.238.53.122,US,Roslindale,True,0.93
+73.69.210.137,US,Somerville,False,0.87
+50.238.53.122,US,Roslindale,True,0.9400000000000001
 50.231.115.22,US,Philadelphia,True,1
 73.6.84.50,US,Pearland,True,1
 50.217.25.205,US,Carrollton,True,1
-73.118.159.191,US,Kent,True,0.81
-76.103.90.232,US,San Jose,True,0.93
-50.238.53.126,US,Roslindale,True,0.99
-96.91.26.132,US,Hendersonville,False,0.98
+73.118.159.191,US,Kent,True,0.8200000000000001
+76.103.90.232,US,San Jose,True,0.9400000000000001
+50.238.53.126,US,Roslindale,True,1
+96.91.26.132,US,Hendersonville,False,0.99
 98.194.45.182,US,Houston,True,1
-73.2.105.182,US,Davis,True,0.98
-202.136.162.12,SG,,False,1
+73.2.105.182,US,Davis,True,0.99
 202.136.163.11,SG,,False,1
 202.136.162.11,SG,,False,1
-101.110.50.105,JP,Toshima,False,0.52
-101.110.50.108,JP,Toshima,False,0.6900000000000001
-101.110.50.107,JP,Toshima,False,0.51
-96.2.228.18,US,Pierre,False,1
-194.5.193.183,NL,Dronten,False,0.96
-89.250.221.106,RU,Chaykovskiy,False,0.73
 202.134.52.105,IN,,False,1
-202.134.52.103,IN,,False,0.89
-109.86.182.203,UA,Kharkiv,False,0.64
-111.118.218.126,AU,Melbourne,False,1
-180.180.170.188,TH,Phetchabun,False,0.66
-120.29.124.131,PH,Angeles City,False,0.61
-190.246.38.135,AR,Quilmes,False,0.61
-93.157.172.153,RU,Kotel'niki,False,0.79
-85.62.10.91,ES,Pedreguer,False,0.51
-5.44.54.106,RU,,False,0.59
-94.180.111.233,RU,Novosibirsk,False,0.59
-104.40.153.131,NL,Amsterdam,False,0.98
-177.93.44.64,CO,Cimitarra,False,1
-202.70.125.9,AS,,False,1
+202.134.52.103,IN,,False,0.9
+180.180.170.188,TH,Phetchabun,False,0.67
+120.29.124.131,PH,Angeles City,False,0.62
+190.246.38.135,AR,Quilmes,False,0.62
+104.40.153.131,NL,Amsterdam,False,0.99
 4.2.2.5,US,,False,1
 156.154.71.1,US,Louisville,True,1
 216.231.41.2,US,,False,1
 64.81.45.2,US,,False,1
 64.81.79.2,US,,False,1
 66.93.87.2,US,,False,1
-64.81.127.2,US,,False,0.85
-66.92.64.2,US,,False,0.99
+64.81.127.2,US,,False,0.86
+66.92.64.2,US,,False,1
 66.92.159.2,US,,False,1
 66.92.224.2,US,,False,1
 216.254.95.2,US,,False,1
@@ -492,25 +409,20 @@ ip_address,country_code,city,dnssec,reliability
 5.1.66.255,DE,Ebersberg,True,1
 176.9.1.117,DE,,True,1
 213.211.50.2,CZ,Slapanov,True,1
-83.97.97.3,DK,,False,0.63
 202.129.231.250,FJ,,False,1
 194.98.65.165,FR,Bagnolet,True,1
 194.2.0.50,FR,Les Pavillons-sous-Bois,False,1
 185.233.107.4,DE,,True,1
 141.1.1.1,DE,,False,1
-141.1.27.249,DE,,False,0.76
+141.1.27.249,DE,,False,0.77
 212.51.17.1,DE,Kiel,False,1
 149.211.153.50,DE,,True,1
 80.241.218.68,DE,Munich,True,1
 45.79.120.233,IN,Mumbai,True,1
 103.15.241.241,ID,Medan,False,1
-103.15.242.145,ID,Medan,False,1
 46.224.1.42,IR,,False,1
 194.225.62.80,IR,,True,1
-213.176.123.5,IR,,False,1
-83.103.61.107,IT,Casalecchio di Reno,False,1
 94.141.24.92,IT,Santo Stefano Ticino,False,1
-81.116.141.156,IT,,True,1
 202.248.37.74,JP,Chiyoda-ku,False,1
 210.94.0.7,KR,Jung-gu,False,1
 202.30.143.11,KR,,True,1
@@ -523,194 +435,114 @@ ip_address,country_code,city,dnssec,reliability
 121.152.231.196,KR,Gyeongju,False,1
 211.237.65.31,KR,,False,1
 61.78.59.74,KR,,False,1
-207.248.224.72,MX,Monterrey,False,1
-207.248.224.71,MX,Monterrey,False,1
 187.157.46.210,MX,Centro,False,1
 65.18.114.254,MM,Yangon,False,1
-74.50.211.90,MM,Yangon,False,1
 195.129.12.114,NL,,True,1
 200.10.231.110,PY,,False,1
 193.111.144.145,PL,,False,1
-178.161.150.190,RU,Perm,False,1
 217.150.35.129,RU,Rostov-on-Don,True,1
-213.154.80.203,SN,,False,1
+213.154.80.203,SN,,False,0.91
 210.80.58.66,SG,,True,1
-210.116.119.185,KR,,False,1
 190.248.153.162,CO,Arauca,False,1
-109.200.156.102,UA,Simferopol,False,1
-179.1.73.101,CO,,False,1
-91.194.239.122,UA,,False,1
 79.120.177.106,HU,Budapest,False,1
 119.110.209.94,TH,Bangkok,False,1
 184.82.128.211,TH,,False,1
-58.97.72.83,TH,Samut Sakhon,False,1
-62.176.12.111,RU,Serpukhov,False,1
-190.8.35.226,DO,Santo Domingo Este,False,1
 190.52.129.39,PY,,False,1
 159.192.131.178,TH,Bang Bon,False,1
-185.5.17.19,RU,Belgorod,False,1
-117.121.211.170,TH,Phuket,False,0.86
-103.103.212.222,IN,Indore,False,1
-71.66.130.90,US,Columbus,False,0.98
-162.155.248.54,US,Owensboro,False,0.6900000000000001
-98.103.170.130,US,Louisville,False,0.79
+117.121.211.170,TH,Phuket,False,0.87
+71.66.130.90,US,Columbus,False,0.99
 71.67.74.10,US,Louisville,False,1
-74.218.74.4,US,Independence,True,1
-24.106.28.52,US,De Pere,False,0.67
-65.27.67.206,US,Oshkosh,False,0.6900000000000001
-173.89.42.201,US,Milwaukee,False,0.61
-71.67.195.27,US,Cleveland,True,0.75
 70.92.127.134,US,Kent,True,1
-208.68.186.2,US,,False,0.95
-162.154.81.146,US,Cincinnati,False,0.75
-173.88.7.140,US,Lima,False,0.63
-98.102.15.18,US,Fairfield,False,0.89
-85.62.10.84,ES,Pedreguer,False,0.51
-195.191.182.103,RU,,False,0.96
+208.68.186.2,US,,False,0.96
+85.62.10.84,ES,Pedreguer,False,0.52
+195.191.182.103,RU,,False,0.97
 149.126.98.162,RU,Moscow,False,1
-78.131.55.38,HU,Budapest,False,0.74
 1.1.189.58,TH,Roi Et,False,1
-182.255.58.58,IN,,False,1
-84.53.247.204,RU,Vladimir,False,0.68
-115.124.92.166,ID,,False,0.51
 95.9.194.13,TR,Konyaalti,False,1
 118.173.242.189,TH,Bang Bon,False,1
-110.37.228.210,PK,Karachi,False,1
-125.209.66.170,PK,,False,1
-59.103.243.83,PK,Islamabad,False,1
-202.142.178.98,PK,,False,0.46
-75.185.115.69,US,Louisville,False,0.97
+202.142.178.98,PK,,False,0.47000000000000003
 173.89.30.48,US,Waukesha,True,1
-65.27.154.0,US,Columbus,False,0.95
+65.27.154.0,US,Columbus,False,0.96
 147.0.63.59,US,Cincinnati,False,1
 198.24.122.6,US,New Philadelphia,False,1
-213.191.151.178,HR,Rijeka,False,0.89
-117.18.119.36,HK,,False,0.98
-164.100.138.248,IN,Shimla,False,0.84
-91.99.101.12,IR,,False,0.96
-202.150.54.194,JP,Ichinomiya,False,0.89
+213.191.151.178,HR,Rijeka,False,0.9
+164.100.138.248,IN,Shimla,False,0.85
 190.128.225.58,PY,Asunción,False,1
 85.204.79.2,RO,,True,1
-91.223.120.25,RU,,False,0.99
-203.230.200.2,KR,,False,1
 168.126.93.10,KR,Icheon-si,False,1
 1.232.188.2,KR,,False,1
 92.45.59.195,TR,Istanbul,False,1
-88.208.248.135,GB,,False,1
 88.208.244.225,GB,,False,1
 156.154.70.16,US,Louisville,True,1
 203.113.132.171,VN,Hanoi,False,1
-193.194.83.163,DZ,,False,0.89
-103.19.253.153,BD,Dhaka,True,1
-69.50.69.115,AG,St John's,False,0.6
-91.226.220.250,AL,,False,1
-81.89.215.193,AM,Yerevan,False,1
+193.194.83.163,DZ,,False,0.9
+69.50.69.115,AG,St John's,False,0.61
 91.205.135.227,AM,,False,1
-154.70.147.1,BW,Gaborone,False,0.68
 194.50.91.46,BE,,False,0.68
-200.113.10.155,CL,Buin,False,0.86
-201.238.224.203,CL,Buin,False,1
+200.113.10.155,CL,Buin,False,0.87
 41.211.108.4,CM,,False,1
-81.201.58.99,CZ,Pilsen,False,1
 92.247.90.158,BG,Sofia,False,1
 96.53.102.66,CA,Edmonton,False,1
-195.251.32.71,GR,Galatsi,False,0.91
-197.148.74.19,GM,,False,0.95
-185.42.192.114,IQ,,False,0.9
+195.251.32.71,GR,Galatsi,False,0.92
+197.148.74.19,GM,,False,0.96
+185.42.192.114,IQ,,False,0.91
 211.25.11.15,MY,Petaling Jaya,False,1
 213.149.113.211,ME,,False,1
-209.130.139.2,US,New York,False,0.51
-82.80.239.65,IL,Haifa,False,0.91
-85.29.148.9,KZ,,False,0.9
+209.130.139.2,US,New York,False,0.52
+82.80.239.65,IL,Haifa,False,0.92
+85.29.148.9,KZ,,False,0.91
 82.135.139.155,LT,Kaunas,False,1
-82.151.74.36,MR,Arafat,False,0.81
-109.111.229.198,RS,Belgrade,False,0.51
-109.74.78.204,TJ,Tursunzoda,False,1
-121.58.203.4,PH,Manila,False,0.99
+82.151.74.36,MR,Arafat,False,0.8200000000000001
+109.111.229.198,RS,Belgrade,False,0.52
+121.58.203.4,PH,Manila,False,1
 188.225.225.25,PS,,False,1
-193.2.122.11,SI,Maribor,False,1
-195.178.33.46,RS,Belgrade,False,0.9400000000000001
-41.0.65.54,ZA,Johannesburg,False,1
-181.48.220.250,CO,Yopal,False,1
-41.207.186.166,TG,,False,1
-200.116.198.168,CO,Manizales,False,1
+195.178.33.46,RS,Belgrade,False,0.9500000000000001
 60.248.107.138,TW,New Taipei,False,1
-60.251.117.118,TW,New Taipei,False,1
 62.76.161.12,RU,Voronezh,False,1
-177.86.201.22,BR,Bom Despacho,False,1
 78.11.44.46,PL,Warsaw,False,1
 79.101.99.2,RS,Belgrade,False,1
 85.9.129.36,TJ,Dushanbe,False,1
 85.9.129.38,TJ,Dushanbe,False,1
 91.144.22.198,SY,,False,1
 91.192.196.226,PL,Czechowice-Dziedzice,False,1
-95.105.251.199,SK,Svit,False,1
 146.226.152.20,VI,Charlotte Amalie,False,1
 146.226.228.19,VI,St Croix,False,1
-86.62.120.68,RU,Moscow,False,1
-183.91.184.14,VN,,True,1
 91.217.197.2,UA,,False,1
 148.251.249.251,DE,,False,1
 45.236.169.151,EC,Guayaquil,False,1
-209.52.84.136,CA,Hartley Bay,False,1
 190.12.95.170,PE,Independencia,False,1
-165.16.22.130,LY,,False,1
-50.192.195.69,US,Logan,False,0.75
-41.85.191.14,BJ,Savalou,False,0.86
-46.10.199.90,BG,,False,0.62
-181.129.183.19,CO,Bucaramanga,False,0.58
-103.137.91.250,LA,Vientiane,False,0.81
+50.192.195.69,US,Logan,False,0.76
 14.160.3.78,VN,Hanoi,False,1
-143.255.108.173,BR,Brasília,False,1
 95.143.220.5,RU,Moscow,False,1
-186.29.163.97,CO,Bogotá,False,0.56
-27.110.167.164,PH,Alitao,False,0.87
-210.16.73.83,HK,,False,0.84
-80.179.226.56,IL,Gan Shemu’el,False,1
-41.194.37.106,TZ,,False,0.5700000000000001
-178.134.155.82,GE,K'alak'i T'bilisi,False,0.8
+27.110.167.164,PH,Alitao,False,0.88
+210.16.73.83,HK,,False,0.85
+178.134.155.82,GE,K'alak'i T'bilisi,False,0.81
 136.232.194.10,IN,Kolar,True,1
-210.14.104.230,MM,,False,0.59
-181.209.97.76,AR,,False,0.61
-62.133.130.206,PL,Rzeszów,False,0.76
-196.22.221.2,ZA,Johannesburg,False,0.9
-181.10.230.100,AR,Metan,False,1
-180.232.77.210,PH,Makati City,False,0.86
-82.130.202.219,ES,Bilbao,False,1
+62.133.130.206,PL,Rzeszów,False,0.77
+180.232.77.210,PH,Makati City,False,0.87
 175.100.18.45,KH,Phnom Penh,False,1
-109.168.35.230,IT,Mestre,False,1
-196.20.12.13,NA,Windhoek,False,0.51
-217.164.255.35,AE,Sharjah,False,0.81
-195.228.123.142,HU,Budapest,False,0.93
+196.20.12.13,NA,Windhoek,False,0.52
+217.164.255.35,AE,Sharjah,False,0.8200000000000001
 195.168.91.238,SK,Bratislava,False,1
-110.78.186.32,TH,,False,1
-194.208.13.7,AT,Pettneu,False,1
 110.78.164.234,TH,Si Racha,False,1
 110.38.26.106,PK,Karachi,False,1
-46.146.209.132,RU,Perm,False,1
 122.3.205.167,PH,Ormoc City,False,1
-212.231.196.9,ES,Cedeira,False,1
 124.41.240.53,NP,,False,1
 122.55.185.226,PH,Magalang,False,1
-77.238.210.30,BA,Sarajevo,False,0.7
-151.236.254.20,MK,Gevgelija,False,0.54
-92.249.219.47,HU,Érd,False,0.76
+77.238.210.30,BA,Sarajevo,False,0.71
+92.249.219.47,HU,Érd,False,0.77
 208.67.222.2,US,,True,1
 208.67.220.2,US,,True,1
 9.9.9.11,US,,True,1
-107.174.68.120,US,,True,1
-130.61.69.123,DE,Frankfurt am Main,True,0.43
-155.130.14.5,US,,True,1
+130.61.69.123,DE,Frankfurt am Main,True,0.44
 159.89.120.99,CA,Toronto,True,1
 163.172.168.171,FR,,False,1
 199.85.127.10,US,,True,1
 192.3.165.37,US,Piscataway,True,1
-198.74.48.37,US,Fremont,True,1
 198.54.117.11,US,,True,1
 31.3.135.232,CH,,False,1
 88.198.92.222,DE,,False,1
 89.163.140.67,DE,,True,1
-178.22.113.198,CZ,Prostějov,False,1
 200.159.205.11,BR,,False,1
 216.106.1.254,US,Columbia,False,1
 24.229.250.113,US,Bethlehem,False,1
@@ -720,31 +552,17 @@ ip_address,country_code,city,dnssec,reliability
 109.224.233.180,GB,Hampstead,False,1
 109.224.233.190,GB,Hampstead,False,1
 109.228.1.132,GB,,False,1
-109.228.11.95,GB,,False,1
-109.228.16.38,GB,,False,1
-109.228.16.39,GB,,False,1
-109.228.16.41,GB,,False,1
 109.228.18.3,GB,,False,1
 109.228.18.5,GB,,False,1
-109.228.18.71,GB,,False,1
-109.228.20.25,GB,,False,1
 109.228.20.39,GB,,False,1
-109.228.20.82,GB,,False,1
 185.43.135.1,CZ,,True,1
-109.228.21.40,GB,,False,1
 109.228.22.126,GB,,False,1
-109.228.22.22,GB,,False,1
-188.227.240.57,GB,Romford,True,1
 109.228.24.15,GB,,False,1
 109.228.25.170,GB,,False,1
 109.228.26.34,GB,,False,1
-194.176.86.181,GB,,False,1
-195.153.19.10,GB,,False,0.83
+195.153.19.10,GB,,False,0.84
 195.153.19.5,GB,,False,1
-195.21.33.177,US,,False,0.72
-109.228.8.83,GB,,False,1
-109.228.8.84,GB,,False,1
-195.68.61.198,FR,Paris,False,1
+195.21.33.177,US,,False,0.73
 195.74.68.2,GB,,False,1
 195.74.68.3,GB,,False,1
 198.153.192.40,US,,True,1
@@ -758,25 +576,18 @@ ip_address,country_code,city,dnssec,reliability
 199.85.126.20,US,,True,1
 212.113.0.3,GB,,False,1
 212.219.149.253,GB,Crewe,False,1
-212.250.202.132,GB,Ely,False,0.97
-212.67.107.3,GB,Tamworth,True,1
+212.250.202.132,GB,Ely,False,0.98
 31.205.81.157,GB,Shipley,False,1
-31.22.6.156,GB,Newcastle upon Tyne,False,1
 37.209.219.30,GB,,True,1
-37.48.241.200,GB,Liverpool,False,1
 45.11.45.11,,,True,1
 46.245.253.5,GB,Surrey,False,1
 5.11.11.11,GB,,True,1
 5.11.11.5,GB,,True,1
-5.133.41.1,GB,Carlisle,False,1
 5.152.215.29,GB,,False,1
 5.159.215.254,GB,Golders Green,False,1
 62.76.62.76,RU,,True,1
-77.68.58.152,GB,,False,0.68
-181.10.117.254,AR,La Cocha,False,0.81
+77.68.58.152,GB,,False,0.6900000000000001
 8.20.247.10,US,,True,1
-82.113.224.113,GB,Windsor,False,1
-82.113.248.113,GB,Chichester,False,1
 201.184.230.34,CO,Medellín,False,1
 12.127.16.67,US,,False,1
 12.127.17.71,US,,False,1
@@ -788,58 +599,41 @@ ip_address,country_code,city,dnssec,reliability
 206.124.65.253,US,,False,1
 208.72.160.67,US,Lehi,False,1
 209.253.113.2,US,,False,1
-86.53.253.93,GB,Huddersfield,False,1
 216.194.28.33,US,,False,1
 216.194.28.69,US,West Valley City,False,1
 216.229.0.25,US,Lincoln,True,1
-86.53.30.97,GB,Slough,False,0.68
+86.53.30.97,GB,Slough,False,0.6900000000000001
 45.90.28.126,US,,True,1
 45.90.30.226,US,,True,1
 64.132.94.250,US,Milwaukee,False,1
-64.135.1.20,US,,True,0.45
+64.135.1.20,US,,True,0.46
 64.69.100.68,US,,False,1
 64.69.98.35,US,,False,1
 64.80.203.194,US,Princeton,False,1
 64.80.255.240,US,Fall River,False,1
 66.155.216.122,US,Ridgecrest,False,1
 66.251.35.130,US,Victor,False,1
-66.6.65.5,US,,False,1
 71.40.44.8,US,Balch Springs,False,1
 88.208.209.92,GB,,False,1
-179.1.0.194,CO,Medellín,False,1
 91.230.243.11,GB,,True,1
 91.230.243.3,GB,,True,1
-91.207.238.107,RU,Balakovo,False,0.68
-200.37.231.67,PE,Surquillo,False,0.5700000000000001
 185.23.66.172,RU,Kizilyurt,False,1
 37.232.183.74,RU,Cheboksary,False,1
 31.209.96.173,CY,Kyrenia,False,1
-190.85.177.2,CO,Santiago de Cali,False,0.95
-117.206.83.122,IN,Hyderabad,False,0.7
+190.85.177.2,CO,Santiago de Cali,False,0.96
+117.206.83.122,IN,Hyderabad,False,0.71
 202.29.223.62,TH,Nonthaburi,False,1
-85.105.139.53,TR,Ankara,False,0.62
-171.99.131.78,TH,Bangkok,False,0.68
-186.97.172.178,CO,Medellín,False,1
-88.151.251.195,RU,Moscow,False,0.71
-94.181.174.77,RU,Penza,False,1
-105.174.40.238,AO,Luanda,False,1
-211.24.95.49,MY,Sungai Petani,False,1
+88.151.251.195,RU,Moscow,False,0.72
+105.174.40.238,AO,Luanda,False,0.91
 189.52.165.134,BR,,True,1
 83.69.179.25,RU,Moscow,False,1
-177.104.125.173,BR,Itaitinga,False,1
-1.231.108.104,KR,Nowon-gu,False,0.92
 64.42.176.84,US,Seattle,False,1
-193.34.166.34,NL,,False,1
 73.218.78.216,US,Wallingford,False,1
 40.70.57.226,US,Boydton,False,1
-176.212.194.184,RU,Tula,False,1
 103.196.38.38,US,San Francisco,False,1
 103.196.38.39,US,San Francisco,False,1
-45.157.178.113,DE,,True,1
 78.46.85.216,DE,,False,1
 192.71.166.92,GR,Thessaloniki,False,1
-194.150.168.169,DE,,True,1
-5.253.114.91,GB,,True,1
 185.150.99.255,DE,Wessling,True,1
 193.30.120.245,DE,,True,1
 185.244.195.227,DE,,True,1
@@ -849,84 +643,37 @@ ip_address,country_code,city,dnssec,reliability
 8.20.247.2,US,,True,1
 174.138.21.128,SG,Singapore,True,1
 172.104.93.80,JP,Tokyo,True,1
-185.235.81.3,GB,,False,1
-185.235.81.4,GB,,False,1
-185.187.84.15,IR,,False,1
-37.156.145.229,IR,Tehran,False,1
 176.214.35.184,RU,Pushkino,False,1
 176.214.35.182,RU,Pushkino,False,1
-176.124.169.208,RU,Uzlovaya,False,1
 91.201.253.202,RU,Tula,False,1
-109.188.112.175,RU,Tula,False,0.68
-5.164.25.133,RU,Tula,False,1
-46.161.6.158,RU,,False,1
-5.164.23.77,RU,Tula,False,1
-93.170.5.238,RU,Tula,False,0.76
 46.173.32.87,RU,Tver,False,1
-213.73.9.61,PL,Olsztyn,False,0.92
-50.192.49.195,US,Atlanta,False,0.68
-79.137.225.135,RU,Reutov,False,0.62
+213.73.9.61,PL,Olsztyn,False,0.93
 85.221.254.3,PL,Obrzebin,False,1
-14.102.19.50,IN,Roorkee,False,1
-213.138.77.238,RU,Rostov-on-Don,False,1
-31.28.99.25,RU,Pervouralsk,False,1
-31.133.57.221,UA,Donetsk,False,0.6900000000000001
-195.211.84.188,UA,Lviv,False,1
+31.133.57.221,UA,Donetsk,False,0.7000000000000001
 218.102.23.228,HK,Kowloon,False,1
 210.87.253.35,HK,,False,1
 210.87.253.61,HK,,False,1
-64.212.106.85,US,New York,False,0.51
+64.212.106.85,US,New York,False,0.52
 210.87.250.155,HK,,True,1
 210.87.253.60,HK,,False,1
-185.46.34.49,HR,Đakovo,False,1
-89.208.35.79,RU,Reutov,False,1
 217.160.188.24,DE,,True,1
-85.29.147.90,KZ,,False,1
-195.243.99.35,DE,Selb,False,1
-194.183.174.14,UA,Kyiv,False,0.79
-94.181.33.149,RU,Chelyabinsk,False,1
 117.103.228.101,VN,,True,1
-78.141.199.168,GB,London,False,1
-207.180.205.126,DE,Nuremberg,False,1
-64.251.23.31,US,Miami,True,1
-185.243.8.95,DE,,False,0.84
 94.114.108.23,DE,Mülheim,False,1
 66.23.205.82,US,Chicago,False,1
-139.99.194.82,AU,Sydney,False,0.97
-197.242.201.195,ZA,Cape Town,False,1
+139.99.194.82,AU,Sydney,False,0.98
 80.3.195.8,GB,Harrow,False,1
-207.246.94.220,US,Piscataway,False,1
 104.152.210.88,CA,,True,1
 163.172.49.3,FR,,False,1
-91.121.181.78,FR,,True,1
-104.42.219.168,US,San Jose,False,1
-198.23.196.92,US,,False,1
 51.68.190.250,FR,,False,1
 91.185.7.254,KZ,,False,1
 212.112.133.74,DK,Nordborg,False,1
-212.111.40.68,GB,London,False,1
 159.89.102.42,DE,Frankfurt am Main,False,1
-178.128.167.238,GB,London,False,1
-93.38.127.199,IT,Lomazzo,False,1
-45.79.113.244,US,Fremont,False,1
-185.200.45.208,PL,,False,1
 46.7.49.221,IE,Dublin,False,1
-85.230.246.152,SE,Gothenburg,False,1
 157.230.244.240,SG,Singapore,False,1
 107.170.225.126,US,San Francisco,False,1
-138.68.145.77,GB,London,False,1
-128.199.220.109,SG,Singapore,False,1
-5.103.133.176,DK,Havdrup,False,1
-107.152.38.85,US,,False,1
 137.74.45.215,FR,,False,1
-143.244.134.191,IN,Bengaluru,False,1
 185.157.81.134,DE,,False,1
-52.167.28.252,US,Boydton,False,1
-188.166.225.103,SG,Singapore,False,1
-80.78.22.179,SE,,False,1
-163.172.93.29,FR,,False,1
 110.139.170.174,ID,Balikpapan,False,1
-84.3.212.129,HU,Esztergom,False,1
 64.64.110.3,US,Wedowee,False,1
 51.89.148.208,GB,London,False,1
 185.193.158.106,NL,Amsterdam,False,1
@@ -936,47 +683,23 @@ ip_address,country_code,city,dnssec,reliability
 185.208.23.255,ES,Cartagena,True,1
 213.136.80.128,DE,Nuremberg,False,1
 80.211.215.28,CZ,Ktis,False,1
-161.97.82.74,DE,Nuremberg,False,1
-218.253.214.53,HK,Central,True,1
 94.203.253.156,AE,Dubai,False,1
 54.37.138.118,FR,,False,1
 135.125.183.212,FR,,False,1
-178.79.162.166,GB,London,False,1
-45.79.86.155,US,Fremont,False,1
-94.254.103.248,SE,Skellefteå,False,1
 139.180.185.166,SG,Singapore,False,1
 60.106.165.14,JP,,True,1
-173.249.32.202,DE,Nuremberg,False,1
-92.245.6.12,SK,Prešov,False,1
-45.33.68.222,US,Cedar Knolls,False,1
 85.214.170.192,DE,,False,1
 213.136.73.76,DE,Nuremberg,False,1
-208.104.21.121,US,Fort Mill,False,0.61
-5.196.68.114,FR,,False,1
 51.75.69.222,DE,Frankfurt am Main,False,1
 159.203.187.29,US,North Bergen,False,1
-167.99.214.87,NL,Amsterdam,False,1
 209.97.173.243,SG,Singapore,True,1
-51.161.157.216,CA,,False,1
-212.237.211.54,CH,,False,1
-179.49.72.10,AR,Eduardo Castex,False,0.33
-167.172.217.88,US,Santa Clara,False,1
 178.254.20.30,DE,,True,1
-82.64.122.66,FR,,False,0.74
-135.125.233.140,DE,Limburg an der Lahn,False,1
+82.64.122.66,FR,,False,0.75
 91.112.4.90,AT,Hoeflein an der Donau,True,1
-20.51.243.204,US,Washington,False,1
-134.209.97.229,SG,Singapore,False,1
-138.197.102.22,US,Clifton,False,1
 37.120.180.133,DE,Gifhorn,False,1
-103.13.29.65,TH,Bang Bon,False,1
-77.55.225.125,PL,,False,1
 45.79.85.145,US,Fremont,True,1
-192.3.253.13,US,Seattle,False,1
 165.22.45.243,US,Clifton,False,1
-45.79.238.215,AU,Sydney,False,1
 104.255.175.2,US,Bend,True,1
-143.244.33.74,SG,Singapore,True,0.95
 185.183.106.83,ES,Madrid,True,1
 193.37.255.227,SK,Bratislava,True,1
 195.12.48.171,GB,,True,1
@@ -984,13 +707,12 @@ ip_address,country_code,city,dnssec,reliability
 212.78.94.40,GB,,True,1
 213.202.216.12,DE,Düsseldorf,True,1
 213.202.216.236,DE,Düsseldorf,True,1
-216.119.155.49,US,Atlanta,True,0.5
 217.138.219.219,IT,Milan,True,1
 217.138.220.243,CZ,Prague,True,1
 23.19.245.84,US,,True,1
 23.19.245.88,US,,True,1
 23.226.134.242,US,Secaucus,True,1
-23.226.134.243,US,Secaucus,True,0.68
+23.226.134.243,US,Secaucus,True,0.6900000000000001
 37.120.142.115,ES,Barcelona,True,1
 37.120.152.235,BG,Sofia,True,1
 37.120.193.219,RS,Belgrade,True,1
@@ -1005,7 +727,6 @@ ip_address,country_code,city,dnssec,reliability
 86.106.74.219,HU,Budapest,True,1
 89.163.221.181,DE,,True,1
 91.219.215.227,NO,Oslo,True,1
-93.95.226.165,IS,,True,1
 94.198.41.235,AT,Vienna,True,1
 138.104.176.3,GB,,False,1
 149.156.12.250,PL,Krakow,False,1
@@ -1017,418 +738,212 @@ ip_address,country_code,city,dnssec,reliability
 192.114.3.5,IL,Mazkeret Batya,False,1
 193.110.86.21,GR,,False,1
 193.111.161.1,RO,,True,1
-193.138.115.100,DK,Brøndby,False,0.91
 193.138.192.2,RO,Bucharest,True,1
 193.138.92.130,IL,,False,1
 94.142.242.40,NL,,False,1
-3.139.72.220,US,Columbus,False,1
-103.15.48.210,VN,,False,1
-124.156.153.218,HK,Central,False,1
-176.58.120.52,GB,London,False,1
-193.19.103.4,RU,Novosibirsk,False,1
 165.227.106.51,US,Clifton,False,1
-185.216.214.18,DE,,False,1
 193.202.121.50,FR,,False,1
-173.249.41.124,DE,Nuremberg,False,1
 193.222.255.10,CH,,False,1
 193.227.50.3,EG,,False,1
-177.22.121.130,BR,Pouso Alegre,False,1
-51.91.124.225,FR,,False,1
-5.189.158.127,DE,Nuremberg,False,1
-193.231.80.7,RO,,False,1
 193.238.77.61,IT,Segusino,False,1
 193.238.77.62,IT,Segusino,False,1
-159.65.148.233,IN,Bengaluru,True,1
-217.61.63.131,IT,Ponte San Pietro,False,1
-185.233.106.157,DE,,False,1
-135.181.93.223,FI,Helsinki,False,1
 185.139.70.84,RU,,False,1
-40.119.157.19,NL,Amsterdam,False,1
-165.227.100.51,US,Clifton,True,1
 217.182.106.131,FR,,False,1
-45.61.186.28,US,Miami,False,1
 103.149.172.88,VN,,True,1
 201.238.239.73,CL,Santiago,False,1
-20.76.132.152,NL,Amsterdam,False,1
-128.116.241.37,IT,Grandate,False,1
 95.217.9.37,FI,Helsinki,False,1
 80.211.55.138,IT,Arezzo,False,1
-3.68.30.102,DE,Frankfurt am Main,False,1
 61.28.238.20,VN,,False,1
 151.80.145.143,FR,Roubaix,True,1
-172.245.52.131,NL,Amsterdam,False,1
-3.130.125.53,US,Columbus,False,1
 103.149.172.87,VN,,True,1
-185.237.96.58,DE,Frankfurt am Main,False,1
-46.175.171.234,BY,,False,0.5700000000000001
-195.181.211.114,CZ,,False,1
-82.103.70.227,BG,,False,0.61
-24.203.247.55,CA,Montreal,False,0.84
+46.175.171.234,BY,,False,0.5800000000000001
+82.103.70.227,BG,,False,0.62
+24.203.247.55,CA,Montreal,False,0.85
 110.77.149.20,TH,,False,1
-212.15.184.190,HR,,False,0.68
 113.53.29.228,TH,Nakhon Sawan,False,1
-91.206.148.243,RU,Astrakhan,False,1
-190.7.141.66,CO,,False,0.73
 194.60.242.127,RU,Leningradskaya,False,1
-31.134.75.174,UA,Dubno,False,0.5700000000000001
-176.98.95.132,UA,Uman,False,0.62
-188.0.117.41,UA,Syeverodonets'k,False,0.66
+31.134.75.174,UA,Dubno,False,0.5800000000000001
+188.0.117.41,UA,Syeverodonets'k,False,0.67
 128.199.45.26,NL,Amsterdam,False,1
-181.115.168.29,BO,Tarija,False,1
-91.223.32.102,RU,Moscow,False,0.99
-185.51.92.108,PT,Sobreda,False,1
-89.19.175.117,RU,Moscow,False,0.79
-177.91.126.125,BR,Regente Feijo,False,0.8200000000000001
-119.93.53.35,PH,Valencia,False,1
-114.6.74.102,ID,Malang,False,0.46
+91.223.32.102,RU,Moscow,False,1
+177.91.126.125,BR,Regente Feijo,False,0.8300000000000001
 80.191.40.41,IR,,False,1
 193.243.140.10,SI,,False,0.44
-193.27.192.15,SE,,True,1
-193.27.212.54,GB,,False,1
 193.30.228.10,BG,,True,1
 193.42.159.2,SE,,False,1
 193.47.83.251,GB,,False,1
 193.58.235.56,DE,,False,1
 193.6.10.1,HU,Miskolc,False,1
-193.8.180.12,CH,,False,1
 194.0.242.2,LV,,False,1
 194.1.154.37,SE,Billdal,False,1
 194.102.126.11,RO,,False,1
-194.102.42.3,RO,,False,1
 194.105.133.2,PL,Obra,False,1
 194.108.42.2,CZ,Zlín,False,1
 194.108.42.253,CZ,Zlín,False,1
 194.149.132.4,MK,Skopje,False,1
 194.149.146.10,MK,Skopje,False,1
 194.153.131.18,IT,Turin,False,0.97
-185.17.132.158,RU,Makhachkala,False,1
-194.176.111.70,KG,,False,0.97
-194.176.111.71,KG,,False,1
 194.177.199.1,GR,,False,1
-115.75.177.224,VN,Ho Chi Minh City,False,1
-194.209.225.15,CH,Grenchen,False,0.7
+194.209.225.15,CH,Grenchen,False,0.71
 194.213.22.147,PL,,False,1
-194.213.22.154,PL,,False,1
 103.3.77.194,ID,,False,1
 194.225.73.141,IR,,True,1
 123.200.2.122,BD,,False,1
 194.25.0.52,DE,Kleve,True,1
-193.106.130.35,PL,Częstochowa,False,1
 194.50.161.21,UA,,False,1
 194.6.179.1,CH,Volketswil / Volketswil (Dorf),False,1
 194.6.179.10,CH,Volketswil / Volketswil (Dorf),False,1
-203.194.21.241,AU,Sydney,False,1
 194.69.194.3,FR,,False,1
-194.69.195.2,FR,,False,1
-194.8.70.10,RU,Moscow,True,1
 194.88.141.2,RU,,False,1
 194.9.14.1,UA,Chernihiv,False,1
-158.51.66.199,US,Ventura,False,0.56
-185.179.132.152,PL,Płock,False,1
-200.27.18.138,CL,Providencia,False,1
 195.130.67.4,GR,,False,1
 195.130.67.5,GR,,False,1
 103.197.251.202,BD,,False,1
-91.245.229.1,IR,,True,0.98
-190.85.65.52,CO,Bogotá,False,0.95
-184.149.25.55,CA,Pembroke,False,0.74
-46.188.82.63,RU,Moscow,False,0.81
+91.245.229.1,IR,,True,0.99
+190.85.65.52,CO,Bogotá,False,0.96
 198.6.1.3,US,,False,1
 198.6.1.4,US,,False,1
 198.6.1.2,US,,False,1
-102.141.19.178,CG,,False,0.79
-109.195.55.154,RU,Voronezh,False,0.81
-188.170.237.214,RU,Krasnoyarsk,False,1
-178.76.254.130,RU,Rostov-on-Don,False,0.88
-175.139.179.65,MY,Kuala Lumpur,False,0.63
-62.27.108.174,DE,Braunschweig,False,0.23
-63.151.67.7,US,Hayden,False,0.9400000000000001
-103.159.200.3,IN,,False,0.84
-212.103.119.244,RU,Bryansk,False,0.95
+63.151.67.7,US,Hayden,False,0.9500000000000001
+103.159.200.3,IN,,False,0.85
 211.115.194.1,KR,,True,1
 211.115.194.4,KR,,True,1
 211.115.194.5,KR,,True,1
-203.242.169.1,KR,,False,0.48
-212.98.235.50,TR,Istanbul,False,1
-159.192.147.186,TH,,False,0.9400000000000001
-190.152.5.126,EC,,False,1
-41.191.226.14,KE,Nairobi,False,0.63
+159.192.147.186,TH,,False,0.9500000000000001
 190.93.189.30,DO,Santiago de los Caballeros,True,1
-177.207.192.137,BR,Juiz de Fora,False,0.68
-190.145.255.246,CO,Medellín,False,0.7
+177.207.192.137,BR,Juiz de Fora,False,0.6900000000000001
+190.145.255.246,CO,Medellín,False,0.71
 203.240.193.11,KR,,True,1
 203.251.201.1,KR,,True,1
-187.243.253.182,MX,Hermosillo,False,0.98
-81.163.57.147,RU,Makhachkala,False,0.72
+81.163.57.147,RU,Makhachkala,False,0.73
 110.36.213.38,PK,Khanewal,False,1
 80.79.66.82,RU,Moscow,False,1
-123.25.116.228,VN,Huế,False,0.93
-185.51.200.50,IR,,False,1
-51.15.114.30,NL,Amsterdam,True,1
 37.156.145.21,IR,Tehran,False,1
-185.175.208.103,DE,,True,1
-200.32.80.107,CO,Ubaque,False,0.9400000000000001
-59.127.142.50,TW,Kaohsiung City,False,0.88
-45.235.171.91,BR,Feliz Natal,False,0.81
-201.204.47.66,CR,Limón,False,0.8
-78.158.19.196,LT,Vilnius,False,0.62
+201.204.47.66,CR,Limón,False,0.81
 210.80.58.67,SG,,True,1
 193.79.237.39,NL,Zwartewaal,True,1
-194.124.76.14,US,New York,True,0.99
-182.79.20.54,IN,Hyderabad,True,0.48
-181.169.89.32,AR,Olivos,False,0.23
-186.125.59.8,AR,Villa de Maria,False,0.78
-156.155.116.71,ZA,Port Elizabeth,False,0.8200000000000001
-187.44.1.248,BR,Montes Claros,False,0.88
-188.93.235.3,PT,,False,0.85
-200.116.198.160,CO,Manizales,False,0.85
-193.159.232.6,DE,Karlsruhe,True,0.62
-84.96.26.129,FR,,False,0.84
+182.79.20.54,IN,Hyderabad,True,0.49
+186.125.59.8,AR,Villa de Maria,False,0.79
+187.44.1.248,BR,Montes Claros,False,0.89
+188.93.235.3,PT,,False,0.86
+84.96.26.129,FR,,False,0.85
 202.14.164.9,TH,,False,1
-185.28.108.181,RU,,False,0.84
-91.203.36.102,RU,Tyumen,False,0.5
-37.57.38.133,UA,Poltava,False,0.81
-197.157.139.254,RW,,False,0.59
-176.215.191.177,RU,,False,0.97
-27.123.4.238,ID,Jatisari,False,0.99
-154.113.66.70,NG,Lagos,False,0.44
-91.207.184.80,PL,Wyszków,False,0.54
-88.220.128.15,PL,Jarosław,False,0.33
+37.57.38.133,UA,Poltava,False,0.8200000000000001
+176.215.191.177,RU,,False,0.98
+27.123.4.238,ID,Jatisari,False,1
+91.207.184.80,PL,Wyszków,False,0.55
 122.3.207.17,PH,Caloocan City,True,1
 122.2.65.202,PH,Quezon City,True,1
-24.37.245.42,CA,Dolbeau-Mistassini,False,1
 24.139.143.226,PR,Camuy,False,1
 190.210.62.152,AR,Buenos Aires,False,1
 91.250.61.113,UA,Mariupol,False,1
-217.164.255.37,AE,Sharjah,False,0.91
-118.179.173.253,BD,Dhaka,False,0.6900000000000001
-14.161.252.185,VN,Ho Chi Minh City,False,0.76
-190.119.167.11,PE,Barcelona,False,0.9400000000000001
-115.164.146.10,MY,Cheras,False,0.42
-213.32.252.134,IQ,Erbil,False,0.99
-91.124.105.124,UA,,False,0.96
-217.218.127.117,IR,,False,0.96
-193.59.26.248,PL,Nowy Korczyn,False,0.68
-31.146.161.194,GE,K'alak'i T'bilisi,False,0.87
-202.129.52.174,TH,Phaya Thai,False,0.92
-41.85.191.6,BJ,Savalou,False,0.63
-110.37.217.114,PK,Karachi,False,0.43
-178.47.141.85,RU,Perm,False,0.63
+217.164.255.37,AE,Sharjah,False,0.92
+118.179.173.253,BD,Dhaka,False,0.7000000000000001
+190.119.167.11,PE,Barcelona,False,0.9500000000000001
+115.164.146.10,MY,Cheras,False,0.43
+213.32.252.134,IQ,Erbil,False,1
+217.218.127.117,IR,,False,0.97
+193.59.26.248,PL,Nowy Korczyn,False,0.6900000000000001
+31.146.161.194,GE,K'alak'i T'bilisi,False,0.88
 216.170.153.146,US,Middleton,True,1
 216.165.129.157,US,Ivins,True,1
-72.51.45.191,US,Los Angeles,False,0.79
-190.1.201.58,CO,Santiago de Cali,False,0.87
-83.239.227.246,RU,Krasnodar,False,0.88
-12.218.209.130,US,Mountain View,False,0.92
-200.25.254.141,CO,Puerto Carreño,False,0.76
+200.25.254.141,CO,Puerto Carreño,False,0.77
 195.129.12.115,NL,,True,1
 194.7.15.70,BE,Opglabbeek,True,1
 138.104.226.21,GB,,False,1
 138.104.226.20,GB,,False,1
 195.129.111.49,NL,,True,1
 195.129.111.50,NL,,True,1
-77.236.234.250,RU,Moscow,False,0.83
-103.238.68.209,VN,Hanoi,False,0.63
-176.197.5.218,RU,Kemerovo,False,0.67
 46.97.238.46,RO,Bârlad,False,1
-210.16.73.85,HK,,False,0.45
 178.252.197.64,RU,Novomoskovsk,False,1
 73.69.62.113,US,Boston,True,1
-69.254.127.206,US,Sarasota,False,0.96
-73.240.38.12,US,Portland,False,0.99
+69.254.127.206,US,Sarasota,False,0.97
+73.240.38.12,US,Portland,False,1
 73.7.178.166,US,Atlanta,True,1
 73.97.49.203,US,Bellingham,True,1
 73.31.207.113,US,Harrisonburg,True,1
-71.63.253.173,US,Vancouver,False,0.93
 76.30.118.33,US,Spring,True,1
 98.194.32.143,US,Houston,True,1
 73.59.66.200,US,Bellingham,True,1
 98.247.49.130,US,Federal Way,True,1
 98.38.178.140,US,Longmont,True,1
 50.222.131.46,US,Houston,True,1
-50.204.103.130,US,Palo Alto,True,0.9400000000000001
-50.235.37.236,US,Sugar Land,False,0.99
+50.204.103.130,US,Palo Alto,True,0.9500000000000001
+50.235.37.236,US,Sugar Land,False,1
 98.247.49.35,US,Federal Way,True,1
 174.51.81.152,US,Fort Collins,True,1
 73.6.85.165,US,Friendswood,True,1
-71.58.205.31,US,York,True,0.98
+71.58.205.31,US,York,True,0.99
 73.50.43.36,US,Arlington Heights,True,1
 50.201.138.220,US,Hubbard,True,1
 73.128.218.47,US,Salisbury,True,1
 212.72.130.20,GE,,False,1
 212.72.130.21,GE,,False,1
-195.34.242.131,RU,Gryazi,False,0.64
-194.44.255.9,UA,Stryi,False,0.7
-194.61.91.131,AM,Abovyan,False,0.88
-138.117.39.217,BR,Castanhal,False,0.64
-109.195.115.150,RU,Yaroslavl,False,1
-180.210.14.4,KR,,True,1
-87.241.207.139,RU,Novosibirsk,False,1
 165.243.115.78,KR,,False,1
-190.145.200.126,CO,Medellín,False,0.72
-81.182.243.24,HU,Vecses,False,0.9400000000000001
-187.189.75.147,MX,Querétaro City,False,1
+190.145.200.126,CO,Medellín,False,0.73
 185.51.92.84,PT,Sobreda,False,1
-190.197.54.82,BZ,Corozal,False,1
 101.255.148.142,ID,Jakarta,False,1
-27.109.116.28,KH,Phnom Penh,False,1
-83.151.2.50,RU,,False,1
 156.200.116.73,EG,,False,1
-18.191.253.100,US,Columbus,False,1
-190.104.17.4,BO,Santa Cruz,False,1
-165.73.232.54,ZA,Cape Town,False,1
-64.17.30.238,US,Avon,False,0.41000000000000003
-83.103.206.56,RO,Braila,False,0.81
-103.130.4.8,ID,,True,0.93
-103.247.22.70,ID,Bekasi,False,0.77
-31.172.133.253,RU,Stavropol,False,0.6900000000000001
-188.246.239.42,KZ,Aktobe,False,0.8200000000000001
-41.193.206.41,ZA,Empangeni,False,0.86
-200.105.192.6,BO,La Paz,False,0.5
-78.130.211.102,BG,Plovdiv,False,0.87
-95.170.203.66,IQ,Erbil,False,0.72
-41.174.184.222,MU,,False,0.67
-185.132.228.226,IT,Martina Franca,False,1
-193.141.116.163,NL,,False,0.96
-92.65.74.235,NL,Vianen,False,0.71
-49.176.146.254,AU,Moorabbin,False,1
-195.225.49.134,UA,Mena,False,1
-220.239.164.49,AU,Hobart,False,1
-95.165.177.30,RU,Moscow,False,1
-181.209.111.149,AR,Diamante,False,0.79
-103.239.201.86,PH,,False,0.68
-223.27.194.66,TH,Bangkok,False,0.87
-41.191.226.86,KE,Nairobi,False,0.56
-122.54.20.50,PH,Mandaluyong City,False,0.6900000000000001
+64.17.30.238,US,Avon,False,0.42000000000000004
+83.103.206.56,RO,Braila,False,0.8200000000000001
+103.130.4.8,ID,,True,0.9400000000000001
+200.105.192.6,BO,La Paz,False,0.51
+78.130.211.102,BG,Plovdiv,False,0.88
+41.174.184.222,MU,,False,0.68
+193.141.116.163,NL,,False,0.97
+92.65.74.235,NL,Vianen,False,0.72
+103.239.201.86,PH,,False,0.6900000000000001
+122.54.20.50,PH,Mandaluyong City,False,0.7000000000000001
 188.133.153.143,RU,Moscow,False,1
-103.130.4.82,ID,,False,0.49
-202.150.152.126,ID,Cimurah,False,0.87
+103.130.4.82,ID,,False,0.5
 139.130.28.102,AU,Casino,False,1
-203.45.140.95,AU,Burraneer,False,0.91
-120.153.82.220,AU,Brisbane,False,0.8200000000000001
-203.42.22.146,AU,Sydney,False,0.98
-202.74.252.184,JP,,False,0.99
+203.45.140.95,AU,Burraneer,False,0.92
+203.42.22.146,AU,Sydney,False,0.99
 110.142.40.60,AU,Melbourne,False,1
 203.38.224.193,AU,Hoppers Crossing,False,1
 203.54.171.62,AU,Sydney,False,1
-79.165.225.234,RU,Balashikha,False,0.51
-185.138.204.215,RU,Korolyov,False,0.64
-1.20.95.95,TH,Chiang Mai,False,0.98
-182.53.96.56,TH,Ban Tha Khoi,False,0.99
-171.103.33.126,TH,Chon Buri,False,0.9
-181.188.216.140,EC,Quito,False,0.95
-157.100.53.109,EC,Machala,False,0.91
-222.252.156.61,VN,Hanoi,False,0.86
+79.165.225.234,RU,Balashikha,False,0.52
+1.20.95.95,TH,Chiang Mai,False,0.99
+182.53.96.56,TH,Ban Tha Khoi,False,1
 190.93.189.28,DO,Santiago de los Caballeros,True,1
-46.19.231.50,AL,,False,0.84
-41.162.186.2,ZA,KwaDukuza,False,0.81
-178.74.70.94,RU,Omsk,False,0.77
-98.154.21.253,US,Whittier,False,0.93
-213.169.34.207,BG,,False,0.89
-201.140.114.161,MX,León,False,0.96
-201.148.95.234,MX,Mexico City,False,0.87
+98.154.21.253,US,Whittier,False,0.9400000000000001
+201.140.114.161,MX,León,False,0.97
+201.148.95.234,MX,Mexico City,False,0.88
 151.252.109.241,RU,Krasnodar,False,1
 1.4.214.148,TH,Ratchaburi,False,1
-92.60.190.22,UA,Kyiv,False,0.7
-168.90.92.34,VE,Caracas,True,0.91
-201.144.14.229,MX,Guadalajara,False,0.74
-24.37.125.246,CA,Granby,False,0.89
-203.114.108.46,TH,,False,0.55
-195.226.105.219,DE,Heidenheim,False,0.83
-83.171.114.92,RU,Syktyvkar,False,0.53
-176.215.237.166,RU,Irkutsk,False,0.99
-138.204.234.27,BR,Cabo de Santo Agostinho,True,0.99
-176.192.8.206,RU,Moscow,False,1
-189.201.189.2,MX,Aguascalientes,False,0.9
-136.232.125.70,IN,Vadodara,False,0.73
-74.56.237.51,CA,Sainte-Julie,False,0.79
-61.7.159.133,TH,Bangkok,False,0.87
-109.69.73.100,RU,Ryazan,False,0.99
-186.219.96.47,BR,Ourinhos,False,0.87
+195.226.105.219,DE,Heidenheim,False,0.84
+138.204.234.27,BR,Cabo de Santo Agostinho,True,1
+136.232.125.70,IN,Vadodara,False,0.74
+61.7.159.133,TH,Bangkok,False,0.88
+109.69.73.100,RU,Ryazan,False,1
 170.247.43.142,BR,Marica,False,1
-178.72.90.70,RU,Tyumen,False,0.8
-150.129.109.14,IN,,False,0.41000000000000003
-45.65.49.89,IN,New Delhi,False,0.85
-88.119.204.62,LT,Kaunas,False,0.88
-190.110.183.22,AR,Jose Maria Ezeiza,False,0.73
-94.158.152.248,UA,Odessa,False,0.46
-185.224.129.9,NL,Amsterdam,False,1
-91.230.49.9,NL,,False,1
+88.119.204.62,LT,Kaunas,False,0.89
+94.158.152.248,UA,Odessa,False,0.47000000000000003
 62.113.113.34,RU,,True,1
 109.235.69.38,LT,,True,1
-194.38.20.218,UA,Dnipro,True,1
-82.137.245.41,SY,,False,0.87
-24.37.138.6,CA,Shefford-Ouest,False,0.9400000000000001
-5.141.81.106,RU,,False,0.91
-156.155.235.8,ZA,Port Elizabeth,False,1
-185.136.151.252,IQ,,False,1
-136.25.2.93,US,San Francisco,False,1
-177.104.117.74,BR,Fortaleza,False,1
-50.228.102.10,US,Malden,False,0.97
-101.51.121.3,TH,Pattani,False,0.93
+101.51.121.3,TH,Pattani,False,0.9400000000000001
 109.104.255.247,IT,Arzachena,True,1
-46.98.198.53,UA,Poltava,False,0.4
-197.254.108.10,KE,,False,0.49
-36.255.184.22,IN,,False,1
-109.75.38.91,AM,Yerevan,False,0.77
-197.155.230.206,ZW,Harare,False,0.73
+197.254.108.10,KE,,False,0.5
+197.155.230.206,ZW,Harare,False,0.74
 103.136.202.93,BD,Dhaka,True,1
-131.0.246.113,BR,Feira de Santana,False,1
-41.162.108.180,ZA,Durban,False,1
-46.107.230.156,HU,Győr,False,1
-86.101.187.193,HU,Budapest,False,1
-65.132.189.184,US,Kent,False,0.9400000000000001
-65.155.3.167,US,,False,0.93
-76.1.3.99,US,Marysville,False,0.84
-207.225.44.255,US,Moses Lake,False,0.88
-216.160.246.151,US,Fallbrook,False,0.93
-65.132.158.151,US,Olympia,False,0.97
-65.141.30.170,US,Longview,False,0.92
-68.177.36.86,US,Tucson,False,0.97
-65.141.223.48,US,Denver,False,0.9400000000000001
-65.152.116.200,US,Johnstown,False,0.99
-65.158.137.97,US,Johnston,False,0.96
-65.158.43.95,US,Bozeman,False,0.98
-67.130.66.225,US,Saint Michael,False,0.89
-207.109.67.32,US,Redmond,False,0.9400000000000001
-209.181.243.239,US,Minneapolis,False,0.95
-205.168.28.184,US,,False,0.93
-209.201.85.177,US,Mansfield,False,0.9400000000000001
-65.132.219.239,US,Minneapolis,False,0.9400000000000001
-67.233.85.141,US,Clermont,False,0.76
-63.234.3.224,US,Norco,False,0.95
-65.140.231.106,US,Aubrey,False,0.9400000000000001
-63.239.25.135,US,Kuna,False,0.99
-65.155.219.127,US,Boise,False,0.88
-65.155.149.95,US,South Jordan,False,0.92
-205.168.3.183,US,Denver,False,0.91
-65.155.104.167,US,Butte,False,1
-63.157.69.112,US,Littleton,False,0.97
-209.181.236.135,US,Minneapolis,False,0.95
-72.166.22.247,US,Bridgeport,False,0.9
-198.243.4.1,US,Arvada,False,0.89
-204.98.230.193,US,Twin Falls,False,0.9400000000000001
-205.168.224.32,US,Denver,False,0.89
-65.155.237.199,US,Cañon City,False,0.9400000000000001
-207.159.121.241,US,St. George,False,1
-65.120.225.120,US,Rogers,False,0.93
-124.106.223.151,PH,,False,0.89
-89.161.27.84,PL,Bialystok,False,1
-46.33.36.19,UA,Odessa,False,1
-115.147.21.134,PH,Manila,False,0.86
-46.98.198.10,UA,Poltava,False,0.8200000000000001
-69.70.245.146,CA,Joliette,False,0.87
-168.196.213.113,BR,Ipiau,False,0.89
-103.217.249.129,IN,Surat,False,0.77
+76.1.3.99,US,Marysville,False,0.85
+65.141.30.170,US,Longview,False,0.93
+65.152.116.200,US,Johnstown,False,1
+65.158.137.97,US,Johnston,False,0.97
+209.181.243.239,US,Minneapolis,False,0.96
+209.201.85.177,US,Mansfield,False,0.9500000000000001
+65.132.219.239,US,Minneapolis,False,0.9500000000000001
+63.234.3.224,US,Norco,False,0.96
+65.155.237.199,US,Cañon City,False,0.9500000000000001
+115.147.21.134,PH,Manila,False,0.87
 103.102.15.165,ID,,False,1
 50.204.103.128,US,Palo Alto,True,1
 98.232.103.71,US,Tacoma,True,1
-73.128.218.92,US,Salisbury,True,1
 50.221.57.204,US,,True,1
 73.54.163.23,US,Atlanta,True,1
 50.217.25.200,US,Carrollton,True,1
 98.248.42.195,US,San Jose,True,1
-50.200.192.113,US,Rio Vista,False,0.98
+50.200.192.113,US,Rio Vista,False,0.99
 50.216.25.75,US,Chico,True,1
 73.31.121.3,US,Harrisonburg,True,1
 73.59.66.235,US,Bellingham,True,1
@@ -1436,47 +951,32 @@ ip_address,country_code,city,dnssec,reliability
 73.197.68.81,US,Cherry Hill,False,1
 50.200.245.136,US,,False,1
 174.51.83.61,US,Fort Collins,True,1
-173.10.78.65,US,Bellingham,False,1
 98.34.183.199,US,Houston,True,1
 24.104.140.229,US,Manchester,True,1
 173.10.78.68,US,Bellingham,True,1
 98.249.57.2,US,Harrisonburg,True,1
-73.51.108.35,US,Libertyville,False,1
 50.234.132.241,US,Baltimore,False,1
-71.58.100.49,US,Bellefonte,False,1
 98.194.44.28,US,Houston,True,1
 73.253.201.110,US,Newton Upper Falls,True,1
 96.102.76.175,US,,False,1
 98.232.103.167,US,Tacoma,True,1
-173.163.85.121,US,Harrisburg,True,1
-69.140.113.57,US,Germantown,True,1
 76.26.211.242,US,Mt. Pleasant,False,1
 98.38.222.66,US,Denver,True,1
-176.215.238.161,RU,Tulun,False,1
-23.94.234.130,US,Los Angeles,False,1
-89.201.162.14,HR,Zagreb,False,1
-185.108.141.114,BG,,False,1
-91.207.68.197,PL,Cieszyn,False,0.68
-109.195.69.104,RU,Krasnoyarsk,False,0.79
-183.182.102.135,LA,,False,0.74
+183.182.102.135,LA,,False,0.75
 180.211.158.90,BD,,True,1
-192.162.154.19,UA,,False,0.71
+192.162.154.19,UA,,False,0.72
 101.102.103.104,TW,,True,1
 197.232.47.102,KE,Nairobi,False,1
 188.168.21.24,RU,Angarsk,False,1
-216.155.89.66,CL,Port Montt,False,1
 204.199.110.202,CO,Aguadas,False,1
-185.255.47.204,IQ,,False,0.9
-186.96.111.178,CO,Villavicencio,False,0.68
+186.96.111.178,CO,Villavicencio,False,0.6900000000000001
 45.229.33.42,DO,Nacional,False,1
-186.10.0.116,CL,Quillota,False,0.97
-202.169.252.190,ID,,False,0.96
+186.10.0.116,CL,Quillota,False,0.98
 216.146.36.36,US,,True,1
 8.20.247.20,US,,True,1
 134.236.242.161,TH,,False,1
-181.129.84.210,CO,Itaguei,False,0.74
-162.250.233.5,US,,True,0.98
-194.224.216.170,ES,Girona,False,0.99
+181.129.84.210,CO,Itaguei,False,0.75
+194.224.216.170,ES,Girona,False,1
 131.221.81.1,BR,,False,1
 185.74.5.1,UZ,,True,1
 195.158.0.5,UZ,Tashkent,True,1
@@ -1487,39 +987,24 @@ ip_address,country_code,city,dnssec,reliability
 187.1.57.206,BR,Belo Horizonte,True,1
 41.65.236.61,EG,Giza,False,1
 204.95.160.2,US,,False,1
-186.97.167.26,CO,Medellín,False,0.84
-159.192.104.53,TH,Kap Choeng,False,0.9400000000000001
-190.90.86.81,CO,Cúcuta,False,0.97
-193.150.117.61,RU,,False,0.84
-111.67.71.52,ID,Cilegon,False,0.96
-109.194.17.191,RU,Irkutsk,False,1
-156.200.116.74,EG,,False,0.68
+190.90.86.81,CO,Cúcuta,False,0.98
+111.67.71.52,ID,Cilegon,False,0.97
 200.148.169.234,BR,,False,0.9
 168.154.160.4,KR,Seongnam-si,False,1
 203.198.7.66,HK,Wanchai,False,1
-170.80.200.193,DO,Santiago de los Caballeros,True,1
-185.230.4.233,BG,Batanovtsi,False,0.84
-41.65.193.100,EG,Cairo,False,0.96
-201.162.219.253,MX,Tlaxco,False,0.88
-103.217.249.1,IN,Surat,False,0.59
-103.217.249.253,IN,Surat,False,0.53
 139.99.69.216,SG,Singapore,False,1
-95.217.202.35,FI,Helsinki,False,0.97
+95.217.202.35,FI,Helsinki,False,0.98
 63.96.227.102,US,,False,1
 63.96.227.103,US,,False,1
 63.96.227.104,US,,False,1
 63.96.227.100,US,,False,1
-165.16.27.5,LY,,False,1
-61.7.141.30,TH,Bangkok,False,0.88
-165.73.125.194,ZA,Cape Town,False,0.89
-41.190.11.34,NG,Kano,False,0.63
+61.7.141.30,TH,Bangkok,False,0.89
 197.26.8.36,TN,Aryanah,False,1
 91.186.102.169,RU,Noril'sk,False,1
-190.90.83.209,CO,Cúcuta,False,0.89
+190.90.83.209,CO,Cúcuta,False,0.9
 41.65.236.53,EG,Giza,False,1
 41.65.236.54,EG,Giza,False,1
-213.157.47.38,KZ,,False,1
-200.24.207.194,EC,Guayaquil,False,0.99
+200.24.207.194,EC,Guayaquil,False,1
 76.76.10.0,CA,,True,1
 76.76.10.5,CA,,True,1
 76.76.2.5,CA,,True,1
@@ -1529,85 +1014,58 @@ ip_address,country_code,city,dnssec,reliability
 205.171.9.235,US,,False,1
 73.120.98.178,US,Knoxville,False,1
 73.14.41.50,US,Fort Collins,True,1
-50.225.201.65,US,Renton,False,1
 50.228.251.34,US,Houston,True,1
-73.217.64.70,US,Brighton,False,0.6
-73.191.13.148,US,Washington,False,0.95
-73.113.34.210,US,Knoxville,False,0.99
+73.113.34.210,US,Knoxville,False,1
 73.59.67.99,US,Bellingham,True,1
 107.0.218.126,US,Philadelphia,False,1
-173.9.105.65,US,West Roxbury,False,1
-96.74.123.93,US,Saratoga,False,0.92
+96.74.123.93,US,Saratoga,False,0.93
 50.237.34.1,US,,True,1
 73.95.177.83,US,Avon,True,1
 50.233.102.227,US,McHenry,True,1
-76.114.19.163,US,Davis,True,1
 73.69.70.235,US,Boston,True,1
 73.137.96.252,US,Atlanta,True,1
 75.68.38.250,US,Windham,False,1
-96.85.208.213,US,Seattle,False,0.99
 50.216.244.79,US,Houston,True,1
 73.238.230.151,US,Dover,True,1
 67.191.149.125,US,Atlanta,True,1
-68.50.241.225,US,Fort Wayne,False,0.84
+68.50.241.225,US,Fort Wayne,False,0.85
 76.120.201.96,US,Harrisonburg,True,1
 50.238.46.219,US,Angleton,False,1
 173.8.207.139,US,Portland,False,1
 73.38.133.198,US,Dover,True,1
-50.223.3.235,US,Franklinton,False,0.97
 24.104.140.255,US,Manchester,True,1
 96.78.20.225,US,Denver,False,1
 73.6.8.125,US,Lake Jackson,True,1
-50.201.150.194,US,Aurora,False,0.98
-66.176.247.3,US,Jupiter,False,0.97
+50.201.150.194,US,Aurora,False,0.99
 176.102.51.82,UA,Lviv,False,1
 165.16.109.17,LY,,False,1
-190.216.107.254,EC,,False,0.99
-89.187.162.215,SG,Singapore,True,1
-71.60.139.121,US,Latrobe,False,1
+190.216.107.254,EC,,False,1
 50.216.92.142,US,Seattle,False,1
-73.83.242.217,US,Ferndale,True,1
 76.24.14.121,US,Boston,True,1
 98.39.59.38,US,Lake Jackson,True,1
 76.104.155.196,US,Tacoma,True,1
-76.16.191.58,US,Evergreen Park,True,1
 98.38.222.51,US,Denver,True,1
-50.236.148.67,US,Cape Coral,True,1
 50.201.178.29,US,Humble,True,1
 50.223.22.178,US,,True,1
 73.137.96.26,US,Atlanta,True,1
 73.62.231.88,US,River Falls,True,1
 98.195.112.169,US,Friendswood,True,1
-76.122.251.76,US,Franklin,True,1
 73.54.161.169,US,Atlanta,True,1
-96.69.146.137,US,Aurora,False,1
-173.163.147.34,US,Hanover,False,1
 73.176.118.83,US,Rockford,True,1
-50.222.33.14,US,Reading,True,1
 50.200.62.234,US,Sherwood,False,1
 73.38.133.33,US,Dover,True,1
 50.217.25.225,US,Carrollton,True,1
 75.150.197.154,US,Elkhart,False,1
-103.106.112.18,ID,,True,0.95
-200.77.121.214,MX,Boca del Rio,False,0.36
-1.0.133.100,TH,Samut Sakhon,False,0.59
-181.205.41.210,CO,La Estrella,False,0.93
+1.0.133.100,TH,Samut Sakhon,False,0.6
+181.205.41.210,CO,La Estrella,False,0.9400000000000001
 178.136.2.208,UA,Kalita,False,1
-176.118.209.12,RU,Ryazan,False,1
 197.210.211.1,NG,Sapele,False,1
 189.125.73.13,BR,São Paulo,False,1
-46.214.153.223,RO,Radauti,False,0.81
-103.121.199.142,ID,Jakarta,False,0.87
-49.145.251.96,PH,Cagayan de Oro,True,1
+46.214.153.223,RO,Radauti,False,0.8200000000000001
 223.29.214.6,BD,,False,1
 103.126.150.177,BD,,False,1
-190.146.209.201,CO,Bogotá,False,1
-5.130.90.3,RU,Novosibirsk,False,0.61
 180.250.252.218,ID,Kediri,True,1
-41.111.204.186,DZ,,False,0.67
-195.225.48.193,UA,Kyiv,False,1
-31.135.214.81,UZ,,False,1
-77.46.142.150,RS,Belgrade,False,0.93
+41.111.204.186,DZ,,False,0.68
 63.85.173.71,US,,False,1
 65.196.174.200,US,,False,1
 63.118.166.101,US,,False,1
@@ -1621,22 +1079,15 @@ ip_address,country_code,city,dnssec,reliability
 63.118.166.103,US,,False,1
 63.118.166.104,US,,False,1
 63.118.166.105,US,,False,1
-200.24.132.211,EC,Guayaquil,False,0.92
 95.85.95.85,LU,,True,1
 2.56.220.2,LU,,True,1
 220.130.134.175,TW,Neihu,False,1
 188.168.25.247,RU,Irkutsk,False,1
 88.208.248.90,GB,,False,1
-180.193.213.42,PH,,False,1
-191.209.127.193,BR,São Paulo,False,0.55
-189.51.116.5,BR,,False,0.84
+191.209.127.193,BR,São Paulo,False,0.56
 41.65.236.37,EG,Giza,False,1
-167.114.180.97,CA,Montreal,False,0.96
-182.48.68.10,BD,Dhaka,False,0.9400000000000001
-178.217.174.172,KG,,False,0.56
-61.19.124.38,TH,Chatuchak,False,0.98
+167.114.180.97,CA,Montreal,False,0.97
 58.234.116.197,KR,Yongin-si,False,1
-45.122.233.76,VN,Da Nang,False,0.95
 64.50.242.202,US,New York,True,1
 137.74.213.139,FR,,True,1
 137.74.213.140,FR,,True,1
@@ -1648,7 +1099,7 @@ ip_address,country_code,city,dnssec,reliability
 137.74.213.133,FR,,True,1
 137.74.213.132,FR,,True,1
 137.74.213.131,FR,,True,1
-137.74.213.130,FR,,True,0.99
+137.74.213.130,FR,,True,1
 137.74.213.129,FR,,True,1
 137.74.213.141,FR,,True,1
 137.74.213.142,FR,,True,1
@@ -1656,24 +1107,13 @@ ip_address,country_code,city,dnssec,reliability
 137.74.213.144,FR,,True,1
 137.74.213.145,FR,,True,1
 137.74.213.146,FR,,True,1
-128.75.228.165,RU,,False,0.63
-212.230.255.3,ES,Valencia,False,0.95
+128.75.228.165,RU,,False,0.64
 212.230.255.4,ES,Valencia,False,0.95
 62.82.138.5,ES,,False,1
-202.169.244.181,ID,,False,0.95
-41.170.65.40,ZA,Pongola,False,0.78
 66.232.139.27,US,,False,1
-167.172.75.54,SG,Singapore,False,0.99
-114.110.22.126,ID,Cimahi,False,0.3
-117.198.218.134,IN,Ernakulam,False,0.92
-103.101.100.27,IN,Jhajjar,False,1
-103.101.100.28,IN,Jhajjar,False,1
-185.162.142.81,MD,Tirnova,False,0.77
-64.233.206.100,US,Evansville,True,0.97
+185.162.142.81,MD,Tirnova,False,0.78
+64.233.206.100,US,Evansville,True,0.98
 64.233.219.100,US,Utica,True,1
-216.228.160.29,US,Bend,True,1
-216.228.160.30,US,Bend,True,1
-103.217.249.250,IN,Surat,False,0.52
 180.182.54.11,KR,,False,1
 180.182.54.14,KR,,False,1
 180.182.54.22,KR,,False,1
@@ -1682,14 +1122,11 @@ ip_address,country_code,city,dnssec,reliability
 180.182.54.23,KR,,False,1
 180.182.54.1,KR,,False,1
 180.182.54.2,KR,,False,1
-60.250.225.143,TW,Taoyuan City,False,1
-60.250.225.144,TW,Taoyuan City,False,1
 76.76.2.4,CA,,True,1
 76.76.10.4,CA,,True,1
-66.102.249.2,US,,False,0.81
-66.102.249.1,US,,False,0.78
+66.102.249.2,US,,False,0.8200000000000001
+66.102.249.1,US,,False,0.79
 196.30.149.37,ZA,Equestria,False,1
-196.30.149.38,ZA,Equestria,False,1
 169.53.182.120,US,,True,1
 80.93.8.10,IE,,True,1
 217.151.251.10,DE,,True,1
@@ -1715,345 +1152,1032 @@ ip_address,country_code,city,dnssec,reliability
 193.135.143.19,CH,,True,1
 193.135.143.21,CH,,True,1
 193.135.143.23,CH,,True,1
-196.43.199.60,ZW,,False,0.98
-181.129.138.114,CO,Manizales,False,0.99
-38.101.122.211,DO,,False,0.85
-78.46.227.46,DE,,True,0.67
-51.89.93.25,GB,Newcastle upon Tyne,True,0.79
-51.89.30.51,GB,London,True,0.71
+196.43.199.60,ZW,,False,0.99
+181.129.138.114,CO,Manizales,False,1
+38.101.122.211,DO,,False,0.86
 45.90.28.129,US,,True,1
 45.90.30.129,US,,True,1
 35.155.221.215,US,Boardman,True,1
 35.167.25.37,US,Boardman,True,1
 52.24.103.199,US,Boardman,True,1
 54.214.161.74,US,Boardman,True,1
-216.183.210.18,MV,Malé,False,0.85
-31.133.57.10,UA,Donetsk,False,0.68
-31.133.58.169,UA,Donetsk,False,0.68
-31.133.57.207,UA,Donetsk,False,0.98
-31.133.58.162,UA,Donetsk,False,0.71
-193.194.86.21,DZ,,False,0.98
+216.183.210.18,MV,Malé,False,0.86
+31.133.57.10,UA,Donetsk,False,0.6900000000000001
+31.133.58.169,UA,Donetsk,False,0.6900000000000001
+31.133.57.207,UA,Donetsk,False,0.99
+31.133.58.162,UA,Donetsk,False,0.72
+193.194.86.21,DZ,,False,0.99
 122.150.76.234,AU,Hobart,True,1
-218.214.84.180,AU,Sydney,True,0.75
-111.220.99.56,AU,Bellerive,False,0.68
-139.218.227.99,AU,Adelaide,False,1
-211.27.181.9,AU,Brisbane,False,0.77
-125.168.72.24,AU,Kirrawee,False,0.75
-218.214.172.92,AU,Hobart,False,0.76
-139.218.33.109,AU,Sydney,False,0.59
-125.168.238.235,AU,Melbourne,False,0.75
-122.148.129.45,AU,Brisbane,False,0.9400000000000001
-139.218.124.153,AU,Perth,False,0.74
-139.216.31.188,AU,Perth,True,1
-58.178.224.63,AU,Adelaide,False,0.9400000000000001
-112.213.178.230,AU,Melbourne,False,0.76
-111.220.125.81,AU,Hobart,False,0.71
-211.27.135.30,AU,Brisbane,False,0.77
-122.148.128.132,AU,Maleny,False,0.96
-125.168.19.113,AU,,False,0.98
-125.168.205.242,AU,Sydney,True,0.75
-211.26.122.34,AU,Adelaide,False,0.87
-122.150.86.73,AU,Melbourne,False,1
-139.218.121.24,AU,Perth,False,0.92
-122.151.181.156,AU,Toowoomba,False,0.87
-112.213.189.237,AU,Hobart,False,0.65
-111.220.176.10,AU,Brisbane,False,0.85
-218.214.185.210,AU,Melbourne,False,0.8
-218.214.182.9,AU,Melbourne,False,0.8
-122.148.128.5,AU,Brisbane,False,0.93
-218.215.245.224,AU,Melbourne,True,1
-111.220.73.177,AU,Perth,True,0.87
-218.214.92.142,AU,Pyrmont,True,0.72
-111.220.103.197,AU,Hobart,False,0.76
-111.220.80.15,AU,Hobart,False,0.97
-211.27.137.222,AU,Brisbane,False,0.76
-122.148.249.153,AU,Perth,True,0.85
+125.168.72.24,AU,Kirrawee,False,0.76
+218.214.172.92,AU,Hobart,False,0.77
+125.168.238.235,AU,Melbourne,False,0.76
+58.178.224.63,AU,Adelaide,False,0.9500000000000001
+112.213.178.230,AU,Melbourne,False,0.77
+211.27.135.30,AU,Brisbane,False,0.78
+122.148.128.132,AU,Maleny,False,0.97
+125.168.205.242,AU,Sydney,True,0.76
+139.218.121.24,AU,Perth,False,0.93
+111.220.176.10,AU,Brisbane,False,0.86
+218.214.185.210,AU,Melbourne,False,0.81
+218.214.182.9,AU,Melbourne,False,0.81
+122.148.128.5,AU,Brisbane,False,0.9400000000000001
+111.220.80.15,AU,Hobart,False,0.98
+211.27.137.222,AU,Brisbane,False,0.77
+122.148.249.153,AU,Perth,True,0.86
 111.220.90.221,AU,Redfern,True,1
-218.214.190.194,AU,Melbourne,False,0.92
-122.151.210.225,AU,Sydney,False,0.96
-211.27.131.81,AU,Brisbane,False,0.89
-218.214.174.39,AU,Hobart,False,0.74
-202.4.64.17,AU,,False,0.98
-218.214.174.64,AU,Hobart,False,0.72
-203.91.243.44,AU,Brisbane,False,0.61
-64.119.60.9,US,,False,0.27
-85.132.32.41,AZ,Baku,False,0.68
+211.27.131.81,AU,Brisbane,False,0.9
+218.214.174.64,AU,Hobart,False,0.73
+85.132.32.41,AZ,Baku,False,0.6900000000000001
 72.52.104.74,US,,True,1
 168.215.165.186,US,Austin,False,1
 212.230.255.1,ES,Pamplona,False,1
-87.204.28.12,PL,Warsaw,False,0.75
-91.204.4.133,DE,,False,0.8200000000000001
-114.114.114.114,CN,,False,0.97
+87.204.28.12,PL,Warsaw,False,0.76
+114.114.114.114,CN,,False,0.98
 205.134.162.209,US,Lanham,True,0.97
-210.181.1.24,KR,,False,0.96
-2.185.239.136,IR,,False,0.87
-207.248.57.10,MX,Monterrey,False,0.93
-212.96.1.70,GH,,False,0.96
-203.189.89.210,ID,,False,0.99
+210.181.1.24,KR,,False,0.97
+2.185.239.136,IR,,False,0.88
+207.248.57.10,MX,Monterrey,False,0.9400000000000001
+212.96.1.70,GH,,False,0.97
 208.74.69.5,US,Vancouver,False,1
-113.160.144.160,VN,Hanoi,False,0.61
-212.97.129.34,DK,,False,0.34
-101.255.56.249,ID,Bekasi,False,0.78
-66.18.240.197,CA,Calgary,True,0.76
-59.120.192.166,TW,Taipei City,False,0.91
+212.97.129.34,DK,,False,0.35000000000000003
+66.18.240.197,CA,Calgary,True,0.77
 204.57.66.2,US,Houston,False,1
 78.46.58.246,DE,Leipzig,True,1
 168.154.160.5,KR,Seongnam-si,False,1
-204.9.217.247,US,Lafayette,False,1
-91.217.62.219,RU,Novosibirsk,False,0.51
-218.157.134.33,KR,Seogwipo,False,0.48
-24.181.107.226,US,Montgomery,False,0.74
-199.16.220.189,US,Rochester,False,0.98
-211.126.202.126,JP,Chuo,False,0.87
-221.186.117.10,JP,Gifu City,False,0.72
-211.115.203.136,KR,,False,0.7
-5.39.118.16,FR,,False,0.58
-59.126.184.117,TW,,False,0.95
-118.238.28.66,JP,Meguro-ku,False,0.9400000000000001
-212.244.78.90,PL,Warsaw,False,0.86
-104.131.37.180,US,Clifton,False,0.84
-90.183.151.106,CZ,Prague,False,0.85
-190.82.78.210,CL,Santiago,False,0.35000000000000003
-207.210.233.4,US,Dallas,False,0.060000000000000005
-37.235.70.59,RU,Nizhniy Novgorod,False,0.09
-180.94.94.194,AF,,False,0.6900000000000001
-210.242.68.59,TW,Pingzhen,False,0.16
-66.162.39.114,US,Pomona,True,0.95
-91.218.100.11,RU,Lys'va,False,0.62
+218.157.134.33,KR,Seogwipo,False,0.49
+199.16.220.189,US,Rochester,False,0.99
+221.186.117.10,JP,Gifu City,False,0.73
+118.238.28.66,JP,Meguro-ku,False,0.9500000000000001
+212.244.78.90,PL,Warsaw,False,0.87
+104.131.37.180,US,Clifton,False,0.85
+207.210.233.4,US,Dallas,False,0.07
+180.94.94.194,AF,,False,0.7000000000000001
 200.110.130.194,AR,Buenos Aires,False,1
 210.71.26.1,TW,,False,0.27
-198.0.52.60,US,Portland,False,0.77
+198.0.52.60,US,Portland,False,0.78
 61.222.14.170,TW,New Taipei,False,1
-64.107.45.5,US,Calumet City,False,0.85
-211.114.145.7,KR,Seodaemun-gu,False,0.95
-125.141.196.236,KR,,False,0.36
-203.141.131.66,JP,Katsushika,False,0.8
-60.250.225.142,TW,Taoyuan City,False,0.9400000000000001
+64.107.45.5,US,Calumet City,False,0.86
+211.114.145.7,KR,Seodaemun-gu,False,0.96
+125.141.196.236,KR,,False,0.37
+203.141.131.66,JP,Katsushika,False,0.81
 210.114.225.223,KR,,False,1
-186.120.170.6,DO,Santo Domingo Este,False,0.54
-196.200.176.2,MA,Marrakesh,True,0.72
-104.36.237.205,US,Pasco,False,0.64
-74.84.64.170,US,Ridgecrest,False,0.73
-83.69.120.1,RU,Kazan’,False,0.34
-202.181.242.131,HK,Kwun Hang,False,0.68
+83.69.120.1,RU,Kazan’,False,0.35000000000000003
+202.181.242.131,HK,Kwun Hang,False,0.6900000000000001
 64.2.142.60,US,,False,0.62
-125.212.202.19,VN,,False,1
-68.216.230.2,US,,False,0.81
-64.2.142.22,US,,False,0.36
-208.180.0.250,US,Amarillo,False,0.84
-195.88.154.1,RU,,False,0.96
-66.199.241.115,US,,False,0.91
-193.33.224.253,KW,Kuwait City,False,0.99
-190.143.189.106,GT,Guatemala City,False,0.65
-139.141.236.131,KW,,False,0.88
-38.109.190.182,US,Frankfort,False,0.65
-202.78.64.84,PH,,False,0.98
-157.92.190.15,AR,Buenos Aires,False,0.85
-187.33.230.114,BR,Parelhas,False,0.5700000000000001
-213.182.60.11,FR,,True,0.51
-189.124.138.68,BR,Natal,True,0.59
-204.70.127.128,US,,False,0.9400000000000001
-190.128.224.236,PY,Asunción,False,0.53
-218.38.58.185,KR,Yangcheon-gu,False,0.67
-153.19.121.200,PL,Gdansk,False,0.93
-194.149.145.132,MK,Skopje,False,0.3
-190.149.249.57,GT,,True,0.68
-210.61.2.99,TW,,False,0.46
-77.221.225.2,DK,Copenhagen,False,0.03
-85.47.198.82,IT,Castel San Pietro Terme,False,0.36
-190.57.234.194,AR,Corrientes,False,0.6
-46.45.187.181,TR,,True,0.61
-61.219.108.121,TW,Taipei,False,0.61
-89.106.109.235,BG,Gabrovo,False,0.15000000000000002
-218.188.215.94,HK,Happy Valley,False,0.24000000000000002
-190.124.166.8,HN,,False,0.63
-203.147.7.7,TH,,False,0.97
-202.159.112.193,ID,Jakarta,False,0.41000000000000003
-115.160.156.42,HK,Central,False,0.29000000000000004
-212.109.57.173,UA,Kyiv,False,0.6900000000000001
-207.67.115.254,US,,False,0.83
-115.127.19.129,BD,Dhaka,False,0.58
-194.213.61.115,CZ,Novy Jicin,False,0.21000000000000002
-217.29.20.126,KG,,True,0.34
-62.212.113.125,FR,Bonsecours,False,0.53
-24.229.42.161,US,Wellsboro,False,0.8200000000000001
-216.230.151.221,GT,,True,0.35000000000000003
-198.175.228.44,US,,False,0.95
-46.16.229.223,RU,Kasumkent,False,0.8
-46.45.187.184,TR,,True,0.39
-87.247.68.60,LT,Kaunas,False,0.91
-84.54.226.50,RU,Blagodarnyy,False,0.93
-196.216.32.2,NA,Windhoek,False,0.78
-201.203.43.234,CR,Tilaran,False,0.75
-205.171.202.25,US,,False,0.68
-89.190.73.195,CZ,Vrchlabi,False,0.83
-209.209.217.168,US,West Monroe,False,0.6
-119.201.155.161,KR,Gyeongju,False,0.68
-65.220.42.38,US,Washington,True,0.68
-66.240.146.122,CA,Waterdown,False,0.85
-203.126.118.102,SG,Singapore,False,0.8200000000000001
-175.100.120.27,KH,Phnom Penh,False,1
-5.102.56.38,CZ,Kraluv Dvur,False,0.84
-213.157.50.130,KZ,Almaty,False,0.35000000000000003
-108.166.105.234,US,,True,0.81
-221.143.46.198,KR,Dongdaemun-gu,False,0.98
-213.163.127.229,AL,,False,0.74
-209.249.125.1,US,,False,0.95
-209.137.146.2,US,,False,0.76
-91.137.135.75,HU,Nagykoros,False,0.62
-205.147.218.10,US,Bethlehem,False,0.27
-89.23.192.109,RU,Moscow,False,0.9400000000000001
-81.192.64.22,MA,,False,0.93
-178.210.102.225,DE,Toenisvorst,False,0.71
-62.219.21.64,IL,Tel Aviv,False,0.87
-80.240.216.153,RU,Moscow,False,0.87
-195.234.239.130,BG,Sofia,False,0.63
-67.79.47.3,US,Beeville,False,0.5700000000000001
-37.99.224.30,IT,Montoro,False,0.9400000000000001
-212.92.193.18,HR,Zagreb,True,0.68
-211.174.53.46,KR,Seoul,False,0.56
-207.99.46.118,US,Morristown,False,0.93
-218.234.18.181,KR,Namyangju,False,0.89
+208.180.0.250,US,Amarillo,False,0.85
+66.199.241.115,US,,False,0.92
+193.33.224.253,KW,Kuwait City,False,1
+190.143.189.106,GT,Guatemala City,False,0.66
+139.141.236.131,KW,,False,0.89
+202.78.64.84,PH,,False,0.99
+157.92.190.15,AR,Buenos Aires,False,0.86
+213.182.60.11,FR,,True,0.52
+189.124.138.68,BR,Natal,True,0.6
+204.70.127.128,US,,False,0.9500000000000001
+190.128.224.236,PY,Asunción,False,0.54
+218.38.58.185,KR,Yangcheon-gu,False,0.68
+153.19.121.200,PL,Gdansk,False,0.9400000000000001
+194.149.145.132,MK,Skopje,False,0.31
+190.57.234.194,AR,Corrientes,False,0.61
+61.219.108.121,TW,Taipei,False,0.62
+89.106.109.235,BG,Gabrovo,False,0.16000000000000003
+202.159.112.193,ID,Jakarta,False,0.42000000000000004
+212.109.57.173,UA,Kyiv,False,0.7000000000000001
+207.67.115.254,US,,False,0.84
+217.29.20.126,KG,,True,0.35000000000000003
+62.212.113.125,FR,Bonsecours,False,0.54
+24.229.42.161,US,Wellsboro,False,0.8300000000000001
+198.175.228.44,US,,False,0.96
+87.247.68.60,LT,Kaunas,False,0.92
+84.54.226.50,RU,Blagodarnyy,False,0.9400000000000001
+201.203.43.234,CR,Tilaran,False,0.76
+205.171.202.25,US,,False,0.6900000000000001
+89.190.73.195,CZ,Vrchlabi,False,0.84
+65.220.42.38,US,Washington,True,0.6900000000000001
+66.240.146.122,CA,Waterdown,False,0.86
+203.126.118.102,SG,Singapore,False,0.8300000000000001
+213.157.50.130,KZ,Almaty,False,0.36000000000000004
+221.143.46.198,KR,Dongdaemun-gu,False,0.99
+209.249.125.1,US,,False,0.96
+209.137.146.2,US,,False,0.77
+205.147.218.10,US,Bethlehem,False,0.28
+89.23.192.109,RU,Moscow,False,0.9500000000000001
+81.192.64.22,MA,,False,0.9400000000000001
+67.79.47.3,US,Beeville,False,0.5800000000000001
+37.99.224.30,IT,Montoro,False,0.9500000000000001
+211.174.53.46,KR,Seoul,False,0.5700000000000001
+207.99.46.118,US,Morristown,False,0.9400000000000001
+218.234.18.181,KR,Namyangju,False,0.9
 212.234.34.121,FR,,False,0.24000000000000002
-72.14.186.159,US,Richardson,True,0.79
-59.25.140.33,KR,Daegu,False,0.35000000000000003
+72.14.186.159,US,Richardson,True,0.8
 202.57.32.49,PH,Pasay,False,0.65
-115.42.228.246,SG,Singapore,True,1
-199.88.158.1,US,,False,0.55
 209.211.254.18,US,Rock Springs,False,1
-129.71.254.12,US,Charleston,False,0.93
-75.150.235.81,US,Dolton,False,0.65
-201.48.242.193,BR,Jundiaí,False,0.96
-196.21.247.1,ZA,Grahamstown,False,0.56
-61.250.162.193,KR,Gwanak-gu,False,0.54
-80.81.232.30,SK,Machulince,False,0.97
-195.67.74.135,SE,Katrineholm,False,0.99
-97.64.136.6,US,Clive,False,0.43
-77.68.46.58,GB,,False,0.9400000000000001
-179.185.88.86,BR,Campo Grande,False,0.53
-85.114.40.2,HR,Zagreb,False,0.99
-198.99.193.1,US,Signal Mountain,False,0.41000000000000003
-211.79.206.212,TW,,False,0.67
-109.195.102.86,RU,Yekaterinburg,False,0.96
-62.122.101.59,RU,Dmitrov,False,0.61
-61.195.147.131,JP,Nishi-Tokyo-shi,False,0.47000000000000003
-200.57.7.61,MX,,False,0.78
-210.14.4.37,PH,Calbayog City,False,0.44
-202.44.113.14,IQ,,True,0.21000000000000002
-49.236.193.35,MY,,False,0.67
-164.215.108.133,GB,,True,0.66
-202.83.120.25,ID,,False,0.03
-202.51.74.187,NP,,False,0.92
-41.57.120.161,NG,,True,0.85
-197.159.166.81,ST,Neves Ferreira,False,0.79
-65.48.143.44,VC,Kingstown,False,0.02
-202.53.95.14,IN,Hyderabad,False,0.81
-125.208.194.148,KR,,True,0.34
-1.33.184.193,JP,Shibuya,False,0.83
-1.33.184.138,JP,Shibuya,False,0.68
-1.33.184.183,JP,Shibuya,False,0.64
-1.33.184.254,JP,Shibuya,False,0.87
-1.33.184.225,JP,Shibuya,False,0.72
-1.33.184.88,JP,Shibuya,False,0.8200000000000001
-1.33.184.118,JP,Shibuya,False,0.65
-1.33.184.247,JP,Kawasaki,False,0.77
-1.33.184.232,JP,Shibuya,False,0.7
-1.33.184.235,JP,Shibuya,False,0.8200000000000001
-1.33.184.243,JP,Shibuya,False,0.85
-1.33.184.141,JP,Shibuya,False,0.8200000000000001
-1.33.184.104,JP,Shibuya,False,0.8
-1.33.184.106,JP,Kawasaki,False,0.66
-1.33.184.151,JP,Shibuya,False,0.73
-1.33.184.176,JP,Kawasaki,False,0.63
-1.33.184.137,JP,Kawasaki,False,0.65
-1.33.184.174,JP,Kawasaki,False,0.52
-1.33.184.87,JP,Shibuya,False,0.84
-1.33.184.180,JP,Shibuya,False,0.6
-1.33.184.99,JP,Kawasaki,False,0.63
-1.33.184.171,JP,Kawasaki,False,0.67
-1.33.184.230,JP,Shibuya,False,0.12
-124.6.167.200,PH,Lapu-Lapu City,False,0.51
-124.6.164.233,PH,Hilongos,False,0.64
-124.6.188.203,PH,Makati City,False,0.04
-103.49.206.250,IN,Ongole,True,1
-204.116.57.2,US,Saluda,False,0.64
-91.103.112.150,DE,Stuttgart,False,0.88
+129.71.254.12,US,Charleston,False,0.9400000000000001
+61.250.162.193,KR,Gwanak-gu,False,0.55
+195.67.74.135,SE,Katrineholm,False,1
+97.64.136.6,US,Clive,False,0.44
+77.68.46.58,GB,,False,0.9500000000000001
+200.57.7.61,MX,,False,0.79
+210.14.4.37,PH,Calbayog City,False,0.45
+49.236.193.35,MY,,False,0.68
+164.215.108.133,GB,,True,0.67
+41.57.120.161,NG,,True,0.86
+197.159.166.81,ST,Neves Ferreira,False,0.8
+202.53.95.14,IN,Hyderabad,False,0.8200000000000001
+204.116.57.2,US,Saluda,False,0.65
 101.110.34.62,JP,Suita,False,0.9
-80.248.14.50,NG,Lagos,False,0.7
-103.87.160.49,ID,Jakarta,False,0.64
-103.87.160.54,ID,Jakarta,False,0.41000000000000003
-203.189.89.156,ID,,False,0.52
-203.189.89.158,ID,,False,0.42
-203.189.89.177,ID,,False,0.61
-103.28.113.6,ID,Sedayu,False,0.42
-103.28.113.22,ID,Sedayu,False,0.54
-116.68.170.150,ID,Bandung,False,0.31
-103.77.227.162,ID,,False,0.37
-203.207.52.206,ID,,False,0.81
-64.233.207.16,US,Evansville,True,0.99
-103.255.243.252,ID,Bogor,True,0.18000000000000002
-88.79.149.4,DE,Diekholzen,False,0.99
-8.26.56.10,US,,True,0.97
-208.48.253.106,US,Willoughby,False,0.9
-209.143.22.182,US,Minford,False,0.28
-196.223.158.58,SD,,True,0.87
-188.138.57.95,FR,Strasbourg,False,0.9400000000000001
+80.248.14.50,NG,Lagos,False,0.71
+103.87.160.54,ID,Jakarta,False,0.42000000000000004
+203.189.89.158,ID,,False,0.43
+203.207.52.206,ID,,False,0.8200000000000001
+64.233.207.16,US,Evansville,True,1
+88.79.149.4,DE,Diekholzen,False,1
+8.26.56.10,US,,True,0.98
+208.48.253.106,US,Willoughby,False,0.91
+196.223.158.58,SD,,True,0.88
+188.138.57.95,FR,Strasbourg,False,0.9500000000000001
 212.66.129.107,DE,Düren,False,1
-46.16.216.25,DE,Wollstein,False,0.95
-62.146.202.2,DE,Burgthann,False,0.99
-45.71.185.100,EC,Guabo,False,0.88
-218.107.55.108,CN,Guangzhou,False,0.39
-61.19.42.5,TH,Chiang Rai,False,0.76
-117.121.215.101,TH,Ko Samui,False,0.74
-122.154.230.146,TH,,False,0.75
-180.180.241.2,TH,,True,0.91
-202.44.32.29,TH,Phaya Thai,False,0.93
-202.44.45.11,TH,Phaya Thai,False,0.97
-201.144.54.2,MX,La Paz,False,0.6
-113.190.253.229,VN,Hanoi,False,0.8200000000000001
-81.211.96.62,RU,St Petersburg,False,0.88
-84.244.59.15,RU,,True,0.64
-85.11.24.148,SE,Umeå,False,0.79
-193.15.1.54,SE,,False,0.8
-81.8.176.251,SE,Vilhelmina,False,0.47000000000000003
-146.247.80.144,SE,Uppsala,True,0.79
-95.155.226.229,SE,Skellefteå,True,0.67
-202.112.35.203,CN,,False,0.08
-168.196.78.22,BR,,True,0.14
-177.155.135.81,BR,Caçador,False,0.55
-186.215.192.243,BR,Jaboatao dos Guararapes,False,0.41000000000000003
-81.83.12.253,BE,Antwerp,True,0.6
-81.83.18.23,BE,Hove,True,0.55
-176.31.121.197,FR,,False,0.92
-185.169.159.158,FR,Couchey,False,0.85
-193.248.218.250,FR,,False,0.28
-194.250.200.153,FR,Valenton,False,0.93
-212.83.168.230,FR,Chelles,False,0.88
-213.215.11.190,FR,Le Plessis-Robinson,False,0.39
-46.105.214.115,FR,,False,0.6900000000000001
-82.127.168.41,FR,Vendenheim,False,0.44
-90.82.197.129,FR,Rivesaltes,False,0.96
-91.121.3.87,FR,,False,0.65
-193.159.232.5,DE,Karlsruhe,True,0.48
-62.153.165.107,DE,Erlangen,False,0.93
-103.113.200.10,BD,,True,0.97
-89.108.128.220,LB,,False,0.95
-89.108.129.220,LB,,False,0.95
-79.175.208.28,PL,Sosnowiec,False,0.98
-84.91.197.19,PT,Gouveia,False,0.96
-109.228.14.251,GB,,False,0.88
-88.208.248.13,GB,,False,0.79
-109.228.47.218,GB,Reading,False,0.46
+46.16.216.25,DE,Wollstein,False,0.96
+62.146.202.2,DE,Burgthann,False,1
+218.107.55.108,CN,Guangzhou,False,0.4
+61.19.42.5,TH,Chiang Rai,False,0.77
+180.180.241.2,TH,,True,0.92
+202.44.32.29,TH,Phaya Thai,False,0.9400000000000001
+202.44.45.11,TH,Phaya Thai,False,0.98
+113.190.253.229,VN,Hanoi,False,0.8300000000000001
+84.244.59.15,RU,,True,0.65
+85.11.24.148,SE,Umeå,False,0.8
+146.247.80.144,SE,Uppsala,True,0.8
+202.112.35.203,CN,,False,0.09
+81.83.12.253,BE,Antwerp,True,0.61
+81.83.18.23,BE,Hove,True,0.56
+176.31.121.197,FR,,False,0.93
+194.250.200.153,FR,Valenton,False,0.9400000000000001
+213.215.11.190,FR,Le Plessis-Robinson,False,0.4
+46.105.214.115,FR,,False,0.7000000000000001
+62.153.165.107,DE,Erlangen,False,0.9400000000000001
+103.113.200.10,BD,,True,0.98
+89.108.128.220,LB,,False,0.96
+89.108.129.220,LB,,False,0.96
+88.208.248.13,GB,,False,0.8
 213.171.217.147,GB,Newent,False,1
-213.171.217.148,GB,Newent,False,1
-77.68.45.252,GB,,False,0.93
-185.43.51.84,GB,,False,0.78
+77.68.45.252,GB,,False,0.9400000000000001
 45.225.123.34,BR,Cicero Dantas,True,1
 4.0.0.53,US,,False,1
-177.20.178.12,BR,Rio das Pedras,False,0.8200000000000001
-104.152.211.99,CA,,True,0.99
-82.103.129.72,DK,Copenhagen,True,0.99
-45.77.61.165,FR,Aubervilliers,True,0.99
-46.246.29.69,SE,,True,0.99
+104.152.211.99,CA,,True,1
+82.103.129.72,DK,Copenhagen,True,1
+45.77.61.165,FR,Aubervilliers,True,1
+46.246.29.69,SE,,True,1
 107.191.48.176,US,Elk Grove Village,True,1
-202.86.251.201,IN,,True,0.9400000000000001
+202.86.251.201,IN,,True,0.9500000000000001
+2001:470:1f1a:78e::2,US,,True,1
+2a01:4f8:151:34aa::198,DE,,True,1
+103.129.221.226,ID,,True,0.96
+2001:4860:4860::8844,US,,True,1
+190.109.224.227,BO,La Paz,False,0.88
+149.56.184.112,CA,Montreal,False,0.44
+2607:5300:61:c67::11,CA,,False,0.19
+89.211.53.228,QA,Doha,False,0.76
+87.254.34.102,NO,,False,0.8
+37.235.1.174,AT,,False,1
+213.184.224.254,BY,Minsk,False,0.28
+81.95.125.20,BE,Bruges,False,1
+177.184.131.180,BR,Magalhaes de Almeida,False,0.75
+59.148.249.214,HK,Kowloon Bay,False,0.24000000000000002
+202.64.161.118,HK,,False,0.71
+202.130.102.211,HK,Central,False,0.68
+203.85.45.131,HK,,True,0.25
+66.181.167.232,MN,Ulan Bator,False,0.55
+49.0.184.30,MN,Ulaangom,False,0.58
+2a02:6b8:0:1::feed:bad,RU,Moscow,False,1
+2a02:6b8::feed:bad,RU,Moscow,False,1
+2620:74:1c::2:2,US,,True,1
+2620:74:1b::1:1,US,,True,1
+2620:0:ccd::2,US,,True,1
+2620:0:ccc::2,US,,True,1
+2001:470:20::2,US,,True,1
+2001:910:800::12,FR,,True,1
+88.208.211.65,GB,,False,1
+2620:10a:80bb::20,CA,,True,1
+82.141.171.84,HU,Hajduszoboszlo,False,1
+168.196.78.18,BR,,True,1
+186.225.45.138,BR,Fortaleza,False,0.67
+69.160.4.206,MM,,False,0.73
+101.0.6.195,ID,Surabaya,False,1
+202.87.249.2,ID,Jakarta,False,1
+2001:1608:10:25::9249:d69b,DE,,True,0.98
+2620:119:35::35,US,,True,1
+2a03:4000:24:688::6e73:31,DE,,True,1
+2a03:4000:24:361::6e73:32,DE,,False,1
+2001:418:3ff::1:53,US,,False,1
+2001:418:3ff::53,US,,False,1
+2001:468:c80:2101:0:100:0:22,US,,True,1
+2001:840:100::,NO,,False,1
+2001:978:1:1::d,US,,True,1
+2610:a1:1019::1,US,,True,1
+2620:fe::fe,US,,True,1
+2a01:3a0:53:53::,SE,,True,1
+201.222.55.246,PY,Asunción,False,0.77
+2a04:52c0:101:75::75,NL,Dronten,True,1
+2a0d:5600:33:3::3,RO,,True,1
+2a01:4f8:c17:739a::2,DE,,True,1
+2a10:50c0::1:ff,CY,,True,0.9400000000000001
+130.226.161.34,DK,Kongens Lyngby,True,1
+2a00:fbe0:1:3802::3,DK,,True,1
+2001:418:8006::12,US,,True,1
+2a00:f826:8:2::195,DE,,True,1
+2a03:4000:4d:c92:88c0:96ff:fec6:b9d,DE,,False,1
+2a00:f826:8:1::254,DE,,True,1
+2620:fe::10,US,,True,0.99
+2a02:6b8:0:1::feed:a11,RU,Moscow,False,1
+2001:148f:fffe::1,CZ,,True,1
+103.154.241.252,MM,Yangon,False,0.78
+37.48.120.196,NL,,True,1
+105.96.43.54,DZ,Annaba,False,0.97
+2606:4700:4700::1111,US,,True,1
+193.194.93.153,DZ,Algiers,False,1
+136.228.160.250,MM,Yangon,False,0.01
+59.125.86.230,TW,Miaoli,False,1
+103.21.194.19,NZ,Queenstown,False,0.01
+50.247.100.49,US,San Francisco,False,1
+50.238.17.2,US,Bedford,False,0.4
+71.69.166.70,US,Raleigh,False,0.34
+74.219.92.60,US,Westerville,False,0.49
+162.154.159.65,US,North Canton,False,0.64
+71.66.184.98,US,Bucyrus,False,0.54
+71.67.192.50,US,Elyria,False,0.55
+96.65.163.149,US,Pompano Beach,False,0.6900000000000001
+203.8.201.11,IN,,False,0.39
+41.184.178.247,NG,Lagos,False,0.61
+193.117.138.126,GB,Bexleyheath,False,1
+177.36.11.189,BR,Recife,False,0.49
+195.91.221.230,RU,Moscow,False,0.71
+154.113.151.177,NG,Lagos,False,0.5700000000000001
+203.115.130.74,PH,Malay,True,1
+210.4.2.61,PH,,True,1
+202.78.97.41,PH,,True,1
+103.124.97.11,NP,Kaski,False,0.7
+2a10:50c0::2:ff,CY,,True,1
+2a10:50c0::ad1:ff,CY,,True,1
+2a10:50c0::ad2:ff,CY,,True,1
+2001:148f:ffff::1,CZ,,True,1
+2001:878:0:e000:82:e1:f4:a6,DK,,True,1
+2001:878:0:e000:82:e2:a1:22,DK,,True,1
+2a01:4f8:141:316d::117,DE,Mylau,True,1
+2a02:c205:3001:4558::1,DE,,True,1
+83.143.8.249,NG,,False,1
+124.240.199.23,PG,Port Moresby,False,1
+2a02:6b8::feed:ff,RU,Moscow,False,1
+2a02:6b8:0:1::feed:ff,RU,Moscow,False,1
+2a0c:a9c7:8::1,RU,,True,1
+36.37.160.242,KH,Phnom Penh,False,1
+114.6.227.28,ID,,False,1
+212.46.255.78,RU,,False,1
+167.250.65.246,BR,Ananindeua,False,1
+187.111.160.29,BR,Sorocaba,False,0.72
+193.242.151.45,RU,Krasnodar,False,0.34
+103.1.93.184,NP,,False,0.38
+184.55.17.150,US,Plymouth,False,0.33
+24.172.82.94,US,Kannapolis,False,0.79
+177.124.184.52,BR,Ji Parana,False,1
+190.196.58.194,CL,Santiago,False,0.64
+202.162.214.250,ID,Tangerang,False,1
+78.92.231.44,HU,Budapest,False,0.52
+117.54.11.82,ID,,False,0.44
+188.163.170.130,UA,,False,1
+106.51.72.222,IN,Bengaluru,False,1
+185.123.194.28,RU,Kursk,False,1
+190.122.20.30,AR,Marcos Paz,False,0.63
+31.15.89.51,RU,Anapa,False,1
+49.156.42.210,KH,,False,1
+190.221.152.130,AR,,False,0.68
+2610:a1:1018::5,US,,True,1
+2001:4860:4860::6464,US,,True,1
+2606:4700:4700::64,US,,True,1
+2606:4700:4700::6400,US,,True,1
+2610:a1:1019::2,US,,True,0.96
+2610:a1:1019::5,US,,True,0.76
+2620:fe::11,US,,True,1
+2620:fe::fe:10,US,,True,1
+2620:fe::fe:11,US,,True,1
+2620:fe::fe:9,US,,True,1
+2a0d:2a00:1::2,US,,True,1
+2a0d:2a00:2::2,US,,True,1
+2a05:dfc7:5353::53,AQ,,True,1
+2001:470:1f07:ed6::,US,Bronxville,True,1
+2001:4ba0:ffa4:1ce::,DE,,True,1
+109.228.0.226,GB,,False,1
+2001:678:e68:f000::,DE,,True,1
+2a09::,,,True,1
+217.33.56.5,GB,Burnham-on-Crouch,False,1
+2001:468:c80:4101:0:100:0:42,US,,True,1
+88.208.228.34,GB,,False,1
+79.104.25.218,RU,Verkhnyaya Pyshma,False,1
+183.87.69.233,IN,Pune,False,0.62
+180.93.32.190,VN,Da Nang,False,0.74
+196.27.105.130,ZW,,False,1
+192.162.193.243,RU,Uglich,False,1
+200.32.51.179,AR,Buenos Aires,False,1
+181.209.105.154,AR,,False,1
+65.21.151.121,FI,Helsinki,False,1
+81.16.18.228,DE,,True,1
+2a03:4000:55:d1d::,DE,,True,1
+2001:4ba0:ffa4:3f7::,DE,,True,1
+185.40.31.16,RU,Tula,False,0.86
+91.217.81.165,RU,,False,0.76
+185.138.230.68,UA,Nemishaieve,False,0.84
+86.123.188.209,RO,Bucharest,False,1
+185.199.98.236,UA,Kyiv,False,1
+200.125.171.220,DO,Santiago de los Caballeros,True,1
+152.67.254.221,US,San Jose,False,1
+85.214.20.133,DE,,False,1
+212.47.237.139,FR,,False,1
+87.98.158.117,FR,,False,1
+207.244.241.86,US,St Louis,False,1
+91.121.157.83,FR,,False,1
+77.55.213.133,PL,,False,1
+66.23.205.85,US,Chicago,False,1
+64.42.183.141,US,Chicago,False,1
+68.183.235.124,SG,Singapore,False,1
+212.83.160.229,FR,,False,1
+205.185.120.177,US,Las Vegas,False,1
+116.203.122.149,DE,,False,1
+80.211.201.136,CZ,Ktis,False,1
+165.22.224.149,CA,Toronto,False,1
+193.123.32.148,NL,Amsterdam,False,1
+51.222.30.159,CA,,False,1
+43.229.132.105,TH,,False,1
+104.236.99.23,US,Clifton,False,1
+157.90.217.135,DE,,False,1
+131.175.17.10,IT,Milan,False,1
+101.109.86.110,TH,Kantang,False,1
+85.214.22.21,DE,,False,1
+165.232.150.47,US,Santa Clara,False,1
+136.243.132.241,DE,,False,1
+51.195.152.248,FR,,False,1
+45.33.97.215,US,Atlanta,False,1
+168.232.19.7,BR,João Pessoa,False,1
+193.168.195.38,DE,,False,1
+50.116.60.92,US,Cedar Knolls,False,1
+135.148.100.25,US,,False,1
+202.61.230.210,AT,,False,1
+159.65.45.156,US,Clifton,False,1
+88.99.39.199,DE,,False,1
+208.117.81.39,US,,False,1
+167.172.39.171,NL,Amsterdam,False,1
+139.99.203.12,AU,Sydney,False,1
+98.176.237.95,US,San Diego,False,1
+2400:6180:0:d0::5f6e:4001,SG,Singapore,True,1
+2400:8902::f03c:91ff:feda:c514,JP,Tokyo,True,1
+2607:f130:0:f8::3085:e961,US,,False,0.91
+2001:1a68::d911:2244,PL,,False,1
+2001:1bc0::ffff:aaaa:2,DE,,True,1
+2001:1bc0::ffff:bbbb:2,DE,,False,1
+2001:470:0:45::2,US,,True,1
+2001:4870:6082:3::100,US,,False,1
+2001:4870:6082:3::5,US,,False,1
+2001:550:1:1::d,US,,True,1
+2001:550:1:2::d,US,,True,1
+2001:738:6001:b0b0::1000,HU,Miskolc,False,1
+2001:840:2010:413::100,NO,,False,1
+2001:978:1:2::d,US,,True,1
+2a02:200:1:11::100,CH,Zweidlen-Dorf,True,1
+2a02:200:1:12::100,CH,Zweidlen-Dorf,True,1
+2a09::1,,,True,1
+156.19.135.75,US,Prattville,False,1
+144.91.86.33,DE,Nuremberg,False,1
+104.168.96.107,US,,False,1
+193.218.225.38,GR,,False,1
+45.141.57.8,IT,Rovigo,False,1
+104.149.148.230,US,Los Angeles,False,1
+198.71.48.119,US,,False,1
+51.75.92.247,FR,,False,1
+185.151.31.72,GB,,False,1
+112.197.12.40,VN,Ho Chi Minh City,False,1
+123.30.164.136,VN,,False,1
+54.37.74.129,FR,,False,1
+51.158.105.245,FR,Paris,True,1
+139.162.182.87,DE,Frankfurt am Main,False,1
+209.212.110.0,ZA,Pretoria,False,1
+185.194.239.75,DE,,False,1
+148.251.159.173,DE,,False,1
+205.185.113.99,US,Las Vegas,False,1
+31.170.165.23,CY,,True,1
+82.143.160.165,PL,Wroclaw,False,1
+2a03:e2c0:73e:a::13,RU,Moscow,False,1
+159.203.42.52,CA,Toronto,False,1
+2001:41d0:1:de53::1,FR,,False,1
+212.1.108.131,UA,Zhytomyr,False,0.83
+41.139.147.86,KE,Machakos,False,1
+186.97.246.178,CO,Medellín,False,1
+177.241.250.250,MX,Uruapan,False,0.96
+2001:de4::101,TW,,True,1
+2001:de4::102,TW,,True,1
+2a00:5a60::1:ff,RU,,True,1
+2a00:5a60::ad2:ff,RU,,True,1
+2a11::,NL,,True,1
+194.9.14.154,UA,Chernihiv,True,1
+179.43.98.186,PE,Arequipa,False,0.9
+187.252.154.90,MX,Mérida,False,0.86
+50.192.49.5,US,Atlanta,False,0.79
+158.58.133.38,RU,Sochi,False,0.83
+103.101.116.129,IN,Gurgaon,False,0.15000000000000002
+185.252.41.38,TR,,False,0.77
+89.35.236.34,RO,,False,0.6900000000000001
+37.228.65.107,KZ,Almaty,False,0.92
+37.57.56.38,UA,Kharkiv,False,0.55
+189.195.157.30,MX,Matias Romero,False,0.97
+193.59.26.196,PL,Wislica,False,0.67
+110.164.175.8,TH,Ongkharak,False,0.43
+212.56.194.238,MD,Chisinau,False,0.77
+212.233.105.14,RU,Moscow,False,0.76
+201.217.51.9,PY,Asunción,False,1
+102.68.73.219,ZA,Plettenberg Bay,True,1
+116.251.216.95,SG,,False,0.81
+195.9.162.186,RU,Moscow,False,0.63
+206.253.33.131,US,Ulysses,False,1
+122.52.189.249,PH,Caloocan City,False,0.8200000000000001
+85.208.76.2,IT,Cerveteri,False,0.8
+217.145.199.112,SK,Kolarovo,False,1
+210.16.73.80,HK,,False,0.47000000000000003
+71.230.24.213,US,Newtown Square,True,0.87
+73.79.99.23,US,Lilly,False,0.58
+161.53.147.66,HR,Zagreb,False,0.91
+37.17.53.108,BY,Minsk,False,0.47000000000000003
+176.227.188.66,RU,Ryazan,False,0.62
+176.62.178.247,RU,Moscow,False,0.67
+190.131.250.105,CO,Bogotá,False,0.74
+190.151.120.53,CL,Alto Hospicio,False,0.73
+92.247.142.182,BG,,False,1
+190.90.154.194,CO,Bogotá,False,1
+58.82.154.3,TH,Bangkok,False,1
+176.118.51.82,UA,Drohobych,False,0.48
+186.24.50.164,VE,Barinas,False,1
+110.23.153.189,AU,Rochedale,False,1
+110.145.237.30,AU,Moorabbin,False,1
+213.240.224.24,BG,Pazardzhik,False,0.85
+182.52.58.44,TH,Sam Chuk,False,0.75
+2a0d:8480::fd4,RU,,True,1
+91.208.184.4,MD,,True,0.63
+171.100.8.82,TH,Bangkok,False,0.7
+202.29.218.138,TH,Nonthaburi,False,1
+45.5.94.182,MX,Saltillo,False,1
+165.16.22.166,LY,,False,0.96
+209.45.68.101,PE,,False,1
+68.48.245.22,US,Saline,True,0.83
+96.82.255.26,US,Salt Lake City,False,0.68
+174.48.45.128,US,Stuart,True,1
+50.235.228.46,US,Melrose Park,True,1
+154.236.179.226,EG,,False,0.81
+213.216.67.190,PL,,False,1
+185.61.92.207,RU,Moscow,False,1
+101.51.138.9,TH,Ban Ko Bon,False,0.75
+186.251.226.10,BR,Atibaia,False,0.56
+165.16.5.77,LY,,False,0.56
+143.0.226.116,BR,Praia Grande,False,1
+180.178.189.68,PK,Lahore,False,0.98
+2606:1a40:1::,CA,,True,1
+2606:1a40:1::1,CA,,True,1
+74.95.184.57,US,Philadelphia,False,1
+73.57.23.229,US,Stuart,True,0.9400000000000001
+75.71.5.153,US,Aurora,False,1
+154.236.177.100,EG,,False,0.66
+210.56.8.8,PK,Islamabad,True,1
+181.129.134.138,CO,Medellín,False,1
+185.93.240.132,PL,Wieluń,False,1
+187.115.10.50,BR,Recife,False,1
+2606:1a40::4,CA,,True,1
+2606:1a40:1::4,CA,,True,1
+2606:1a40::5,CA,,True,1
+2606:1a40:1::5,CA,,True,1
+2606:1a40::1,CA,,True,1
+2a02:bf8:aaaa::10,GB,,True,1
+2a02:bf8:aaaa::11,GB,,True,1
+2600::2,US,,True,1
+2a07:a8c1::,US,,True,1
+31.133.57.202,UA,Donetsk,False,1
+122.150.81.186,AU,Melbourne,False,0.67
+111.220.180.143,AU,Melbourne,False,0.67
+58.178.221.6,AU,Perth,False,0.63
+2001:67c:28a4::,DK,,True,1
+216.146.35.35,US,,True,1
+9.9.9.9,US,Berkeley,True,1
+91.201.255.255,RU,Tula,False,0.65
+91.201.255.96,RU,Tula,False,1
+91.201.255.46,RU,Tula,False,1
+91.201.254.190,RU,Tula,False,0.97
+91.201.252.81,RU,Tula,True,1
+91.201.254.233,RU,Tula,False,0.74
+103.50.105.98,MV,Malé,False,0.43
+69.94.81.111,MV,Malé,True,0.9400000000000001
+202.1.199.219,MV,,True,1
+202.1.199.220,MV,,True,1
+203.104.28.86,MV,Malé,False,0.87
+103.237.147.46,VN,,False,0.97
+80.67.169.40,FR,,True,1
+2001:910:800::40,FR,,True,1
+217.133.18.225,IT,Gorgonzola,False,0.96
+103.50.106.195,MV,Malé,False,0.99
+58.163.148.73,AU,Sydney,False,1
+203.27.182.202,AU,Melbourne,False,1
+110.145.125.13,AU,Brisbane,False,1
+203.54.212.126,AU,Kwinana,True,1
+203.36.222.112,AU,,True,1
+203.47.244.75,AU,Perth,False,1
+60.231.54.31,AU,Adelaide,False,1
+110.145.178.74,AU,Perth,False,1
+203.38.225.13,AU,Hoppers Crossing,False,1
+203.38.225.45,AU,Hoppers Crossing,False,1
+165.228.54.56,AU,Brisbane,False,1
+120.150.56.245,AU,Sandy Bay,False,1
+1.0.138.14,TH,Bang Khae,False,1
+1.0.138.176,TH,Bang Khae,False,0.98
+1.0.138.194,TH,Bang Khae,False,0.99
+1.0.138.240,TH,Bang Khae,False,1
+1.0.138.245,TH,Bang Khae,False,1
+1.0.138.53,TH,Bang Khae,False,0.96
+139.99.0.25,SG,Singapore,True,1
+203.52.58.169,AU,Byron Bay,False,0.74
+203.52.58.161,AU,Ryde,False,0.81
+58.171.58.234,AU,Perth,False,0.99
+165.228.191.148,AU,Sydney,False,0.81
+4.2.2.1,US,,False,0.98
+4.2.2.2,US,,False,0.95
+58.171.153.212,AU,Berwick,False,1
+203.39.3.133,AU,Perth,False,1
+101.187.22.236,AU,Carlton,False,0.78
+139.134.2.190,AU,,False,1
+203.54.152.226,AU,Lavington,True,1
+110.145.157.170,AU,Buderim,False,1
+101.187.177.164,AU,Canberra,False,1
+103.141.2.180,BD,Comilla,False,0.9400000000000001
+114.34.162.81,TW,Taipei,True,1
+110.143.77.12,AU,Moorabbin,False,1
+165.228.188.97,AU,Moorabbin,False,0.06999999999999999
+58.162.234.94,AU,Townsville,False,0.97
+110.145.151.122,AU,Brisbane,False,0.93
+165.228.255.34,AU,Adelaide,False,0.98
+58.171.79.178,AU,Chipping Norton,True,0.98
+110.143.148.183,AU,Sydney,False,1
+203.43.89.161,AU,Clyde North,False,1
+114.114.114.119,CN,,False,1
+114.114.115.119,CN,,False,0.98
+210.0.255.251,HK,Happy Valley,True,0.97
+203.58.224.123,AU,Perth,False,0.71
+101.167.169.196,AU,Kyabram,False,1
+139.130.38.214,AU,Canberra,False,1
+203.36.134.238,AU,Melbourne,False,0.97
+203.54.245.106,AU,Tweed Heads,False,0.99
+165.228.132.206,AU,Lorn,False,1
+24.99.148.175,US,Atlanta,True,1
+24.98.20.247,US,Atlanta,True,1
+24.99.148.61,US,Atlanta,True,1
+24.125.54.118,US,Atlanta,True,1
+24.125.55.212,US,Atlanta,True,1
+24.99.148.29,US,Atlanta,True,1
+24.98.195.23,US,Fairburn,False,0.96
+24.98.20.141,US,Atlanta,True,1
+24.99.149.148,US,Atlanta,True,1
+24.30.14.149,US,Atlanta,False,0.89
+24.99.6.26,US,Atlanta,False,0.68
+24.99.148.85,US,Atlanta,True,1
+50.204.42.225,US,,False,1
+24.99.149.127,US,Atlanta,True,1
+24.98.20.156,US,Atlanta,True,1
+24.125.55.22,US,Atlanta,True,1
+24.125.55.144,US,Atlanta,True,1
+65.209.4.224,US,New City,False,1
+108.56.80.135,US,,True,0.83
+65.249.143.193,US,Worcester,False,0.99
+71.174.63.172,US,Boylston,False,1
+109.111.9.14,RU,Tula,False,1
+94.28.88.182,RU,,False,0.99
+94.28.3.61,RU,Krasnodar,False,1
+89.107.198.111,RU,Bolokhovo,False,0.86
+87.244.23.166,RU,Tula,False,1
+201.148.17.110,MX,Mapastepec,True,1
+187.190.127.136,MX,Puerto Vallarta,False,1
+87.244.46.106,RU,Tula,False,1
+87.244.50.150,RU,Tula,False,1
+109.111.8.114,RU,Tula,False,0.6900000000000001
+94.28.88.144,RU,,False,1
+94.28.92.40,RU,,False,1
+87.244.9.194,RU,Moscow,False,1
+94.28.91.14,RU,,False,1
+94.28.88.146,RU,,False,0.93
+87.244.34.98,RU,Tula,False,0.9
+94.28.88.15,RU,,False,1
+94.28.88.8,RU,,False,1
+87.244.36.250,RU,Tula,False,1
+94.28.95.35,RU,,False,0.93
+109.111.8.75,RU,Tula,True,0.62
+87.244.58.38,RU,Tula,False,0.99
+212.12.14.238,RU,Aleksin,False,0.5700000000000001
+91.201.254.26,RU,Tula,False,1
+87.244.58.174,RU,Tula,False,0.9400000000000001
+91.206.73.50,RU,,False,1
+94.28.126.173,RU,,False,0.99
+94.28.37.86,RU,,False,0.99
+87.244.20.154,RU,Tula,False,1
+94.28.37.50,RU,,False,1
+94.28.26.244,RU,Krasnodar,False,1
+195.239.220.82,RU,Moscow,False,0.65
+94.28.26.138,RU,Korenovsk,False,1
+195.88.0.14,RU,,False,0.62
+217.170.117.122,RU,Tula,False,1
+94.28.88.115,RU,,False,1
+87.244.40.230,RU,Tula,False,1
+94.28.20.249,RU,Krasnodar,False,1
+94.28.88.155,RU,,False,1
+87.244.4.234,RU,Tula,False,1
+94.28.127.156,RU,,False,1
+195.239.220.78,RU,Moscow,False,1
+87.244.58.182,RU,Tula,False,1
+94.28.127.49,RU,,False,1
+94.28.26.202,RU,Korenovsk,False,1
+24.143.1.21,US,Durant,True,0.65
+66.115.98.85,US,Waycross,False,1
+45.90.28.250,US,,True,1
+98.152.7.10,US,Santa Ana,False,0.3
+69.75.150.3,US,Everett,False,1
+173.196.165.158,US,Torrance,False,0.86
+70.95.198.72,US,San Diego,True,1
+173.196.206.90,US,Torrance,False,0.61
+107.184.254.255,US,West Hollywood,False,0.85
+1.0.164.217,TH,Chalong,False,0.7
+1.0.165.250,TH,Phuket,False,0.75
+1.0.168.129,TH,Bangkok,False,1
+1.0.168.46,TH,Bangkok,False,0.95
+1.0.168.54,TH,Bangkok,False,1
+1.0.168.71,TH,Bangkok,False,0.86
+1.0.168.73,TH,Bangkok,False,0.88
+1.0.168.84,TH,Bangkok,False,0.91
+1.0.194.216,TH,Bangkok,False,1
+1.0.198.174,TH,Bangkok,False,0.93
+1.0.202.187,TH,Chumphon,False,0.68
+1.0.202.188,TH,Chumphon,False,0.68
+1.0.202.19,TH,Chumphon,False,1
+1.0.202.211,TH,Chumphon,False,1
+1.0.202.216,TH,Chumphon,False,0.84
+1.0.202.55,TH,Chumphon,False,1
+1.0.203.107,TH,Chumphon,False,0.84
+1.0.203.116,TH,Chumphon,False,1
+1.0.203.134,TH,Chumphon,False,1
+1.0.203.167,TH,Chumphon,False,1
+1.0.205.75,TH,Bangkok,False,1
+1.0.205.87,TH,Bangkok,False,1
+1.0.216.26,TH,Phuket,False,1
+1.0.217.63,TH,Phuket,False,1
+1.0.218.15,TH,Songkhla,False,1
+1.0.218.23,TH,Songkhla,False,1
+1.0.218.50,TH,Songkhla,False,1
+1.0.218.80,TH,Songkhla,False,1
+1.1.136.105,TH,Udon Thani,False,1
+1.1.136.8,TH,Udon Thani,False,1
+1.1.138.48,TH,Udon Thani,False,0.95
+1.1.138.49,TH,Udon Thani,False,0.77
+1.1.144.151,TH,Ko Samui,False,0.6
+1.1.178.126,TH,Dusit,False,1
+1.1.178.47,TH,Nong Han,False,0.78
+1.1.178.63,TH,Dusit,False,0.9400000000000001
+1.1.189.244,TH,Ban Kho,False,0.66
+1.1.220.134,TH,Lampang,False,0.89
+1.1.220.166,TH,Lampang,False,0.89
+1.1.220.24,TH,Lampang,False,0.97
+1.1.220.28,TH,Lampang,False,1
+1.1.220.62,TH,Lampang,False,0.8
+1.1.249.206,TH,Phitsanulok,False,1
+176.9.93.198,DE,,True,1
+184.190.49.40,US,Metairie,False,1
+68.1.40.86,US,Miramar Beach,True,1
+68.105.173.68,US,Gainesville,True,1
+70.171.58.112,US,Gainesville,True,1
+70.171.58.83,US,Gainesville,True,1
+68.1.86.231,US,Miramar Beach,True,1
+68.105.46.149,US,Baton Rouge,True,1
+72.207.238.183,US,Baton Rouge,True,1
+70.167.51.147,US,Wichita,False,0.95
+24.250.147.103,US,Gainesville,True,1
+68.105.172.184,US,Gainesville,True,1
+72.198.188.68,US,National City,True,1
+68.101.125.175,US,San Pedro,False,1
+70.171.60.6,US,Gainesville,True,1
+70.171.50.31,US,Gainesville,True,1
+70.171.57.30,US,Gainesville,True,1
+184.177.13.42,US,Phoenix,False,1
+70.171.47.19,US,Gainesville,True,1
+70.171.60.213,US,Gainesville,True,1
+70.171.51.41,US,Gainesville,True,1
+184.177.84.201,US,Wichita,False,1
+72.207.237.152,US,Baton Rouge,True,1
+184.187.144.144,US,Lafayette,True,1
+70.191.189.96,US,Destin,True,1
+24.170.197.68,US,Gainesville,True,1
+174.64.35.164,US,Dulles,False,1
+184.187.143.241,US,Lafayette,True,1
+174.69.40.212,US,Destin,True,1
+70.171.50.159,US,Gainesville,True,1
+184.177.13.43,US,Phoenix,False,1
+68.226.164.170,US,Lafayette,True,1
+24.170.199.20,US,Gainesville,True,1
+172.108.131.83,US,Denton,False,1
+172.109.162.236,US,Nalcrest,False,1
+47.180.220.235,US,La Mirada,False,1
+8.215.26.147,ID,Jakarta,True,1
+50.209.92.140,US,Fair Oaks,True,1
+50.209.90.189,US,El Dorado Hills,False,1
+50.213.99.237,US,Turlock,False,0.7
+50.73.57.173,US,Chico,False,0.68
+24.2.55.249,US,Rancho Cordova,False,0.87
+50.209.89.209,US,Chico,False,0.97
+23.30.36.188,US,Atwater,False,0.78
+107.0.64.166,US,,False,0.97
+24.7.145.175,US,Elk Grove,False,0.68
+24.23.44.73,US,Sacramento,False,0.98
+12.175.173.242,US,China Spring,False,0.97
+12.189.150.34,US,,True,0.96
+99.33.211.165,US,Woodstock,False,1
+12.245.110.110,US,Boynton Beach,False,0.65
+12.226.243.108,US,Mebane,False,0.97
+12.235.201.167,US,Decatur,True,0.17
+12.195.1.194,US,Atlanta,False,0.64
+12.71.143.33,US,Glastonbury,False,1
+12.7.53.90,US,Porter Ranch,False,0.89
+45.19.254.97,US,Wylie,False,0.81
+12.40.39.5,US,Overland Park,False,1
+12.221.135.162,US,Grand Rapids,False,0.91
+203.52.78.183,AU,Perth,False,0.98
+144.130.160.186,AU,Brisbane,False,0.98
+203.49.57.67,AU,Melbourne,False,0.66
+37.120.172.191,DE,Wolfsburg,False,0.93
+159.196.44.245,AU,Melbourne,False,0.9400000000000001
+180.150.33.46,AU,Melbourne,True,0.73
+159.196.131.128,AU,Gosford,True,0.75
+180.150.53.106,AU,Melbourne,True,1
+119.17.157.246,AU,Melbourne,False,0.77
+202.142.133.126,AU,Fairfield,False,0.5700000000000001
+203.129.31.67,AU,Cootamundra,False,1
+119.17.138.116,AU,Melbourne,False,1
+167.179.150.177,AU,Sydney,False,0.88
+203.27.185.26,AU,Sydney,False,0.99
+174.69.27.196,US,Santa Rosa Beach,True,1
+70.191.197.173,US,Fort Walton Beach,True,1
+159.196.81.71,AU,Perth,True,0.66
+61.245.131.122,AU,Perth,False,0.37
+119.17.142.192,AU,Ringwood,False,0.8
+202.153.220.97,AU,Warrnambool,True,0.58
+119.17.152.12,AU,Traralgon,False,0.75
+180.150.24.40,AU,Sydney,False,1
+103.94.49.3,AU,Perth,True,0.87
+103.88.221.245,IN,Mumbai,False,1
+103.88.220.245,IN,Mumbai,False,0.96
+67.61.140.70,US,Bridgeport,True,1
+24.116.92.101,US,Nowata,False,1
+23.251.28.82,US,Vandalia,True,0.98
+209.54.7.201,US,Poplar Bluff,False,1
+24.119.69.70,US,Twin Falls,False,1
+24.116.176.167,US,Meridian,False,1
+98.142.51.144,US,Wharton,False,1
+69.92.156.94,US,Meridian,False,0.81
+67.61.9.254,US,Atlanta,False,0.73
+67.61.50.69,US,Chino Valley,False,0.64
+67.61.51.53,US,Prescott,False,0.63
+198.71.117.66,US,Joplin,True,1
+47.180.210.165,US,Santa Ana,False,0.95
+50.107.15.57,US,Susanville,False,0.87
+65.175.163.205,US,Gilford,False,0.92
+216.36.31.135,US,Mechanicsville,False,1
+174.140.97.225,US,Miami Beach,False,0.9
+207.255.161.44,US,Warren,False,0.83
+159.250.135.171,US,Aiken,True,0.43
+207.255.161.152,US,Warren,False,0.9400000000000001
+207.255.161.68,US,Warren,False,0.88
+45.225.123.199,BR,Heliopolis,True,1
+45.225.123.198,BR,Heliopolis,True,0.77
+45.225.123.161,BR,Heliopolis,True,1
+45.225.123.28,BR,Antas,False,0.71
+45.225.123.101,BR,Itapicuru,True,1
+45.225.123.103,BR,Itapicuru,True,0.96
+45.225.123.109,BR,Itapicuru,True,0.97
+45.225.123.110,BR,Itapicuru,True,0.99
+45.225.123.162,BR,Heliopolis,True,1
+45.225.123.163,BR,Heliopolis,True,1
+45.225.123.164,BR,Heliopolis,True,1
+45.225.123.165,BR,Heliopolis,True,1
+45.225.123.166,BR,Heliopolis,True,1
+45.225.123.167,BR,Heliopolis,True,0.72
+45.225.123.172,BR,Heliopolis,True,1
+45.225.123.174,BR,Heliopolis,True,1
+45.225.123.175,BR,Heliopolis,True,0.95
+45.225.123.176,BR,Heliopolis,True,0.91
+45.225.123.177,BR,Heliopolis,True,1
+45.225.123.178,BR,Heliopolis,True,1
+45.225.123.179,BR,Heliopolis,True,1
+45.225.123.192,BR,Heliopolis,True,1
+45.225.123.194,BR,Heliopolis,True,1
+45.225.123.195,BR,Heliopolis,True,0.89
+45.225.123.196,BR,Heliopolis,True,0.93
+45.225.123.203,BR,Heliopolis,True,1
+45.225.123.204,BR,Heliopolis,True,1
+45.225.123.205,BR,Heliopolis,True,1
+45.225.123.206,BR,Heliopolis,True,1
+45.225.123.207,BR,Heliopolis,True,1
+45.225.123.213,BR,Heliopolis,True,1
+45.225.123.214,BR,Heliopolis,True,1
+45.225.123.232,BR,Heliopolis,True,1
+45.225.123.233,BR,Heliopolis,True,1
+45.225.123.234,BR,Heliopolis,True,1
+45.225.123.235,BR,Heliopolis,True,1
+45.225.123.236,BR,Heliopolis,True,1
+45.225.123.237,BR,Heliopolis,True,1
+45.225.123.238,BR,Heliopolis,True,1
+45.225.123.239,BR,Heliopolis,True,1
+45.225.123.249,BR,Heliopolis,True,1
+45.225.123.253,BR,Heliopolis,True,1
+12.248.32.118,US,Uniontown,True,1
+12.186.190.40,US,Little Rock,False,1
+12.104.240.43,US,Houston,False,0.25
+12.125.17.146,US,,True,0.99
+12.86.159.162,US,Los Angeles,False,1
+12.171.163.90,US,Boca Raton,True,1
+23.115.248.204,US,Miami,False,0.79
+68.74.126.226,US,Houston,False,1
+23.115.93.91,US,Madison Heights,True,1
+12.165.204.88,US,Goldsboro,True,1
+12.233.244.115,US,Fort Worth,False,0.8
+12.208.117.131,US,Birmingham,False,1
+209.65.34.239,US,Nashville,True,0.99
+12.4.165.95,US,Madison,True,1
+12.169.155.213,US,Lenexa,False,0.83
+174.64.104.196,US,Gainesville,True,1
+98.179.205.194,US,Broussard,True,1
+70.171.61.101,US,Gainesville,True,1
+72.203.158.18,US,Baton Rouge,True,1
+70.191.191.35,US,Destin,True,1
+24.250.147.79,US,Gainesville,True,1
+68.106.160.116,US,Baton Rouge,True,1
+174.71.248.85,US,Henderson,False,0.84
+70.171.59.149,US,Gainesville,True,1
+70.184.7.113,US,Macon,False,0.83
+98.38.178.162,US,Fort Collins,True,1
+107.2.141.30,US,Fort Collins,True,1
+50.248.90.249,US,Morgantown,False,1
+96.102.121.126,US,,False,1
+73.74.57.121,US,Glen Ellyn,False,1
+50.201.178.63,US,Flemington,True,1
+73.90.82.227,US,Fresno,True,1
+50.219.55.167,US,,True,1
+98.39.154.157,US,Houston,True,1
+50.242.234.97,US,Baltimore,False,1
+98.194.45.193,US,Houston,True,1
+50.201.178.59,US,Flemington,True,1
+73.32.84.89,US,Humble,True,1
+73.206.234.153,US,Humble,True,1
+73.136.41.40,US,Houston,True,1
+50.197.81.162,US,Seattle,False,1
+50.222.112.82,US,Vincentown,False,1
+98.197.99.37,US,Katy,False,0.96
+76.122.250.103,US,Nashville,True,1
+75.149.56.210,US,South San Francisco,False,1
+73.14.43.241,US,Fort Collins,True,1
+50.204.98.114,US,Haverhill,True,1
+50.222.131.40,US,Houston,True,1
+98.212.26.255,US,Machesney Park,True,1
+96.64.201.177,US,San Francisco,False,1
+173.161.75.77,US,Decatur,False,0.9
+67.166.30.234,US,Vail,True,1
+71.193.212.206,US,Lake Oswego,True,1
+75.72.173.147,US,Hudson,True,1
+50.229.154.179,US,Bellefonte,True,1
+73.189.158.141,US,Newark,False,0.86
+76.107.196.89,US,Jackson,False,0.9400000000000001
+103.21.120.86,VN,,False,1
+103.21.120.85,VN,,False,1
+120.147.17.119,AU,Melbourne,False,1
+101.190.46.133,AU,Sydney,False,0.96
+139.130.202.20,AU,Brisbane,False,0.84
+203.159.77.77,TH,,True,1
+110.143.103.161,AU,Brisbane,False,1
+216.17.128.1,US,Fort Collins,False,0.72
+203.21.196.20,AU,,False,1
+203.54.189.178,AU,Adelaide,False,1
+203.54.243.18,AU,Lower Chittering,False,0.98
+110.145.154.62,AU,Melbourne,False,0.99
+144.139.202.146,AU,Adelaide,False,0.98
+203.21.196.21,AU,,False,1
+1.158.203.89,AU,Adelaide,False,0.92
+110.143.78.204,AU,Melbourne,False,0.89
+45.125.220.148,BD,Dhaka,True,0.060000000000000005
+203.58.242.59,AU,Mildura,False,1
+120.151.104.91,AU,Adelaide,False,1
+202.152.77.213,BN,Bandar Seri Begawan,False,1
+94.141.24.94,IT,Milan,False,0.87
+80.83.162.11,IT,Alberobello,False,1
+197.155.92.21,KE,Nairobi,True,1
+197.155.92.20,KE,Nairobi,True,1
+5.61.27.53,US,Henderson,False,1
+110.145.182.154,AU,Mount Waverley,False,1
+92.60.50.40,SK,,True,1
+84.245.69.193,SK,Bratislava,True,1
+156.154.70.6,US,Chicago,True,1
+156.154.70.7,US,Chicago,True,1
+156.154.70.8,US,Chicago,True,1
+156.154.70.10,US,Chicago,True,1
+156.154.70.11,US,Chicago,True,1
+103.206.169.139,ID,,True,0.97
+103.206.169.141,ID,,True,1
+2001:67c:21ec::53,PL,Warsaw,True,1
+139.130.2.22,AU,Adelaide,False,0.99
+203.38.225.3,AU,Melbourne,False,0.9400000000000001
+103.36.19.34,PH,Bacoor,False,1
+103.36.18.34,PH,Bacoor,True,1
+206.82.130.195,BF,,False,1
+203.98.192.114,AU,Sydney,True,1
+203.2.193.68,AU,,False,1
+198.6.1.60,US,,False,1
+89.108.129.76,LB,,False,0.91
+193.78.240.12,NL,,True,1
+38.242.202.141,US,,True,1
+216.106.88.3,US,Auxvasse,False,0.68
+103.121.228.5,MM,Yangon,True,1
+216.172.87.1,US,Grayslake,False,1
+23.31.51.242,US,Pompano Beach,False,1
+144.91.64.224,DE,Nuremberg,True,1
+117.122.125.106,VN,,False,1
+85.224.205.57,SE,Helsingborg,True,0.68
+200.195.132.210,BR,Colombo,False,1
+45.90.28.189,US,,True,1
+210.48.77.69,NZ,Papakura,False,1
+208.38.247.4,US,New Castle,False,1
+162.211.33.243,US,Yorkville,False,1
+69.174.153.224,US,Zionsville,False,1
+199.27.253.66,US,Heyworth,False,1
+173.242.96.121,US,Queensbury,False,0.96
+216.130.230.39,US,Glens Falls,False,0.97
+173.73.70.42,US,Springfield,False,0.98
+71.167.200.31,US,Brooklyn,False,1
+65.203.131.152,US,,False,1
+103.168.40.14,PK,,False,0.98
+74.108.21.187,US,Greenwich,False,0.95
+85.132.85.85,AZ,,True,1
+50.220.111.15,US,Winchester,False,0.7
+50.220.111.14,US,Winchester,False,0.7
+50.220.111.47,US,Winchester,False,0.7
+107.220.176.5,US,Prosper,True,0.92
+12.44.84.55,US,Little Rock,True,1
+203.147.88.2,IN,,False,1
+2001:67c:2970::53,FR,,True,1
+192.26.105.53,FI,,True,1
+203.253.64.1,KR,Yongin-si,True,1
+2001:4870:8000:3::100,US,,False,1
+2001:4870:8000:3::5,US,,False,1
+195.204.130.85,NO,Kviteseid,False,0.43
+222.122.43.43,KR,,False,0.76
+203.162.235.25,VN,Hanoi,False,0.3
+210.118.170.15,KR,,False,0.84
+220.135.49.41,TW,New Taipei,False,0.79
+77.89.232.86,MD,Orhei,False,0.5
+89.29.128.250,ES,Almansa,False,0.61
+211.220.194.250,KR,Dongnae,True,0.51
+188.118.227.21,AT,Vienna,False,0.76
+113.61.224.13,TW,Taichung,False,0.18000000000000002
+65.49.37.195,US,,True,0.68
+115.114.108.3,IN,Mumbai,False,0.16
+204.106.240.53,US,Homer,True,0.43
+218.32.90.252,TW,,False,0.23
+62.113.51.133,RU,,False,0.89
+80.78.237.33,BG,,False,0.52
+211.220.195.20,KR,Dongnae,True,0.47000000000000003
+198.52.109.178,US,,False,0.46
+201.174.34.195,MX,Ciudad Juárez,True,0.24000000000000002
+74.81.71.27,US,,False,0.84
+168.187.46.242,KW,,True,0.39
+83.149.227.152,RU,Moscow,False,0.49
+220.130.135.182,TW,New Taipei,False,0.63
+89.96.160.83,IT,Torrazzo,False,1
+197.253.12.229,NG,FCT,False,0.83
+183.100.49.21,KR,Icheon-si,False,0.4
+118.40.213.70,KR,Suncheon,False,0.45
+121.176.16.144,KR,Seongnam-si,False,0.74
+210.245.89.21,VN,Hanoi,False,1
+24.187.226.203,US,Bethel,False,0.37
+200.59.236.202,AR,Neuquén,False,0.51
+182.52.69.70,TH,Lampang,False,0.92
+81.149.21.254,GB,Roehampton,False,0.51
+59.124.72.210,TW,Taipei,False,0.54
+62.160.100.242,FR,,False,0.27
+82.151.66.178,MR,,False,0.68
+103.78.73.171,ID,,False,0.51
+2001:da8::666,CN,Beijing,True,0.38
+81.170.204.230,SE,Karlstad,False,0.28
+81.170.204.227,SE,Karlstad,False,0.43
+83.233.135.188,SE,Djursholm,False,0.42
+194.78.185.81,BE,Lovendegem,False,0.23
+84.96.26.139,FR,Courbevoie,False,0.74
+86.65.9.129,FR,Soissons,False,0.41000000000000003
+199.85.127.30,US,,True,1
+31.204.180.44,RU,Veliky Novgorod,False,0.66
+45.225.123.24,BR,Antas,True,0.93
+195.238.40.45,DE,,False,0.76
+202.173.121.34,BD,Dhaka,True,0.6
+220.130.134.177,TW,Neihu,False,0.02
