@@ -118,7 +118,9 @@ steps:
       from_secret: docker_password
     repo: unfrl/dug
     dockerfile: Dockerfile
-    tags: ${DRONE_TAG}
+    tags: 
+     - ${DRONE_TAG}
+     - latest
   when:
     ref:
     - refs/tags/*.*.*
