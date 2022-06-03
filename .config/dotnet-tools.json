@@ -3,22 +3,16 @@
   "isRoot": true,
   "tools": {
     "dotnet-deb": {
-      "version": "0.1.189",
-      "commands": [
-        "dotnet-deb"
-      ]
+      "version": "0.1.220",
+      "commands": ["dotnet-deb"]
     },
     "dotnet-rpm": {
       "version": "0.1.189",
-      "commands": [
-        "dotnet-rpm"
-      ]
+      "commands": ["dotnet-rpm"]
     },
     "dotnet-tarball": {
       "version": "0.1.189",
-      "commands": [
-        "dotnet-tarball"
-      ]
+      "commands": ["dotnet-tarball"]
     }
   }
 }
