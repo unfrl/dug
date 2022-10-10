@@ -75,9 +75,8 @@ steps:
       - sed -i "s~macaroon_value~$${SNAP_MACAROON}~" ./cli/auth_template
       - sed -i "s~ud_value~$${SNAP_UD}~" ./cli/auth_template
       - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj
-      - docker build -f cli/snapcraft.Dockerfile --label snap18custom -t snap18custom:stable ./cli #This takes forever, should we publish/maintain our own?
       - ls ./cli
-      - docker run -v "$PWD"/cli:/build -w /build snap18custom:stable /bin/bash -c "snapcraft login --with ./auth_template; snapcraft; snapcraft upload --release=stable unfrl-dug_${DRONE_TAG}_amd64.snap"
+      - docker run -v "$PWD"/cli:/build -w /build unfrl/snap18custom:stable /bin/bash -c "snapcraft login --with ./auth_template; snapcraft; snapcraft upload --release=stable unfrl-dug_${DRONE_TAG}_amd64.snap"
       - ls ./cli
 
 services:
