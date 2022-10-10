@@ -20,7 +20,7 @@ parts:
   dug:
     plugin: dotnet
     dotnet-version: 5.0
-    dotnet-runtime-version: '5.0.2'
+    dotnet-runtime-version: '5.0.10'
     source: .
     source-type: local
     override-build: |
