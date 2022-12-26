@@ -1,6 +1,6 @@
 # dug
 
-[![Build Status](https://drone.unfrl.com/api/badges/unfrl/dug/status.svg)](https://drone.unfrl.com/unfrl/dug)
+[![Build Status](https://drone.kaijucode.com/api/badges/unfrl/dug/status.svg)](https://drone.kaijucode.com/unfrl/dug)
 [![unfrl-dug](https://snapcraft.io/unfrl-dug/badge.svg)](https://snapcraft.io/unfrl-dug)
 
 A powerful global DNS propagation checker that can output in a variety of formats.

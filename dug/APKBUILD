@@ -1,0 +1,28 @@
+# Contributor: buildozer <alpine-infra@lists.alpinelinux.org>
+# Maintainer:
+pkgname=dug
+pkgver=
+pkgrel=0
+pkgdesc=""
+url=""
+arch="all"
+license=""
+depends=""
+makedepends=""
+install=""
+subpackages="$pkgname-dev $pkgname-doc"
+source=""
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+}
+
+check() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+}
+
