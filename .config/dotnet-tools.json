@@ -15,7 +15,7 @@
       ]
     },
     "dotnet-tarball": {
-      "version": "0.1.189",
+      "version": "0.1.220",
       "commands": [
         "dotnet-tarball"
       ]
