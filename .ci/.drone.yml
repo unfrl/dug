@@ -108,7 +108,7 @@ steps:
   #   ref:
   #   - refs/tags/*.*.*
 
-- name: docker  
+- name: publish docker  
   image: plugins/docker
   settings:
     username:
@@ -120,9 +120,9 @@ steps:
     tags: 
      - ${DRONE_TAG}
      - latest
-  # when:
-  #   ref:
-  #   - refs/tags/*.*.*
+  when:
+    ref:
+    - refs/tags/*.*.*
     
 
 - name: package linux
