@@ -19,11 +19,11 @@ apps:
 parts:
   dug:
     plugin: dotnet
-    dotnet-version: 5.0
-    dotnet-runtime-version: '5.0.10'
+    dotnet-version: 7.0
+    dotnet-runtime-version: '7.0.0'
     source: .
     source-type: local
     override-build: |
       dotnet build -c Release
-      dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o $SNAPCRAFT_PART_INSTALL
+      dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o $SNAPCRAFT_PART_INSTALL
       chmod 0755 $SNAPCRAFT_PART_INSTALL/dug
