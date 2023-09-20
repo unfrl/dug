@@ -15,36 +15,13 @@ steps:
 
   # Note: I setup BATS here using this: https://medium.com/@pimterry/testing-your-shell-scripts-with-bats-abfca9bdc5b9
   - name: build and test
-    image: mcr.microsoft.com/dotnet/sdk:7.0
+    image: mcr.microsoft.com/dotnet/sdk:6.0
     environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
     commands:
     # Dont allow bats to do the build, thats a convenience for local development but BATS eats a bunch of the output and can hang.
     - dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
     - ./cli.tests/bats/run.sh
-
-#   - name: test
-#     image: docker:20.10-dind
-#     volumes:
-#     - name: dockersock
-#       path: /var/run
-#     commands:
-#     - sleep 5 # give docker enough time to start
-#     - docker ps -a
-
-#   - name: build
-#     image: docker:20.10-dind
-#     volumes:
-#     - name: dockersock
-#       path: /var/run
-#     commands:
-#       - sleep 5
-#       - docker ps
-#       - docker build . -t dug-test
-
-# volumes:
-# - name: dockersock
-#   temp: {}
 
 ---
 
@@ -100,15 +77,12 @@ depends_on:
 
 steps:
 - name: prepare_publishing
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   commands:
   - echo "Publishing tagged version ${DRONE_TAG}"
   - sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-  when:
-    ref:
-    - refs/tags/*.*.*
 
-- name: docker  
+- name: publish docker  
   image: plugins/docker
   settings:
     username:
@@ -126,7 +100,7 @@ steps:
     
 
 - name: package linux
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   commands:
@@ -139,22 +113,16 @@ steps:
   - dotnet deb -c Release -r linux-arm64 -o ./publish ./cli/dug.csproj
   - dotnet rpm -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
   - dotnet tarball -c Release -r linux-x64 -o ./publish ./cli/dug.csproj
-  when:
-    ref:
-    - refs/tags/*.*.*
   depends_on:
   - prepare_publishing
 
 - name: build win-x64
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   commands:
   - sed -i 's~<version>0.0.1</version>~<version>${DRONE_TAG}</version>~' ./.ci/win/dug.nuspec #Set the Version in the nuspec
   - dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o ./.ci/win/output ./cli
-  when:
-    ref:
-    - refs/tags/*.*.*
   depends_on:
   - prepare_publishing
 
@@ -175,7 +143,7 @@ steps:
   - build win-x64
 
 - name: build osx-x64
-  image: mcr.microsoft.com/dotnet/sdk:7.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   environment:
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
   commands:
@@ -183,9 +151,6 @@ steps:
   - mv ./publish/dug ./publish/dug-osx-x64 #Rename the binary to its architecture type
   - dotnet tool restore
   - dotnet tarball -c Release -r osx-x64 -o ./publish ./cli/dug.csproj
-  when:
-    ref:
-    - refs/tags/*.*.*
   depends_on:
   - prepare_publishing
 

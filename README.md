@@ -82,7 +82,7 @@ Not sure if this counts as an "Installation" but there is a docker image availab
 
 ## Development
 
-This is a .net 7 project, so as long as you have the dotnet cli, available [here](https://dotnet.microsoft.com/download/dotnet/7.0) you should be able to do the following: `dotnet build ./cli`
+This is a .net 6 project, so as long as you have the dotnet cli, available [here](https://dotnet.microsoft.com/download/dotnet/6.0) you should be able to do the following: `dotnet build ./cli`
 
 The project was developed in VSCode so the debugger profiles that I have used are available if you're also using VSCode.
 

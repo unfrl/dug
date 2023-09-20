@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Version>0.0.1</Version> <!-- Version is set by ci/cd pipeline -->
     <RuntimeIdentifiers>linux-x64;linux-arm64;osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="DnsClient" Version="1.7.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Spectre.Console" Version="0.41.0" />
     <PackageReference Include="TinyCsvParser" Version="2.6.0" />
   </ItemGroup>
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DebDotNetDependencies Include="libc6, libgcc1, libgssapi-krb5-2, libstdc++6, zlib1g, libssl1.1 | libssl1.0.2 | libssl1.0.1 | libssl1.0.0 | libssl0.9.8, libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu64 | libicu63 | libicu62 | libicu61 | libicu60 | libicu59 | libicu58 | libicu57 | libicu56 | libicu55 | libicu54 | libicu53 | libicu52" /> 
+    <DebDotNetDependencies Include="libc6, libgcc1, libgssapi-krb5-2, libstdc++6, zlib1g, libssl3 | libssl1.1 | libssl1.0.2 | libssl1.0.1 | libssl1.0.0 | libssl0.9.8, libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu64 | libicu63 | libicu62 | libicu61 | libicu60 | libicu59 | libicu58 | libicu57 | libicu56 | libicu55 | libicu54 | libicu53 | libicu52" /> 
   </ItemGroup>
 
   <ItemGroup>
