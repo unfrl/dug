@@ -5,7 +5,7 @@ WORKDIR /app
 COPY ./cli/dug.csproj .
 RUN dotnet restore
 COPY ./cli .
-RUN dotnet publish -r linux-musl-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -o publish
+RUN dotnet publish -r linux-musl-x64 -c Release -p:PublishSingleFile=true --self-contained true -o publish
 
 FROM mcr.microsoft.com/dotnet/runtime:7.0-alpine as runtime
 WORKDIR /app

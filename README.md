@@ -88,7 +88,7 @@ The project was developed in VSCode so the debugger profiles that I have used ar
 
 The commands to build an optimized executable vary depending on the platform but are all available in the [.drone.yml](.ci/.drone.yml) file. Here is the one to build the linux-x64 executable as an example:
 
-`dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli`
+`dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli`
 
 ### Testing
 

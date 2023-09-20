@@ -4,15 +4,27 @@
   "tools": {
     "dotnet-deb": {
       "version": "0.1.220",
-      "commands": ["dotnet-deb"]
+      "commands": [
+        "dotnet-deb"
+      ]
     },
     "dotnet-rpm": {
       "version": "0.1.189",
-      "commands": ["dotnet-rpm"]
+      "commands": [
+        "dotnet-rpm"
+      ]
     },
     "dotnet-tarball": {
       "version": "0.1.189",
-      "commands": ["dotnet-tarball"]
+      "commands": [
+        "dotnet-tarball"
+      ]
+    },
+    "csharpier": {
+      "version": "0.25.0",
+      "commands": [
+        "dotnet-csharpier"
+      ]
     }
   }
 }
