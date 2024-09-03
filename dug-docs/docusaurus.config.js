@@ -10,7 +10,8 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     algolia: {
-      apiKey: '795d47f4fab665843179ac87c6e27c85',
+      apiKey: '1f056fb8cfb9b9676daf57f6bcc4766d',
+      appId: "7G927L4XB6",
       indexName: 'unfrl',
       // contextualSearch: true,
       // Optional: Algolia search parameters
