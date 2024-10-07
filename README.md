@@ -69,9 +69,12 @@ Note: Annoyingly `dug` is a reserved package name and I am waiting for them to g
 
 Not sure if this counts as an "Installation" but there is a docker image available [here](https://hub.docker.com/r/unfrl/dug)
 
-### OSX
+### Homebrew (Mac & Linux)
 
-> Not Officially Supported Yet
+Install from homebrew with `brew install dug`
+
+### OSX
+> Homebrew is the easiest method for OSX but there is also a binary available
 
 1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the osx binary.
    - It should look like `dug-osx-x64`
