@@ -1,6 +1,12 @@
 on: [push]
 jobs:
-  test:
+  hello-test:
     runs-on: docker
     steps:
       - run: echo All good!
+  
+  build-docker:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t my-app .
