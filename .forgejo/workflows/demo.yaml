@@ -9,4 +9,9 @@ jobs:
     runs-on: docker
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t my-app .
+
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          tags: dug:latest
