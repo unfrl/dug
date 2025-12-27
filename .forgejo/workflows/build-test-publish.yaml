@@ -21,7 +21,6 @@ jobs:
         run: |
           echo "Building tagged version ${{forgejo.ref_name}}"
           sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-          sed -i 's~<version>0.0.1</version>~<version>${{forgejo.ref_name}}</version>~' ./.ci/win/dug.nuspec #Set the Version in the nuspec
           cat ./cli/dug.csproj
         
       - name: Build binaries
@@ -33,7 +32,6 @@ jobs:
           dotnet publish -r osx-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish ./cli
           mv ./publish/dug ./publish/dug-osx-x64 #Rename the binary to its architecture type
           dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish ./cli
-          # cp ./publish/dug.exe ./.forgejo/win/output
 
         # This is where we would want to add steps to build the deb/rpm/pkg/tar/etc
       
@@ -63,22 +61,6 @@ jobs:
       - name: Run BATS tests
         shell: bash
         run: ./cli.tests/bats/run.sh
-
-  publish-chocolatey:
-    runs-on: ubuntu-dotnet-24.04
-    needs: test
-    if: ${{forgejo.ref_type == 'tag'}}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: https://github.com/christopherHX/gitea-download-artifact@v4
-        with:
-          name: dug-${{forgejo.run_id}}
-          path: publish
-
-      - name: Ensure binaries are executable
-        run: |
-          chmod -R +x publish/
-          ls -lha publish
   
   publish:
     runs-on: ubuntu-dotnet-24.04
