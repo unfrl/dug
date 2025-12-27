@@ -9,6 +9,7 @@ load 'libs/bats-assert/load'
 # The publish command below is not used in CI/CD, its just there for running bats locally.
 setup() {
   DUG="${1:-publish/dug}"
+  echo "Running test using executable at: $DUG"
 
   if [ ! -f "$DUG" ]; then
     echo "dug executable doesnt exist, building..."

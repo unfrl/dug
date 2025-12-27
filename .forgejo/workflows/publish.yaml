@@ -65,8 +65,12 @@ jobs:
         with:
           name: dug-${{forgejo.run_id}}
           path: publish
+      
+      - run: ls publish
 
-      - run: ./cli.tests/bats/run.sh publish/dug-linux-x64
+      - name: Run BATS tests
+        shell: bash
+        run: ./cli.tests/bats/run.sh publish/dug-linux-x64
       # - run: docker build -t my-app .
   
   publish:
@@ -108,27 +112,19 @@ jobs:
   #     - name: Check for dotnet sdk
   #       run: dotnet --list-sdks
   
-  build-docker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # build-docker:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v3
+  #       with:
+  #         endpoint: tcp://127.0.0.1:2375
 
-      # - name: Set up Docker Context for Buildx
-      #   id: buildx-context
-      #   run: |
-      #     docker context create builders
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          endpoint: tcp://127.0.0.1:2375
-
-      - name: Build
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: false
-          tags: dug:latest
+  #     - name: Build
+  #       uses: docker/build-push-action@v6
+  #       with:
+  #         context: .
+  #         push: false
+  #         tags: dug:latest
