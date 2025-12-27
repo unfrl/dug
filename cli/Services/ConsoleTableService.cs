@@ -20,7 +20,7 @@ namespace dug.Services
         {
             DrawUrlHeader(options);
             if(options.TableDetailLevel == 1){
-                AnsiConsole.Render(GenerateConciseTable(results, options));
+                AnsiConsole.Write(GenerateConciseTable(results, options));
             }
             else {
                 DrawVerboseTable(results, options);
@@ -86,7 +86,7 @@ namespace dug.Services
                 parentTable.AddRow(serverInfoGrid, resultTable);
             }
 
-            AnsiConsole.Render(parentTable);
+            AnsiConsole.Write(parentTable);
         }
         
         private Table GenerateConciseTable(Dictionary<DnsServer, List<DnsResponse>> results, RunOptions options, string title = null){
@@ -146,7 +146,7 @@ namespace dug.Services
 
         private void DrawUrlHeader(RunOptions options)
         {
-            AnsiConsole.Render(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} {i18n.dug.Table_Records_For} {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
+            AnsiConsole.Write(new Rule($"[green]{string.Join(',', options.ParsedQueryTypes)} {i18n.dug.Table_Records_For} {options.Hostname}[/]").RuleStyle(Style.Parse("blue")).DoubleBorder().LeftAligned());
         }
 
         public void RenderInfoPanel<T>(object args)
@@ -180,7 +180,7 @@ namespace dug.Services
                     new Markup(descriptionString)
                 );
             }
-            AnsiConsole.Render(table);
+            AnsiConsole.Write(table);
         }
     }
 }

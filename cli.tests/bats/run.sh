@@ -5,10 +5,13 @@ set -e
 load 'libs/bats-support/load'
 load 'libs/bats-assert/load'
 
+
 # This is intended to be run from the root directory with `bats ./cli.tests/bats/run.sh`
 # The publish command below is not used in CI/CD, its just there for running bats locally.
 setup() {
-  DUG=publish/dug
+  [[ $CI = true ]] && DUG="publish/dug-linux-x64" || DUG="publish/dug" # In CI we run against dug-linux-x64
+
+  echo "Running test using executable at: $DUG"
 
   if [ ! -f "$DUG" ]; then
     echo "dug executable doesnt exist, building..."
@@ -34,7 +37,9 @@ setup() {
 @test "Invoke 'dug version'" {
   run $DUG version
   assert_success
-  assert_output "0.0.1" #The testing build should always be version 0.0.1
+  if [[ $CI != true ]]; then
+    assert_output "0.0.1" #The local testing build should always be version 0.0.1, not true in CI
+  fi
 }
 
 @test "Invoking dug without a Hostname should fail" {
