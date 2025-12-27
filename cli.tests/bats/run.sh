@@ -37,7 +37,9 @@ setup() {
 @test "Invoke 'dug version'" {
   run $DUG version
   assert_success
-  assert_output "0.0.1" #The testing build should always be version 0.0.1
+  if [[ $CI != true ]]; then
+    assert_output "0.0.1" #The local testing build should always be version 0.0.1, not true in CI
+  fi
 }
 
 @test "Invoking dug without a Hostname should fail" {
