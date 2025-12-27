@@ -31,23 +31,21 @@ jobs:
       - run: ./cli.tests/bats/run.sh
       - uses: https://github.com/christopherHX/gitea-upload-artifact@v4
         with:
-          name: dug-${{forgejo.ref_name}}
-          path: publish/dug
+          name: dug-${{forgejo.job}}
+          path: publish
       # - run: docker build -t my-app .
   
   publish:
     runs-on: ubuntu-dotnet-24.04
     needs: build-and-test
+    if: ${{forgejo.ref_type == 'tag'}}
     steps:
       - uses: actions/checkout@v4
-      # - run: echo "Publishing tagged version ${{forgejo.ref_name}}"
-      # - run: sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-      # - run: cat ./cli/dug.csproj
       - uses: https://github.com/christopherHX/gitea-download-artifact@v4
         with:
-          name: dug-${{forgejo.ref_name}}
-          path: publish/dug
-      # - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+          name: dug-${{forgejo.job}}
+          path: publish
+
       - run: ls publish
 
       - name: Set up Docker Buildx
