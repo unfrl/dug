@@ -3,6 +3,7 @@ jobs:
   hello-test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: echo All good!
       - run: which docker
       - run: DOCKER_HOST=tcp://127.0.0.1:2375 docker build -t my-app .
