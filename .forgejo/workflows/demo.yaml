@@ -5,7 +5,7 @@ jobs:
     steps:
       - run: echo All good!
       - run: which docker
-      - run: docker build -t my-app .
+      - run: DOCKER_HOST=tcp://forgejo-dind:2375 docker build -t my-app .
   
   build-docker:
     runs-on: ubuntu-latest
