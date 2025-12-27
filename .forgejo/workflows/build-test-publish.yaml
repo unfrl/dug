@@ -1,4 +1,4 @@
-name: Publish
+name: Build Test Publish
 
 on:
   push:
