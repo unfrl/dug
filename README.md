@@ -1,7 +1,9 @@
 # dug
 
-[![Build Status](https://drone.kaijucode.com/api/badges/unfrl/dug/status.svg)](https://drone.kaijucode.com/unfrl/dug)
-[![unfrl-dug](https://snapcraft.io/unfrl-dug/badge.svg)](https://snapcraft.io/unfrl-dug)
+![Build Status](https://git.unfrl.com/Unfrl/dug/badges/workflows/build-test-publish.yaml/badge.svg?branch=main)
+![Release](https://git.unfrl.com/Unfrl/dug/badges/release.svg)
+
+[![unfrl-dug](https://snapcraft.io/unfrl-dug/badge.svg)](https://snapcraft.io/unfrl-dug) (Unmaintained)
 
 A powerful global DNS propagation checker that can output in a variety of formats.
 
@@ -38,32 +40,13 @@ Currently supports the following languages:
 
 ## Installation
 
-### Linux Deb (Debian, Ubuntu, Mint, Pop!\_os)
+### Linux x86 and ARM
 
-1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the .deb package.
-   - It should look like `dug.<version>.linux-x64.deb`
-2. On most distros double clicking the .deb package will allow you to install via a UI, alternatively it can be installed by running `sudo dpkg -i ./dug.<version>.linux-x64.deb`
-
-### Linux RPM (RHEL, CentOS, Fedora)
-
-1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the .rpm package.
-   - It should look like `dug.<version>.linux-x64.rpm`
-2. On most distros double clicking the .deb package will allow you to install via a UI, alternatively it can be installed by running `rpm -i ./dug.<version>.linux-x64.deb`
+The linux builds are distributed as executables at the [latest release](https://git.unfrl.com/Unfrl/dug/releases/latest). There used to be package distributions (deb, rpm, etc) and they will be back, this work is being tracked [here](https://git.unfrl.com/Unfrl/dug/issues/2).
 
 ### Arch
 
 A friend put dug in the AUR! [here](https://aur.archlinux.org/packages/dug-git/)
-
-### Snap
-
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/unfrl-dug)
-
-> Install snap if you dont have it [Guide](https://snapcraft.io/docs/getting-started#heading--install)
-
-1. Run: `sudo snap install unfrl-dug`
-2. Invoke with: `unfrl-dug [OPTIONS]`
-
-Note: Annoyingly `dug` is a reserved package name and I am waiting for them to give it to me. When I get it the package will just be named `dug`
 
 ### Docker
 
@@ -76,21 +59,15 @@ Install from homebrew with `brew install dug`
 ### OSX
 > Homebrew is the easiest method for OSX but there is also a binary available
 
-1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the osx binary.
+1. Go to the [latest release](https://git.unfrl.com/Unfrl/dug/releases/latest) and download the osx binary.
    - It should look like `dug-osx-x64`
 2. You should be able to download that, make is executable, and run it from the terminal. Then you can put it somewhere and update your path so you can execute it from anywhere.
 
 ### Windows
 
-#### Chocolatey (choco cli)
-
-> Chocolatey manually reviews all packages, which takes a while, so this can lag behind the latest. [status info here](https://chocolatey.org/packages/dug)
-
-1. Run: `choco install dug`
-
 #### Executable
 
-1. Go to the [latest release](https://github.com/unfrl/dug/releases/latest) and download the .exe binary.
+1. Go to the [latest release](https://git.unfrl.com/Unfrl/dug/releases/latest) and download the .exe binary.
    - It should look like `dug.exe`
 2. You should be able to download that and run it from the terminal. Then you can put it somewhere and update your path so you can execute it from anywhere.
 
@@ -100,7 +77,7 @@ This is a .net 6 project, so as long as you have the dotnet cli, available [here
 
 The project was developed in VSCode so the debugger profiles that I have used are available if you're also using VSCode.
 
-The commands to build an optimized executable vary depending on the platform but are all available in the [.drone.yml](.ci/.drone.yml) file. Here is the one to build the linux-x64 executable as an example:
+The commands to build an optimized executable vary depending on the platform but are all available in the [workflows directory](.forgejo/workflows). Here is the one to build the linux-x64 executable as an example:
 
 `dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli`
 
