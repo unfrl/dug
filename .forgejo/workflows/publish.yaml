@@ -1,6 +1,19 @@
-on: [push]
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+    - '[0-9]+\.[0-9]+\.[0-9]+'
+    
+
+env:
+  DOCKER_HOST: tcp://127.0.0.1:2375
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
 jobs:
-  hello-test:
+  tests:
     runs-on: ubuntu-dotnet-24.04
     steps:
       - uses: actions/checkout@v4
@@ -8,17 +21,23 @@ jobs:
           submodules: 'recursive'
       - run: dotnet --list-sdks
       - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
-      - run: ls cli.tests/bats/libs/bats
       - run: ./cli.tests/bats/run.sh
-      - run: DOCKER_HOST=tcp://127.0.0.1:2375 docker build -t my-app .
+      - run: docker build -t my-app .
   
-  container-test-job:
+  prepare-publishing:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/dotnet/sdk:10.0
     steps:
-      - name: Check for dotnet sdk
-        run: dotnet --list-sdks
+      - run: echo "Publishing tagged version ${{forgejo.ref}}"
+      - run: sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+      - run: cat ./cli/dug.csproj
+
+  # container-test-job:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: mcr.microsoft.com/dotnet/sdk:10.0
+  #   steps:
+  #     - name: Check for dotnet sdk
+  #       run: dotnet --list-sdks
   
   build-docker:
     runs-on: ubuntu-latest
