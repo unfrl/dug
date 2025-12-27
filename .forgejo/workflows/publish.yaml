@@ -55,7 +55,7 @@ jobs:
           path: publish
       
       - name: Ensure binaries are executable
-      - run: |
+        run: |
           chmod -R +x publish/
           ls -lha publish
 
@@ -75,7 +75,7 @@ jobs:
           path: publish
 
       - name: Ensure binaries are executable
-      - run: |
+        run: |
           chmod -R +x publish/
           ls -lha publish
 
