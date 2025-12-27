@@ -8,6 +8,14 @@ jobs:
       - run: which docker
       - run: DOCKER_HOST=tcp://127.0.0.1:2375 docker build -t my-app .
   
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:10.0
+    steps:
+      - name: Check for dotnet sdk
+        run: dotnet --list-sdks
+  
   build-docker:
     runs-on: ubuntu-latest
     steps:
