@@ -6,7 +6,6 @@ on:
       - '**'
     tags:
       - '[0-9]+\.[0-9]+\.[0-9]+'
-    
 
 env:
   DOCKER_HOST: tcp://127.0.0.1:2375
@@ -88,36 +87,16 @@ jobs:
           username: ${{ secrets.UNFRL_DOCKERHUB_USER }}
           password: ${{ secrets.UNFRL_DOCKERHUB_PAT }}
       
-      - name: Build
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: false
+          push: true
           tags: unfrl/dug:${{forgejo.ref_name}},unfrl/dug:latest
-
-  # TODO: Maybe only ACTUALLY publish if the tag is associated with a commit on main. tags dont give you that context so you might have to dig a little. Maybe uneccessary
-
-  # container-test-job:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: mcr.microsoft.com/dotnet/sdk:10.0
-  #   steps:
-  #     - name: Check for dotnet sdk
-  #       run: dotnet --list-sdks
-  
-  # build-docker:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v3
-  #       with:
-  #         endpoint: tcp://127.0.0.1:2375
-
-  #     - name: Build
-  #       uses: docker/build-push-action@v6
-  #       with:
-  #         context: .
-  #         push: false
-  #         tags: dug:latest
+      
+      - uses: actions/forgejo-release@v2.7.3
+        with:
+          direction: upload
+          url: https://git.unfrl.com
+          tag: ${{forgejo.ref_name}}
+          release-dir: publish
