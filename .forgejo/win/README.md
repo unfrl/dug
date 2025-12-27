@@ -1,3 +1,5 @@
+Note, this doesnt currently function but was moved here fromt he old `./.ci` directory for reference if we ever add back publishing that needs nuget (chocolatey)
+
 Sometimes chocolatey wants me to tweak something (file extensions, empty fields in nuspec, etc) and I need to resubmit a specific version. To do so locally use the following from the root dug directory:
 
 1. Update `<version>` tag in dug.nuspec
