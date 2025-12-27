@@ -35,8 +35,7 @@ jobs:
 
       - name: build win-x64
         run: |
-          dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o win-output ./cli
-          ls win-output
+          dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish ./cli
 
         # This is where we would want to add steps to build the deb/rpm/pkg/tar/etc
       
@@ -52,14 +51,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-      - run: dotnet --list-sdks
-      - name: Set version if tag
-        if: ${{forgejo.ref_type == 'tag'}}
-        run: |
-          echo "Building tagged version ${{forgejo.ref_name}}"
-          sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-          cat ./cli/dug.csproj
-          # In the future this is where we would want to build the deb/rpm/pkg/tar/etc
+      # - run: dotnet --list-sdks
+      # - name: Set version if tag
+      #   if: ${{forgejo.ref_type == 'tag'}}
+      #   run: |
+      #     echo "Building tagged version ${{forgejo.ref_name}}"
+      #     sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+      #     cat ./cli/dug.csproj
+      #     # In the future this is where we would want to build the deb/rpm/pkg/tar/etc
 
       # - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
       - uses: https://github.com/christopherHX/gitea-download-artifact@v4
@@ -67,7 +66,7 @@ jobs:
           name: dug-${{forgejo.run_id}}
           path: publish
 
-      - run: ./cli.tests/bats/run.sh
+      - run: ./cli.tests/bats/run.sh publish/dug-linux-x64
       # - run: docker build -t my-app .
   
   publish:
