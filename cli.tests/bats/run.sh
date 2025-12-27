@@ -5,10 +5,12 @@ set -e
 load 'libs/bats-support/load'
 load 'libs/bats-assert/load'
 
+
 # This is intended to be run from the root directory with `bats ./cli.tests/bats/run.sh`
 # The publish command below is not used in CI/CD, its just there for running bats locally.
 setup() {
-  DUG="${1:-publish/dug}"
+  [[ $CI = true ]] && DUG="publish/dug-linux-x64" || DUG="publish/dug" # In CI we run against dug-linux-x64
+
   echo "Running test using executable at: $DUG"
 
   if [ ! -f "$DUG" ]; then
