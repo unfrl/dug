@@ -1,12 +1,13 @@
 on: [push]
 jobs:
   hello-test:
-    runs-on: docker
+    runs-on: ubuntu-latest
     steps:
       - run: echo All good!
+      - run: which docker
   
   build-docker:
-    runs-on: docker
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
