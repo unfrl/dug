@@ -2,8 +2,6 @@ name: Publish
 
 on:
   push:
-    branches:
-      - main
     tags:
     - '[0-9]+\.[0-9]+\.[0-9]+'
     
@@ -24,12 +22,16 @@ jobs:
       - run: ./cli.tests/bats/run.sh
       - run: docker build -t my-app .
   
-  prepare-publishing:
+  publish:
     runs-on: ubuntu-latest
+    needs: tests
     steps:
-      - run: echo "Publishing tagged version ${{forgejo.ref}}"
-      - run: sed -i 's~<Version>0.0.1</Version>~<Version>${DRONE_TAG}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+      - uses: actions/checkout@v4
+      - run: echo "Publishing tagged version ${{forgejo.ref_name}}"
+      - run: sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
       - run: cat ./cli/dug.csproj
+
+  # TODO: Maybe only ACTUALLY publish if the tag is associated with a commit on main. tags dont give you that context so you might have to dig a little. Maybe uneccessary
 
   # container-test-job:
   #   runs-on: ubuntu-latest
