@@ -1,9 +1,7 @@
 on: [push]
 jobs:
   hello-test:
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/dotnet/sdk:10.0
+    runs-on: ubuntu-dotnet-24.04
     steps:
       - uses: actions/checkout@v4
         with:
