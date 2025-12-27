@@ -2,10 +2,15 @@ on: [push]
 jobs:
   hello-test:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:10.0
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
       - run: echo All good!
       - run: which docker
+      - run: ls cli.tests/bats/libs/bats
       - run: DOCKER_HOST=tcp://127.0.0.1:2375 docker build -t my-app .
   
   container-test-job:
