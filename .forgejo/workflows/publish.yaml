@@ -31,7 +31,7 @@ jobs:
       - run: ./cli.tests/bats/run.sh
       - uses: https://github.com/christopherHX/gitea-upload-artifact@v4
         with:
-          name: dug-${{forgejo.job}}
+          name: dug-${{forgejo.run_id}}
           path: publish
       # - run: docker build -t my-app .
   
@@ -43,7 +43,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: https://github.com/christopherHX/gitea-download-artifact@v4
         with:
-          name: dug-${{forgejo.job}}
+          name: dug-${{forgejo.run_id}}
           path: publish
 
       - run: ls publish
