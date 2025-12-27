@@ -1,9 +1,13 @@
 name: Publish
 
+on: [push]
+
 on:
   push:
+    branches:
+      - *
     tags:
-    - '[0-9]+\.[0-9]+\.[0-9]+'
+      - '[0-9]+\.[0-9]+\.[0-9]+'
     
 
 env:
@@ -11,26 +15,42 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 jobs:
-  tests:
+  build-and-test:
     runs-on: ubuntu-dotnet-24.04
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
       - run: dotnet --list-sdks
+      - name: Set version if tag
+        if: ${{forgejo.ref_type == 'tag'}}
+        run: |
+          echo "Building tagged version ${{forgejo.ref_name}}"
+          sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+          cat ./cli/dug.csproj
+
       - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
       - run: ./cli.tests/bats/run.sh
-      - run: docker build -t my-app .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dug-${{forgejo.ref_name}}
+          path: publish/dug
+      # - run: docker build -t my-app .
   
   publish:
     runs-on: ubuntu-dotnet-24.04
-    needs: tests
+    needs: build-and-test
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Publishing tagged version ${{forgejo.ref_name}}"
-      - run: sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
-      - run: cat ./cli/dug.csproj
-      - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+      # - run: echo "Publishing tagged version ${{forgejo.ref_name}}"
+      # - run: sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+      # - run: cat ./cli/dug.csproj
+      - uses: actions/download-artifact@v4
+        with:
+          name: dug-${{forgejo.ref_name}}
+          path: publish/dug
+      # - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+      - run: ls publish
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
