@@ -1,4 +1,8 @@
+
 # dug
+
+> [!WARNING]
+> If you are reading this on GitHub note that this a mirrored repository. The primary repo is at: https://git.unfrl.com/Unfrl/dug
 
 [![Build Status](https://drone.kaijucode.com/api/badges/unfrl/dug/status.svg)](https://drone.kaijucode.com/unfrl/dug)
 [![unfrl-dug](https://snapcraft.io/unfrl-dug/badge.svg)](https://snapcraft.io/unfrl-dug)
