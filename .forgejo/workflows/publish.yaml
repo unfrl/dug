@@ -63,7 +63,8 @@ jobs:
           name: dug-${{forgejo.run_id}}
           path: publish
       
-      - run: ls publish
+      - run: chmod +x publish/dug-linux-x64
+      - run: ls -lha publish
 
       - name: Run BATS tests
         shell: bash
