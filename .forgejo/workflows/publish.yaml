@@ -13,8 +13,41 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-dotnet-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set version if tag
+        if: ${{forgejo.ref_type == 'tag'}}
+        run: |
+          echo "Building tagged version ${{forgejo.ref_name}}"
+          sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
+          cat ./cli/dug.csproj
+        
+      - name: Build unix binaries
+        run: |
+          dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+          mv ./publish/dug ./publish/dug-linux-x64 #Rename the binary to its architecture type
+          dotnet publish -r linux-arm64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+          mv ./publish/dug ./publish/dug-linux-arm64 #Rename the binary to its architecture type
+          dotnet publish -r osx-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o publish ./cli
+          mv ./publish/dug ./publish/dug-osx-x64 #Rename the binary to its architecture type
+
+      - name: build win-x64
+        run: |
+          dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true --self-contained true -o win-output ./cli
+          ls win-output
+
+        # This is where we would want to add steps to build the deb/rpm/pkg/tar/etc
+      
+      - uses: https://github.com/christopherHX/gitea-upload-artifact@v4
+        with:
+          name: dug-${{forgejo.run_id}}
+          path: publish
+
+  test:
+    runs-on: ubuntu-dotnet-24.04
+    needs: build
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,18 +59,20 @@ jobs:
           echo "Building tagged version ${{forgejo.ref_name}}"
           sed -i 's~<Version>0.0.1</Version>~<Version>${{forgejo.ref_name}}</Version>~' ./cli/dug.csproj #Set the Version in the csproj, its the only way to get the packaging tools to respect the version.
           cat ./cli/dug.csproj
+          # In the future this is where we would want to build the deb/rpm/pkg/tar/etc
 
-      - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
-      - run: ./cli.tests/bats/run.sh
-      - uses: https://github.com/christopherHX/gitea-upload-artifact@v4
+      # - run: dotnet publish -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishReadyToRun=true --self-contained true -o publish ./cli
+      - uses: https://github.com/christopherHX/gitea-download-artifact@v4
         with:
           name: dug-${{forgejo.run_id}}
           path: publish
+
+      - run: ./cli.tests/bats/run.sh
       # - run: docker build -t my-app .
   
   publish:
     runs-on: ubuntu-dotnet-24.04
-    needs: build-and-test
+    needs: test
     if: ${{forgejo.ref_type == 'tag'}}
     steps:
       - uses: actions/checkout@v4
