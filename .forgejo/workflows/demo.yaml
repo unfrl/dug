@@ -5,7 +5,7 @@ jobs:
     steps:
       - run: echo All good!
       - run: which docker
-      - run: DOCKER_HOST=tcp://forgejo-dind:2375 docker build -t my-app .
+      - run: DOCKER_HOST=tcp://127.0.0.1:2375 docker build -t my-app .
   
   build-docker:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
-          endpoint: tcp://forgejo-dind:2376
+          endpoint: tcp://127.0.0.1:2375
 
       - name: Build
         uses: docker/build-push-action@v6
