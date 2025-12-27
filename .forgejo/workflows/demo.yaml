@@ -5,6 +5,7 @@ jobs:
     steps:
       - run: echo All good!
       - run: which docker
+      - run: docker build -t my-app .
   
   build-docker:
     runs-on: ubuntu-latest
@@ -22,7 +23,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
-          endpoint: tcp://docker:2376
+          endpoint: tcp://forgejo-dind:2376
 
       - name: Build
         uses: docker/build-push-action@v6
