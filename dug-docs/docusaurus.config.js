@@ -35,7 +35,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/unfrl/dug',
+          href: 'https://git.unfrl.com/Unfrl/dug',
           label: 'Source Repository',
           position: 'left',
         },
@@ -66,7 +66,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/unfrl/dug',
+              href: 'https://git.unfrl.com/Unfrl/dug',
             },
           ],
         },
@@ -81,7 +81,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/unfrl/dug/tree/main/dug-docs',
+            'https://git.unfrl.com/Unfrl/dug/src/branch/main/dug-docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
