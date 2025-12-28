@@ -30,6 +30,6 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: dug-docs/
           push: true
           tags: unfrl/dug-docs:${{forgejo.ref_name}},unfrl/dug-docs:latest
