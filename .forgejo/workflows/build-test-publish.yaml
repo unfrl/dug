@@ -8,7 +8,6 @@ on:
       - '[0-9]+\.[0-9]+\.[0-9]+'
 
 env:
-  DOCKER_HOST: tcp://127.0.0.1:2375
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 jobs:
@@ -62,10 +61,9 @@ jobs:
         shell: bash
         run: ./cli.tests/bats/run.sh
   
-  publish:
+  docker-build-conditionally-publish:
     runs-on: ubuntu-dotnet-24.04
     needs: test
-    if: ${{forgejo.ref_type == 'tag'}}
     steps:
       - uses: actions/checkout@v4
       - uses: https://github.com/christopherHX/gitea-download-artifact@v4
@@ -87,14 +85,15 @@ jobs:
           username: ${{ secrets.UNFRL_DOCKERHUB_USER }}
           password: ${{ secrets.UNFRL_DOCKERHUB_PAT }}
       
-      - name: Build and Push Docker Image
+      - name: Build and Conditionally (if tagged) Push Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
+          push: ${{forgejo.ref_type == 'tag'}}
           tags: unfrl/dug:${{forgejo.ref_name}},unfrl/dug:latest
       
       - uses: actions/forgejo-release@v2.7.3
+        if: ${{forgejo.ref_type == 'tag'}}
         with:
           direction: upload
           url: https://git.unfrl.com
