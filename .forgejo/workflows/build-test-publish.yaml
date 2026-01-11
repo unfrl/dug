@@ -65,6 +65,7 @@ jobs:
   publish:
     runs-on: ubuntu-dotnet-24.04
     needs: test
+    if: ${{forgejo.ref_type == 'tag'}}
     steps:
       - uses: actions/checkout@v4
       - uses: https://github.com/christopherHX/gitea-download-artifact@v4
@@ -90,11 +91,10 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: ${{forgejo.ref_type == 'tag'}}
+          push: true
           tags: unfrl/dug:${{forgejo.ref_name}},unfrl/dug:latest
       
       - uses: actions/forgejo-release@v2.7.3
-        if: ${{forgejo.ref_type == 'tag'}}
         with:
           direction: upload
           url: https://git.unfrl.com
